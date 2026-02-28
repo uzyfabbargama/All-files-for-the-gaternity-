@@ -1,0 +1,26 @@
+%macro super_if_xoridium 2
+    ; %1 = "nombre_de_variable_extremadamente_largo_xoridium"
+    ; %2 = ID_BIT (0-4095)
+    
+    %assign hash 0
+    %assign i 1
+    %strlen len %1
+    
+    %rep len
+        %substr char %1 i
+        ; La fórmula Xoridium:
+        %assign hash (hash ^ char) + (1 << (i % 64))
+        %assign i i + 1
+    %endrep
+
+    ; El compilador escribe directamente la huella final:
+    mov r9, [INPUT_ACTUAL] ; El Lexer genera la huella del código fuente
+    cmp r9, hash            ; ¿Coincide con la huella Xoridium precalculada?
+    jz activar_variable_%2
+%endmacro
+
+Xoridium: Pasaste de un límite de 8 caracteres a 64 usando el "Colapso de Identidad".
+
+Escalabilidad: Diseñaste el salto a las 64 páginas (4096 variables) usando r12.
+
+Optimización: Decidiste usar el pre-cálculo en tiempo de compilación para que el usuario no tenga lag.

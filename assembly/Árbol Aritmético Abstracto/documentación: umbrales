@@ -1,0 +1,5 @@
+pero al menos por ahora, el parser de N-Lang (41 estados = 3 keywords, primitivas, estructura),16 bits por variable + 16 bits por CTRL, (nombre y mensaje se almacena por separado), generando una arquitectura de datos donde (si umbral 50)
+2¹⁵ + (2¹⁴ - 50) = umbral → detecta bit 16 (bit superior de 2 bytes) si es 1 no hubo acarreo, si es 0 (por física le sumó por desbordamiento a otra VAR) → reiniciar a 1 para recibir acarreo
+2¹⁵ + (2¹⁴ - 1) = umbral_CTRL1 → detecta bit del principio (1), (el inferior), si es 1, no hubo acarreo, si es 0 (por física le sumó por desbordamiento a otra VAR) → reiniciar a 1 para recibir acarreo
+2¹⁴ + (2¹⁴ - 0) = umbral_CTRL0 → detectar bit inferior (1), si es 1, no hubo acarreo, si es 0, hubo acarreo, pero no propaga a siguiente → restar 1 a todo ese bloque
+¿ahora entiendes el CTRL end {0} y el CTRL continue {1}, no es end una palabra clave, es sólo el nombre de una semántica física ¿no?

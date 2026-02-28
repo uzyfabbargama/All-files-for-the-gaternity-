@@ -1,3 +1,5 @@
+;SHL 0b10 = 1
+;SHR 0b10 = 100
 ;PE (propósito geneal)
 ;PE (propósito específico)
 ;registros temporales
@@ -39,17 +41,30 @@
     ;17 "["                 ;keyword load and save (start)
     ;18 "]"                 ;keyword load and save (end)
     ;19 "."                 ;keyword extension save/load
-    ;20 "N"                 ;keyword extension N-Lang
-    ;21 "'"                 ;Subkeyword string2
+    ;20 "'"                 ;Subkeyword string2
     ;#" no hace falta, ya que la condición: hacer nada y/o ignorar es gratuita
     ;Error, el # no es simplemente "hacer nada" es "ignorar hasta recibir un salto de línea" 
-    ;22 "#"                 ;Coemntarios
-    ;23 ";"                 ;Otra Subekeyword de asignación y/o división
-    ;24 "!"                 ;subkeyword para not
-    ;25 "<"                 ;subkeyword para mayor qué
-    ;26 ">"                 ;subkeyword para menor qué
-    ;27 " "                 ;subkeyword para delimitar variables
-    ;28 "e"					;subkeyword para errores
+    ;21 "#"                 ;Coemntarios
+    ;22 ";"                 ;Otra Subekeyword de asignación y/o división
+    ;23 "!"                 ;subkeyword para not
+    ;24 "<"                 ;subkeyword para mayor qué
+    ;25 ">"                 ;subkeyword para menor qué
+    ;26 " "                 ;subkeyword para delimitar variables
+    ;27 "e"					;subkeyword para errores
+    ;28 "\n"                ;salto de línea
+    ;29 "^"                 ;xor
+    ;30 "&"                 ;and
+    ;31 "|"                 ;or
+    ;32 "1"                 ;1
+    ;33 "2"                 ;2
+    ;34 "3"                 ;3
+    ;35 "4"                 ;4
+    ;36 "5"                 ;5
+    ;37 "6"                 ;6
+    ;38 "7"                 ;7
+    ;39 "8"                 ;8
+    ;40 "9"                 ;9
+    ;41 "0"                 ;0
 ;
 ;Definir VAR
     %define KW_VAR 0
@@ -174,203 +189,105 @@
 ;Definir 0
     %define KW_0 40 
     %define P_0 0x10000000000
-
-;Definir CTRL relleno
-    %define CTRLbits 1  ;Lo establecemos a 1 bit
-
-;Macro
-%macro CREATE_CTRL0()
-    mov r9, 1           ;registro de operación
-    add cl, CTRLbits    ;añadido 1bit al lector
-    shl r9, cl          ;desplazar r9 lo que nos marca el lector
-    add r12, r9         ;añadido a la CLASS
-%endmacro
-
 _start:
-;nif[0](16) = CLASS nif = (
-    mov cl, 0      ;contador de bits
-    mov r12, 0       ;clase principal nif(1)
-    ;CTRL condición[0]{0} "VAR"
-        CREATE_CTRL0
-    ;CTRL condición[1]{0} "CTRL" 
-        CREATE_CTRL0
-    ;CTRL condición[2]{0} "CLASS"
-        CREATE_CTRL0
-    ;CTRL condición[3]{0} "("
-        CREATE_CTRL0
-    ;CTRL condición[4]{0} ","
-        CREATE_CTRL0
-    ;CTRL condiciónr[5]{0} "(" 
-        CREATE_CTRL0
-    ;CTRL condición[6]{0} "}"
-        CREATE_CTRL0
-    ;CTRL condiciónr[7]{0} "{"
-        CREATE_CTRL0
-    ;CTRL condición[8]{0} "+"
-        CREATE_CTRL0
-    ;CTRL condiciónr[9]{0} "-"
-        CREATE_CTRL0
-    ;CTRL condición[10]{0} "*"
-        CREATE_CTRL0
-    ;CTRL condiciónr[11]{0} "/"
-        CREATE_CTRL0
-    ;CTRL condición[12]{0} "**"
-        CREATE_CTRL0
-    ;CTRL condiciónr[13]{0} ";"
-        CREATE_CTRL0
-    ;CTRL condición[14]{0} "="
-        CREATE_CTRL0
-    ;CTRL condiciónr[15]{0} '"'
-        CREATE_CTRL0
-    ;CTRL condición[16]{0} "["
-        CREATE_CTRL0
-    ;CTRL condición[17]{0} ']'
-        CREATE_CTRL0
-    ;CTRL condición[18]{0} "."
-        CREATE_CTRL0
-    ;CTRL condición[19]{0} "'"
-        CREATE_CTRL0
-    ;CTRL condición[20]{0} "#"
-        CREATE_CTRL0
-    ;CTRL condición[21]{0} ":"
-        CREATE_CTRL0
-    ;CTRL condición[22]{0} "!"
-        CREATE_CTRL0
-    ;CTRL condición[23]{0} "<"
-        CREATE_CTRL0
-    ;CTRL condición[24]{0} ">"
-        CREATE_CTRL0
-    ;CTRL condición[25]{0} " "
-        CREATE_CTRL0
-    ;CTRL condición[26]{0} "e"
-        CREATE_CTRL0
-    ;CTRL condición[27]{0} \n
-        CREATE_CTRL0
-    ;CTRL condición[28]{0} ^
-        CREATE_CTRL0
-    ;CTRL condición[29]{0} &
-        CREATE_CTRL0
-    ;CTRL condición[30]{0} |
-        CREATE_CTRL0
-    ;CTRL condición[31]{0} 1
-        CREATE_CTRL0
-    ;CTRL condición[32]{0} 2
-        CREATE_CTRL0
-    ;CTRL condición[33]{0} 3
-        CREATE_CTRL0
-    ;CTRL condición[34]{0} 4
-        CREATE_CTRL0
-    ;CTRL condición[35]{0} 5
-        CREATE_CTRL0
-    ;CTRL condición[36]{0} 6
-        CREATE_CTRL0
-    ;CTRL condición[37]{0} 7
-        CREATE_CTRL0
-    ;CTRL condición[38]{0} 8
-        CREATE_CTRL0
-    ;CTRL condición[39]{0} 9
-        CREATE_CTRL0
-    ;CTRL condición[40]{0} 0
-        CREATE_CTRL0
-;);
-;Actualizar y comparar, mediante cmp zf
-%define verdad
-%macro UPDATE_CTRL()
-        mov r9, r12      ;obtener el mapa completo    
+;Actualizar y comparar, mediante xor zf
+    %define verdad
+    %macro UPDATE_KW()
+        mov r9, r15      ;obtener el mapa completo    
         sub cl, 1        ;Añadido 1bit al lector
-        shr r9, cl       ;desplazado r9 lo que nos marca el lector
+        shl r9, cl       ;desplazado r9 lo que nos marca el lector
         and r9, 0x1      ;toma un solo bit
         xor r9, 1        ;compara si el slot es 1
         cmovz rax, verdad;compara la zf y lo mueve a rax
         shl rax, cl      ;aplica la máscara según el lector
         sub r12, rax     ;Reinicia estado de 1 → 0
-%endmacro
+    %endmacro
 
     ;CL = registro 8 bits de cantidad de bits
     ;CTRL condición[26]{0} 0
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} 9
-        UPDATE_CTRL      
+        UPDATE_KW      
     ;CTRL condición[26]{0} 8
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} 7
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} 6
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} 5
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} 4
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} 3
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} 2
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} 1
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} |
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} &
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} ^
-        UPDATE_CTRL    
+        UPDATE_KW    
     ;CTRL condición[26]{0} \n
-        UPDATE_CTRL    
+        UPDATE_KW    
     ;CTRL condición[26]{0} e
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[26]{0} " "
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[25]{0} ">"
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL condición[24]{0} "<"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[23]{0} "!"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[22]{0} ":"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[21]{0} "#"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[20](1) "'"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[19]{0} "N"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[18]{0} "."
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[17]{0} "]"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[16]{0} "["
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[15]{0} '"'
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[14]{0} "="
-        UPDATE_CTRL
+        UPDATE_KW
     ;CTRL separador[13]{0} ";"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[12]{0} "**"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[11]{0} "/"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[10]{0} "*"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[9]{0} "-"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[8]{0} "+"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[7]{0} "}"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[6]{0} "{"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[5]{0} ")"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[4]{0} ","
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[3]{0} "("
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[2]{0} "CLASS"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condiciónr[1]{0} "CTRL"
-        UPDATE_CTRL
+        UPDATE_KW
     ;;CTRL condición[0]{0} "VAR"
-        UPDATE_CTRL
+        UPDATE_KW
 
 
 
@@ -671,7 +588,7 @@ _start:
                               ;if[","]
                                 cond(KW_COMMA)
         ;else("a-z,A-Z,0-9")
-            elsecond(KW_SPACE)
+            elsecond(KW_PARENTESIS_OPEN)
             cmovz [tabla_IDs], r13 ;
             mov rax, rdx        ;Iniciamos el acumulador
             shl rax, 9          ;1 byte + 1 bit
@@ -686,108 +603,57 @@ _start:
         mov r9, 0           ;reinicio contexto
 ;Contexto CTRL completo (falta dirección)
     ;if["CTRL"]
-        mov rdx, r15        ;acceder al contexto
-        shl rdx, 2          ;ubicación CTRL
-        and rdx, 1          ;filtro and
-        add r9, rdx         ;punto conexión CTRL -> {
+        FIRSTcond(KW_CTRL)
         ;if(" ")
-            mov rdx, r15    ;acceder al contexto
-            shl rdx, 52     ;ubicación del bit " "
-            and rdx, 1      ;filtro and, para tomar el bit de " "
-            and r9, rdx      ;Comparación agregado a r9 y conexión
+            cond(KW_SPACE)
             ;if["{"]
-                mov rdx, r15    ;acceder al contexto
-                shl rdx, 12     ;ubicación del bit "}"
-                and rdx, 1      ;filtro and
-                and r9, rdx     ;punto conexión { -> ,
+                cond(KW_LLAVES_OPEN)
                 ;if["1/0"]
-                    mov rdx, INPUT    ;acceder al dato
-                    and rdx, 0x1      ;permite sólo valores binarios
-                    and r9, rdx       ;conexión
+                    cond(KW_0)
+                    elsecond(KW_0)
                     ;if[","]
-                        mov rdx, r15    ;acceder al contexto
-                        shl rdx, 8      ;ubicación bit de ","
-                        and rdx, 1      ;filtro and
-                        and r9, rdx     ;punto conexión , -> }
+                        cond(KW_COMMA)
                             ;if["Destino"]
                             mov rdx, INPUT  ;Acceder al input actual
                             xor rax, rdx    ;Xorid 
                                 ;if[" "]
-                                mov rdx, r15    ;Acceder al contexto
-                                shl rdx, 52     ;ubicación del bit " "
-                                and rdx, 1      ;Filtro and
-                                and r9, rdx     ;Punto de conexión
+                                cond(KW_SPACE)
                                 cmovnz rax, ID_DIRECTION
                                     ;if["+"]
-                                    mov rdx, r15    ;Acceder al contexto
-                                    shl, rdx, 16    ;Ubicación del bit "+"
-                                    and rdx, 1      ;Filtro and
-                                    and r9, rdx     ;Punto de conexión
+                                    cond(KW_ADD)
                                     ;do
                                     ;si + es correcto 
                                     ;else[!"+"]
-                                    mov rdx, r15    ;Acceder al contexto
-                                    shl rdx, 16     ;Ubicación del bit +
-                                    and rdx, 1      ;Filtro and
-                                    xor r9, rdx     ;Punto de conexión
+                                    elsecond(KW_ADD)
                                     ;do
                                         ;if["-"]
-                                        mov rdx, r15 ;Acceder al contexto
-                                        shl rdx, 18  ;Ubicación del bit -
-                                        and rdx, 1   ;Filtro AND
+                                        cond(KW_SUB)
                                         ;else[!"-"]
-                                        mov rdx, r15 ;Acceder al contexto
-                                        shl rdx, 18  ;Ubicación del bit -
-                                        and rdx, 1   ;Filtro AND
-                                        xor r9, rdx  ;Punto de conexión
+                                        elsecond(KW_SUB)
                                             ;if["*"]
-                                            mov rdx, r15 ;Acceder al contexto
-                                            shl rdx, 20  ;Ubicación del bit "*"
-                                            and rdx, 1   ;Filtro AND
-                                            and r9, rdx  ;Punto de conexión
+                                            cond(KW_MUL)
                                             ;do
                                             ;else[!"*"]
-                                            mov rdx, r15 ;Acceder al contexto
-                                            shl rdx, 20  ;Ubicación del bit "*"
-                                            and rdx, 1   ;Filtro AND
-                                            xor r9, rdx  ;Punto de conexión
+                                            elsecond(KW_MUL)
                                             ;do
                                                 ;if["**"]
-                                                mov rdx, r15 ;Acceder al contexto
-                                                shl rdx, 24  ;Ubicación del bit **
-                                                and rdx, 1   ;Filtro AND
-                                                and r9, rdx  ;Punto de conexión
+                                                cond(KW_POWER)
                                                 ;do                                    
                                                 ;else[!"**"]
-                                                mov rdx, r15 ;Acceder al contexto
-                                                shl rdx, 24  ;Ubicación del bit **
-                                                and rdx, 1   ;Filtro AND
-                                                xor r9, rdx  ;Punto de conexión
+                                                elsecond(KW_POWER)
                                                 ;do
                                                     ;if["/"]
-                                                    mov rdx, r15 ;Acceder al contexto
-                                                    shl rdx, 22  ;Ubicación del bit /
-                                                    and rdx, 1   ;Filtro AND
-                                                    and r9, rdx  ;Punto de conexión
+                                                    cond(KW_DIV)
                                                     ;do
                                                     ;else[!"/"]
-                                                    mov rdx, r15 ;Acceder al contexto
-                                                    shl rdx, 22  ;Ubicación del bit /
-                                                    and rdx, 1   ;Filtro AND
-                                                    xor r9, rdx  ;Punto de conexión
+                                                    elsecond(KW_DIV)
                                                     ;do  
                             ;if["}"]
-                                mov rdx, r15    ;acceder al conexto
-                                shl rdx, 14     ;ubicación del bit "}"
-                                and rdx, 1      ;filtro and
-                                and r9, rdx     ;conexión
+                                cond(KW_LLAVES_OPEN)
                                 ;if[","]
-                                    mov rdx, r15    ;acceder al contexto
-                                    mov cl, 8       ;dirección ","
-                                    shl rdx, cl      ;ubicación bit de ","
-                                    and rdx, 1      ;filtro and
-                                    and r9, rdx      ;lectura agregado a r9
+                                    cond(KW_COMMA)
         ;else("a-z,A-Z,0-9")
+            elsecond(KW_LLAVES_OPEN)
             mov rax, rdx    ;Iniciamos el acumulador
             shl rax, 9      ;1 byte + 1 bit
             sub rax, 1      ;restar 1 para que sea FF
@@ -800,45 +666,21 @@ _start:
     mov r9, 0           ;reinicio contexto
 ;Contexto CLASS incompleto
     ;if["CLASS"]
-        mov rdx, r15        ;acceder al contexto
-        shl rdx, 4          ;ubicación CLASS
-        and rdx, 1          ;filtro and
-        mov r9, rdx         ;punto conexión CLASS -> =
+        FIRSTcond(KW_CLASS)
         ;if[" "]
-            mov rdx, r15        ;Acceder al contexto
-            shl rdx, 52         ;Ubicación " "
-            and rdx, 1          ;Filtro and
-            and r9, rdx         ;conexión
+            cond(KW_SPACE)
             ;if["="]
-                mov rdx, r15    ;acceder al contexto
-                shl rdx, 28     ;ubicación =
-                and rdx, 1      ;filtro and
-                and r9, rdx     ;punto conexión = -> (
+                cond(KW_EQUAL)
                 ;if[("("]
-                    mov rdx, r15    ;acceder al contexto
-                    shl rdx, 12     ;ubicación (
-                    and rdx, 1      ;filtro and
-                    and r9, rdx     ;punto conexión ( -> VAR o CTRL
+                    cond(KW_PARENTESIS_OPEN)
                     ;if["VAR"]
-                        mov rdx, r15    ;acceder al contexto
-                        shl rdx, 0    ;ubicación VAR
-                        and rdx, 1      ;filtro and
-                        and r9, rdx      ;punto conexión ( -> VAR
-                            ;end
-                                mov r9, 0       ;Reiniciar contexto
+                        cond(KW_VAR)
+                            
                     ;else["CTRL"]
-                    mov rdx, r15    ;acceder al contexto
-                    shl rdx, 2      ;Ubicación de CTRL
-                    and rdx, 1      ;filtro and 
-                    mov r9, rdx     ;punto conexión ( -> CTRL
-                        ;end
-                        mov r9, 0     ;Reiniciar contexto
+                    elsecond(KW_VAR)
+                        
     ;if[!" "]
-        mov rdx, r15        ;Acceder al contexto
-        shl rdx, 52         ;Ubicación " "
-        and rdx, 1          ;Filtro and
-        xor r9, rdx         ;conexión
-        mov rax, rdx        ;Iniciamos el acumulador
+        elsecond(KW_SPACE)
         shl rax, 9          ;1 byte + 1 bit
         sub rax, 1          ;restar 1 para que sea FF
         and rax, INPUT      ;ingresamos el byte
@@ -847,10 +689,7 @@ _start:
         shl r13, rcx        ;desplazar según contador
         add rcx, 1          ;aumentar contador en 1
     ;else[")"]
-    mov rdx, r15        ;acceder al contexto
-    shl rdx, 10         ;ubicación )
-    and rdx, 1          ;filtro and
-    mov r9, rdx         ;punto conexión ) -> ;
+        cond(KW_PARENTESIS_CLOSE)
         ;end
         mov r9, 0       ;Reiniciar contexto
         ;if(";")
