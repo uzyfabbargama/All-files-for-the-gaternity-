@@ -1,0 +1,39 @@
+Si: A = X, A = Y (concurrentes)
+Entonces: Condensador = -(X - Y) = Y - X
+
+# Asignaciones del mismo signo → condensador negativo
+A = 10
+A = 5, A = 8       # Condensador = -(5 - 8) = 3
+A -= 3 → A = 7     # ¡Mitiga hacia el promedio!
+
+# Asignaciones del mismo signo negativo → condensador positivo  
+A = 10
+A = -5, A = -8     # Condensador = -(-5 - (-8)) = -3  
+A += -3 → A = 7    # ¡También hacia el promedio!
+
+# Signos opuestos → refuerzo
+A = 10
+A = 5, A = -3      # Condensador = -(5 - (-3)) = -8
+A -= -8 → A = 18   # ¡Amplifica la diferencia!
+
+# Asignaciones del mismo signo → condensador negativo
+A = 10
+A = 5, A = 8       # Condensador = -(5 - 8) = 3
+A -= 3 → A = 7     # ¡Mitiga hacia el promedio!
+
+# Asignaciones del mismo signo negativo → condensador positivo  
+A = 10
+A = -5, A = -8     # Condensador = -(-5 - (-8)) = -3  
+A += -3 → A = 7    # ¡También hacia el promedio!
+
+# Signos opuestos → refuerzo
+A = 10
+A = 5, A = -3      # Condensador = -(5 - (-3)) = -8
+A -= -8 → A = 18   # ¡Amplifica la diferencia!
+
+A = 10
+A = 3, A = 7, A = 15, A = 20
+Condensador = Σ [-(primer_valor - valor_i)] para i=2..N
+= -(3-7) + -(3-15) + -(3-20) 
+= 4 + 12 + 17 = 33
+A = 10 - 33 = -23

@@ -1,0 +1,15 @@
+; --- Lógica de una VAR cualquiera ---
+
+; [ ... Lógica de comparación de umbral (genera el acarreo en R9) ... ]
+
+; --- INYECCIÓN DE e/!e (Aquí se da la funcionalidad) ---
+
+; Si la subkeyword es 'e'
+    mov rax, r16        ; Carga el estado de error (0 o 1)
+    not rax, rax        ; Invierte: 1 si NO hay error, 0 si hay error.
+    
+; Si la subkeyword es '!e'
+    ; mov rax, r16      ; Carga el estado de error directamente.
+    
+; APLICAR FILTRO
+    and r9, rax         ; El acarreo (R9) solo pasa si RAX es activo (1).

@@ -1,0 +1,62 @@
+# =========================================================================
+# Máquina Fibonacci: Simulación de Flujo Recursivo/Iterativo con Acarreo
+# Objetivo: Generar el N-ésimo número de Fibonacci (Fn = Fn-1 + Fn-2)
+#           Controlando el flujo de dos valores anteriores.
+# =========================================================================
+
+# -----------------
+# 1. VAR GLOBALES
+# -----------------
+VAR Iterador (10) = 0 # Umbral 10: Se detiene después de calcular 10 números.
+VAR F_anterior (0) = 0  # F(n-2)
+VAR F_actual (0) = 1    # F(n-1)
+
+# -----------------
+# 2. VAR DE SALIDA
+# -----------------
+# El acarreo de F_nuevo_valor se usará para disparar este print.
+VAR Resultado (1, "Serie Finalizada. Último valor calculado: [F_nuevo_valor.valor]")
+
+# -----------------
+# 3. CLASS (El Generador de Siguiente Valor)
+# -----------------
+# Esta CLASS contiene la lógica F(n) = F(n-1) + F(n-2)
+CLASS Calculo_Siguiente = (
+    # Esta VAR recibe el valor de la suma
+    VAR F_nuevo_valor (1) = 0  
+);
+
+# -----------------
+# 4. CTRL DE FLUIDO (El Bucle de Ejecución)
+# -----------------
+
+# [4A] CTRL: SUMA y ASIGNACIÓN (El corazón de la iteración)
+# Este CTRL realiza la suma y activa el acarreo para el siguiente paso.
+CTRL Paso_Suma_Asignacion {1, 
+    # 1. Ejecuta la suma: (F_n-1 + F_n-2) y lo asigna a F_nuevo_valor.
+    Calculo_Siguiente.F_nuevo_valor = F_actual + F_anterior;
+    
+    # 2. Prepara las VARs para el siguiente ciclo:
+    # El valor actual pasa a ser el anterior (F_n-1 -> F_n-2)
+    F_anterior = F_actual;
+    # El nuevo valor pasa a ser el actual (F_n -> F_n-1)
+    F_actual = Calculo_Siguiente.F_nuevo_valor; 
+    
+    # 3. Resetea el contador para el siguiente ciclo, asegurando que el umbral sea 1.
+    Calculo_Siguiente.F_nuevo_valor = 0; 
+}
+
+# [4B] CTRL: BUCLE y FIN
+# Este CTRL controla la iteración y la condición de salida.
+CTRL Iterar_Fibonacci {1,
+    Iterador += 1; # Incrementar el contador.
+    
+    # Si Iterador alcanza su umbral (10), su acarreo disparará la salida.
+    Paso_Suma_Asignacion += Iterador; 
+}
+
+# -----------------
+# 5. INICIALIZACIÓN
+# -----------------
+# Ejecutar una vez para iniciar la cadena de acarreos:
+CTRL Iniciar_Cadena {0, Iterar_Fibonacci += 1}

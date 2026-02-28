@@ -1,0 +1,62 @@
+en la parte 
+cmp r9, '"'
+cmovz raz, 0x4000000000
+es porque sólo detectamos un bit, que nos lleva a detectar si detectamos un byte, aparte del índice:
+23 = ! = 48 = 0x400000000000
+22 = : = 44 = 0x100000000000
+21 = # = 42 = 0x40000000000
+20 = ' = 40 = 0x10000000000
+19 = nlang = 38 =0x4000000000
+18 = . = 36 = 0x1000000000
+17 = ] = 34 = 0x400000000
+16 = [ = 32 = 0x100000000
+15 = " = 30 = 0x40000000
+14 = = = 28 = 0x10000000
+13 = ; = 26 = 0x4000000
+12 = ** = 24 = 0x1000000
+11 = / = 22 = 0x400000
+10 = * = 20 = 0x100000
+9 = - = 18 = 0x40000
+8 = + = 16 = 0x10000
+7 = } = 14 = 0x4000
+6 = { = 12 = 0x1000
+5 = ) = 10 = 0x400
+4 = , = 8 = 0x100
+3 = ( = 6 = 0x40
+2 = CLASS = 4 = 0x10
+1 = CTRL = 2 = 4
+0 = VAR = 0 = 1
+con respecto al manejo de bits confuso, es bit paking, y es bastante simple (un bit si, y un bit no, y el índice lo explica claramente
+(hay clara modularización interconectada, todas las partes dependen las unas de las otras, y se potencian, simplificando el debug ya que, tienes las dependencias donde las necesitas)
+hacer (como dice la IA)
+%define VAR_CTX    0x00000001
+%define CTRL_CTX   0x00000002  
+%define CLASS_CTX  0x00000004
+es como sino supiera binario (1 = 1, 2 = 10, 4 = 100), eso causaría acarreo (7 = VAR, CTRL, CLASS = 111, + 1 = 1000 = error),
+2. **Crea Macros para Operaciones Comunes:**
+```asm
+; Macro para detectar keywords
+%macro DETECT_KEYWORD 3
+    mov rdx, %1          ; String a detectar
+    mov rax, %2          ; Valor a añadir
+    mov r8, %3           ; Registro destino
+    ; ... lógica de comparación
+%endmacro (esto te lo dejo a tu criterio
+
+3. **Mejora el Sistema de Hash:**
+```asm
+; Función hash más robusta para nombres de variables
+hash_variable:
+    xor rax, rax
+    mov rcx, 0          ; contador
+.hash_loop:
+    mov dl, [rsi+rcx]   ; carácter actual
+    test dl, dl
+    jz .done
+    rol rax, 5          ; rotar left 5 bits
+    xor al, dl          ; XOR con el carácter
+    inc rcx
+    jmp .hash_loop
+.done:
+    ret
+``` (No es necesario, (ni que fuera a hacer variables de 1000 palabras)) 
