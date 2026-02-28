@@ -1,0 +1,17 @@
+; --- Asumimos que RCX contiene el tamaño de la VAR completada (ej. 3 para VAR2) ---
+
+; if["," o ")"]  ; Momento de la detección del delimitador
+    
+    ; 1. GUARDAR EL OFFSET (Posición de inicio de la VAR que ACABA de terminar)
+    ; Almacenamos el offset total acumulado (R14) en la tabla, usando R13 como índice.
+    mov [Offsets_Tabla + r13*4], r14  ; Guarda el offset (ej. 0, 5, 8...)
+    
+    ; 2. ACTUALIZAR EL ACUMULADOR (Prepararse para la siguiente VAR)
+    add r14, rcx                      ; Suma el tamaño de la VAR actual (RCX) al total acumulado (R14).
+                                      ; R14 ahora contiene el offset de la siguiente VAR.
+    
+    ; 3. INCREMENTAR EL ÍNDICE Y REINICIAR
+    add r13, 1                        ; Incrementa el índice para la próxima VAR.
+    mov rcx, 1                        ; Reinicia RCX al tamaño del Umbral (1 Byte) para la nueva VAR.
+    
+; end
