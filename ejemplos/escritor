@@ -1,0 +1,5 @@
+CLASS escritor(VAR snippet_code (1, "Código en C para generar un cuadrado")
+
+snipet_code = ["Código C para genenerar un cuadrado.c"]); #escribirá el texto, sólo si pasó el umbral
+
+escritor.snippet_code += 1 #se crea un archivo en el directorio donde estás ejecutando el código de N-Lang

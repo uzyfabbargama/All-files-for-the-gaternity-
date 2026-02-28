@@ -1,0 +1,9 @@
+de hecho podés usarlo en donde quieras
+class unir_palabras(W "y" W1) (ctrl unir {0, var resultado(1) += W + W1}); #ya que los strings y los números se manejan por separado, si, una variable puede contener números para lógica y strings para mensaje
+mostrar = 1
+unir_palabras("Manzana" y "pera") += mostrar #que es 1, y el umbral de resultado es 1
+#output: Manzanapera
+unir_palabras("Cama" y "león") += mostrar 
+#output: "ManzanaperaCamaleón" #si, me olvidé de crear otra instancia de la función/clase/objeto
+unir_palabras[1]("Cama" y "león) += mostrar
+#output: Camaleón 

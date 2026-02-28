@@ -1,0 +1,8 @@
+class numerium(semilla, resolución) = (
+    var coordenada(1, calcular_bloque(semilla, resolución))
+)
+
+class randomixer(semilla_física) = (
+    var gravedad(1, calcular_gravedad(semilla_física)),
+    var durezas(1, calcular_durezas(semilla_física))
+)

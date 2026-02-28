@@ -1,0 +1,12 @@
+#se puede usar CLASS o class, o los 2⁴ estados posibles)
+for = <for.N[for]>
+if = <if.N[if]>
+CLASS log2(valor) = (for(in 0 to 1 each (if(valor < 1))),
+CTRL calcular {1, valor //= 2} += if(valor < 1),
+CTRL contar {0,VAR contador +=1}); #no hace falta inicializar las variables con 0
+print = <print.N [print]>
+log2(10)
+print(log.contador) #output: 4
+#exportar módulo
+#claseA = [alias]
+log2 = [log2] #alias

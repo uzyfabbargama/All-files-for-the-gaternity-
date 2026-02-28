@@ -1,0 +1,27 @@
+Randomixer: Mediante una "semilla de físicas" de 8 dígitos, se crea toda la complejidad del mundo
+(para el mundo normal es) 12345678, luego se separa en pares y colores 12 (gris), 34(naranja), 56(marrón), 78(azul), luego se toman los valores mayores de cada par, 2, 4, 6, 8, luego se ordenan de mayor a menor, 8, 6, 4, 2 = 78, 56, 34, 12
+78 para la gravedad (7 · 8 = 56)
+(dureza de los materiales)
+(gravedad - d1 · d2) + d1
+(7 · 8 - 1 · 2) + 1 = dureza minerales
+(7 · 8 - 3 · 4) + 3 = dureza roca común
+(7 · 8 - 5 · 6) + 5 = dureza madera
+(7 · 8 - 7 · 8) + 7 = dureza agua (osea densidad de la misma)
+(límite de altura de las construcciones)
+(dureza del material)²/gravedad
+
+fuerza del jugador
+dureza de madera + 1.
+
+fuerza del carbón: 5 · 6 = 30 (producto de la dupla de la madera)
+fuerza de la roca: 3 · 4 = 12 ((producto de la dupla de la piedra)la madera/carbón puede quemar 0.4 piedras)
+fuerza del hierro: 1 · 2 = 2  ((producto de la dupla del hierro)la madera/carbón puede quemar 0.06 minerales de hierro)
+fuerza de los mares: 7 · 8 = 56 (requiere 4.6 días para romper la roca, 0.5 días para la madera, y 28 días para romper el hierro
+fuerza de los metales: 1 · 2 / 2 (acero) = 1
+osmio: 1 · 2 / 4 = 0.5
+cobalto: 1 · 2 / 6 = 0.3333 
+
+conexión
+d1 - d2 = +- N
+si N es negativo, puede enviar energía a otros negativos, pero no a los positivos
+si N es positivo, puede enviar energía a otros positivos, y negativos

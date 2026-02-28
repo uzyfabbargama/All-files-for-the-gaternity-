@@ -1,0 +1,5 @@
+#si cada VAR sólo puede tener 8 bits, entonces esto te volará la cabeza
+#Sistema de expansión N-Lang:
+CLASS super_VAR(valor) = (VAR valor[0:7] (0)); #0 = 256, es decir, necesita 256 para activarse
+super_VAR(12345678) #cuando supera a 256, le suma 1 a la VAR de abajo
+#3 líneas, usando acarreo para conectar

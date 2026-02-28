@@ -1,0 +1,19 @@
+# Sistema de riego automático
+VAR suelo_humedad(!30, "regar") += sensor_humedad
+CTRL tomar_agua {1, tanque_agua -= 30} #para que no afectes a VAR tanque_agua....
+CTRL riego {0, suelo_humedad += 30}
+VAR slot_underborrow (1) #coloca FFFF, para mitigar acarreo reverso
+VAR tanque_agua(100, "recargar") += lluvia
+VAR lleno (!1, "recargando...")
+CTRL recarga {1, tanque_agua += 50}
+VAR sobrecarga (!1, "juntando desborde")
+CTRL desborde {0, VAR tanque_agua2 += 100}
+tanque_agua2 (1000)
+# Leyendo esto SÉ:
+# 1. Se riega el suelo cuando hay menos de 30 unidades de humedad (según el sensor)
+# 2. Si hay poca humedad, se toma agua del tanque y se la pone en el suelo
+# 3. El tanque tiene de capacidad 100, y se carga con lluvia
+# 4. Se detecta que no esté lleno, 
+# 5. Si no está lleno, se recarga 50
+# 6. Si sobre carga, anula acarreo en variable lleno, el CTRL no envía acarreo, y VAR sobrecarga se activa
+# 7. el controlador de desborde recibe la señal de sobrecarga y le suma el 100 al otro tanque de agua de 1000 de capacidad

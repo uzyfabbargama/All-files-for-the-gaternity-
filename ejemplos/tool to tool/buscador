@@ -1,0 +1,14 @@
+
+CLASS usuario[ID] (nombre, dinero) = (VAR mostrar_nombre(1, nombre),
+CTRL end{0},
+VAR mostrar_dinero (1, "$"dinero)
+);
+CLASS buscadorID(ID, "dinero: "trigger_dinero, "nombre: "trigger_nombre) = (usuario[ID].mostrar_nombre += trigger_nombre,
+usuario[ID].mostrar_dinero += trigger_dinero);
+
+CLASS buscadornombre("nombre: "nombre, cantidad_usuarios) = (
+for(in 0 to cantidad_usuarios each 1), #envía 1 pulso
+CTRL end {0}#reutilizamos el end # lo aislamos para no afectar el if
+if( usuario[for.in].mostrar_nombre = nombre), #el busca un usuario a la vez, y verifica si es igual (usando los xorid, para comparar strings)
+CTRL break {0, for.in += cantidad_usuarios + 1}, #si es verdadero, finaliza el bucle, rompiendo la condición del pulso
+);

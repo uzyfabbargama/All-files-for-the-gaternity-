@@ -1,0 +1,36 @@
+N-Lang, nació de Numerium (en abril de 2025)
+
+Numerium, un sistema que inventé para eliminar el lag de minecraft que me estaba molestando bastante, funciona así
+Resolución: el tamaño de la cuadrícula + 1 (el llamado a la acción) ejemplo 16 = 16²+1 = 257
+Calidad= piensa en la base decimal, si elegimos 3 tomará el dígito ("1"234), que depende de los otros anteriores (en base 257, eso se nota inmensamente
+Semilla =valor que se multiplica por la coordenada X (Z no es más que una derivación de X (Z = X*resolución + 1)
+ejemplo, base 10
+resolución = 3 (3² + 1 = 10
+calidad = 1 (SOLO DECENAS)
+semilla = 55
+7 8 9
+4 5 6
+1 2 3
+55 = 5 = X1, Z1, Y0
+10 = 1 =X0, Z0, Y0
+65 = 6 = X2, Z1, Y0
+20 = 2 = X1, Z0, Y0
+75 = 7 = X0, Z2, Y0
+30 = 3 = X2, Z0, Y0
+85 = 8 = X1, Z2, Y0
+40 = 4 = X0, Z1, Y0
+95 = 9 = X2, Z2, Y0
+50 = 5 (se repite, sumar 1 Y)= X1, Z1, Y1
+
+(OTRO EJEMPLO)
+seed = 50
+50 = 5 = X1, Z1, Y0
+00 = 0 = Y++
+50 = 5 = X1, Z1, Y1
+00 = Y ++
+... (es un monolito que crece hasta el infinito (en chunks de este caso 3 x 3)
+
+es parte de lo que hace a numerium, numerium, y sí, recuerdo que dijiste
+if(¿está la coordenada_base257 en el diccionario de edits?)
+pero yo iba a hacer algo más loco, una resta condicional
+bool(!(valor_jugador - valor_posición actual)

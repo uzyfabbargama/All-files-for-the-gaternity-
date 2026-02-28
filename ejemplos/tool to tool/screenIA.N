@@ -1,0 +1,24 @@
+hmm, veamos el reconocmiento de dígitos.
+
+<tensorflow.N> #importa todo lo de ese archivo, si está en el directorio
+(el código que importé:
+#te sonará loco, pero ¿qué sucede si reescriben tensor flow en N-Lang
+neurona(X,Y,Z,EX, EY, EZ) = (VAR EX(0), VAR EY(0), VAR EZ(0),VAR X (100), CTRL PX{1, EX += 1} ,VAR Y(100), CTRL PY{1, EY += 1} ,VAR Z(100), CTRL PZ{1, EZ += 1});
+#EX = experiencia de X
+#actualizar neurona
+neurona.X += estímulo_X + neurona.EX
+neurona[1].Y += estímulo_X + estímulo_Y + neurona[2].EX + neurona[1].EZ #toma estímulo externo X + estímulo externo Y, y la experiencia de otra neurona [2] en X + la experiencia de sí misma en Z)
+#pantalla
+pixel[1:256]
+X = neurona.X
+Y = neurona.Y
+Z = neurona.Z
+EX = neurona.EX 
+EY = neurona.EY
+EZ = neurona.EZ
+CLASS línea(X, Y =  CTRL matriz{0, neurona[N] += ((X+EX) * pixel[N+1] + (Y+EY) * pixel[N+17]}
+línea[1](un_dato, otro dato)
+....
+línea[16](...) #toda la pantalla analizada
+
+CLASS screenIA = <"screenIA.N"> #exporta el framework completo

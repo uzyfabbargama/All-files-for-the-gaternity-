@@ -1,0 +1,10 @@
+# "Enzimas" que miden actividad metabólica
+collect = CTRL{1, colector_acarreos += 1}
+
+# "Célula" computacional
+VAR A (10)        # ← Orgánulo A
+collect           # ← Enzima midiendo actividad  
+VAR B (10)        # ← Orgánulo B
+collect           # ← Enzima midiendo actividad
+
+# El "colector_acarreos" es como el ATP - mide energía gastada

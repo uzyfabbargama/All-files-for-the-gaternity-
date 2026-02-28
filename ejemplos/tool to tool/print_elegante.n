@@ -1,0 +1,11 @@
+ VAR dinero(0) = 150 #el (0) tiene forma de boca, o hoyo para guardar (a nivel de código, significa, (reserva 16 bits en 0, para guardar el dato)
+
+VAR Laura (0) = dinero #reserva 2 bytes en 0, y sumale 150 (en binario)
+
+always_print ("Analizando dinero") #CLASS always_print(mensaje) = ( VAR mostrar(1, mensaje) += 1); #reserva 2 bytes, que ocupen -1 (el umbral) en los 16 bits, y sumale 1 (para auto activarse)
+
+if (Laura > 100) #CLASS if(condición) = (VAR (1)); #envía 1 abajo, si era correcto
+
+if_print ("Laura posee: {Laura} de dinero") #CLASS if_print(mensaje) = ( VAR mostrar (1, mensaje)); (si es correcto, envía 1 abajo, sino, envía 0)
+
+else_print ("Laura posee: {Laura} de dinero, menor que 100") #CLASS else_print(mensaje) = ( VAR mostrar (!1, mensaje)); #si no recibe 1, entonces muestra el mensaje 

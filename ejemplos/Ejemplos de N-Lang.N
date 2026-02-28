@@ -1,0 +1,175 @@
+# Ejemplos de N-Lang, un lenguaje de programación orientado a objetos y concurrencia
+#Primer elemento VAR
+#Segundo elemento CTRL
+#Tercer elemento CLASS
+
+#VAR: sirve para declarar variables e imprimir valores, tiene un umbral que al ser pasado, activado si pasa el umbral
+VAR saludo1 (1, "hola mundo")
+VAR saludo2 (2, "hola mundo")
+saludo1 += 1 #output: hola mundo
+saludo2 += 1 #output: nada
+saludo2 += 1 #output hola mundo. Debido a (1 + 1 = 2)
+
+#CTRL: sirve para asignar mediante condiciones (recibir true o false, mediante una suma), el tipo 0 impide que un CTRL en el código afecte otro, y el tipo 1, es perfecto para encadenar CTRLs
+VAR entrada(12, "lleno") = 6 #umbral 12, tiene 6, y si se llena imprime "lleno" además de reiniciarse a 0
+VAR salida(12, "lleno") = 6 #umbral 12, tiene 6, y si se llena imprime "lleno" además de reiniciarse a 0
+VAR Contador = 10
+#programación de gestión de errores automática de 0 % 2 = 0, (todo 0 % N = N) es un pequeño plus de cortesía
+CTRL inicio {1, salida += entrada/2}
+CTRL dividir2 {1, entrada /= /2}
+CTRL es_impar {1, entrada += (entrada)%2}
+CTRL aumentar_C {1, Contador -= 1}
+CTRL repetir {0, inicio += contador>0} 
+#paso 1, el valor de salida se suma a la mitad de la entrada
+#paso 2, se divide l entrada en 2
+#paso 3, se suma uno a la entrada si es impar para hacerla par
+#paso 4, se suma 1 a inicio y se vuelve al paso 1, únicamente si contador es mayor que 0, (FIN BLOQUE)
+
+#CLASS: sirve para encapsular el resto de las variables, y almacena las variables en una forma compilada, eso significa que el CTRL puede ir a ellas antes de que estén inicializadas
+#ejemplo
+CLASS esto_es_imposible_pero_posible = (CTRL A_controlador {0, A += 1},
+VAR A(1, "A se activó")); #Esto significa que dentro de la CLASS, puedes usar los inputs abajo, y los métodos CTRL arriba, y funcionará igual que en viceversa
+#llamamos a la CLASS
+#True = true = 1
+CLASS esto_es_imposible_pero_posible(A_controlador) += true #output: A se activó
+#encapsulamiento de CLASS
+#ejemplo if
+#problema, las VAR no pueden hacer igualdades por sí mismas, sólo pueden determinar si un valor es mayor o menor que su umbral, aquí es donde entra el if
+if(condición) = CLASS if = (VAR condición(1));
+#recibe de argumento una condición, y le da ese valor a la variable condición que si recibe 1, se dispara y activa el bloque de abajo
+else(if) = CLASS else = if(!1)); #toma la CLASS compacta de if, y le invierte el valor
+#[] los corchetes sirven de identificadores, pueden tener números, espacios, y letras
+if[comparar valores](7 + 8 = 13) #false
+VAR si_es_verdad (1, "7 + 8 es 13")
+CTRL{0} #fin bloque
+else[comparar valores](if) #true
+VAR Contrario (1, "NO, es 15"
+
+end = CTRL{0} # Función de sumidero de señales
+return = 1 # Definición para claridad
+no_return = 0 # Definición para claridad
+
+for(in, to, each) = CLASS for = (
+    VAR in(100, "No puedo recibir un inicio más grande que 100"), end,
+    VAR to(100, "No puedo recibir hasta más allá que 100"), end,
+    VAR each(100, "No puedo avanzar cada 100 pasos"), end,
+    
+    # ¡CORRECCIÓN! Usamos 'return' (1) para propagar la señal y permitir que el flujo continúe.
+    # El bucle genera una señal de '1' siempre que (in <= to) sea TRUE, alimentando el siguiente CTRL/VAR.
+    CTRL aumentar(return, in += (in<=to)*each}); 
+);
+puedes colocar en las clases compactas, tus propios tokens como argumentos
+
+ejemplo
+
+unión_de_palabras(palabra "y" palabra1) = CLASS UDP = (CTRL{1, palabra_completa += palabra + palabra1},
+
+VAR palabra_completa(1));  #sumar un string a una VAR, lo único que hace es que pueda imprimirlo, (y si sumas 2, los concatena) además de dejar todo listo para la impresión (por el CTRL 1 que envía 1 a la VAR
+
+#uso
+
+unión_de_palabras("Manzana" y "Pera") #output: ManzanaPera
+
+unión_de_palabras("Cama" y "león") #output: Camaleón 
+# Abstracción para claridad: 'return' indica propagación de acarreo.
+return = 1
+#ej:
+CTRL{return, total += entrada} #envía entrada a total
+VAR registro(1, "He sido activado") #la VAR al recibir 1 del CTRL en modo return (1), le suma 1, e imprime su mensaje
+# ----------------------------------------------------------------------
+# CLASE: Muestra la diferencia de comportamiento entre los PDAs (0 y 1).
+# ----------------------------------------------------------------------
+
+CLASS Gestor_de_Memoria = (
+    
+    # 1. VAR de ALMACENAMIENTO MASIVO (Umbral PDA: 0)
+    # Bit de Control = 0: Desactiva el acarreo/chequeo de umbral.
+    # Propósito: Almacenamiento extendido de hasta 2^68, sin generar eventos.
+    VAR Registro_Datos_Masivos (0, "ERROR: Desbordamiento del Slot de 4-bits.") = 0 end
+    # El mensaje solo se imprime si el registro interno excede 2^68.
+
+    
+    # 2. VAR de EVENTO/CONTADOR (Umbral PDA: 1)
+    # Bit de Control = 1: Activa el acarreo/chequeo de umbral.
+    # Propósito: Contar un evento y reaccionar inmediatamente.
+    VAR Contador_de_Eventos (1, "¡Evento disparado y contador reseteado!") = 0 end
+    
+    
+    # 3. CTRL: Simula la entrada de datos/eventos.
+    CTRL_Entrada {return, 
+        
+        # A. Aumenta el registro de datos (solo guarda, no dispara)
+        Registro_Datos_Masivos += 10000000000, 
+        
+        # B. Dispara el contador de eventos (activa el mensaje y reinicia)
+        Contador_de_Eventos += 1
+    }
+    
+    # CTRL que simula el flujo de control para que el Contador se reinicie.
+    CTRL_Reset {return, 
+        Registro_Datos_Masivos += 1, # Incrementa el registro masivo por si las moscas.
+        Contador_de_Eventos = 0      # Reinicia el registro reactivo manualmente.
+    }
+);
+
+# ----------------------------------------------------------------------
+# USO Y SALIDA
+# ----------------------------------------------------------------------
+
+# 1. Inicialización
+maquina_datos = Gestor_de_Memoria
+
+# 2. Simulación de un evento:
+maquina_datos.CTRL_Entrada += 1
+
+# Output: ¡Evento disparado y contador reseteado! 
+# (Solo la VAR con PDA=1 se activa. La VAR con PDA=0 almacena silenciosamente el valor 10000000000.)
+
+#Creación de nodos
+
+# Abstracción para claridad
+return = 1
+
+# CLASS que simula un nodo con lógica de bifurcación
+CLASS Nodo_Chequeo_Evento = (
+    
+    # VAR: El dato que queremos evaluar (Entrada de dato)
+    VAR Dato_a_Chequear = 0 end
+    VAR Umbral_Critico = 10 end
+    
+    # CTRL: El disparador que inicia la lógica (Entrada de ejecución)
+    CTRL Disparador {return, 
+        
+        # 1. Lógica Condicional (Compara Dato_a_Chequear con Umbral_Critico)
+        CTRL_Condicion = (Dato_a_Chequear >= Umbral_Critico)
+        
+        # 2. Flujo TRUE (Activa la Salida_Verdadera si es TRUE)
+        if[salida_true](CTRL_Condicion)
+            Salida_Verdadera += return # Envía la señal (acarreo)
+        end
+        
+        # 3. Flujo FALSE (Activa la Salida_Falsa si es FALSE)
+        else[salida_false](CTRL_Condicion)
+            Salida_Falsa += return # Envía la señal (acarreo)
+        end
+    }
+
+    # VAR: Las salidas del nodo (salidas de ejecución/datos)
+    VAR Salida_Verdadera (1, "Señal: ¡CONDICION CUMPLIDA!") = 0 end
+    VAR Salida_Falsa (1, "Señal: CONDICION NO CUMPLIDA.") = 0 end
+    
+);
+
+# ----------------------------------------------------------------------
+# USO (Conexión de los Nodos)
+# ----------------------------------------------------------------------
+
+# 1. Crear el nodo
+nodo = Nodo_Chequeo_Evento
+
+# 2. Conectar las entradas de dato y ejecución
+nodo.Dato_a_Chequear = 15 # Conecta un valor a la entrada de dato
+nodo.Disparador += 1      # Conecta la entrada de ejecución (simula un tick del motor)
+
+# Output: Señal: ¡CONDICION CUMPLIDA! 
+# (Solo la Salida_Verdadera se activa con el acarreo.)

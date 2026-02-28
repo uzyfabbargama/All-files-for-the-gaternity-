@@ -1,0 +1,14 @@
+CLASS frac = <"fraction.n"[frac]>
+a / b = parte_entera, parte_DespuésComa(10**34)
+#traducido a
+CLASS frac(parte_entera, parte_DespuésComa, precisión) = (
+parte_entera,
+parte_DespuésComa(precisión);
+
+#uso
+frac(a/b, 10**34) #El a/b es una función que devuelve dos valores implícitamente: parte entera + parte después coma, y pueden ser llamadas de cualquier forma, esto es ideal para cálculos ¿no?
+#(para la parte entera)
+a/b = mi_variable, 0
+#Para la parte fraccionaria
+
+a/b = 0, mi_parte_fraccionaria

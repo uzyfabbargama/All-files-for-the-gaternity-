@@ -1,0 +1,7 @@
+int = CLASS número_entero = (VAR parte_entera (1000));
+small_int(nivel_precisión) = CLASS frac = (VAR parte_decimal(10000)[1:nivel_precisión], CTRL {0, parte_entera += 1);
+dígito(ínidice) = frac(parte_decimal[índice])
+
+#si hacemos
+small_int(3) #precisión 10000³
+dígito(1) #toma el dígito log10(10000³)

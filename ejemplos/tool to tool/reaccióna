@@ -1,0 +1,10 @@
+
+Sistema N-Lang = (V, C, E)
+Donde:
+V = {VARs con (valor, umbral)}
+C = {CTRLs con (tipo, fuente, destino)}
+E = "Oleada actual de activaciones"
+
+Transición:
+E_t → {v ∈ V | v.valor >= v.umbral} = E_{t+1}
+Si E_{t+1} = ∅ → TERMINACIÓN

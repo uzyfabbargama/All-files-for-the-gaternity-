@@ -1,0 +1,529 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
+
+#define MAX_TOKEN_LEN 256
+#define MAX_TOKENS 1000
+
+typedef enum {
+    TOKEN_VAR,
+    TOKEN_CTRL,
+    TOKEN_CLASS,
+    TOKEN_IDENTIFIER,
+    TOKEN_NUMBER,
+    TOKEN_STRING,
+    TOKEN_PAREN_OPEN,
+    TOKEN_PAREN_CLOSE,
+    TOKEN_BRACE_OPEN,
+    TOKEN_BRACE_CLOSE,
+    TOKEN_BRACKET_OPEN,
+    TOKEN_BRACKET_CLOSE,
+    TOKEN_COMMA,
+    TOKEN_SEMICOLON,
+    TOKEN_EQUAL,
+    TOKEN_PLUS,
+    TOKEN_PLUS_EQUAL,
+    TOKEN_MINUS,
+    TOKEN_MINUS_EQUAL,
+    TOKEN_MUL,
+    TOKEN_MUL_EQUAL,
+    TOKEN_DIV,
+    TOKEN_DIV_EQUAL,
+    TOKEN_POWER,
+    TOKEN_POWER_EQUAL,
+    TOKEN_AND,
+    TOKEN_OR,
+    TOKEN_XOR,
+    TOKEN_NOT,
+    TOKEN_LESS,
+    TOKEN_GREATER,
+    TOKEN_SPACE,
+    TOKEN_NEWLINE,
+    TOKEN_COMMENT,
+    TOKEN_ERROR,
+    TOKEN_END,
+    TOKEN_UNKNOWN
+} TokenType;
+
+typedef struct {
+    TokenType type;
+    char value[MAX_TOKEN_LEN];
+    int line;
+    int col;
+} Token;
+
+typedef struct {
+    Token tokens[MAX_TOKENS];
+    int count;
+    int position;
+} TokenStream;
+
+typedef struct {
+    char name[MAX_TOKEN_LEN];
+    int threshold;
+    char message[MAX_TOKEN_LEN];
+    int current_value;
+    bool is_list;
+    bool is_conditional_list;
+    int list_capacity;
+} Variable;
+
+typedef struct {
+    char name[MAX_TOKEN_LEN];
+    int type; // 0 = block, 1 = return
+    char destination[MAX_TOKEN_LEN];
+    char operation[MAX_TOKEN_LEN];
+    char value[MAX_TOKEN_LEN];
+} Controller;
+
+typedef struct {
+    char name[MAX_TOKEN_LEN];
+    char args[MAX_TOKEN_LEN];
+    char body[MAX_TOKEN_LEN];
+} Class;
+
+// Lexer functions
+TokenStream lexer(const char* input) {
+    TokenStream stream = {0};
+    int line = 1, col = 1;
+    int i = 0;
+    int input_len = strlen(input);
+    
+    while (i < input_len && stream.count < MAX_TOKENS) {
+        // Skip whitespace but track newlines
+        if (isspace(input[i])) {
+            if (input[i] == '\n') {
+                Token t = {TOKEN_NEWLINE, "", line, col};
+                stream.tokens[stream.count++] = t;
+                line++;
+                col = 1;
+            } else {
+                Token t = {TOKEN_SPACE, "", line, col};
+                stream.tokens[stream.count++] = t;
+                col++;
+            }
+            i++;
+            continue;
+        }
+        
+        // Check for comments
+        if (input[i] == '#') {
+            Token t = {TOKEN_COMMENT, "", line, col};
+            int j = i + 1;
+            while (j < input_len && input[j] != '\n') {
+                if (strlen(t.value) < MAX_TOKEN_LEN - 1) {
+                    strncat(t.value, &input[j], 1);
+                }
+                j++;
+            }
+            stream.tokens[stream.count++] = t;
+            i = j;
+            continue;
+        }
+        
+        // Check for identifiers and keywords
+        if (isalpha(input[i]) || input[i] == '_') {
+            Token t = {TOKEN_IDENTIFIER, "", line, col};
+            int j = i;
+            while (j < input_len && (isalnum(input[j]) || input[j] == '_')) {
+                if (strlen(t.value) < MAX_TOKEN_LEN - 1) {
+                    strncat(t.value, &input[j], 1);
+                }
+                j++;
+            }
+            
+            // Check if it's a keyword
+            if (strcmp(t.value, "VAR") == 0) t.type = TOKEN_VAR;
+            else if (strcmp(t.value, "CTRL") == 0) t.type = TOKEN_CTRL;
+            else if (strcmp(t.value, "CLASS") == 0) t.type = TOKEN_CLASS;
+            else if (strcmp(t.value, "true") == 0) t.type = TOKEN_NUMBER;
+            else if (strcmp(t.value, "false") == 0) t.type = TOKEN_NUMBER;
+            else if (strcmp(t.value, "end") == 0) t.type = TOKEN_IDENTIFIER;
+            else if (strcmp(t.value, "return") == 0) t.type = TOKEN_IDENTIFIER;
+            
+            stream.tokens[stream.count++] = t;
+            col += (j - i);
+            i = j;
+            continue;
+        }
+        
+        // Check for numbers
+        if (isdigit(input[i])) {
+            Token t = {TOKEN_NUMBER, "", line, col};
+            int j = i;
+            while (j < input_len && (isdigit(input[j]) || input[j] == '.')) {
+                if (strlen(t.value) < MAX_TOKEN_LEN - 1) {
+                    strncat(t.value, &input[j], 1);
+                }
+                j++;
+            }
+            stream.tokens[stream.count++] = t;
+            col += (j - i);
+            i = j;
+            continue;
+        }
+        
+        // Check for strings
+        if (input[i] == '"' || input[i] == '\'') {
+            char quote = input[i];
+            Token t = {TOKEN_STRING, "", line, col};
+            int j = i + 1;
+            while (j < input_len && input[j] != quote) {
+                if (strlen(t.value) < MAX_TOKEN_LEN - 1) {
+                    strncat(t.value, &input[j], 1);
+                }
+                j++;
+            }
+            stream.tokens[stream.count++] = t;
+            col += (j - i + 1);
+            i = j + 1;
+            continue;
+        }
+        
+        // Check for operators and symbols
+        Token t = {TOKEN_UNKNOWN, "", line, col};
+        t.value[0] = input[i];
+        t.value[1] = '\0';
+        
+        switch (input[i]) {
+            case '(': t.type = TOKEN_PAREN_OPEN; break;
+            case ')': t.type = TOKEN_PAREN_CLOSE; break;
+            case '{': t.type = TOKEN_BRACE_OPEN; break;
+            case '}': t.type = TOKEN_BRACE_CLOSE; break;
+            case '[': t.type = TOKEN_BRACKET_OPEN; break;
+            case ']': t.type = TOKEN_BRACKET_CLOSE; break;
+            case ',': t.type = TOKEN_COMMA; break;
+            case ';': t.type = TOKEN_SEMICOLON; break;
+            case '=': t.type = TOKEN_EQUAL; break;
+            case '+':
+                if (i + 1 < input_len && input[i+1] == '=') {
+                    t.type = TOKEN_PLUS_EQUAL;
+                    t.value[1] = '=';
+                    t.value[2] = '\0';
+                    i++;
+                } else {
+                    t.type = TOKEN_PLUS;
+                }
+                break;
+            case '-':
+                if (i + 1 < input_len && input[i+1] == '=') {
+                    t.type = TOKEN_MINUS_EQUAL;
+                    t.value[1] = '=';
+                    t.value[2] = '\0';
+                    i++;
+                } else {
+                    t.type = TOKEN_MINUS;
+                }
+                break;
+            case '*':
+                if (i + 1 < input_len && input[i+1] == '*') {
+                    t.type = TOKEN_POWER;
+                    t.value[1] = '*';
+                    t.value[2] = '\0';
+                    i++;
+                } else if (i + 1 < input_len && input[i+1] == '=') {
+                    t.type = TOKEN_MUL_EQUAL;
+                    t.value[1] = '=';
+                    t.value[2] = '\0';
+                    i++;
+                } else {
+                    t.type = TOKEN_MUL;
+                }
+                break;
+            case '/':
+                if (i + 1 < input_len && input[i+1] == '=') {
+                    t.type = TOKEN_DIV_EQUAL;
+                    t.value[1] = '=';
+                    t.value[2] = '\0';
+                    i++;
+                } else {
+                    t.type = TOKEN_DIV;
+                }
+                break;
+            case '^': t.type = TOKEN_XOR; break;
+            case '&': t.type = TOKEN_AND; break;
+            case '|': t.type = TOKEN_OR; break;
+            case '!': t.type = TOKEN_NOT; break;
+            case '<': t.type = TOKEN_LESS; break;
+            case '>': t.type = TOKEN_GREATER; break;
+            case 'e': t.type = TOKEN_ERROR; break;
+            default:
+                t.type = TOKEN_UNKNOWN;
+        }
+        
+        stream.tokens[stream.count++] = t;
+        col++;
+        i++;
+    }
+    
+    // Add END token
+    Token end_token = {TOKEN_END, "", line, col};
+    stream.tokens[stream.count++] = end_token;
+    
+    return stream;
+}
+
+// Parser functions
+bool match(TokenStream* stream, TokenType type) {
+    if (stream->position >= stream->count) return false;
+    return stream->tokens[stream->position].type == type;
+}
+
+Token consume(TokenStream* stream, TokenType type) {
+    if (stream->position >= stream->count) {
+        Token t = {TOKEN_END, "", 0, 0};
+        return t;
+    }
+    
+    Token t = stream->tokens[stream->position];
+    if (t.type == type || type == TOKEN_UNKNOWN) {
+        stream->position++;
+    }
+    return t;
+}
+
+void parse_VAR(TokenStream* stream) {
+    printf("Parsing VAR statement\n");
+    
+    // VAR nombre_variable(umbral, mensaje)
+    consume(stream, TOKEN_VAR);
+    
+    // Get variable name
+    Token name = consume(stream, TOKEN_IDENTIFIER);
+    printf("  Variable name: %s\n", name.value);
+    
+    // Check for parameters
+    if (match(stream, TOKEN_PAREN_OPEN)) {
+        consume(stream, TOKEN_PAREN_OPEN);
+        
+        // Parse threshold
+        if (match(stream, TOKEN_NUMBER) || match(stream, TOKEN_IDENTIFIER)) {
+            Token threshold = consume(stream, TOKEN_UNKNOWN);
+            printf("  Threshold: %s\n", threshold.value);
+        }
+        
+        // Check for message
+        if (match(stream, TOKEN_COMMA)) {
+            consume(stream, TOKEN_COMMA);
+            
+            if (match(stream, TOKEN_STRING)) {
+                Token message = consume(stream, TOKEN_STRING);
+                printf("  Message: %s\n", message.value);
+            }
+        }
+        
+        consume(stream, TOKEN_PAREN_CLOSE);
+    }
+    
+    // Check for assignment
+    if (match(stream, TOKEN_EQUAL)) {
+        consume(stream, TOKEN_EQUAL);
+        
+        // Parse value
+        if (match(stream, TOKEN_NUMBER)) {
+            Token value = consume(stream, TOKEN_NUMBER);
+            printf("  Initial value: %s\n", value.value);
+        } else if (match(stream, TOKEN_STRING)) {
+            Token value = consume(stream, TOKEN_STRING);
+            printf("  Initial value: %s\n", value.value);
+        } else if (match(stream, TOKEN_BRACKET_OPEN)) {
+            consume(stream, TOKEN_BRACKET_OPEN);
+            consume(stream, TOKEN_BRACKET_CLOSE);
+            printf("  Initial value: empty list\n");
+        }
+    }
+    
+    // Check for operation
+    if (match(stream, TOKEN_PLUS_EQUAL) || match(stream, TOKEN_MINUS_EQUAL) ||
+        match(stream, TOKEN_MUL_EQUAL) || match(stream, TOKEN_DIV_EQUAL)) {
+        Token op = consume(stream, TOKEN_UNKNOWN);
+        
+        if (match(stream, TOKEN_NUMBER)) {
+            Token value = consume(stream, TOKEN_NUMBER);
+            printf("  Operation: %s %s\n", op.value, value.value);
+        }
+    }
+    
+    printf("  VAR statement parsed successfully\n\n");
+}
+
+void parse_CTRL(TokenStream* stream) {
+    printf("Parsing CTRL statement\n");
+    
+    consume(stream, TOKEN_CTRL);
+    
+    // Get CTRL name
+    if (match(stream, TOKEN_IDENTIFIER)) {
+        Token name = consume(stream, TOKEN_IDENTIFIER);
+        printf("  CTRL name: %s\n", name.value);
+    }
+    
+    // Parse block
+    if (match(stream, TOKEN_BRACE_OPEN)) {
+        consume(stream, TOKEN_BRACE_OPEN);
+        
+        // Parse type (return/block)
+        if (match(stream, TOKEN_NUMBER) || match(stream, TOKEN_IDENTIFIER)) {
+            Token type = consume(stream, TOKEN_UNKNOWN);
+            printf("  Type: %s\n", type.value);
+        }
+        
+        if (match(stream, TOKEN_COMMA)) {
+            consume(stream, TOKEN_COMMA);
+            
+            // Parse destination and operation
+            // This is simplified - actual parsing would be more complex
+            while (!match(stream, TOKEN_BRACE_CLOSE) && 
+                   !match(stream, TOKEN_COMMA)) {
+                consume(stream, TOKEN_UNKNOWN);
+            }
+        }
+        
+        consume(stream, TOKEN_BRACE_CLOSE);
+    }
+    
+    // Check for activation
+    if (match(stream, TOKEN_PLUS_EQUAL)) {
+        consume(stream, TOKEN_PLUS_EQUAL);
+        
+        if (match(stream, TOKEN_NUMBER) || match(stream, TOKEN_IDENTIFIER)) {
+            Token activation = consume(stream, TOKEN_UNKNOWN);
+            printf("  Activation: %s\n", activation.value);
+        }
+    }
+    
+    printf("  CTRL statement parsed successfully\n\n");
+}
+
+void parse_CLASS(TokenStream* stream) {
+    printf("Parsing CLASS statement\n");
+    
+    consume(stream, TOKEN_CLASS);
+    
+    // Get class name
+    Token name = consume(stream, TOKEN_IDENTIFIER);
+    printf("  CLASS name: %s\n", name.value);
+    
+    // Parse parameters
+    if (match(stream, TOKEN_PAREN_OPEN)) {
+        consume(stream, TOKEN_PAREN_OPEN);
+        
+        // Parse arguments
+        while (!match(stream, TOKEN_PAREN_CLOSE)) {
+            Token arg = consume(stream, TOKEN_UNKNOWN);
+            printf("  Argument: %s\n", arg.value);
+            
+            if (match(stream, TOKEN_COMMA)) {
+                consume(stream, TOKEN_COMMA);
+            }
+        }
+        
+        consume(stream, TOKEN_PAREN_CLOSE);
+    }
+    
+    // Parse assignment
+    if (match(stream, TOKEN_EQUAL)) {
+        consume(stream, TOKEN_EQUAL);
+        
+        // Parse body
+        if (match(stream, TOKEN_PAREN_OPEN)) {
+            consume(stream, TOKEN_PAREN_OPEN);
+            
+            // Parse body contents (simplified)
+            printf("  Parsing CLASS body...\n");
+            
+            // Skip to closing paren
+            int paren_depth = 1;
+            while (paren_depth > 0 && stream->position < stream->count) {
+                if (match(stream, TOKEN_PAREN_OPEN)) {
+                    paren_depth++;
+                } else if (match(stream, TOKEN_PAREN_CLOSE)) {
+                    paren_depth--;
+                }
+                
+                if (paren_depth > 0) {
+                    consume(stream, TOKEN_UNKNOWN);
+                }
+            }
+            
+            consume(stream, TOKEN_PAREN_CLOSE);
+        }
+    }
+    
+    // End of class
+    if (match(stream, TOKEN_SEMICOLON)) {
+        consume(stream, TOKEN_SEMICOLON);
+    }
+    
+    printf("  CLASS statement parsed successfully\n\n");
+}
+
+void parse_NLang(TokenStream* stream) {
+    printf("=== Starting N-Lang Parser ===\n\n");
+    
+    while (stream->position < stream->count) {
+        Token current = stream->tokens[stream->position];
+        
+        if (current.type == TOKEN_END) {
+            break;
+        }
+        
+        switch (current.type) {
+            case TOKEN_VAR:
+                parse_VAR(stream);
+                break;
+            case TOKEN_CTRL:
+                parse_CTRL(stream);
+                break;
+            case TOKEN_CLASS:
+                parse_CLASS(stream);
+                break;
+            case TOKEN_COMMENT:
+                printf("Comment: %s\n\n", current.value);
+                consume(stream, TOKEN_COMMENT);
+                break;
+            case TOKEN_NEWLINE:
+                consume(stream, TOKEN_NEWLINE);
+                break;
+            case TOKEN_SPACE:
+                consume(stream, TOKEN_SPACE);
+                break;
+            default:
+                // Skip unknown tokens (might be part of expressions)
+                consume(stream, TOKEN_UNKNOWN);
+                break;
+        }
+    }
+    
+    printf("=== Parsing Complete ===\n");
+}
+
+// Main function to test the parser
+int main() {
+    // Test with a simple N-Lang program
+    const char* test_program = 
+        "# Test N-Lang program\n"
+        "VAR trigger (1, \"Se ha activado\")\n"
+        "trigger += 1\n"
+        "end #\n"
+        "\n"
+        "CTRL canilla {1, destino += B} += 1\n"
+        "\n"
+        "CLASS saludo(nombre) = (VAR saludar (true, \"¡Hola! ¡{nombre}!\"));\n"
+        "\n"
+        "CLASS saludo(Lautaro) += 1\n";
+    
+    printf("Input program:\n%s\n", test_program);
+    printf("=" . "=".50"\n\n");
+    
+    // Lexical analysis
+    TokenStream tokens = lexer(test_program);
+    printf("Tokens found: %d\n\n", tokens.count);
+    
+    // Parse the tokens
+    parse_NLang(&tokens);
+    
+    return 0;
+}

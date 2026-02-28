@@ -1,0 +1,4 @@
+#Lector archivo
+VAR archivo (1, ["archivo"]) += 1 #te muestra todo el archivo
+CTRL tomar {tipo, VAR byte = archivo[i]} #toma un byte del archivo, también 
+VAR mostrar (1, byte) = 1 #muestra Byte

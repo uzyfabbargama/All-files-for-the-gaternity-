@@ -1,0 +1,18 @@
+#5     |500     |50000      |5000000       |500000000
+#1 → 1 |20 = 400|220 = 48400|2230 = 4072900|22360 = 499969600
+#2 → 4 |21 = 441|221 = 48841|2231 = 4977361|22361 = 500014321
+#3 → 6 |22 = 484|222 = 49284|2232 = 4981824|
+#      |23 = 529|223 = 49729|2233 = 4986289|
+#      |        |224 = 50176|2234 = 4990756|
+#      |		   |		   |2235 = 4995225|
+#      |        |           |2236 = 4999696|
+#      |        |           |2237 = 5004169|
+CLASS sqrt (número, pasos) = (
+VAR indice (0),
+super_var[resultado] (15, 0) = 1, #guardamos 15 palabras de 16 bits como máximo
+for (in 0 to pasos each 1),
+CTRL sq {0, super_var[resultado] = indice ** 2},
+if(super_var[resultado] > número),
+CTRL restar {1, super_var[resultado] = (indice-1) ** 2},
+CTRL desplazar {0, super_var[resultado] *= 100}, 
+);

@@ -1,0 +1,26 @@
+hmm, dime cuantas líneas de código necesitarías en python para hacer esto?
+
+CLASS inventario = (VAR peso(1),
+VAR espacio(100, "inventario lleno"));
+
+CLASS actualizar_espacio(peso_objeto) = (CTRL{return, stock +=1},
+CTRL{end, peso_objeto += peso},
+VAR stock = 0);
+
+CLASS objetos = (
+espada(1),
+actualizar_espacio(7), #espada de peso 7
+poción(1),
+actualizar_espacio(4), #poción de peso 4
+roca(1),
+actualizar_espacio(10), #roca de peso 10
+objeto_genérico(1),
+actualizar_espacio(1),
+objeto_genérico1, #los números generan instancias duplicadas
+actualizar_espacio(2),
+objeto_genérico2,
+actualizar_espacio(4),
+objeto_genérico3,
+actualizar_espacio(8),
+objeto_genérico4,
+actualizar_espacio(16));

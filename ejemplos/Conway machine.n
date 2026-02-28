@@ -1,0 +1,22 @@
+# CONWAY EN N-LANG - VERDADERA EMERGENCIA
+
+# Definir célula con umbrales de comportamiento
+CLASS Celula(x, y) = (
+    VAR viva(1, "estoy viva"),
+    VAR vecinos(0),
+    
+    # Reglas como UMBRALES, no como IF/ELSE
+    VAR umbral_soledad(2, "muere por soledad"),
+    VAR umbral_sobrepoblacion(3, "muere por sobrepoblacion"), 
+    VAR umbral_nacimiento(3, "nace por reproduccion"),
+    
+    # Las señales se propagan solas
+    CTRL actualizar_vecinos {1, 
+        vecinos += Celula[x-1,y-1].viva + Celula[x-1,y].viva + ... 
+    },
+    
+    # La magia: la célula DECIDE por umbrales
+    CTRL autogestion {1,
+        viva += (vecinos == umbral_nacimiento) - (vecinos < umbral_soledad) - (vecinos > umbral_sobrepoblacion)
+    }
+);

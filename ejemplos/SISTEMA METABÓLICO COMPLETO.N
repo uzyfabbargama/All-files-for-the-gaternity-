@@ -1,0 +1,15 @@
+# "Mitocondrias" - Conversión de acarreos a calor
+CLASS metabolismo_computacional = (
+    VAR acarreos_totales = 0 end
+    VAR temperatura_sistema = 0 end
+    
+    # Enzimas de medición por todo el sistema
+    enzima_medicion = CTRL{1, acarreos_totales += 1}
+    
+    # Conversión acarreos → calor (respiración celular)
+    CTRL{1, temperatura_sistema += acarreos_totales * 0.01}
+    
+    # Mecanismos de enfriamiento (homeostasis)
+    if(temperatura_sistema > 50)
+    VAR activar_refrigeracion (1, "¡HOMEOSTASIS ACTIVADA!") end
+)

@@ -1,0 +1,10 @@
+class condición_separador(condiciones) = (var cond (1), ctrl end {0});
+class nif(cantidad_condiciones, condiciones) = (condición_separador(condiciones)[0:cantidad_condiciones]);
+#resultado, esto evalúa N condiciones y devuelve N resultados (es un if de n condiciones)
+#uso
+A(indice) = nif.condición_separador[indice].cond #accede al nif luego a la clase interna de las condiciones separadas, tomando un índice, y luego a la condición
+nif[1](3, A = B, C > B, C < A) #contradicción lógica
+var true = 1
+var(true, "la primera es correcta") += A[1](1) #true
+var (true, "la segunda es correcta") += A[1](2) #true
+var (true, "la tercera es correcta") += A[1](3) #false (no se muestra el tercer mensaje)

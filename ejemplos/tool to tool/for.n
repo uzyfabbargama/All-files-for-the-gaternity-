@@ -1,0 +1,16 @@
+CLASS if = <"if_else.N"[if]>
+# Con nuestras Funciones, también podemos hacer un bucle for
+CTRL end {0}
+return = 1
+CLASS for("in" in "to" to "each" each) = VAR in (200),
+end,
+VAR to (200),
+end,
+VAR each (200),
+end,
+CTRL bucle_for {return, in += each} += if((in < to))
+);
+
+for(in 1 to 10 each 0.5)
+VAR print(1, "repetir")
+#output: repetir x 20

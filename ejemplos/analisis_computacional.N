@@ -1,0 +1,14 @@
+# "Análisis de sangre" computacional
+CLASS diagnostico_salud = (
+    VAR acarreos_por_segundo = 0 end
+    VAR temperatura_pico = 0 end
+    VAR eficiencia_global = 0 end
+    
+    # Enzimas de diagnóstico
+    enzima_temperatura = CTRL{1, temperatura_pico = max(temperatura_pico, temperatura_actual)}
+    enzima_eficiencia = CTRL{1, eficiencia_global = acarreos_utiles / acarreos_totales}
+    
+    # Alertas de "enfermedad" del sistema
+    if(eficiencia_global < 0.7)
+    VAR alerta_ineficiencia (1, "🚨 SISTEMA INEFICIENTE") end
+)

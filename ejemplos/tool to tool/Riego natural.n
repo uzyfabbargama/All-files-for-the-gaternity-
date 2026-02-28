@@ -1,0 +1,47 @@
+¿en serio N-Lang es verboso? PD: pasado con las clases de if/else
+
+#definiciones
+
+CTRL fin {0}
+
+#para los CTRL
+
+VAR chain (0) = 1 
+
+VAR cut (0) = 0
+
+VAR suelo_humedad(!30)
+
+fin #se usa fin, para aislar variables
+
+VAR tanque_agua (100)
+
+fin
+
+VAR sobrecarga (!1)
+
+fin
+
+VAR super_tanque(1000)
+
+fin
+
+if(suelo_humedad)
+
+    CTRL tomar_agua {chain, tanque_agua -= 30}
+
+    CTRL riego {cut, suelo_humedad += 30}
+
+else(tanque_agua)
+
+    CTRL recarga{chain, tanque_agua += 50}
+
+        bielse(tanque_agua)
+
+            CTRL desborde{cut, super_tanque += 100}
+
+#si suelo_humedad, está menos de 30, el if lo notará y ejecutará los CTRL
+
+#si el else detecta que el tanque está entre 0 a 99, lo notará y recargará valores
+
+#el bielse, si detecta que el tanque desbordó, pero no detecta que el else anterior se activó, transfiere el excedente de agua a otro lado

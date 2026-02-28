@@ -1,0 +1,13 @@
+y ahora vamos a la locura, ¿existe un if así? (aquí se queman lo libros
+class if(cond) = (var cond(1));
+class else(cond) = (var cond(!1);
+class print(mensaje) = (var imprimir(1, mensaje));
+{"tiene": =} #definimos la palabra tiene, como un =
+condición = (juana tiene libro.título("Martín fierro")
+if(condición)
+    print("Juana, debe devolver el libro") #identado opcional
+else(condición)
+   print("Juana, no tiene el libro")
+#recibe una condición, y devuelve un resultado 1, y ese resultado 1 lo envía a la variable de abajo y la clase de abajo (print), envía un 1 abajo
+#en el caso else, envía un 1 sólo si no recibe el 1 del print, y ejecuta otro print
+#aclaración, para class sin estado no hace falta colocar [N], para clases con estado es fundamental para evitar el error de "ManzanaperaCamaléon" (solapamiento de estado)

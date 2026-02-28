@@ -1,0 +1,4 @@
+CTRL end {0}
+
+CLASS mucho = (VAR valor(10),
+VAR valor2(20)); #se separan en comas, pero fuera de la CLASS se separan con salto de línea

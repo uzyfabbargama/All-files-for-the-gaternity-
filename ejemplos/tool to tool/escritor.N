@@ -1,0 +1,3 @@
+VAR archivo["código.py"](1, "código") = 1
+#al ser 1, crea un archivo con el código
+archivo -= 1 #elimina archivo

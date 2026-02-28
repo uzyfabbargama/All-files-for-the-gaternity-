@@ -1,0 +1,14 @@
+
+VAR picofotograma (60) += dato
+VAR nanofotograma (60)
+VAR microfotograma (60)
+VAR milifotograma (60)
+VAR centifotograma (60)
+VAR subfotograma (60)
+VAR fotograma (60)
+VAR segundo (60)
+VAR minuto (60)
+VAR hora (24)
+VAR día (28 + mes_tipo) #(mes_tipo puede ser: 1, 2 o 3, según lo que se necesite
+VAR mes (12)
+VAR año (360 + sobra) #por ejemplo para la sesentinidad, pero sería 365, ¿no?

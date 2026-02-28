@@ -1,0 +1,15 @@
+# toolkit.n - Estructura de Control de Flujo
+CLASS while("Mientras" condicion "Hacer" cuerpo "Size" sz) (
+    # Reservamos el bloque de ejecución
+    CLASS motor_interno[1:sz] = (
+        cuerpo, 
+        CTRL valvula {1} += condicion # El "feedback loop"
+    );
+);
+
+# Ejemplo de uso (limpio)
+VAR i = 0
+while(Mientras (i < 5) Hacer 
+    VAR log (1, "Procesando..."),
+    CTRL step {0, i += 1} 
+Size 2)

@@ -1,0 +1,17 @@
+#el peor de todos los filtros (para el hacker)
+
+VAR módulo(2)
+
+CTRL muro {0}
+
+muro2
+
+muro3 #en N-Lang, colocarle números a una variable, duplica su comportamiento, sin usar CTRL, o VAR, (las instancia)
+
+VAR antimuro (!1, "ok")
+
+VAR antimuro_ (!1 "hubo hackeo")
+
+CTRL crash_system {0, valor /= 0} #cierra el programa.
+
+#¿qué tan divertido es esto?

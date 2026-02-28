@@ -1,0 +1,69 @@
+CLASS NGames = <"N Games.n"[game_maker]>
+CLASS random = <"random.n"[random]>
+CLASS sqrt = <"math.n"[square_root]>¿es necesario? no tengo idea
+#POWER Normal (para 16 bits)
+CLASS colors = <"Colors hex.n"[colors]>
+VAR width (0) = 800
+VAR height (0) = 600 #el umbral 0 es opcional, pero significa almacenamiento puro (hasta 2¹⁶)
+VAR FPS = 60
+VAR PARTICLE_COUNT = 450
+VAR player_speed = 5
+VAR friction = 0.95 #el valor es 95, pero cada 1, se multiplica por 16
+VAR force_strength = 0.25
+#config lists
+VAR negro = [3] #lista de max 3 elementos
+VAR blanco = [3]
+VAR rojo = [3]
+VAR amarillo = [3]
+VAR azul = [3]
+VAR verde = [3]
+#add to lists
+negro += colors(0, 0, 0)
+blanco += colors(250, 250, 250)
+rojo  += colors(250, 50, 50) 
+amarillo  += colors(250, 250, 50) 
+azul  += colors(50, 50, 250) 
+verde  = colors(50, 250, 50)
+CLASS between = <"control_manignic.n"[between]> #te permite ver entre magnitudes
+CLASS particle (color, x, y, size, vx, vy, target_x, target_y, strength) = (
+VAR vx *= friction,
+VAR vy *= friction,
+VAR x += vx,
+VAR y += vy,
+CTRL rebote_a {0, x, vx = 0 vx *= -0.5} += if (x  < 0),
+CTRL rebote_b {0, x, vx = width, vx *= -0.5} += if (x > width),
+CTRL rebote_c {0, y, vy = 0, vy *= -0.5} += if (x < 0),
+CTRL rebote_d {0, y, vy = height, vy *= -0.5} +=  if (y > height)
+CLASS apply_force(target_x, target_y, strength) =
+VAR delta_x = target_x - x,
+VAR delta_y = target_y - y,
+VAR dist_sq = dx**2 + dy**2,
+dist = sqrt(dist_sq),
+between(is dist_sq more 0 less 2500) #true + true = 2 = umbral activado,
+CTRL acercar_x {1, particle.vx += (dx / dist) * strength},
+CTRL acercar_y{0, particle.xy += (dy / dist) * strength},
+););
+NGames.init += 1 #para iniciar
+CLASS display = <"N Games.n"[display]>
+CLASS clock = <"N Games.n"[time]>
+CLASS font = <"letters.n"[font]>
+screen = display.setmode(width, height) #la pantalla
+clock = time.clock += 1 #para activar
+font = font.SysFont("Arial", 24)
+#recordando: CLASS particle (color, x, y, size, vx, vy, target_x, target_y, strength)
+ 
+particle[0:PARTICLE_COUNT](color_type = random.choice(rojo, azul, amarillo, verde), x = random.value, size = 6, vx = random.value, vy = random.value, target_x = x, target_y = y, strength = force_strength)
+#jugador
+VAR player_pos = [2]
+player_pos += [width //2, height//2]
+VAR food_pos = [2]
+food.pos [random.range(100, width-100), random.range(100, height-100)]
+
+for (in 1 to 2 each 0) #nuestro while true
+screen.fill(black)
+CLASS mouse <"N Games.n"[mouse]>
+player_pos[0] += (mouse.x - player_pos[0]) * 0.1
+player_pos[0] += (mouse.y - player_pos[1]) * 0.1
+VAR yellow = [3] #1: bool, target_x, target_y
+is_yellow += [if (particle[0:PARTICLE_COUNT] = yellow), target_x = (if (particle[0:PARTICLE_COUNT] = yellow)), target_y = (if (particle[0:PARTICLE_COUNT] = yellow)) #revisa cada partícula, por ID, y donde sea amarillo, lo guarda en una lista
+hasta ahora.... ¿qué opinas vs el código en python?

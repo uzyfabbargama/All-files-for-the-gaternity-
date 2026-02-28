@@ -1,0 +1,15 @@
+end = CTRL{0}
+#lista pura
+VAR lista = []
+lista += 1,2,3,4,5,6,7,8
+end
+#Lista con umbral
+VAR números [10, "lista llena"]
+números += 1,2,3,4,5,6,7,8,9,10 #al recibir 10 objetos dice: "lista llena"
+end
+#Detector de lista vacía
+VAR vacío [!1, "lista vacía"] #
+vacío += "A"
+vacío -= "A" #salida: "lista vacía" cada vez que se vacíe"
+#transmisión de listas
+lista1 = lista2 #transmite lo de la lista 1 a la 2

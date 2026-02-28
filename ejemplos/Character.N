@@ -1,0 +1,168 @@
+end = CTRL{0}       # Sumidero de señal (no_return)
+
+return = 1          # Propagador de señal (return)
+
+
+# Abstracciones para claridad (opcional, pero útil para la legibilidad)
+
+AUMENTAR = return
+
+DISMINUIR = return
+
+CLASS character = (
+
+
+    # VAR: Propiedades y Estadísticas
+
+    # La VAR nivel tiene un umbral de 100 EXP para disparar la subida de nivel.
+    VAR salud = 100
+	if(salud < 0)
+    VAR muerte (1, "¡PERSONAJE MUERTO! La salud llegó a 0.") end
+	
+    VAR fuerza = 10 end
+
+    VAR defensa = 5 end
+
+    VAR nivel (100, "¡SUBIDA DE NIVEL!") = 1 end
+
+    VAR experiencia = 0 end
+
+    
+
+    # VAR: Inventario (Simulamos una Poción con un umbral de capacidad de 10)
+
+    VAR inventario_pocion (10, "Inventario de Pociones Lleno (10)") = 0 end
+
+
+
+    # ----------------------------------------------------
+
+    # CTRL: Métodos
+
+    # ----------------------------------------------------
+
+
+    # 1. Metodo: recogerItem(item, cantidad)
+
+    # Se convierte en una CLASS que recibe la cantidad como valor sumado (+= cantidad)
+
+    recogerItem = CLASS recogerItem_logic = (
+
+        # Suma la cantidad al registro de pociones.
+
+        CTRL_add_item {AUMENTAR, inventario_pocion += {cantidad}}
+
+        # Mensaje de confirmación. Umbral !1 para imprimir siempre. (debido a que el ! es un not, que activa hasta que se desactiva
+
+        VAR mensaje_recoger (!1, "Recogido {cantidad}x Poción. Total: {inventario_pocion}") = 1 end
+
+    )
+
+    
+
+    # 2. Metodo: usarItem(item, efecto)
+
+    # Se convierte en una CLASS condicional que recibe el 'efecto' como valor sumado (+= efecto)
+
+    usarItem = CLASS usarItem_logic = (
+
+        # La condición se basa en si inventario_pocion es > 0.
+
+        CTRL_tiene_item = (inventario_pocion > 0)
+
+        
+
+        # IF: Si tiene el ítem
+
+        if[puede_usar](CTRL_tiene_item)
+
+            # 2a. Resta 1 al inventario.
+
+            CTRL_restar {DISMINUIR, inventario_pocion += -1}
+
+            # 2b. Cura: Añade el valor del efecto al registro de salud.
+
+            CTRL_curar {AUMENTAR, salud += {efecto}}
+
+            # 2c. Mensaje de uso
+
+            VAR mensaje_uso (1, "Usó 1x Poción. Salud +{efecto}. Salud actual: {salud}") = 1 end
+
+        end
+
+        
+
+        # ELSE: Si no tiene el ítem
+
+        else(if[puede_usar])
+
+            VAR mensaje_error (!1, "No tiene Poción en su inventario.") = 1 end #el ! actúa como not, (ejecuta el mensaje siempre que se lo llama, a menos que reciba un 1)
+
+        end
+
+    )
+
+    
+
+    # 3. Metodo: Aumentar Experiencia y Subir de Nivel
+
+    # La lógica es: suma la EXP. Si la VAR nivel supera su umbral (100), se activa la lógica de subir de nivel.
+
+    ganarExperiencia = CLASS ganarExperiencia_logic = (
+
+        # 3a. Suma la EXP (asume que los puntos son sumados al llamar a la CLASS)
+
+        CTRL_sumar_exp {AUMENTAR, experiencia += {puntos}}
+
+        
+
+        # 3b. Lógica de Subida de Nivel (Se activa cuando experiencia cruza el umbral de 100)
+
+        CTRL_chequeo_nivel = (experiencia >= 100)
+
+        
+
+        if[sube_nivel](CTRL_chequeo_nivel)
+
+            # Reinicia la EXP a 0 y aumenta el nivel.
+
+            CTRL_subir_nivel {AUMENTAR, nivel += 1} 
+
+            CTRL_reset_exp {AUMENTAR, experiencia = 0}
+
+            
+
+            # La VAR 'nivel' (nivel(100, "¡SUBIDA DE NIVEL!")) ya imprime el mensaje de confirmación al cambiar.
+
+        end
+
+    )
+
+)
+
+# 1. Creación de una instancia (Implícita, no se requiere 'new')
+
+# Personaje 'Guerrero'
+
+guerrero = character 
+
+
+# 2. Uso del Metodo: recogerItem(item, cantidad = 5)
+
+guerrero.recogerItem += 5 
+
+# Output: Recogido 5x Poción. Total: 5
+
+
+# 3. Uso del Metodo: usarItem(item, efecto = 20)
+
+guerrero.usarItem += 20 
+
+# Output: Usó 1x Poción. Salud +20. Salud actual: 120
+
+
+# 4. Uso del Metodo: ganarExperiencia(puntos = 150)
+
+guerrero.ganarExperiencia += 150 
+
+# Output: ¡SUBIDA DE NIVEL! (Disparado por la VAR nivel al pasar el umbral de 100)

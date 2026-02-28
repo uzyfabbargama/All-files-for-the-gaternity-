@@ -1,0 +1,5 @@
+¿existe algo parecido a mi super_if?
+class super_if("Si" condición {"tiene": =, "y" : *, "o" : +} "al menos correctas" cantidad) = (var condición(cantidad));
+super_if(Si Jugador tiene "espada_encantada de luz" y Jugador tiene "Machete mágico oscuro" o Jugador tiene "armadura de fuego" y Jugador tiene "Espada de agua" al menos 1 correcta)
+var anular(1, "Se anulan ambos efectos") #recordando que la variable sólo se ejecuta con su umbral
+Mi super_if evalúa en esencia N condiciones y da 1 resultado

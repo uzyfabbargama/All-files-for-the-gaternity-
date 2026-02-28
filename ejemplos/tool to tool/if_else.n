@@ -1,0 +1,31 @@
+# Lastimosamente, N-Lang no puede hacer con sus estructuras puras: 
+# A = B
+# umbral > valor (no puede detectar si un valor es menor al umbral)
+# Aquí es donde entra una innovación
+CLASS if(condición) = (VAR condición(1)); # una función compacta, que toma el valor booleano, y lo usa de condición
+# Les presento la CLASS compacta
+
+A = 30
+B = 03
+if(A = B)
+VAR print(1, "es verdadero") #Output: NADA
+
+#entonces, definamos el else
+CLASS else(if) = if(!1) #toma de argumento un if, y le invierte el valor
+end = CTRL{0} # Para separador de flujo
+
+if[1](A == B) #Evalúa la condición: false = 0
+VAR print(1, "Es verdadero.") #no se actiba
+else(if[1]) # toma el 0 del if y lo convierte en 1
+VAR print_false(1, "Es falso") #activa el print_false: "Es falso"
+#Aunque también se puede no poner argumentos en las CLASS y aún te lo toma (afectando sólo el primer valor declarado)
+
+if(A == B) #Evalúa la condición: false = 0
+VAR print(1, "Es verdadero.") #no se actiba
+else # toma el 1 o 0 del VAR y lo convierte en su inversp
+VAR print_false(1, "Es falso") #Se activa si fué falso
+
+#También
+VAR log(2, "Contraseña y nombre de usuario correctos") += if(Contraseña == Válid_Password) + if(Usuario == Valid_User)
+else #Invierte (si VAR no fué activado, el else, revive el flujo)
+VAR error(1, "Error, usuario no registrado")

@@ -1,0 +1,10 @@
+VAR y = []
+VAR en = []
+y += "y", "además de" #para aditivos, (ya que como sabemos como funciona la VAR, se puede usar el "y" como suma)
+en += "una", "el", "un", "es", "en" #para igualdades
+ super_if("Si" condición {y = +, en = =} "son al menos" cantidad_condiciones "son correctas") = CLASS super_if = (VAR condición(cantidad_condiciones));
+
+
+super_if[1](Si Jugador_está_en el "Bosque de las almas oscuras" y Jugador_tiene una "Antorcha" además de Jugador_Poseer una "Katana mística del nigromante" son al menos 2 correctas)
+
+VAR mostrar(true, "Reducción de enemigos, al 50%, Bonificación de respeto de las sombras al 75%") 

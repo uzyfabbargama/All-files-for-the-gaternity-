@@ -1,0 +1,19 @@
+end = CTRL{0} #lo declaramos, pero ni lo usamos, (es la costumbre)
+return = 1
+block = 0
+true = 1
+# Aquí es donde ocurre lo mejor de N-Lang, ahora podemos crear nuestra propia función
+CLASS saludo(nombre) = (VAR saludar (true, "¡Hola! ¡{nombre}!")); #la CLASS termina en ;
+#si la variable se activa, imprime el mensaje de "¡Hola!... y el nombre que le pones de argumento
+
+CLASS saludo(Lautaro) += 1
+#Output: ¡Hola! ¡Lautaro!
+
+CLASS saludo(Lucas) += 1
+#Output: ¡Hola! ¡Lucas!
+
+CLASS saludo(Santi) += 1
+#Output: ¡Hola! ¡Santi!
+
+CLASS saludo(Donato) += 1
+#Output: ¡Hola! ¡Donato!

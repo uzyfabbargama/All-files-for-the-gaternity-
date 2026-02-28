@@ -1,0 +1,1 @@
+CLASS safe_if = <"./NLang libs/safe_conditions"[safe_if]> #toma la CLASS safe_if, si, puedes poner cualquier dirección en tu PC (o no poner nada y que se ajuste a tu directorio actual o OS) y exportar cualquier CLASS N-Lang

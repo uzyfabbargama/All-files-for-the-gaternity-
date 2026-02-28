@@ -1,0 +1,10 @@
+CLASS sum(a, b) = (CTRL{return, a + b})
+CLASS print(msg) = (VAR a (1, msg))
+
+suma(2, 3)           # CTRL{return=1, 2+3} → PASA 5
+print("Se sumó")     # VAR(1, "Se sumó") recibe 5 → 5≥1 → ¡ACTIVA!
+# Output: "Se sumó"
+
+suma_end(2, 3)       # CTRL{end=0, 2+3} → BLOQUEA (no pasa nada)
+print("Se sumó")     # No recibe señal → no activa
+# Output: (nada)

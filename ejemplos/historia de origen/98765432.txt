@@ -1,0 +1,155 @@
+98765432
+98 rojo
+76 amarillo
+54 verde
+32 azul
+orden 
+32 azul
+54 verde
+76 amarillo
+98 rojo
+gravedad
+(9 * 8) = 72
+dureza de los materiales
+(9 * 8 - 3 * 2) + 3 = 69 (roca azul dura) 
+(9 * 8 - 5 * 4) + 5 = 57 (roca verde promedio)
+(9 * 8 - 7 * 6) + 7 = 37 (madera amarilla)
+(9 * 8 - 9 * 8) + 9 = 9 (agua roja)
+fuerza del jugador 
+37 + 9 = 46 (aquí tenés razón, la roca es irrompible, 57 > 46)
+(dureza de la madera, + el primer dígito de los factores de la gravedad)
+salto del jugador= 72 / 46*46 = 29,388 mts (una locura) (tomando la regla de que si N < D, entonces invertir, lo que nos quedaría 46*46 / 29)
+límite estructural de los materiales
+azul (69 * 69) / 72 = 66,125 mts (montañas máximo de 66 metros)
+verde (57 * 57) / 72 = 45,125 mts (montañas mínimo de 45 mts)
+amarillo (37 * 37) / 72 = 19,013888 mts (arboles de hasta 19 metros)
+rojo (9 * 9) / 72 = 1,125 (olas de hasta un metro)
+combustión
+(el jugador mide 19 metros y salta 29)
+azul 69 - 69 = 0 (nula)
+verde 69 - 57 = 12 (baja reacción)
+amarillo 69 - 37 = 32 (media alta reacción)
+rojo 69 - 9 = 60 (alta reacción)
+punto de activación en cadena
+(3 + 2) = 5, azul 5 > 0, sin reacción
+(5 + 4) = 9, verde 9 < 12, con reacción
+(7 + 6) = 13, amarillo 13 < 32, con reacción
+(9 + 8) = 17, rojo 17 < 60, con reacción
+tiempo de reacción
+azul = sin reacción
+verde = 12 / 9 = 1,33 seg
+amarillo = 32 / 13 = 2,46 seg
+rojo = 60 / 17 = 3,52 seg
+civilizaciones (en este caso, las casas de ellos podrían ser enormes, y el juagador que vé un bosque, podría sólo estar en el pasto de la civilización de los azules) 
+azules
+fuerza 46 * 69 = 3174
+salto 29,388 * 69 = 2001 mts
+altura 19 * 69 = 1311 mts
+comida (7 * 6) * 69 = 4968
+verdes
+fuerza 46 * 57 = 2622 
+salto 29,388 * 57 = 1653mts
+altura 19 * 57 = 1083 mts
+comida (7 * 6) * 57 = 2394
+amarillos
+fuerza 46 * 37 = 1702
+salto 29,388 * 37 = 1073 mts
+altura 19 * 37 = 703mts
+comida (7 * 6) * 37 = 1554 mts
+rojos
+fuerza 46 * 9 = 414 mts
+salto 29,388 * 9 = 261 mts
+altura 19 * 9 = 171 mts
+comida (7 * 6) * 9 = 378 mts
+minerales
+R = Rol
+si R = 1, M = (R+1/2) * (R-1/2) (si es impar)= 0, nada, aire, magia, etc, es el elemento abstracto.
+si R = 2, M = (R/2)^2 (si es par) = 1, multiplicador por 1
+Azul = 69 * R = 69
+verde = 57 * R = 57
+Amarillo = 37 * R = 37 
+Rojo = 9 * R = 9
+si R = 3 = (R+1/2) * (R-1/2) = 2
+Azul = 69 * R = 138
+verde = 57 * R = 114
+Amarillo = 37 * R = 74 
+Rojo = 9 * R = 18
+si R = 4 = (R/2)^2 = 4
+Azul = 69 * R = 276
+verde = 57 * R = 228
+Amarillo = 37 * R = 148 
+Rojo = 9 * R = 36
+si R = 5 = (R+1/2) * (R-1/2) = 6
+si R = 6 = (R/2)^2 = 9
+si R = 7 = (R+1/2) * (R-1/2) = 12
+si R = 8 = (R/2)^2 = 16
+(esto genera los minerales)
+para el precio
+(fuerza del material/fuerza de una civilización) * por 2 sólo si es del color de la civilización)
+ejemplo con R = 8
+Azul = 69 * R = 1104
+verde = 57 * R = 912
+Amarillo = 37 * R = 592
+Rojo = 9 * R = 144
+precios de los azules (cada 1311mts de material (es decir la altura de un miembro de la especie)) 
+azul = 1104 / 3174 = $0,34 = es azul: si = $0,69
+verde = 912 / 3174 = $0,28
+amarillo = 592 / 3174 = $0,18
+rojo = 144 / 3174 = $0,04
+(y así para cada civilización)
+para mejorar un rol, primero hay que calentarlo
+temperatura de fusión
+(suponiendo que R = 1)
+(9*8)^2 + 69*R = 5253 °C para azul (es superior al tugsteno de 3,422 °C ¡WOW!)
+(9*8)^2 + 57*R = 5241 °C para verde
+(9*8)^2 + 37*R = 5221 °C para la madera amarilla (en una atmósfera inerte sin aire, para evitar que se queme, lo que significa que puedes mejorar las propiedades mismas de la madera)
+(9*8)^2 + 9*R = 5193 °C para mejorar el agua (también en una´atmósfera inerte, aumentarle la resistencia al agua, la vuelve más viscosa, si el agua es más fuerte que el jugador, simplemente el jugador la verá como una roca)
+para producir calor tomas el nivel de la combustión, y la multiplicas por 10
+azul 69 - 69 = 0 (nula)
+verde 69 - 57 = 12 (baja reacción)
+amarillo 69 - 37 = 32 (media alta reacción)
+rojo 69 - 9 = 60 (alta reacción) (para evitar esto, podemos hacer que sólo es la reacción del hidrógeno, que libera alta energía)
+entonces:
+azul = 0 * 10 = 0 (si es 0, el numerador y el denominador se invierten)
+verde = 12 *10 = 120 °C (en este caso se mantienen)
+amarillo = 32 * 10= 320 °C
+rojo = 60 * 10 = 600
+por cada kilogramo relativo (un kilogramo relativo se mide por la mitad de la estatura del jugador al cubo, divido por la fuerza del material)
+gramos relativos de cada material
+azul (roca máxima) = 69 / 19/2 = 7KG
+verde (roca promedio) = 57 / 19/2 = 6KG
+amarillo (madera) = 37 / 19/2 = 4KG
+rojo (agua) = 9 / 19/2 = 0,9KG (900 G)
+un horno de 4 unidades de madera cada una de 4KG puede generar unos 5120 (320*4*4) °C que aún no sirve para quemar un metal (a excepción del tugsteno si existiera) PESA LO MISMO QUE UN BEBÉ
+sobre lo climático, cada 10 diás se aumenta en 1 el tipo de estación.
+en el primer día, la temperatura será seca, lo que hará ideal para hacer fuego, y picos de madera más afilados.
+en cambio en los días 5 y 6, la temperatura, conducirá a una mayor humedad, y hará que los materiales les cueste más quemarse, y alta probabilidad de lluvia
+día 8 y 9, la temperatura, bajará drásticamente, los elementos ya no reaccionarán, como es debido, hacer fuego se hará incluso más difícil.
+para la noche, el juego se divide en 72 horas (cada hora un minuto, y 72 por la gravedad 9*8, lo que da tiempo proceimental)
+por cada hora que pasa, la cantidad de luz solar y visibilidad del jugador cambiará
+1 = pleno día viento calmado, 0 = noche oscuridad viento y frío
+72/2 = 1, 72 = 0
+para hora 37, es 37 = 36-1 * 1/36= 0,9722
+hora del 36 al 72
+36 = 36-0 * 1/36 = 1
+37 = 36-1 * 1/36 = 0,9722
+38 = 36-2 * 1/36 = 0,9444
+39 = 36-3 * 1/36 = 0,9166
+40 = 36-4 * 1/36 = 0,888..64
+41 = 36-5 * 1/36 = 0,8611
+42 = 36-6 * 1/36 = 0,833
+43 = 36-7 * 1/36 = 0,80555
+44 = 36-8 * 1/36 = 0,7777
+45 = 36-9 * 1/36 = 0,7499
+46 = 36-10 * 1/36 = 0,722
+47 = 36-11 * 1/36 = 0,6944
+48 = 36-12 * 1/36 = 0,666
+49 = 36-13 * 1/36 = 0,6388
+50 = 36-14 * 1/36 = 0,6111
+60 = 36-24 * 1/36 = 0,333
+70 = 36-34 * 1/36 = 0,555
+71 = 36-35 * 1/36 = 0,2777
+72 = 36-36 * 1/36 = 0
+(y con esta información, podemos aplicarlo para generar herramientas procedimentales, con los materiales existentes)
+para el cohete
+Potencia del Cohete = (Dureza del material no combustible) × (Reacción de combustión del material combustible) × (Peso relativo del combustible)

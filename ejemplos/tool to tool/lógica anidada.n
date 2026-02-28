@@ -1,0 +1,21 @@
+ CLASS bif/bielse = <"bif.n"[bif/bielse]> #un if y else, que sólo si activan si: el entorno les da 1 y además, su condición es correcta; son complementarios
+
+if((x+1)*10 > z*(1+78))
+
+print("la función de la derivada de x + 1 multiplicado por 10, es igual a la derivada de z multiplicada por 1 + 78 (79)")
+
+bif(y+(6*7) = (x+1)*10)
+
+print("y además, la suma de 6 x 7 a la función y, es igual a la función de x+1 multiplicada por 10")
+
+else
+
+print("nada de lo anterior es cierto") #y eso que no usé CTRLs (para aislar procesos), pero lo usaré ahora
+
+bielse(condición)
+
+print("y esto funciona como un elif")
+
+CTRL fin {0}
+
+#total: 8 VARs y 1 CTRL 

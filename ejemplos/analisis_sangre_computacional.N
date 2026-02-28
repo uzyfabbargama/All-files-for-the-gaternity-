@@ -1,0 +1,19 @@
+CLASS panel_diagnostico = (
+    # "Marcadores sanguíneos" computacionales
+    VAR conteo_acarreos_CPU = 0 end
+    VAR nivel_temperatura_RAM = 0 end  
+    VAR presion_IO = 0 end
+    
+    # "Toma de muestras" periódica
+    for(in 1 to 60 each 1)  # Cada 60 ciclos
+    VAR tomar_muestra (1, "🩸 ANALIZANDO SALUD DEL SISTEMA") end
+    
+    # Diagnóstico automático
+    super_if(
+        (conteo_acarreos_CPU > 1000) +
+        (nivel_temperatura_RAM > 70) + 
+        (presion_IO > 80),
+        2  # Si 2+ marcadores están en niveles críticos
+    )
+    VAR alerta_salud_critica (1, "🚑 SISTEMA EN ESTADO CRÍTICO") end
+)

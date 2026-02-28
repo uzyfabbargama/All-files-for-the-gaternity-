@@ -1,0 +1,19 @@
+end = CTRL{0}
+#Este componente es verdaderamente interesante, y si, se llama igual que la tecla, no es coincidencia, (pronto verán: Programación automática con CTRL, SHIFT y ALT. (en el sentido de agilidad, no reemplazo))
+#CTRL, este componente bloquea o deja pasar el flujo, 
+bloquea = 0
+return = 1
+
+VAR trigger(1) #se activa al recibir 1
+#se puede usar en CTRL, una variable, antes de usarla. (un plus de cortesía)
+CTRL {return, contador += 1} #suma 1 al contador
+end #aquí el return envía 1 a end, (el cuál lo elimina al ser tipo 0 = bloquear)
+VAR contador(10) #tiene umbral 10, pero recibe el +1 del CTRL, (por la instrucción explícita de `contador += 1` que supera el bloqueo del end)
+VAR mostrar(1, "el contador está en: {contador}") #muestra el valor del contador, al recibir 1
+triger, mostrar += 5 
+#Output:
+# el contador está en: 1
+# el contador está en: 2
+# el contador está en: 3
+# el contador está en: 4
+# el contador está en: 5

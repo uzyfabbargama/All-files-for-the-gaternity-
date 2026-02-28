@@ -1,0 +1,20 @@
+CLASS super_var(words, umbral, mensaje) =
+
+( #si, es otra forma de hacer una CLASS
+
+CTRL calcular_umbral {0, umbral = (2**(words*4)) - umbral},
+
+VAR[1:words](0) += umbral[1] #crea variables según cuantas words de 16 bits pidas, y sólo asigna el valor de umbral a la 1ra variable
+
+);
+
+
+¿por qué esto funciona?
+
+# Por esto
+
+VAR segundo (60) += 3600 #envía 60 acarreos
+
+VAR minuto (60 #recibe 60 1s, y envía 1 acarreo
+
+VAR hora (60) #ahora vale 1

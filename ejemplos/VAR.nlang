@@ -1,0 +1,18 @@
+end = CTRL{0} #para aislar procesos
+#VAR equivale a una variable.
+#Su sintaxis es la siguiente
+#VAR nombre_variable(umbral, mensaje)
+#Cuando pasa el umbral, activa la variable/controlador de abajo 
+#ejemplo
+VAR trigger (1, "Se ha activado") #nuestro trigger
+triger += 1 #Output: Se ha activado
+end #
+#Puedes reemplazar ese 1 por un true
+true = 1
+VAR activador (true, "Activado")
+activador += 1 #Output: Activado
+end
+#ejecución en cadena
+VAR contador (1)
+VAR diez (10, "Llegué a 10")
+contador += 10 #output 

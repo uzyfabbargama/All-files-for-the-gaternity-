@@ -1,0 +1,10 @@
+ # toolkit.n - Módulo de Datos
+CLASS datos (clave ":" valor) = (VAR clave(0) += valor); #toma la sintaxis de los datos
+
+
+# jsonplex procesa bloques, la "," actúa como el "end" de cada señal
+CLASS json (cantidad_filas "{" datos "}") = (datos[0:cantidad_filas]); 
+
+
+# Herramienta de recuperación: extrae el valor usando el xorid
+CLASS get(fila) = (json.datos[fila]);

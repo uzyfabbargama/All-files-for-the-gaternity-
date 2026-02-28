@@ -1,0 +1,62 @@
+# Declaraciones de Flujo
+end = CTRL{0} # Función de sumidero de señales
+return = 1    # Definición de acarreo de señal (TRUE)
+
+# ----------------------------------------------------------------------
+# CLASE: Cofre_de_Tesoros (Simula un Nodo con Bifurcación)
+# ----------------------------------------------------------------------
+
+CLASS Cofre_de_Tesoros = (
+    
+    # VAR: Entradas de Dato
+    VAR Tiene_Llave = 0, # El valor de la llave (0 o 1)
+    end,      #Dentro de la CLASS, separar entre "," las variables
+    VAR Jugador_Vivo = 1,      # El valor de vida (1 para vivo, 0 o !1 para muerto/cero)
+    end,
+    
+    # CTRL: El Disparador que inicia la lógica (Entrada de Ejecución)
+    CTRL Abrir {return, 
+       
+        # 1. Lógica Condicional: Sumamos las dos condiciones
+        # Solo si (Tiene_Llave = 1) Y (Jugador_Vivo = 1), el resultado es 2.
+        Condicion = (Tiene_Llave == 1) + (Jugador_Vivo == 1)
+        },
+        # 2. Flujo TRUE: Se activa si la suma es 2
+        if[Apertura_Exitosa](Condicion == 2),
+            Salida_Tesoro += return, # Envía la señal de éxito
+        end,
+        
+    
+        # 3. Flujo FALSE: Se activa si la suma es 1 o 0
+        else[Fallo_Apertura](if[Apertura_Exitosa]),
+            Salida_Vacio += return, # Envía la señal de fallo
+        end,
+    
+
+    # VAR: Las Salidas del Nodo
+    VAR Salida_Tesoro (1, "¡HAS OBTENIDO LA ESPADA MAESTRA!") = 0, 
+    end,
+    VAR Salida_Vacio (1, "El cofre no se abre o está vacío.") = 0, 
+    end #para el último elemento dentro de una CLASS no va coma
+    
+);
+
+# ----------------------------------------------------------------------
+# USO Y SIMULACIÓN
+# ----------------------------------------------------------------------
+
+cofre = Cofre_de_Tesoros
+
+# SIMULACIÓN 1: Éxito (Ambas condiciones son TRUE)
+cofre.Tiene_Llave = 1  # Entrada de Dato: Llave presente
+cofre.Jugador_Vivo = 1 # Entrada de Dato: Jugador vivo
+cofre.Abrir += 1       # Entrada de Ejecución: Intenta abrir
+
+# Output Simulado: ¡HAS OBTENIDO LA ESPADA MAESTRA! 
+
+# SIMULACIÓN 2: Fallo (Falta de llave)
+cofre.Tiene_Llave = 0  # Entrada de Dato: Llave NO presente
+cofre.Jugador_Vivo = 1 
+cofre.Abrir += 1
+
+# Output Simulado: El cofre no se abre o está vacío.

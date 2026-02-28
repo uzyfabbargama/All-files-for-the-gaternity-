@@ -1,0 +1,8 @@
+#Para valores de entrada
+VAR entrada = () #un paréntesis vacío
+#Para límite de valor
+VAR entrada = (1) #no puede ingresar ningún valor superior a 1
+#Para mensaje
+VAR entrada = {"Ingresa nombre"} #Se usan llaves para identificar que el string no es parte de la entrada
+#Umbral + mensaje
+VAR entrada = {(100), "Ingresa como máximo 100"} #puedes ingresar hasta el valor 100

@@ -1,0 +1,11 @@
+#Hello world en N-Lang
+CLASS saludium (argumento) = (
+    VAR saludar (123, "Hello") += argumento,
+    CTRL juntar {1, saludar += " World"},
+    VAR YA (1, saludar);
+
+#para usar
+saludar += 123
+#1. activa el CTRL
+#2. el CTRL activa la variable YA
+#3. Muestra "Hello World" 

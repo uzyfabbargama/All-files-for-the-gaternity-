@@ -1,0 +1,6 @@
+VAR códigoC["hello world.c"](1, "#include <stdio.h>
+int main() {
+    printf("Hello World\n");
+    return 0;
+}
+") += 1 #crea un archivo de texto que imprime hola mundo en C

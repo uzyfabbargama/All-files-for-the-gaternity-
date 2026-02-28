@@ -1,0 +1,20 @@
+# "Anticuerpos" que detectan patrones problemáticos
+CLASS sistema_inmune = (
+    VAR patron_acarreos_anomalos = 0 end
+    VAR infecciones_detectadas = 0 end
+    
+    # Anticuerpos (enzimas especializadas)
+    anticuerpo_bucle_infinito = CTRL{1, 
+        if(acarreos_por_segundo > 1000) 
+        VAR detectado_bucle_infinito (1, "🦠 BUCLE INFINITO DETECTADO") end
+    }
+    
+    anticuerpo_memoria_excesiva = CTRL{1,
+        if(acarreos_memoria > 500)
+        VAR detectado_memory_leak (1, "🦠 MEMORY LEAK DETECTADO") end  
+    }
+    
+    # Respuesta inmune
+    if(detectado_bucle_infinito = 1)
+    VAR activar_kill_switch (1, "💉 EJECUTANDO PROTOCOLO DE LIMPIEZA") end
+)

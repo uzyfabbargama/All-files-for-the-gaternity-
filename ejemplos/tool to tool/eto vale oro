@@ -1,0 +1,17 @@
+; if(salud = 0)  → cmp + sete    (igual)
+; if(salud != 0) → cmp + setne   (no igual)
+; if(salud > 0)  → cmp + setg    (mayor)
+; if(salud < 0)  → cmp + setl    (menor)
+; if(salud >= 0) → cmp + setge   (mayor o igual)
+; if(salud <= 0) → cmp + setle   (menor o igual)
+
+sete    ; equal (ZF=1)          -> =
+setne   ; not equal (ZF=0)      -> !=
+setg    ; greater (signed)      -> >
+setge   ; greater or equal      -> >=  
+setl    ; less (signed)         -> <
+setle   ; less or equal         -> <=
+seta    ; above (unsigned)      -> > (unsigned)
+setae   ; above or equal        -> >= (unsigned)
+setb    ; below (unsigned)      -> < (unsigned)
+setbe   ; below or equal        -> <= (unsigned)

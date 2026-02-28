@@ -1,0 +1,142 @@
+#VAR
+CTRL end {0} #para aislar procesos (define una vez, usa en todas partes
+#VAR equivale a una variable.
+#Su sintaxis es la siguiente
+#VAR nombre_variable(umbral, mensaje)
+#Cuando pasa el umbral, activa la variable/controlador de abajo 
+#ejemplo
+VAR trigger (1, "Se ha activado") #nuestro trigger
+triger += 1 #Output: Se ha activado
+end #
+#Puedes reemplazar ese 1 por un true
+true = 1
+VAR activador (true, "Activado")
+activador += 1 #Output: Activado
+end
+#ejecución en cadena
+VAR contador (1)
+VAR diez (10, "Llegué a 10")
+contador += 10 #output 
+VAR lista = [] #lista
+VAR booleano(1) #umbral de booleano
+VAR entero = 1234 #entero
+VAR texto = "hola" #string
+VAR texto_booleano(1, "hola mundo")#al recibir un booleano (1), muestra el texto
+VAR texto_lógico(10, "holaaaaa") #al recibir un 10 (número), muestra un mensaje
+end
+#lista pura
+VAR lista = []
+lista += 1,2,3,4,5,6,7,8
+end
+#Lista con umbral
+VAR números [10, "lista llena"]
+números += 1,2,3,4,5,6,7,8,9,10 #al recibir 10 objetos dice: "lista llena"
+end
+#Detector de lista vacía
+VAR vacío [!1, "lista vacía"] #
+vacío += "A"
+vacío -= "A" #salida: "lista vacía" cada vez que se vacíe"
+#transmisión de listas
+lista1 = lista2 #transmite lo de la lista 1 a la 2
+#CTRL
+end
+#Este componente es verdaderamente interesante, y si, se llama igual que la tecla, no es coincidencia, (pronto verán: Programación automática con CTRL, SHIFT y ALT. (en el sentido de agilidad, no reemplazo))
+#CTRL, este componente bloquea o deja pasar el flujo, 
+bloquea = 0
+return = 1
+
+VAR trigger(1) #se activa al recibir 1
+#se puede usar en CTRL, una variable, antes de usarla. (un plus de cortesía)
+CTRL {return, contador += 1} #suma 1 al contador
+end #aquí el return envía 1 a end, (el cuál lo elimina al ser tipo 0 = bloquear)
+VAR contador(10) #tiene umbral 10, pero recibe el +1 del CTRL, (por la instrucción explícita de `contador += 1` que supera el bloqueo del end)
+VAR mostrar(1, "el contador está en: {contador}") #muestra el valor del contador, al recibir 1
+triger, mostrar += 5 
+#Output:
+# el contador está en: 1
+# el contador está en: 2
+# el contador está en: 3
+# el contador está en: 4
+# el contador está en: 5
+#CLASS
+return = 1
+block = 0
+true = 1
+# Aquí es donde ocurre lo mejor de N-Lang, ahora podemos crear nuestra propia función
+CLASS saludo(nombre) = (VAR saludar (true, "¡Hola! ¡{nombre}!")); #la CLASS termina en ;
+#si la variable se activa, imprime el mensaje de "¡Hola!... y el nombre que le pones de argumento
+
+CLASS saludo(Lautaro) += 1
+#Output: ¡Hola! ¡Lautaro!
+
+CLASS saludo(Lucas) += 1
+#Output: ¡Hola! ¡Lucas!
+
+CLASS saludo(Santi) += 1
+#Output: ¡Hola! ¡Santi!
+
+CLASS saludo(Donato) += 1
+#Output: ¡Hola! ¡Donato!
+
+#control de flujo como señales
+ CLASS super_if("Si" condición {"y" = "+", "además de" = "+", "el" = "=", "una" = "=" } "son al menos" cantidad_condiciones "son correctas") = (VAR condición(cantidad_condiciones));
+
+
+super_if[1](Si Jugador_está_en el "Bosque de las almas oscuras" y Jugador_tiene una "Antorcha" además de Jugador_Poseer una "Katana mística del nigromante" son al menos 2 correctas)
+
+VAR mostrar(true, "Reducción de enemigos, al 50%, Bonificación de respeto de las sombras al 75%") 
+# Lastimosamente, N-Lang no puede hacer con sus estructuras puras: 
+# A = B
+# umbral > valor (no puede detectar si un valor es menor al umbral)
+# Aquí es donde entra una innovación
+CLASS if(condición) = (VAR condición(1)); # una función compacta, que toma el valor booleano, y lo usa de condición
+# Les presento la CLASS compacta
+
+A = 30
+B = 03
+if(A = B)
+VAR print(1, "es verdadero") #Output: NADA
+
+#entonces, definamos el else
+CLASS else(if) = if(!1) #toma de argumento un if, y le invierte el valor
+end = CTRL{0} # Para separador de flujo
+
+if[1](A = B) #Evalúa la condición: false = 0
+VAR print(1, "Es verdadero.") #no se actiba
+end # Fin de señal
+else(if[1]) # toma el 0 del if y lo convierte en 1
+VAR print_false(1, "Es falso") #activa el print_false: "Es falso"
+#Input
+#Para valores de entrada
+VAR entrada = () #un paréntesis vacío
+#Para límite de valor
+VAR entrada = (1) #no puede ingresar ningún valor superior a 1
+#Para mensaje
+VAR entrada = {"Ingresa nombre"} #Se usan llaves para identificar que el string no es parte de la entrada
+#Umbral + mensaje
+VAR entrada = {(100), "Ingresa como máximo 100"} #puedes ingresar hasta el valor 100
+# Con nuestras Funciones, también podemos hacer un bucle for
+end
+return = 1
+CLASS for("in" in "to" to "each" each) = VAR in (200),
+end,
+VAR to (200),
+end,
+VAR each (200),
+end,
+CTRL bucle_for {return, in += (in < to)*each});
+
+for(in 1 to 10 each 0.5)
+VAR print(1, "repetir")
+#output: repetir x 20
+
+
+#Detección de errores
+VAR inicio(1) += 1
+CTRL división_0 = {e, resultado /= 0} #El "e" bloquea el flujo si hubo un error
+VAR error(!1, "Hubo un error"} #ejecuta tras recibir el 0
+end
+VAR inicio(1) += 1
+CTRL división_0 = {!e, resultado /= 0} #El "!e" sólo permite el flujo si hubo un error
+VAR error(1, "Hubo un error") #ejecuta tras recibir un 1
+end

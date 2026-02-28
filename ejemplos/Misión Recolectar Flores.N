@@ -1,0 +1,144 @@
+# =========================================================================
+# Definiciones de Abstracción (Acarreo/Señal)
+# =========================================================================
+
+return = 1          # Propagador de señal (return)
+end = CTRL{0}       # Sumidero de señal (no_return)
+
+AUMENTAR = return   # Abstracción para claridad
+
+# =========================================================================
+# CLASE: MISION_RECOLECCION (Declaración del Estado y la Lógica Reactiva)
+# =========================================================================
+
+CLASS MISION_RECOLECCION = (
+    
+    # ----------------------------------------------------
+    # VAR: Propiedades y Umbrales (El Corazón Reactivo)
+    # ----------------------------------------------------
+
+    # VAR que define el estado de la misión.
+    # Umbral de 3: al llegar a 3, se imprime el mensaje de MISION COMPLETADA y se reinicia el contador
+    VAR flores_recogidas (3, "¡MISIÓN COMPLETADA! Vuelve al pueblo."), 
+    end,
+    
+    # Un "interruptor" booleano que se activa cuando flores_recogidas llega a 3.
+    # El umbral 1 es para que actúe como un booleano TRUE si recibe el acarreo (1)
+    VAR mision_completa (1, "El interruptor se activó: 1"),
+    end,
+
+
+    # ----------------------------------------------------
+    # CTRL: Métodos (La Lógica que Dispara los Cambios)
+    # ----------------------------------------------------
+
+    # Metodo: recolectarFlor()
+    # Ejecutado cuando el jugador encuentra una flor.
+    recolectarFlor = CLASS recolectarFlor_logic = (
+        
+        # 1. Chequeo de Condición: ¿Ya está la misión completa?
+        # Usamos el valor booleano de la VAR 'mision_completa' (que se activa con el acarreo de 'flores_recogidas')
+        CTRL_ya_completa = (mision_completa > 0)
+        
+        # IF: Si la misión NO está completa (mision_completa es FALSE)
+        if[recolectar_si_incompleta](!CTRL_ya_completa)
+            
+            # A. Lógica: Incrementa el contador de flores.
+            # El AUMENTAR (return) asegura que la señal llegue a flores_recogidas para chequear el umbral.
+            CTRL_sumar_flor {AUMENTAR, flores_recogidas += 1}
+            
+            # B. Mensaje de progreso (usa el umbral !1 para imprimir siempre)
+            VAR mensaje_progreso (!1, "Flor recogida. Progreso: {flores_recogidas}/3") = 1, 
+            end,
+            
+            # El acarreo de CTRL_sumar_flor activará la VAR flores_recogidas si alcanza 3.
+
+        end,
+        
+        # ELSE: Si la misión YA está completa
+        else[recolectar_si_incompleta](if)
+            
+            # Mensaje de error/estado (usa el umbral !1 para imprimir siempre)
+            VAR mensaje_error (!1, "Ya tienes todas las flores. Vuelve al pueblo."), 
+            end,
+
+        end,
+    );
+    
+    # Metodo: entregarMision()
+    # Se llama cuando el jugador habla con el NPC.
+    entregarMision = CLASS entregarMision_logic = (
+        
+        # 1. Chequeo de Condición: ¿La misión está completa?
+        CTRL_finalizada = (flores_recogidas > 0) # Comprueba si el contador se activó
+
+        # IF: Misión completada
+        if[puede_entregar](CTRL_finalizada)
+            
+            # Recompensa: Suma EXP y reinicia el estado de la misión
+            CTRL_recompensa {AUMENTAR, 
+                mision_completa = 0,         # Reinicia el interruptor booleano
+                flores_recogidas = 0,        # Reinicia el contador de la misión
+            }
+            VAR mensaje_final (1, "Misión Entregada. Recompensa: 100 EXP.") = 1 end
+
+        end
+
+        # ELSE: Misión incompleta
+        else[puede_entregar](if)
+            VAR mensaje_incompleta (!1, "El NPC dice: 'Aún te faltan flores.'") = 1 end
+        end
+    );
+    
+);
+
+
+# =========================================================================
+# SIMULACIÓN DE JUEGO (Demostración de la Elegancia Reactiva)
+# =========================================================================
+
+# 1. Inicialización
+mision_actual = MISION_RECOLECCION 
+
+
+# --- ETAPA 1: RECOLECCIÓN ---
+
+VAR titulo_etapa (!1, "\n--- INICIO DE RECOLECCIÓN ---") = 1 #las variables fuera de la CLASS no necesitan comas
+end
+
+# A. Recoge la primera flor
+mision_actual.recolectarFlor += 1 
+# Output: Flor recogida. Progreso: 1/3
+
+# B. Recoge la segunda flor
+mision_actual.recolectarFlor += 1 
+# Output: Flor recogida. Progreso: 2/3
+
+# C. Recoge la TERCERA flor (¡Dispara el Evento!)
+mision_actual.recolectarFlor += 1 
+# Output: Flor recogida. Progreso: 3/3
+# Output: ¡MISIÓN COMPLETADA! Vuelve al pueblo. (Disparado por la VAR flores_recogidas al alcanzar 3)
+
+# D. Intenta recoger una flor extra (Chequeo de estado automático)
+mision_actual.recolectarFlor += 1 
+# Output: Ya tienes todas las flores. Vuelve al pueblo. (Disparado por el else del metodo recolectarFlor)
+
+
+# --- ETAPA 2: ENTREGA ---
+
+VAR titulo_etapa2 (!1, "\n--- ENTREGA DE MISIÓN ---") = 1
+end
+
+# E. Entregar la misión (El CTRL 'entregarMision' comprueba el estado actual)
+mision_actual.entregarMision += 1
+# Output: Misión Entregada. Recompensa: 100 EXP.
+
+
+# --- ETAPA 3: REINICIO (Comprobar que se reinició el estado) ---
+
+VAR titulo_etapa3 (!1, "\n--- REINICIO DE PRUEBA ---") = 1
+end
+
+# F. La misión se reinició, por lo que podemos volver a empezar a recoger.
+mision_actual.recolectarFlor += 1
+# Output: Flor recogida. Progreso: 1/3

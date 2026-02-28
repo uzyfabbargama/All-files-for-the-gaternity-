@@ -1,0 +1,47 @@
+return = 1
+
+CLASS Arabigo_to_Romano (numero_arabigo) = (
+    
+    # VAR: Almacena el número a convertir. Debe ser mutable.
+    VAR numero_restante = numero_arabigo end
+    VAR salida_romana (0, "") end # Umbral 0: solo almacena y se imprime al final
+
+    # Lógica de Sustracción y Emisión de Símbolo (De mayor a menor)
+    
+    # 1. Chequeo de 1000 (M)
+    CTRL_M {return, 
+        # Mientras el número sea >= 1000
+        while[loop_M](numero_restante >= 1000)
+            numero_restante -= 1000, 
+            salida_romana += "M" # Concatena "M" al string
+        end
+    }
+    
+    # 2. Chequeo de 900 (CM) - Requiere IF/ELSE
+    # Esta es una Sustracción Atómica Condicional
+    CTRL_CM {return,
+        # Necesitamos el if para chequear el caso especial
+        if[check_CM](numero_restante >= 900)
+            numero_restante -= 900,
+            salida_romana += "CM"
+        end
+    }
+
+    # 3. Chequeo de 500 (D)
+    CTRL_D {return, 
+        if[check_D](numero_restante >= 500)
+            numero_restante -= 500,
+            salida_romana += "D"
+        end
+    }
+    
+    # ... La lógica continúa de forma similar para C, XC, L, XL, X, IX, V, IV, I.
+    
+    # CTRL Final: Se asegura de que la lógica se propague en orden de mayor a menor.
+    CTRL_Flujo {return, CTRL_M, CTRL_CM, CTRL_D}
+);
+
+# USO
+Conversor_27 = Arabigo_to_Romano(27)
+Conversor_27.CTRL_Flujo += 1 # Inicia el proceso
+# Output (después de pasar por toda la lógica): XXVII

@@ -1,0 +1,40 @@
+CLASS if/else = <"if_else.n"[if/else]> #importar desde archivo, la CLASS if y else
+CLASS for = <"for.n"[for]> #Importar bucle for
+CLASS log (base, valor) = (
+for (in 1 to 2 each (else(VAR resultado(0) < 1))), #bucle (mejor dicho pulsador), que se desactiva sólo si el else, detecta un número menor que 1
+CTRL calcular {1, resultado /= base} += if(resultado > 1), #calcula mientras el resultado sea menor a 1
+VAR contador(0), #por cada vez que calcule, se le sumará 1 #valor final
+);
+
+#u otra manera, aprovechando las variables con umbrales automáticos (para el mayor igual)
+
+CLASS logarithm (base, valor) = (
+for (in 1 to 2 each (VAR A(1) + VAR resultado(0))), #Se detiene sólo, si resultado es mayor o igual que A, que es 1
+CTRL calcular {1, resultado /= base, 0} += if(resultado > 1), #calcula mientras el resultado sea menor a 1
+VAR contador(0), #por cada vez que calcule, se le sumará 1 #valor final
+);
+
+VAR test = logarithm (10, 10)
+#Paso a Paso
+#for = 1 #envía hacia abajo 1
+#calcular = 10/10 = 1, 1 #resultado 1 (entero), y envía abajo 1 (ej: 3 / 7 = parte_entera, parte_fraccionaria
+#contador = recibe 1, envía 0
+#Paso 2
+#for = 0
+#calcular = 0
+#contador = 1
+
+#Logaritmo 10, en base 10, es 1
+
+#en cambio con el otro
+VAR test1 = log(10, 10)
+#Paso 1
+#for = 1
+#calcular = 10/10 = 1, 1 
+#contador = 1
+#Paso 2:
+#for 1
+#calcular = 1/10 = 0, 1
+#contador = 2
+
+#con el primer logaritmo, daba 2

@@ -1,0 +1,17 @@
+s=0, i=0, dec =0, xp = 0, skip = 0, n =0
+s=1, i=0, dec =0, xp = 0, skip = 0, n =01
+s=2, i=0, dec =0, xp = 0, skip = 0, n =012
+s=3, i=0, dec =0, xp = 0, skip = 0, n =0123
+s=4, i=0, dec =0, xp = 0, skip = 0, n =01234
+s=5, i=0, dec =0, xp = 0, skip = 0, n =012345
+s=6, i=0, dec =0, xp = 0, skip = 0, n =0123456
+s=7, i=0, dec =0, xp = 0, skip = 0, n =01234567
+s=8, i=0, dec =0, xp = 0, skip = 0, n =012345678
+s=9, i=0, dec =0, xp = 0, skip = 0, n =0123456789
+s=0, i=1, dec =1, xp = 1, skip = 1, n =01234567891
+s=1, i=1, dec =0, xp = 1, skip = 0, n =012345678911
+s=2, 1=1, dec =0, xp = 1, skip = 0, n =012345678911
+s=9, i=9, dec =0, xp = 1, skip = 0, n =1234567899
+s=0, i=10,dec =1, xp = 2, skip = 2, n = 1
+s=1. 1=10,dec =0, xp = 2, skip = 1, n = 10
+s=2, 1=10,dec =0, xp = 2. skip = 0, n = 102

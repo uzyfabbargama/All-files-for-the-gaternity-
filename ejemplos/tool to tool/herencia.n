@@ -1,0 +1,14 @@
+
+clase_segura = base_sensible  # Copia protegida
+clase_segura += validaciones  # Extiende sin riesgo
+# La base_sensible permanece inalterada
+A = B
+B += nuevo_componente
+# A NO cambia - comportamiento determinista
+#Clase/función hijo (A) ← padre (B)
+A = B #tomaré lo de B, y se lo daré a A
+#ejemplo
+if_with_counter = if #tomamos lo del if
+if_with_counter += (VAR contador(10)); #esto se agrega por debajo del VAR condición
+if_with_counter(condición1 + condición2...condición10) #si las 10 condiciones son verdaderas entonces
+VAR ejecutar(1, "Ejecutando...")

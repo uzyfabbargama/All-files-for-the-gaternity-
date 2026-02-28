@@ -1,0 +1,16 @@
+CLASS metabolismo_adaptativo = (
+    VAR nivel_energia = 100 end  # Como glucosa en sangre
+    VAR tasa_metabolica = 1.0 end
+    
+    # Enzimas reguladoras
+    enzima_medir_energia = CTRL{1, nivel_energia += -acarreos_totales * 0.1}
+    
+    # Homeostasis metabólica
+    if(nivel_energia < 20)
+    VAR modo_bajo_consumo (1, "🔋 ACTIVANDO MODO BAJO CONSUMO") end
+    CTRL{1, tasa_metabolica = 0.5}  # Reducir metabolismo 50%
+    
+    if(nivel_energia > 80)  
+    VAR modo_alto_rendimiento (1, "⚡ ACTIVANDO MODO ALTO RENDIMIENTO") end
+    CTRL{1, tasa_metabolica = 1.5}  # Aumentar metabolismo 50%
+)

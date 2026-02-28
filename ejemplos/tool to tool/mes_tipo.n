@@ -1,0 +1,17 @@
+CLASS par (número) = (VAR número (2),
+CTRL sobra {0}, #es el equivalente a mod 2, si se pasa de 2, lo elimina
+CTRL inverter {0, número = 1}+= if(número = 0)); #si es par, se pone en true
+
+CLASS impar (número) = (VAR número (2),
+CTRL sobra {0} #si es impar, el resultado siempre será 1);
+
+#mes_tipo es
+if(mes = 1)
+CTRL enero {1, mes_tipo += 3} #CTRL tipo 1, para el else (mes_tipo empieza con 28, si le sumamos 3, será 31)
+bielse(mes = 2)
+#se mantiene en 28
+CTRL febrero {1, mes_tipo += año_bisiesto}
+bielse(par(mes))
+CTRL mes_par {1, mes_tipo += 2}
+bielse(impar(mes))
+CTRL mes_impar {1, mes_tipo += 3}

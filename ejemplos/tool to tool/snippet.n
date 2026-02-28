@@ -1,0 +1,3 @@
+
+CLASS pythoner(código, extensión) = (VAR snippet (1, código),
+VAR exportar = <archivo.{extensión}[snippet]>

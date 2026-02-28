@@ -1,0 +1,35 @@
+return = 1
+
+# 1. Clase Externa: Define el estado de seguridad
+CLASS Seguridad = (
+    # VAR de estado que solo permite 1 si la comprobación es exitosa.
+    VAR check_ok (1, "¡SISTEMA OK!") = 0 end 
+    
+    # Simula un sensor que activa el sistema
+    CTRL Sensor_Activar {return, check_ok += 1} 
+)
+
+# 2. Clase Principal: Controla el motor
+CLASS Motor = (
+    VAR encendido (1, "¡MOTOR ENCENDIDO!") = 0 end
+    
+    # CTRL que intenta arrancar, pero necesita el OK de Seguridad
+    CTRL Intentar_Arrancar {return, 
+        
+        # Lógica de Encendido: Sólo se propaga la señal si check_ok es 1.
+        if[ok](Seguridad.check_ok == 1)
+            encendido += return # Si es seguro, activa el motor (envía 1)
+        end
+        
+        # else: Si el check_ok es 0 (no seguro), el CTRL no hace nada.
+    }
+)
+
+# USO: 
+Seguridad.Sensor_Activar += 1 # 1. Activa la bandera de seguridad (check_ok = 1)
+Motor.Intentar_Arrancar += 1  # 2. Intenta arrancar
+# Output: ¡MOTOR ENCENDIDO!
+
+Seguridad.check_ok = 0        # Reinicia el estado de seguridad
+Motor.Intentar_Arrancar += 1  # 3. Intenta arrancar de nuevo
+# Output: (Nada, la señal no se propagó)

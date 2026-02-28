@@ -1,0 +1,8 @@
+#y también gente común
+no_return = 0
+class separador_flores(color, tipo) = (var color(1), var tipo(1), ctrl analizar {no_return, VAR flor(1) += "la flor es de color" + "{color}" "y de tipo" + "{tipo}")
+mostrar = separador_flores.analizar
+#lo que escriben
+separador_flores = <"separador flores.N"> [separador_flores] #importas la CLASS
+separador_flores("pétalos suaves" "blanca") += mostrar
+#output: "la flor es de color pétalos suaves y de tipo blanca" #si jajaja. el orden importa, pero es lo de menos, y si, en 10 segundos, te acabo de hacer double kill (demostré que la clase es una clase, función, y biblioteca, y acabo de crear un biblioteca en 2 minutos

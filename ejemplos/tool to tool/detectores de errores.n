@@ -1,0 +1,10 @@
+CTRL end {0} #definición de end
+
+VAR inicio(1) += 1
+CTRL división_0 = {e, resultado /= 0} #El "e" bloquea el flujo si hubo un error
+VAR error(!1, "Hubo un error"} #ejecuta tras recibir el 0
+end
+VAR inicio(1) += 1
+CTRL división_0 = {!e, resultado /= 0} #El "!e" sólo permite el flujo si hubo un error
+VAR error(1, "Hubo un error") #ejecuta tras recibir un 1
+end
