@@ -1,0 +1,46 @@
+#Nuestros bloques
+byte = () #nuestro input
+CLASS if(cond) = (VAR cond (1, 1)); #el activador + el umbral
+CLASS else(cond) = (VAR cond(1, !1); #el activador + el umbral + el negativo
+CLASS for("in" in "to" to "each" each) = (VAR in = 0, VAR to = 0, VAR to = 0); #el for
+CLASS Condición_independiente = (VAR condición (2, 2), CTRL sumidero {0});
+CLASS nif(cantidad, Condición_independiente) #usa una CLASS como argumento
+= (Condición_independiente[0:cantidad]); #se duplica la CLASS dentro de otra CLASS
+CLASS super_if(condición {"tiene" = =, "y" = +}, "correctas" cantidad) = (VAR condición(cantidad));
+VAR i = for.in #la variable "i", accede directamente al valor de in de la clase for (bucle)
+CLASS lexer(byte) = (super_if[VAR](byte[i = 1] y byte[i = 2] y byte[i = 3] tiene "V" y "A" y "R" correctas 1),
+super_if[CTRL](byte[i=1] y byte[i=2] y byte[i=3] y byte[i=4] tiene "C" y "T" y "R" y "L" correctas 1),
+super_if[CLASS](byte[i=1] y byte[i=2] y byte[i=3] y byte[i=4] y byte[i=5] tiene "C" y "L" y "A" y "S" y "S" correctas 1),
+super_if[**]((byte[i=1] y byte[i=2] tiene "*" * 2 correctas 1),
+nif[lexa](31, byte[i] = super_if[VAR], #0
+byte[i] = super_if[CTRL], #1
+byte[i] = super_if[CLASS], #2
+byte[i] = "(", #3
+byte[i] = ",", #4
+byte[i] = ")", #5
+byte[i] = "{", #6
+byte[i] = "}", #7
+byte[i] = "+", #8
+byte[i] = "-", #9
+byte[i] = "*", #10
+byte[i] = "/", #11
+byte[i] = "**", #12
+byte[i] = ";", #13
+byte[i] = "=", #14
+byte[i] = '"', #15
+byte[i] = "[", #16
+byte[i] = "]", #17
+byte[i] = ".", #18
+byte[i] = "'", #19
+byte[i] = "#", #20
+byte[i] = ":", #21
+byte[i] = "!", #22
+byte[i] = "<", #23
+byte[i] = ">", #24
+byte[i] = " ", #25
+byte[i] = "e", #26
+byte[i] = 10, #27 (salto de línea)
+byte[i] = "^", #28
+byte[i] = "&", #29
+byte[i] = "|"), #30
+VAR lex(indice) = nif[lexa].Condición_independiente[indice] #acceder a una condición, se usaría: lexer.lex(token)

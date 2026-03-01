@@ -1,0 +1,139 @@
+VAR byte = () #entrada de datos
+VAR true = 1 #verdadero
+VAR false = !true #verdadera falsedad 
+VAR return = 1	#para el CTRL, (aplica a todas las veces que quisieramos escribir 1, ejemplo: return + return = 2)
+VAR acumulador = 0 #Guardamos el acumulador
+
+CLASS break(condición, bucle "+", total) = (if(condición),
+end,
+CTRL control_break {0, bucle += total});
+
+CLASS nif(cantidad_condiciones, condiciones) = (CTRL condiciones[0:cantidad_condiciones] {0}); #definición del nif
+
+CLASS A(índice) = (nif.condiciones[A]) #Acceder a una condición del nif
+
+CLASS Super_if("Si" condición {"," = +} "Al menos son correctas" cantidad_condiciones) = (VAR condición(cantidad_condiciones)); #Usar la cantidad de condiciones como umbral
+
+CLASS end = (CTRL{0});
+CLASS if = (VAR condición (1));
+
+CLASS else = (VAR condición (!1));
+
+CLASS for("in" in "to" to "each" each) = (VAR in = 0,
+end,
+VAR to = 0,
+end,
+VAR each = 0,
+end,
+CTRL ejecutar {return, in += (in<to)*each});
+
+#usos
+VAR i = for.in[1]
+#Para letras múltiples
+super_if[VAR](Si byte[i] = "V", byte[i+1] = "A", byte[i+2] = "R" Al menos son correctas 3)
+super_if[CTRL](Si byte[i] = "C", byte[i[1]] = "T", byte[i[2]] = "R", byte[i[3]] = "L" Al menos son correctas 4)
+super_if[CLASS](Si byte[i] = "C", byte[i[1]] = "L", byte[i[2]] = "A", byte[i[3]] = "S", byte[i[4]] = "S" Al menos son correctas 5)
+super_if[**] = (Si byte[i] = "*", byte[i[1]] = "*" Al menos son correctas 2)
+nif[lexer] = (30, 
+	super_if[VAR] = 1, #0
+ 	super_if[CTRL] = 1, #1
+  	super_if[CLASS] = 1, #2
+  	byte[i] = "(", #3
+  	byte[i] = ",", #4
+  	byte[i] = ")", #5
+  	byte[i] = "{", #6
+  	byte[i] = "}", #7
+  	byte[i] = "+", #8
+  	byte[i] = "-", #9
+  	byte[i] = "*", #10
+  	byte[i] = "/", #11
+  	super_if[**] = 1, #12
+  	byte[i] = ";", #13
+  	byte[i] = "=", #14
+  	byte[i] = '"', #15
+  	byte[i] = "[", #16
+  	byte[i] = "]", #17
+  	byte[i] = ".", #18
+  	byte[i] = "'", #19
+  	byte[i] = "#", #20
+	byte[i] = ":" #21
+	byte[i] = "!", #22
+	byte[i] = "<", #23
+	byte[i] = ">", #24
+	byte[i] = " ", #25
+	byte[i] = "e", #26
+	byte[i] = "\n", #27
+	byte[i] = "^", #28
+	byte[i] = "&", #29
+	byte[i] = "|") #30
+	
+super_if[VAR_structure](Si A[[lexer]](0) = true, A[[lexer]](26))
+CLASS pedir_nombre = (for[1] in 0 to 1 each 0, #bucle siempre (para calcular inputs)
+	CTRL xorID{1, byte[for.in] ^= acumulador},
+	CTRL count{1, VAR contador(64) += 1}, #Cuenta por cada byte (se pone VAR, porque no ha sido declarada) (límite: 64)
+	VAR N (1), #reacciona
+	CTRL ShiftId(0, VAR despl **= 2**contador), #desplazamiento según el contador de la variable
+	break(A[lexer](26) = true, for.in[1] += 1)); #detecta el " ", detiene el bucle
+if (for[i].in > for.to)
+	super_if[VAR_structure[1]](Si A[lexer](3) = true) #detectar "(" )
+		for[2] (in 0 to 1 each 0)  #bucle siempre para detectar umbrales (sólo si el super_if de arriba está activo)
+			VAR lock(!2) #al recibir el segundo pulso del for, bloquea el flujo de este bloque
+			CTRL umbral_take {1, VAR slot[for[2].in] *= 16}
+			CTRL umbral_take2 {1, slot[for[2].in] += byte[for[2].in]}
+			end
+			lock[1](1) += for.in < for.to #sólo se activa mientras el bucle siga activo
+			#operadores dentro de los umbrales
+			nif[operadores](A[lexer](8) = true, #+
+			A[lexer](9) = true,  #-
+			A[lexer](10) = true, #*
+			A[lexer](11) = true, #/
+			A[lexer](12) = true, #**
+			A[lexer](14) = true, #=
+			A[lexer](22) = true, #!
+			A[lexer](23) = true, #<
+			A[lexer](24) = true, #>
+			A[lexer](26) = true, #e
+			A[lexer](28) = true, #^
+			A[lexer](29) = true, #&
+			A[lexer](30) = true #|
+			)
+			end
+			VAR lock_double(2) += for.in < for.to #sólo activa la segunda parte del bucle si pasa su umbral
+			nif[operadores](12, nif[lexer].condiciones[9, 10, 11, 12, 14, 22, 23, 24, 26, 28, 29, 30])
+				umbral_take[for[2].in[1]] {1, VAR slot[for[2].in[2]] *= 16}
+				umbral_take2[for[2].in[1]] {1, slot[for[2].in[2]] += byte[for[2].in[2]]}
+			if[for add] (A[operadores](8) = true)
+				slot[for[2].in] += slot[for[2].in[2]]
+			if[for substact] (A[operadores](9) = true)
+				slot[for[2].in] -= slot[for[2].in[2]]
+			if[for multiply] (A[operadores](10) = true)
+				slot[for[2].in] *= slot[for[2].in[2]]
+			if[for divid](A[operadores](11) = true)
+				slot[for[2].in] -= slot[for[2].in[2]]
+			if[for power](A[operadores](12) = true)
+				slot[for[2].in] **= slot[for[2].in[2]]
+			if[for asign](A[operadores](14) = true)
+				slot[for[2].in] = slot[for[2].in[2]]
+			if[for not](A[operadores](22) = true)
+				slot[for[2].in] != slot[for[2].in[2]] #Asigna sólo si son diferentes
+			if[for <](A[operadores](23) = true)
+				slot[for[2].in] <= slot[for[2].in[2]]  #asigna sólo si es menor <
+			if[for >](A[operadores](24) = true)
+				slot[for[2].in] >= slot[for[2].in[2]] #asigna sólo si es mayor
+			if[for e](A[operadores](26) = true)
+				slot[for[2].in] e= slot[for[2].in[2]] #Asigna sólo si hubo un error
+			if[for ^](A[operadores](28) = true)
+				slot[for[2].in] ^= slot[for[2].in[2]] #Aplica xor
+			if[for &](A[operadores](29) 0 true)
+				slot[for[2].in] &= slot[for[2].in[2]] #Aplica and
+			if[for |](A[operadores]lexer)
+				slot[for[2].in] |= slot[for[2].in[2]] #Aplica or (¿no es igual que el =?)
+			break(A[lexer](4) < true, for.in[2] += 1)
+#hice desde aquí el 22/11/25
+super_if[CTRL_Structure] (A(1) = true, A(25))
+   pedir_nombre
+super_if[CTRL_Structure1] (A(6))
+CLASS pedir_boolean = (VAR Tipo (2) += byte,
+end);
+super_if[CTRL_Structure](A(4))
+    CLASS... #energía baja#

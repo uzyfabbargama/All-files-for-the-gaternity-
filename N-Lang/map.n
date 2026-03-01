@@ -1,0 +1,76 @@
+CLASS contexto(cantidad_contextos, "el" número "de" input "iniciar" inicio) = (VAR contextos(2)[0:cantidad_contextos], VAR inicio(1), CTRL proceso{0, contexto[número] += input});
+CLASS nif(cantidad_condiciones, condiciones) = (CTRL {0}[0:cantidad_condiciones]):
+CLASS if(cond) = (VAR cond(1));
+CLASS for("in" in "to" to "each" each) = (VAR in, VAR to, VAR each, CTRL bucle {1, in += in < to*each} += in > to
+CLASS nombre(byte) = (CTRL xorID {1, byte ^= ID}, CTRL guardar {0, ID += VAR storage}, storage); 
+CLASS umbral(byte) = (CTRL recibir_num {0,VAR num += byte - "0"} += if(byte != ","), CTRL desplazar {0, num *= 10} += if(byte = ","));
+CLASS log2(número) = (for(in 0 to (VAR bin) each 1),
+CTRL dividir_en_2 {0, número} += if(número > 0),
+CTRL restar_05{1, número -= 0.5} = if((número*10)%10 = 5),
+VAR and (2) += if(número > 0),
+CTRL contar {0, VAR contador += 1}, #depende que ambos sean correctos
+contador
+); 
+VAR true = 1
+
+for(in 0 to 16 each 1)
+VAR byte[for.in] = () #entrada
+CTRL end{0}
+#toma los primeros 16 bytes
+if(byte = "V") 
+if(byte[1] = "A")
+contexto[1](31, el 0 de (if(byte][2] = "R") iniciar true) #agregamos la primera keyword
+
+VAR acumular += if(byte = "C")
+if(byte[1] = "T")
+if(byte[2] = "R")
+contexto[1](31, el 1 de (if(byte[2] = "L" | VAR acumular > 3) iniciar true)
+
+VAR acumular += if(byte = "C" | acumular > 0)
+acumular += if(byte[1] = "L"  | acumular > 1)
+acumular += if(byte[2] = "A"  | acumular > 2)
+acumular += if(byte[3] = "S"  | acumular > 3)
+contexto[1](31, el 2 de (if(byte[4] = "S" | acumular > 4) iniciar true)
+
+
+contexto[1](31, el 3 de (if( byte = "(" ) iniciar true)
+contexto[1](31, el 4 de (if( byte = "," ) iniciar true)
+contexto[1](31, el 5 de (if( byte = ")" ) iniciar true)
+contexto[1](31, el 6 de (if( byte = "{" ) iniciar true)
+contexto[1](31, el 7 de (if( byte = "}" ) iniciar true)
+contexto[1](31, el 8 de (if( byte = "+" ) iniciar true)
+contexto[1](31, el 9 de (if( byte = "-" ) iniciar true)
+contexto[1](31, el 10 de (if( byte = "*" ) iniciar true)
+contexto[1](31, el 11 de (if( byte = "/" ) iniciar true)
+acumular += if(byte = "*" | acumular > 0)
+contexto[1](31, el 12 de (if( byte[1] = "*" | acumular > 1) iniciar true)
+contexto[1](31, el 13 de (if( byte = ";" ) iniciar true)
+contexto[1](31, el 14 de (if( byte = "=" ) iniciar true)
+contexto[1](31, el 15 de (if( byte = '"' ) iniciar true)
+contexto[1](31, el 16 de (if( byte = "[" ) iniciar true)
+contexto[1](31, el 17 de (if( byte = "]" ) iniciar true)
+contexto[1](31, el 18 de (if( byte = "." ) iniciar true)
+contexto[1](31, el 19 de (if( byte = "'" ) iniciar true)
+contexto[1](31, el 20 de (if( byte = "#" ) iniciar true)
+contexto[1](31, el 21 de (if( byte = ":" ) iniciar true)
+contexto[1](31, el 22 de (if( byte = "!" ) iniciar true)
+contexto[1](31, el 23 de (if( byte = "<" ) iniciar true)
+contexto[1](31, el 24 de (if( byte = ">" ) iniciar true)
+contexto[1](31, el 25 de (if( byte = " " ) iniciar true)
+contexto[1](31, el 26 de (if( byte = "e" ) iniciar true)
+contexto[1](31, el 27 de (if( byte = 10 ) iniciar true)
+contexto[1](31, el 28 de (if( byte = "^" ) iniciar true)
+contexto[1](31, el 29 de (if( byte = "&" ) iniciar true)
+contexto[1](31, el 30 de (if( byte = "|" ) iniciar true)
+#El contexto a diferencia del nif, es construido y almacena y procesa valores a la vez
+
+estructura += if(contexto.contextos[0] = true | VAR estructura > 0) #VAR
+for(in 1 to 2 each 0)
+nombre(byte[for.in])
+CTRL break {0, for.in += true} += if(byte[for.in] = " ")
+estructura += if(contexto.contextos[3] = true | VAR estructura > 1) #(
+if(contexto.contextos[3] = true | VAR estructura > 1) #(
+for(in 0 to (VAR lengh = 1) each 1
+umbral(byte)
+CTRL no_comma {0, número = 2 ** log2(umbral.storage).contador} += if(byte != ",")
+estructura += if(contexto.contextos[4] = true | VAR estructura > 1) #,

@@ -1,0 +1,68 @@
+VAR byte = () #Entrada de datos
+VAR true = 1 #Valor verdadero
+VAR false = !true #Negar true
+VAR return = true #para el CTRL
+VAR end = 0
+CLASS if(cond) = (VAR cond(1));
+CLASS else(cond) = (VAR cond(!1);
+
+CLASS break(condición, bucle "+", total) = (if(condición, 
+end
+CTRL control_break {0, bucle += total}):
+
+CLASS CS = (VAR condición (2), #almacena el valor booleano
+CTRL{0}); #El separador
+
+CLASS nif(cantidad_condiciones, condiciones) = CS [0:cantidad_condiciones]);
+
+CLASS A(índice) = (nif.CS[indice]) #Acceder a una condición del nif
+
+CLASS super_if("Si" condición {"," = +} "Al menos" cantidad_de_condiciones "son correctas") = (VAR condición(cantidad_condiciones)); #Verifica N condiciones y da 1 resultado
+
+CLASS end_flow = (CTRL{0});
+
+CLASS for("in" in "to" to "each" each) = (VAR in = 0, VAR to = 0, VAR each = 0, CTRL bucle {return, in += (in<to)*each} += if(in<to));
+
+CLASS detector_múltiple("Si" condición {"tiene" = =, "y" = +}, cantidad_de_condiciones) = (VAR condición(cantidad_de_condiciones));
+
+CLASS lexer = (nif(30, 
+detector_múltiple(Si byte[i] tiene "V" y byte[i+1] tiene "A" y byte[i+2] tiene "R"),
+detector_múltiple(Si byte[i] tiene "C" y byte[i+1] tiene "T" y byte[i+2] tiene "R" y byte[i+3] tiene "L"),
+detector_múltiple(Si byte[i] tiene "C" y byte[i+1] tiene "L" y byte[i+2] tiene "A" y byte[i+3] y byte[i+4] tiene "S"),
+byte[i] = "(",
+byte[i] = ",",
+byte[i] = ")",
+byte[i] = "{",
+byte[i] = "}",
+byte[i] = "+",
+byte[i] = "-",
+byte[i] = "*",
+byte[i] = "/",
+detector_múltiple(Si byte[i] y byte[i+1] tiene "*")
+byte[i] = ";",
+byte[i] = "=",
+byte[i] = '"',
+byte[i] = "[",
+byte[i] = "]",
+byte[i] = ".",
+byte[i] = "'",
+byte[i] = "#",
+byte[i] = ":",
+byte[i] = "!",
+byte[i] = "<",
+byte[i] = ">",
+byte[i] = " ",
+byte[i] = "e",
+byte[i] = "\n",
+byte[i] = "^",
+byte[i] = "&",
+byte[i] = "|",
+);
+
+CLASS números = (nif[números](10, byte[i] = "1", byte[i] = "2", byte[i] = "3", byte[i] = "4", byte[i] = 5",
+byte[i] = "6", byte[i] = "7", byte[i] = "8", byte[i] = "9", byte[i] = 0"));
+variable = lexer.nif.CS(0)
+
+CLASS umbral = (super_if(Si
+
+detector_múltiple(Si byte tiene variable)
