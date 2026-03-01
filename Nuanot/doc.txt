@@ -1,0 +1,13 @@
+Ingeniero: "por favor, no te atrevas a preguntar para que Hardware es, o me quedaré sin trabajo"
+yo: "Obvio, para la Nuanot"
+Nu = number, a = adder,  not = not (compuerta para lógica)
+recibe 16 entradas → van al adder de 8 bits → si hay carry flag → van a la nitenle (bits 9 10 y 11) un sistema que tiene 3 bits en un sumador medio (que sólo recibe input y carry)
+nitenle: bits: RLF → (caso todos 1), si R recibe 1 del adder (más su propio 1), le envía a L, y a la nuanot de la derecha (sólo si BL está inactivo),
+si L recibe 1 de R, envía a F, y a la nuanot izquierda, sólo si BL está inactivo
+si F recibe 1 de L envía a la nuanot del frente (no tiene bloqueador, pero depende de que R y L sean 1)
+total de salidas: de 0 a 3
+total de ANDs = 18
+total XORs = 18
+total transistores: {and : 4} {xor : 6} → 108 + 72 = 180
+(se pueden usar 8 de las 16 entradas como umbral (memoria permanente) 8 bits por nuanot
+ancho de banda potencial: Distribuido sin ovverhead de paralelismo.

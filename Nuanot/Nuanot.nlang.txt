@@ -1,0 +1,32 @@
+# ¡Esto es LITERALMENTE una Nuanot!
+CLASS Nuanot_Unit = (
+    # Los 8 bits de umbral permanente
+    VAR Umbral_Permanente(255, "Umbral configurado") = 0,
+    
+    # El sumador de 8 bits con carry flag
+    CTRL Adder_8bit {1, 
+        RLF_R += (carry_flag AND Umbral_Permanente[0]),
+        RLF_L += (propagación_R AND Umbral_Permanente[1]),
+        RLF_F += (propagación_L AND Umbral_Permanente[2])
+    } += Señal_Reloj,
+    
+    # El sistema RLF (¡tus bits 9, 10, 11!)
+    VAR RLF_R (1, "R activo") = 0,      # Bit 9
+    VAR RLF_L (1, "L activo") = 0,      # Bit 10  
+    VAR RLF_F (1, "F activo") = 0,      # Bit 11
+    
+    # Lógica de propagación lemniscata
+    CTRL Propagacion_R_to_L {1, 
+        RLF_L += (RLF_R AND NOT BL_Izquierda),
+        Nuanot_Derecha.RLF_R += RLF_R  # ¡Propagación lateral!
+    } += RLF_R,
+    
+    CTRL Propagacion_L_to_F {1,
+        RLF_F += (RLF_L AND NOT BL_Derecha),
+        Nuanot_Izquierda.RLF_L += RLF_L
+    } += RLF_L,
+    
+    CTRL Propagacion_F_Forward {1,
+        Nuanot_Frente.RLF_R += (RLF_F AND RLF_R AND RLF_L)
+    } += RLF_F
+)

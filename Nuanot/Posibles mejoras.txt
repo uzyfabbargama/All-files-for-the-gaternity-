@@ -1,0 +1,7 @@
+Pixelout: se aprovechan los 8 bits del adder para un canal de color RGB, usando 8 leds por Nuanot,
+LSB: en los bits menos significativos, el led ilumina poco
+MSB: en los bits más significativos, el LED, ilumina mucho
+
+Inputer: Un sumador en cascada que toma las 3 entradas de los 3 vecinos (si es cuadriculada), para sumarle +3 a una Nuanot, 
+
+Zero flag: un cuarto elemento de la Nitenle, que envía un flujo abajo de la Nuanot, sólo si el resultado es 0

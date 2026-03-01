@@ -1,0 +1,59 @@
+lista de todas las combinaciones
+
+00001 = ir derecha directo
+
+00010 = nada (L no recibe acarreo de acción)
+
+00011 = ir a izquierda y derecha (doble salida) (L recibe de R)
+
+00100 = nada (F está listo, pero no recibe ni de R ni L)
+
+00101 = ir a izquierda (F está listo, pero no conectado, y R ya funciona)
+
+00110 = nada (R se desconectó, para activar L, y F aún está listo)
+
+00111 = enviar a las 3 (R está listo, y le suma 1 a L, que le suma 1 a F, y envía al frente)
+
+01000 = nada (pero Br está listo, para bloquear R)
+
+01001 = nada (Br, bloqueó con éxito, R)
+
+01010 = nada (Br está listo, L también, pero no hay entrada/grieta)
+
+01011 = ir a izquierda (Br bloqueó derecha, y left fluyó con éxito)
+
+01100 = nada (Br y F están listos)
+
+01101 = nada (Br, bloqueó R, y F está listo
+
+01110 = nada (Br está listo, como L, y F, pero no tienen la señal de R)
+
+01111 = envía al frente y a la izquierda (Br bloqueó con éxito, y F, y L, fluyeron)
+
+10000 = nada (Bl está listo)
+
+10001 = enviar a derecha (R se activó, y Bl está listo)
+
+10010 = nada (L está listo, Bl está listo para bloquear a L, pero necesitan la señal de R)
+
+10011 = envía a R (Bl y L, se anularon, y R sobrevivió)
+
+10100 = Nada (F está listo, y Bl es como el entorno, que desfavorece a L)
+
+10101 = ir a derecha (Bl está listo, F también pero no activo, porque necesita a L, y R funciona)
+
+10110 = nada (Bl está listo, F ahora tiene la señal de L, L está listo, pero no tiene la señal de R)
+
+11111 = enviar al frente y derecha (Bl bloqueó L con éxito, R alimentó a L, y L alimentó a F)
+
+11000 = nada (ambos bloqueadores activos)
+
+en 11001 y 11010 no pasa nada, pero en
+
+11011 = nada (Bl y Br bloquearon con éxito ambas salidas)
+
+en 11100, 11101, y 11110, no pasa nada
+
+11111 = enviar al frente (Ambos bloqueadores han bloqueado, y sólo F es la salida final)
+
+¿por qué parece que fundí/comprimí todo el stack de flujo de la von neumann en 5 bits? 
