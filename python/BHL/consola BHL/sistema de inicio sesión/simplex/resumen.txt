@@ -1,0 +1,10 @@
+4 numerasos, sistema jungliano (con sombra y deseo), 10³⁶ estados posibles, 
+2 tipos de numerasos: experiencial y operacional
+experiencial: EX, EY, EZ, controladores de colapso
+EX 💥, EZ ↑, EY ↓
+EY 💥, EX ↑, EZ ↓
+EZ 💥, EY ↑, EX ↓
+operacional: X, Y, Z, controladores de colapso
+X 💥, Z ↑ * EX, Y ↓ * EX, EX ↑
+Y 💥, X ↑ * EY, Z ↓ * EY, EY ↑
+Z 💥, Y ↑ * EZ, X ↓ * EZ, EZ ↑
