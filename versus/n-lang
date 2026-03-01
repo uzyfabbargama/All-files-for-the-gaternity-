@@ -1,0 +1,9 @@
+CLASS Numeraso (base, num_variables, initial_values) = (
+VAR base (0), #definimos la base
+VAR num_vars (0), #definimos la cantidad de variables
+VAR variables[1:num_vars](base) #definimos las variables basandose en la cantidad + su umbral como la base
+VAR exp [1:num_variables](0) #definimos la cantidad de experiencia según la cantidad de variables
+CTRL transición [1:num_vars] {0, variables[-1] -= 1*exp, variables[+1] +=1*exp, exp += 1, variables += base/(exp+1)} #un CTRL de transición que le resta por factor de experiencia a la variable anterior, y le suma por factor de experiencia a la variable posterior, y luego le suma 1 a la experiencia de la variable actual, y luego devuelve el valor de la variable actual a base/(exp+1) para que no quede en 0,
+CLASS inicio = (variables,
+transición);, #creamos un bloque que se va a repetir
+inicio[1:num_variables]): #se crea una lista de variable[n], transición[n], variable[n+1], transición[n+1] y así sucesivamente

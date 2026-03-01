@@ -1,0 +1,373 @@
+# file: numeraso_core.py
+"""
+NÚCLEO LIMPIO DEL SISTEMA NUMERASO
+Un sistema de variables acopladas con controladores automáticos
+"""
+import math
+
+class Numeraso:
+    """
+    Implementación limpia del sistema Numeraso.
+    Combina N variables con sus controladores en un solo entero.
+    """
+    
+    def __init__(self, base=10, num_variables=3, initial_values=None):
+        """
+        Inicializa un sistema Numeraso.
+        
+        Args:
+            base: Base numérica (10 para decimal, 2 para binario)
+            num_variables: Número de variables en el sistema
+            initial_values: Lista de valores iniciales para cada variable
+        """
+        self.base = base
+        self.num_vars = num_variables
+        self.ctrl_value = base - 1  # Valor del controlador (9 para decimal, 1 para binario)
+        
+        # Construir máscaras de posición
+        self.var_masks = []
+        self.ctrl_masks = []
+        
+        pos = 1
+        for i in range(num_variables):
+            self.var_masks.append(pos)
+            pos *= base
+            
+            self.ctrl_masks.append(pos)
+            pos *= base
+        
+        # Inicializar estado
+        self.state = 0
+        if initial_values:
+            for i, val in enumerate(initial_values):
+                self._set_variable(i, val)
+                self._set_controller(i, self.ctrl_value)
+    
+    def _get_variable(self, index):
+        """Obtiene el valor de una variable específica."""
+        return (self.state // self.var_masks[index]) % self.base
+    
+    def _set_variable(self, index, value):
+        """Establece el valor de una variable."""
+        # Limpiar valor actual
+        current = self._get_variable(index)
+        self.state -= current * self.var_masks[index]
+        # Establecer nuevo valor
+        self.state += (value % self.base) * self.var_masks[index]
+    
+    def _get_controller(self, index):
+        """Obtiene el estado del controlador."""
+        return (self.state // self.ctrl_masks[index]) % self.base
+    
+    def _set_controller(self, index, value):
+        """Establece el estado del controlador."""
+        current = self._get_controller(index)
+        self.state -= current * self.ctrl_masks[index]
+        self.state += (value % self.base) * self.ctrl_masks[index]
+    
+    def add_to_variable(self, index, delta):
+        """
+        Añade un valor a una variable y procesa automáticamente
+        el acarreo y las reglas de interacción.
+        """
+        current_val = self._get_variable(index)
+        current_ctrl = self._get_controller(index)
+        
+        # Aplicar cambio
+        new_val = (current_val + delta) % self.base
+        self._set_variable(index, new_val)
+        
+        # Detectar desbordamiento (controlador != ctrl_value)
+        if current_ctrl != self.ctrl_value:
+            # Aquí aplicas tus reglas if-less
+            # Ejemplo: si X desborda, afecta a Y y Z
+            self._apply_overflow_rules(index, delta)
+            
+            # Restaurar controlador
+            self._set_controller(index, self.ctrl_value)
+    
+    def _apply_overflow_rules(self, changed_index, delta):
+        """
+        Aplica reglas de interacción entre variables cuando hay desbordamiento.
+        Esta es la parte 'if-less' mágica del Numeraso.
+        """
+        # EJEMPLO: Reglas para sistema BHL (Bondad, Hostilidad, Lógica)
+        if self.num_vars == 3:  # Sistema BHL
+            B, H, L = 0, 1, 2  # Índices
+            
+            if changed_index == B:  # Cambió Bondad
+                # Regla: Si Bondad aumenta, Lógica disminuye
+                self._set_variable(L, (self._get_variable(L) - 1) % self.base)
+                
+            elif changed_index == H:  # Cambió Hostilidad
+                # Regla: Si Hostilidad aumenta, Bondad disminuye
+                self._set_variable(B, (self._get_variable(B) - 1) % self.base)
+                
+            elif changed_index == L:  # Cambió Lógica
+                # Regla: Si Lógica aumenta, Hostilidad aumenta
+                self._set_variable(H, (self._get_variable(H) + 1) % self.base)
+    
+    def get_all_variables(self):
+        """Devuelve todas las variables como lista."""
+        return [self._get_variable(i) for i in range(self.num_vars)]
+    
+    def get_state_string(self):
+        """Representación visual del estado Numeraso."""
+        parts = []
+        for i in range(self.num_vars - 1, -1, -1):
+            parts.append(str(self._get_controller(i)))
+            parts.append(str(self._get_variable(i)).zfill(int(math.log10(self.base))))
+        return "".join(parts)
+    
+    def __str__(self):
+        return f"Numeraso(base={self.base}, state={self.get_state_string()})"
+
+
+# file: bhl_system.py
+"""
+SISTEMA BHL LIMPIO USANDO NUMERASO
+Bondad, Hostilidad, Lógica con sombras y deseos
+"""
+
+class BHLPersonality:
+    """
+    Sistema de personalidad basado en Numeraso.
+    Implementa Bondad, Hostilidad, Lógica con sombras Jungianas.
+    """
+    
+    def __init__(self, base=1000):
+        # Sistema principal BHL
+        self.bhl = Numeroso(base=base, num_variables=3, initial_values=[50, 50, 50])
+        
+        # Experiencias (acumuladores)
+        self.exp = [0, 0, 0]  # ExpB, ExpH, ExpL
+        
+        # Sistema sombra (opuestos)
+        self.shadow = [0, 0, 0]
+        
+        # Sistema deseos (tensiones)
+        self.desire = [0, 0, 0]
+        
+        # Necesidades biológicas (CHS)
+        self.needs = Numeroso(base=base, num_variables=3, initial_values=[50, 50, 50])
+        self.needs_exp = [0, 0, 0]  # ExpC, ExpH, ExpS
+    
+    def update_from_input(self, bondad_delta, hostilidad_delta, logica_delta):
+        """
+        Actualiza el sistema basado en input externo.
+        Implementa las reglas de interacción BHL.
+        """
+        # Aplicar cambios con reglas if-less integradas
+        if bondad_delta != 0:
+            self.bhl.add_to_variable(0, bondad_delta)
+            self.exp[0] += abs(bondad_delta)
+            
+        if hostilidad_delta != 0:
+            self.bhl.add_to_variable(1, hostilidad_delta)
+            self.exp[1] += abs(hostilidad_delta)
+            
+        if logica_delta != 0:
+            self.bhl.add_to_variable(2, logica_delta)
+            self.exp[2] += abs(logica_delta)
+        
+        # Actualizar sombras y deseos
+        self._update_shadows()
+        self._update_desires()
+        
+        # Afectar necesidades biológicas
+        self._affect_needs()
+    
+    def _update_shadows(self):
+        """Calcula las sombras Jungianas (opuestos)."""
+        base = self.bhl.base
+        values = self.bhl.get_all_variables()
+        self.shadow = [base - val for val in values]
+    
+    def _update_desires(self):
+        """Calcula deseos como tensión entre expresión y sombra."""
+        values = self.bhl.get_all_variables()
+        self.desire = [
+            abs(self.shadow[i] - values[i]) - self.exp[i] // 10
+            for i in range(3)
+        ]
+    
+    def _affect_needs(self):
+        """Las emociones afectan las necesidades biológicas."""
+        values = self.bhl.get_all_variables()
+        
+        # Ejemplo: Alta hostilidad reduce hambre
+        hostilidad = values[1]
+        if hostilidad > 70:
+            self.needs.add_to_variable(1, -5)  # Reduce hambre
+        
+        # Alta lógica aumenta necesidad de sueño
+        logica = values[2]
+        if logica > 70:
+            self.needs.add_to_variable(2, 5)  # Aumenta sueño
+    
+    def get_personality_vector(self):
+        """Vector compacto de toda la personalidad."""
+        bhl_vals = self.bhl.get_all_variables()
+        return {
+            'bondad': bhl_vals[0],
+            'hostilidad': bhl_vals[1],
+            'logica': bhl_vals[2],
+            'sombra_bondad': self.shadow[0],
+            'sombra_hostilidad': self.shadow[1],
+            'sombra_logica': self.shadow[2],
+            'deseo_bondad': self.desire[0],
+            'deseo_hostilidad': self.desire[1],
+            'deseo_logica': self.desire[2],
+            'necesidades': self.needs.get_all_variables()
+        }
+
+
+# file: numeraso_binary.py
+"""
+NUMERASO BINARIO - VERSIÓN DE ALTO RENDIMIENTO
+Usando operaciones bitwise para velocidad de hardware
+"""
+
+class BinaryNumeraso:
+    """
+    Numeraso en binario para máximo rendimiento.
+    Usa operaciones bitwise en lugar de aritmética.
+    """
+    
+    def __init__(self, bits_per_var=8, num_vars=3):
+        self.bits = bits_per_var
+        self.num_vars = num_vars
+        self.ctrl_bit = 1 << (bits_per_var - 1)  # Bit más significativo como controlador
+        
+        # Máscaras para cada variable
+        self.var_masks = []
+        self.ctrl_masks = []
+        
+        shift = 0
+        for i in range(num_vars):
+            # Máscara para la variable (bits de datos)
+            var_mask = ((1 << bits_per_var) - 1) << shift
+            self.var_masks.append(var_mask)
+            shift += bits_per_var
+            
+            # Máscara para el controlador (1 bit)
+            ctrl_mask = 1 << shift
+            self.ctrl_masks.append(ctrl_mask)
+            shift += 1
+        
+        self.state = 0
+        
+        # Inicializar todos los controladores a 1
+        for i in range(num_vars):
+            self.state |= self.ctrl_masks[i]
+    
+    def get_var(self, index):
+        """Obtiene variable usando operaciones bitwise."""
+        return (self.state & self.var_masks[index]) >> (index * (self.bits + 1))
+    
+    def set_var(self, index, value):
+        """Establece variable usando operaciones bitwise."""
+        # Limpiar bits actuales
+        self.state &= ~self.var_masks[index]
+        # Establecer nuevos bits
+        masked_value = (value & ((1 << self.bits) - 1))
+        self.state |= (masked_value << (index * (self.bits + 1)))
+    
+    def add_to_var(self, index, delta):
+        """
+        Añade delta a variable con detección de overflow bitwise.
+        Implementación ultra-rápida.
+        """
+        current = self.get_var(index)
+        new_value = current + delta
+        
+        # Extraer bits de overflow
+        overflow = new_value >> self.bits
+        final_value = new_value & ((1 << self.bits) - 1)
+        
+        # Establecer nuevo valor
+        self.set_var(index, final_value)
+        
+        # Verificar controlador (bit más significativo de la posición)
+        ctrl_bit_set = (self.state & self.ctrl_masks[index]) != 0
+        
+        if overflow or not ctrl_bit_set:
+            # Aplicar reglas if-less con operaciones bitwise
+            self._apply_bitwise_rules(index, overflow)
+            
+            # Restablecer controlador
+            self.state |= self.ctrl_masks[index]
+    
+    def _apply_bitwise_rules(self, changed_index, overflow):
+        """
+        Reglas if-less implementadas con operaciones bitwise.
+        Cada regla es una serie de operaciones AND, OR, SHIFT.
+        """
+        # Ejemplo: Sistema de tres variables con reglas simples
+        if self.num_vars == 3:
+            if changed_index == 0:  # Variable 0 cambió
+                # Regla: Si V0 overflow, incrementar V1
+                v1 = self.get_var(1)
+                self.set_var(1, v1 + 1)
+                
+            elif changed_index == 1:  # Variable 1 cambió
+                # Regla: Si V1 overflow, decrementar V2
+                v2 = self.get_var(2)
+                self.set_var(2, max(0, v2 - 1))
+    
+    def __str__(self):
+        """Representación binaria legible."""
+        result = []
+        total_bits = self.num_vars * (self.bits + 1)
+        
+        for i in range(self.num_vars - 1, -1, -1):
+            ctrl_bit = "1" if (self.state & self.ctrl_masks[i]) else "0"
+            var_bits = format(self.get_var(i), f'0{self.bits}b')
+            result.append(f"[{ctrl_bit}{var_bits}]")
+        
+        return f"BinaryNumeraso: {' '.join(result)}"
+
+
+# file: demo.py
+"""
+DEMOSTRACIÓN DEL SISTEMA NUMERASO
+"""
+if __name__ == "__main__":
+    print("=== DEMOSTRACIÓN DEL SISTEMA NUMERASO ===")
+    
+    # 1. Numeraso Decimal (como en tu PDF)
+    print("\n1. NUMERASO DECIMAL (base 10):")
+    n = Numeraso(base=10, num_variables=3, initial_values=[89, 34, 99])
+    print(f"Estado inicial: {n.get_state_string()}")
+    print(f"Variables: {n.get_all_variables()}")
+    
+    # Simular: "Si le sumamos 1 a Z"
+    n.add_to_variable(2, 1)  # Sumar 1 a Z (índice 2)
+    print(f"Después de sumar 1 a Z: {n.get_state_string()}")
+    print(f"Variables: {n.get_all_variables()}")
+    
+    # 2. Sistema BHL Completo
+    print("\n2. SISTEMA BHL DE PERSONALIDAD:")
+    persona = BHLPersonality(base=1000)
+    
+    # Simular interacción
+    persona.update_from_input(bondad_delta=5, hostilidad_delta=-2, logica_delta=3)
+    
+    estado = persona.get_personality_vector()
+    print(f"Bondad: {estado['bondad']} (Sombra: {estado['sombra_bondad']}, Deseo: {estado['deseo_bondad']})")
+    print(f"Hostilidad: {estado['hostilidad']} (Sombra: {estado['sombra_hostilidad']}, Deseo: {estado['deseo_hostilidad']})")
+    print(f"Lógica: {estado['logica']} (Sombra: {estado['sombra_logica']}, Deseo: {estado['deseo_logica']})")
+    print(f"Necesidades: {estado['necesidades']}")
+    
+    # 3. Numeraso Binario (alto rendimiento)
+    print("\n3. NUMERASO BINARIO (8 bits por variable):")
+    bn = BinaryNumeraso(bits_per_var=8, num_vars=3)
+    bn.set_var(0, 150)
+    bn.set_var(1, 75)
+    bn.set_var(2, 200)
+    
+    print(f"Estado inicial: {bn}")
+    bn.add_to_var(0, 150)  # Provocar overflow
+    print(f"Después de overflow en V0: {bn}")
+    
+    print("\n=== FIN DE LA DEMOSTRACIÓN ===")
