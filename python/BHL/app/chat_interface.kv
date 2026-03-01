@@ -1,0 +1,49 @@
+BoxLayout: 
+    orientation: 'vertical' 
+    padding: 10
+    spacing: 10
+    Label:
+        id: scenario_label
+        text: "Escenario: Un espacio en blanco."
+        size_hint_y: None
+        height: 30
+        font_size: '14sp'
+        color: 0, 0, 0, 1  # Texto negro
+        text_size: self.width, None
+        halign: 'center'
+
+    # Área de chat que se puede desplazar (ScrollView)
+    ScrollView:
+        id: chat_scroll
+        size_hint: 1, 1
+        
+        # Contenedor para las burbujas de texto
+        GridLayout:
+            id: chat_history
+            cols: 1
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: 5
+            padding: 5
+
+    # Contenedor para el área de entrada del usuario y el botón de envío
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 40
+        spacing: 10
+        
+        # Campo de texto para el usuario
+        TextInput:
+            id: user_input
+            hint_text: "Escribe tu mensaje..."
+            size_hint_x: 0.8
+            multiline: False
+            on_text_validate: app.send_message()
+
+    # Botón para enviar el mensaje
+    Button:
+        id: send_button
+        text: "Enviar"
+        size_hint_x: 0.2
+        on_press: app.send_message()
