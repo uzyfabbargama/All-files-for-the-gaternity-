@@ -1,0 +1,29 @@
+{
+    "key": "AIzaSyBa6T3dKbfNA_SxI_dj5Ymk7fB6gk8i3zM",
+    "bhl_values": 5878003830,
+    "Exp_B": 0,
+    "Exp_H": 0,
+    "Exp_L": 0,
+    "amp_values": 7675843909,
+    "Exp": 0,
+    "chs_values": 7679845910,
+    "Exp_S": 4,
+    "Exp_Hu": 4,
+    "Exp_C": 4,
+    "Necesidad_Social": 280,
+    "Peculiaridad": "Solo sabe decir s\u00ed o no",
+    "chat_history": [
+        {
+            "user": "hola?",
+            "character": "S\u00ed."
+        },
+        {
+            "user": "funcionas?",
+            "character": "S\u00ed."
+        },
+        {
+            "user": "\u00bfsientes ambici\u00f3n, posesi\u00f3n, miedo, bondad, hostilidad, l\u00f3gica, ganas de comer, ir al ba\u00f1o y dormir?",
+            "character": "Si."
+        }
+    ]
+}
