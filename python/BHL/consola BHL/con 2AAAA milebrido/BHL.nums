@@ -1,0 +1,34 @@
+CLASS AlmaMatematica = (
+    # Sistema BHL (Bondad, Hostilidad, Lógica)
+    CLASS BHL = (
+        VAR bondad(1000), VAR hostilidad(1000), VAR logica(1000),
+        CTRL actualizar {1, 
+            Numeraso_Exp(bondad, hostilidad, logica, PosX, PosC, PosY, PosC1, PosZ, PosC2)
+        }
+    ),
+    
+    # Sistema CHS (Necesidades biológicas)  
+    CLASS CHS = (
+        VAR hambre(1000), VAR sueno(1000), VAR banio(1000),
+        CTRL actualizar {1,
+            Numeraso2_update(hambre, sueno, banio, PosX, PosC, PosY, PosC1, PosZ, PosC2)
+        }
+    ),
+    
+    # Motor de IA/Personalidad
+    CLASS Personalidad = (
+        CTRL generar_respuesta {1,
+            super_if(BHL.bondad > 700, "amable",
+            BHL.hostilidad > 700, "defensivo", 
+            BHL.logica > 700, "racional", mínimo 1)
+        }
+    ),
+    
+    # Gestor de Estados (¡10³⁶ estados!)
+    CLASS GestorEstados = (
+        VAR estados(10**36, "¡Estado alcanzado!"),
+        CTRL transicion {1,
+            estado_actual = (BHL * CHS * contexto * historia)
+        }
+    )
+)

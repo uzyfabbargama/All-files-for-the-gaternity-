@@ -1,0 +1,15 @@
+0b100000000001000000000010000000000
+4297065472 #lo que quiero slots de 10 bits, y en 11avo bit, el controlador
+
+0b1000000110000000011000000001
+135792129 #lo que tenemos, algo dificil de analizar
+
+eso explica porque con 4 de lógica, 20 de bondad, y 3 de hostilidad, el personaje, responde con un nivel alto de lógica.
+#Variables responsables
+base = 512
+PosC2 = (base**3) #134217728
+PosX = (base**2) * 2**2#1048576
+PosC1 =(base**2) #524288
+PosY = base*2 #1024
+PosC = base #512
+PosZ = 1
