@@ -1,0 +1,26 @@
+{
+    "bhl_values": -6786443004,
+    "Exp_B": 0,
+    "Exp_H": 0,
+    "Exp_L": 0,
+    "chs_values": 3717858920,
+    "Exp_S": 4,
+    "Exp_Hu": 4,
+    "Exp_C": 4,
+    "Necesidad_Social": 700,
+    "Peculiaridad": "Solo sabe decir \"S\u00ed\" o \"No\", pero le duele mucho la cabeza si la frase tiene m\u00e1s de dos palabras.",
+    "chat_history": [
+        {
+            "user": "\"Hola.\"",
+            "character": "S\u00ed."
+        },
+        {
+            "user": "\u00bferes....real o falso? \u00bftienes....tienes hambre?",
+            "character": "S\u00ed."
+        },
+        {
+            "user": "(le di... una manzana)",
+            "character": "S\u00ed."
+        }
+    ]
+}
