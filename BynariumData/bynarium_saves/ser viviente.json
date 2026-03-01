@@ -1,0 +1,615 @@
+[
+    {
+        "id": "b",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 301.0650317601254,
+        "pos_y": 509.8232825626665,
+        "conectada_a_ids": [
+            "AN"
+        ]
+    },
+    {
+        "id": "d",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 427.95255651936304,
+        "pos_y": 402.0702691073014,
+        "conectada_a_ids": [
+            "AN1"
+        ]
+    },
+    {
+        "id": "a",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 261.3808428386037,
+        "pos_y": 594.1254886961274,
+        "conectada_a_ids": [
+            "AN"
+        ]
+    },
+    {
+        "id": "c",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 358.82287890171403,
+        "pos_y": 449.40080732190415,
+        "conectada_a_ids": [
+            "AN1"
+        ]
+    },
+    {
+        "id": "AN",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": 152.22126425790572,
+        "pos_y": 478.8713632948568,
+        "conectada_a_ids": [
+            "ANP"
+        ]
+    },
+    {
+        "id": "AN1",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": 328.1765828836826,
+        "pos_y": 309.596466088382,
+        "conectada_a_ids": [
+            "ANP"
+        ]
+    },
+    {
+        "id": "ANP",
+        "bits": 4,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 16,
+        "pos_x": 114.15713885663541,
+        "pos_y": 288.38072604330307,
+        "conectada_a_ids": [
+            "ANPS"
+        ]
+    },
+    {
+        "id": "e",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 460.0,
+        "pos_y": 376.0,
+        "conectada_a_ids": [
+            "AN2"
+        ]
+    },
+    {
+        "id": "f",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 516.0,
+        "pos_y": 315.00000000000006,
+        "conectada_a_ids": [
+            "AN2"
+        ]
+    },
+    {
+        "id": "g",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 550.0,
+        "pos_y": 275.0,
+        "conectada_a_ids": [
+            "AN3"
+        ]
+    },
+    {
+        "id": "h",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 588.0,
+        "pos_y": 226.0000000000001,
+        "conectada_a_ids": [
+            "AN3"
+        ]
+    },
+    {
+        "id": "AN2",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": 401.20000000000005,
+        "pos_y": 253.2000000000001,
+        "conectada_a_ids": [
+            "ANP1"
+        ]
+    },
+    {
+        "id": "ANP1",
+        "bits": 4,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 16,
+        "pos_x": 310.0000000000001,
+        "pos_y": 156.00000000000006,
+        "conectada_a_ids": [
+            "ANPS1"
+        ]
+    },
+    {
+        "id": "AN3",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": 516.5999999999999,
+        "pos_y": 196.20000000000007,
+        "conectada_a_ids": [
+            "ANP1"
+        ]
+    },
+    {
+        "id": "ANPS",
+        "bits": 5,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 15,
+        "pos_x": 57.400000000000205,
+        "pos_y": 180.8000000000001,
+        "conectada_a_ids": [
+            "ANPdoble",
+            "b",
+            "d"
+        ]
+    },
+    {
+        "id": "ANPS1",
+        "bits": 5,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 15,
+        "pos_x": 170.0000000000001,
+        "pos_y": 108.00000000000009,
+        "conectada_a_ids": [
+            "ANPdoble",
+            "b",
+            "d"
+        ]
+    },
+    {
+        "id": "AN4",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": 32.00000000000023,
+        "pos_y": 322.0,
+        "conectada_a_ids": [
+            "ANPS"
+        ]
+    },
+    {
+        "id": "AN5",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": 402.72727272727286,
+        "pos_y": 45.45454545454581,
+        "conectada_a_ids": [
+            "ANPS1"
+        ]
+    },
+    {
+        "id": "i",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 492.5678499999999,
+        "pos_y": -70.03631999999946,
+        "conectada_a_ids": [
+            "AN5"
+        ]
+    },
+    {
+        "id": "j",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 478.00000000000006,
+        "pos_y": 31.00000000000037,
+        "conectada_a_ids": [
+            "AN5"
+        ]
+    },
+    {
+        "id": "l",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -29.09999999999934,
+        "pos_y": 409.3999999999999,
+        "conectada_a_ids": [
+            "AN4"
+        ]
+    },
+    {
+        "id": "ANPdoble",
+        "bits": 7,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 13,
+        "pos_x": -54.94999999999931,
+        "pos_y": 11.860000000000468,
+        "conectada_a_ids": [
+            "ANPSmulti"
+        ]
+    },
+    {
+        "id": "k",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -67.89050999999921,
+        "pos_y": 418.85989,
+        "conectada_a_ids": [
+            "AN4"
+        ]
+    },
+    {
+        "id": "ANP3",
+        "bits": 4,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 16,
+        "pos_x": -101.36999999999927,
+        "pos_y": 198.75000000000017,
+        "conectada_a_ids": [
+            "ANPS3"
+        ]
+    },
+    {
+        "id": "ANP2",
+        "bits": 4,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 16,
+        "pos_x": 265.2600000000002,
+        "pos_y": 39.03000000000034,
+        "conectada_a_ids": [
+            "ANPS2"
+        ]
+    },
+    {
+        "id": "AN11",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": 253.1600000000003,
+        "pos_y": -91.64999999999948,
+        "conectada_a_ids": [
+            "ANP2"
+        ]
+    },
+    {
+        "id": "AN10",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": 329.39000000000016,
+        "pos_y": -73.49999999999947,
+        "conectada_a_ids": [
+            "ANP2"
+        ]
+    },
+    {
+        "id": "AN9",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": -217.52999999999915,
+        "pos_y": 227.7900000000001,
+        "conectada_a_ids": [
+            "ANP3"
+        ]
+    },
+    {
+        "id": "AN8",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": -169.12999999999914,
+        "pos_y": 291.9200000000001,
+        "conectada_a_ids": [
+            "ANP3"
+        ]
+    },
+    {
+        "id": "AN7",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": 368.1100000000002,
+        "pos_y": -17.839999999999606,
+        "conectada_a_ids": [
+            "ANPS2"
+        ]
+    },
+    {
+        "id": "AN6",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 17,
+        "pos_x": -124.35999999999916,
+        "pos_y": 350.0,
+        "conectada_a_ids": [
+            "ANPS3"
+        ]
+    },
+    {
+        "id": "ANPS3",
+        "bits": 5,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 15,
+        "pos_x": -15.459999999999354,
+        "pos_y": 133.41000000000028,
+        "conectada_a_ids": [
+            "ANPdoble1"
+        ]
+    },
+    {
+        "id": "ANPS2",
+        "bits": 5,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 15,
+        "pos_x": 103.12000000000046,
+        "pos_y": 23.300000000000466,
+        "conectada_a_ids": [
+            "ANPdoble1"
+        ]
+    },
+    {
+        "id": "m",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -308.27999999999895,
+        "pos_y": 272.56000000000006,
+        "conectada_a_ids": [
+            "AN9"
+        ]
+    },
+    {
+        "id": "n",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -280.4499999999991,
+        "pos_y": 340.32000000000005,
+        "conectada_a_ids": [
+            "AN9"
+        ]
+    },
+    {
+        "id": "o",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -240.51999999999904,
+        "pos_y": 364.52,
+        "conectada_a_ids": [
+            "AN8"
+        ]
+    },
+    {
+        "id": "p",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -205.42999999999907,
+        "pos_y": 375.40999999999997,
+        "conectada_a_ids": [
+            "AN8"
+        ]
+    },
+    {
+        "id": "q",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -172.75999999999917,
+        "pos_y": 404.44999999999993,
+        "conectada_a_ids": [
+            "AN6"
+        ]
+    },
+    {
+        "id": "r",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -111.04999999999927,
+        "pos_y": 434.6999999999998,
+        "conectada_a_ids": [
+            "AN6"
+        ]
+    },
+    {
+        "id": "s",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 397.1500000000001,
+        "pos_y": -135.20999999999944,
+        "conectada_a_ids": [
+            "AN7"
+        ]
+    },
+    {
+        "id": "t",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 437.08000000000004,
+        "pos_y": -118.26999999999941,
+        "conectada_a_ids": [
+            "AN7"
+        ]
+    },
+    {
+        "id": "u",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 362.0600000000002,
+        "pos_y": -146.09999999999945,
+        "conectada_a_ids": [
+            "AN10"
+        ]
+    },
+    {
+        "id": "v",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 308.8200000000004,
+        "pos_y": -152.14999999999935,
+        "conectada_a_ids": [
+            "AN10"
+        ]
+    },
+    {
+        "id": "w",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 210.8100000000004,
+        "pos_y": -179.97999999999934,
+        "conectada_a_ids": [
+            "AN11"
+        ]
+    },
+    {
+        "id": "x",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": 279.7800000000002,
+        "pos_y": -181.18999999999932,
+        "conectada_a_ids": [
+            "AN11"
+        ]
+    },
+    {
+        "id": "ANPdoble1",
+        "bits": 7,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 13,
+        "pos_x": 38.990000000000634,
+        "pos_y": -58.97999999999945,
+        "conectada_a_ids": [
+            "ANPSmulti"
+        ]
+    },
+    {
+        "id": "ANPSmulti",
+        "bits": 9,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 11,
+        "pos_x": -131.6199999999992,
+        "pos_y": -156.98999999999938,
+        "conectada_a_ids": []
+    }
+]

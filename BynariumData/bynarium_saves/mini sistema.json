@@ -1,0 +1,91 @@
+[
+    {
+        "id": "b",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 15,
+        "pos_x": -447.0,
+        "pos_y": 389.0,
+        "conectada_a_ids": [
+            "AN"
+        ]
+    },
+    {
+        "id": "d",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -377.0,
+        "pos_y": 484.0,
+        "conectada_a_ids": [
+            "AN1"
+        ]
+    },
+    {
+        "id": "a",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 18,
+        "pos_x": -372.0,
+        "pos_y": 320.0,
+        "conectada_a_ids": [
+            "AN"
+        ]
+    },
+    {
+        "id": "c",
+        "bits": 2,
+        "valor_decimal": 0,
+        "activacion": 0,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 15,
+        "pos_x": -309.0,
+        "pos_y": 406.0,
+        "conectada_a_ids": [
+            "AN1"
+        ]
+    },
+    {
+        "id": "AN",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 1,
+        "hi_score_activaciones": 1,
+        "vida_util_restante": 16,
+        "pos_x": -211.0,
+        "pos_y": 239.0,
+        "conectada_a_ids": [
+            "ANP"
+        ]
+    },
+    {
+        "id": "AN1",
+        "bits": 3,
+        "valor_decimal": 0,
+        "activacion": 1,
+        "hi_score_activaciones": 1,
+        "vida_util_restante": 16,
+        "pos_x": -221.0,
+        "pos_y": 433.0,
+        "conectada_a_ids": [
+            "ANP"
+        ]
+    },
+    {
+        "id": "ANP",
+        "bits": 4,
+        "valor_decimal": 0,
+        "activacion": 4,
+        "hi_score_activaciones": 0,
+        "vida_util_restante": 15,
+        "pos_x": -141.0,
+        "pos_y": 330.0,
+        "conectada_a_ids": []
+    }
+]
