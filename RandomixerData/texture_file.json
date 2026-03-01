@@ -1,0 +1,14 @@
+{
+"Agua": {
+    "texture_file": "agua.png"
+},
+"Madera": {
+    "texture_file": "madera.png"
+},
+"Piedra": {
+    "texture_file": "piedra.png"
+},
+"Roca": {
+    "texture_file": "roca.png"
+}
+}
