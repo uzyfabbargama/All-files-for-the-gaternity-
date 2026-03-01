@@ -1,0 +1,2102 @@
+{
+    "Uziel": {
+        "id": "353e2723-ba94-466a-909d-d43efc96d95f",
+        "variables_BHL": {
+            "Bondad": 80,
+            "Hostilidad": 10,
+            "L\u00f3gica": 30,
+            "Ego": 5
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274567.914893,
+            "ultima_interaccion": 1755274567.914894,
+            "tiempo_relacion": 0
+        }
+    },
+    "Rick": {
+        "id": "cdd2b4cd-ab08-4a98-b9b3-a724e09137b7",
+        "variables_BHL": {
+            "Bondad": 5,
+            "Hostilidad": 95,
+            "L\u00f3gica": 55,
+            "Ego": 15
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.0294826,
+            "ultima_interaccion": 1755274568.3840954,
+            "tiempo_relacion": 0
+        }
+    },
+    "Carlos": {
+        "id": "0f483046-3176-4e93-a7fa-e5833429d49a",
+        "variables_BHL": {
+            "Bondad": 70,
+            "Hostilidad": 20,
+            "L\u00f3gica": 80,
+            "Ego": 12
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.2517998,
+            "ultima_interaccion": 1755274568.2518008,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_3": {
+        "id": "b2e67ada-574b-48b2-a74d-42b1c88efa79",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.4485347,
+            "ultima_interaccion": 1755274568.4485364,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_4": {
+        "id": "02a1cd64-b47a-46e8-91d4-e008b4f045fa",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.4524865,
+            "ultima_interaccion": 1755274568.4524872,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_5": {
+        "id": "02a07f7f-63fc-4b10-92fd-d9219ab4710e",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.4565334,
+            "ultima_interaccion": 1755274568.4565346,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_6": {
+        "id": "d5903ee5-d6be-4458-87d3-5bec2127d048",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.463749,
+            "ultima_interaccion": 1755274568.4637506,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_7": {
+        "id": "d28a694b-81f9-48b1-9037-cb9d3a3f8ae1",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.4693272,
+            "ultima_interaccion": 1755274568.4693284,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_8": {
+        "id": "77e493db-bc6f-4f0e-80a6-db01630ca149",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.473706,
+            "ultima_interaccion": 1755274568.473707,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_9": {
+        "id": "04c7c340-ba3e-4d1a-8de9-2575b2e28347",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.4802616,
+            "ultima_interaccion": 1755274568.4802635,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_10": {
+        "id": "75f24334-203e-45a9-8c9b-4f7b0f8b657d",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.485631,
+            "ultima_interaccion": 1755274568.485632,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_11": {
+        "id": "e7e4b4aa-475f-444b-aed8-617b8c5ffabc",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.490944,
+            "ultima_interaccion": 1755274568.490945,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_12": {
+        "id": "cec071fd-74c0-4cd5-a5cd-647b861ad332",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.496654,
+            "ultima_interaccion": 1755274568.4966555,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_13": {
+        "id": "3b808bf7-58b2-4c71-b4ba-1c6898b95c52",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.5272949,
+            "ultima_interaccion": 1755274568.5272963,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_14": {
+        "id": "36e2d5d2-8567-412a-86c8-d2dd4e05e59c",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.534429,
+            "ultima_interaccion": 1755274568.5344303,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_15": {
+        "id": "f9692bbb-1b5e-4e72-9991-ccac19f6fc9f",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.5399954,
+            "ultima_interaccion": 1755274568.5399964,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_16": {
+        "id": "2f66f9b9-b710-4ef1-be6a-01d95839a5b7",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.5461833,
+            "ultima_interaccion": 1755274568.546185,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_17": {
+        "id": "b4ae8651-f5a2-4ffb-95f1-0219bca869ba",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.553796,
+            "ultima_interaccion": 1755274568.5537975,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_18": {
+        "id": "72df7c8c-f110-468f-b83f-7df827e4d682",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.5603259,
+            "ultima_interaccion": 1755274568.5603268,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_19": {
+        "id": "6ab26cf5-b6b2-427c-9fe7-a1c866274189",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.567259,
+            "ultima_interaccion": 1755274568.5672603,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_20": {
+        "id": "7df559de-5caa-4c9d-8344-4485ef0ff920",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.5754561,
+            "ultima_interaccion": 1755274568.5754573,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_21": {
+        "id": "e2571377-1bea-4827-8c11-7797084573c1",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.5824819,
+            "ultima_interaccion": 1755274568.582483,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_22": {
+        "id": "39747bbb-eb17-4526-9539-655489c0dd75",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.5900812,
+            "ultima_interaccion": 1755274568.5900824,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_23": {
+        "id": "ff5178c3-8aad-40a7-b167-b8dd3611f683",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.5969372,
+            "ultima_interaccion": 1755274568.5969381,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_24": {
+        "id": "5980edd9-2ad5-4c36-a013-909546c3457d",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.60384,
+            "ultima_interaccion": 1755274568.6038413,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_25": {
+        "id": "8b8cabf9-4452-4fd8-9383-ccc9c9c34518",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.6163077,
+            "ultima_interaccion": 1755274568.616309,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_26": {
+        "id": "dc6172b1-ba31-4920-b3aa-b28316f2bfc2",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.6398418,
+            "ultima_interaccion": 1755274568.6398427,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_27": {
+        "id": "a23b343d-19ec-41e7-87b3-de09d4969d03",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.6486948,
+            "ultima_interaccion": 1755274568.6486957,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_28": {
+        "id": "26bddc21-a0fd-4b18-aac0-11b165a6920f",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.6562586,
+            "ultima_interaccion": 1755274568.6562595,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_29": {
+        "id": "748c13b9-218b-4b34-b688-e074feca8df3",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.664282,
+            "ultima_interaccion": 1755274568.664283,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_30": {
+        "id": "abd98db5-8250-4ff3-8215-e7f605119032",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.672027,
+            "ultima_interaccion": 1755274568.6720283,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_31": {
+        "id": "bb4ff260-be54-4ef7-a1a8-c5914cb51460",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.6820493,
+            "ultima_interaccion": 1755274568.6820502,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_32": {
+        "id": "7c7c7318-77c4-471b-8af5-07f048617cae",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.6917982,
+            "ultima_interaccion": 1755274568.691799,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_33": {
+        "id": "86d3ecff-e10e-4afa-a673-d8a88beb9bb6",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.702165,
+            "ultima_interaccion": 1755274568.7021666,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_34": {
+        "id": "efc939a3-2501-4e78-b49c-0982976bec1b",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.7104323,
+            "ultima_interaccion": 1755274568.7104335,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_35": {
+        "id": "7ab40af6-f7c7-491a-88c0-c796d1af70d8",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.7205856,
+            "ultima_interaccion": 1755274568.7205868,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_36": {
+        "id": "41814f19-2c07-44f7-92c2-40b9b433f9e6",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.7300942,
+            "ultima_interaccion": 1755274568.7300954,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_37": {
+        "id": "6b9bca24-116c-4975-8268-9bd2422dbc32",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.7392824,
+            "ultima_interaccion": 1755274568.7392836,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_38": {
+        "id": "25c35ff7-488b-434c-88d0-171a8469f040",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.748746,
+            "ultima_interaccion": 1755274568.748747,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_39": {
+        "id": "0fcc7d24-4f36-4b96-a19c-9d7627a8d1eb",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.7579927,
+            "ultima_interaccion": 1755274568.757994,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_40": {
+        "id": "42b46a03-9f97-4fac-b9ce-de61397fefe6",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.7679093,
+            "ultima_interaccion": 1755274568.7679107,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_41": {
+        "id": "59af5902-3e6d-4419-9399-be8607f4e723",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.7780638,
+            "ultima_interaccion": 1755274568.7780654,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_42": {
+        "id": "c261f992-6257-4ac4-ac8f-5cacbbd59b25",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.7881732,
+            "ultima_interaccion": 1755274568.7881746,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_43": {
+        "id": "0de7efb2-febb-4e92-8173-ff323d7c5334",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.797935,
+            "ultima_interaccion": 1755274568.7979362,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_44": {
+        "id": "0562b6a6-8f4a-4f39-9275-260a4e881ff8",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.8077428,
+            "ultima_interaccion": 1755274568.807744,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_45": {
+        "id": "92e1e09c-534f-485c-b97c-4aaca092ef2c",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.8178036,
+            "ultima_interaccion": 1755274568.8178048,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_46": {
+        "id": "5f89f051-9582-4707-930a-0f33f07b46f6",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.8280907,
+            "ultima_interaccion": 1755274568.8280919,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_47": {
+        "id": "1a8c6406-bf87-42ea-b57d-d7ec67078a03",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.839026,
+            "ultima_interaccion": 1755274568.8390272,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_48": {
+        "id": "9ae3c624-ba91-474f-9d59-f6173f0bb32b",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.8511589,
+            "ultima_interaccion": 1755274568.8511598,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_49": {
+        "id": "c675b035-f449-4139-91f2-7f0fdd49b640",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.8622668,
+            "ultima_interaccion": 1755274568.8622687,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_50": {
+        "id": "d1ba165d-b660-4a10-8a71-e829ac3d31db",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.8729558,
+            "ultima_interaccion": 1755274568.872957,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_51": {
+        "id": "c3d6c080-6986-45a1-9e86-8a68a7ebb9d3",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.8842542,
+            "ultima_interaccion": 1755274568.884255,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_52": {
+        "id": "62974f71-e1ac-4be4-9bf9-b313f4dfe000",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.89486,
+            "ultima_interaccion": 1755274568.8948631,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_53": {
+        "id": "70674b8a-b42c-44b8-a236-570e6fe9b956",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.906069,
+            "ultima_interaccion": 1755274568.90607,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_54": {
+        "id": "f56b7f63-6776-41dc-958b-20b16e383aa1",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.9176583,
+            "ultima_interaccion": 1755274568.9176593,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_55": {
+        "id": "285dec26-4b73-4e41-a7ef-43eaa94ca6de",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.9339077,
+            "ultima_interaccion": 1755274568.933909,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_56": {
+        "id": "dbd98702-45de-4359-807f-61f6bb71e286",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.9480915,
+            "ultima_interaccion": 1755274568.9480925,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_57": {
+        "id": "50e79a2a-7792-46e4-9415-693e393febda",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.9595318,
+            "ultima_interaccion": 1755274568.9595325,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_58": {
+        "id": "55330639-fcdc-4975-8009-62de2bed7704",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.9719703,
+            "ultima_interaccion": 1755274568.9719713,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_59": {
+        "id": "157b65ef-b972-499f-a873-a75b6bbd5aa4",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.9858913,
+            "ultima_interaccion": 1755274568.985892,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_60": {
+        "id": "25445e3c-2a0b-45a5-bbb0-1259e312c088",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274568.999549,
+            "ultima_interaccion": 1755274568.9995496,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_61": {
+        "id": "8abfb8c7-0903-4133-9e52-ce3415ce5510",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.0117245,
+            "ultima_interaccion": 1755274569.0117261,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_62": {
+        "id": "1a21a7aa-a94b-482d-b22c-db147b75a93e",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.02533,
+            "ultima_interaccion": 1755274569.0253313,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_63": {
+        "id": "8dcf5350-34d6-40c1-b6cd-b360a0157029",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.0378525,
+            "ultima_interaccion": 1755274569.0378535,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_64": {
+        "id": "ff986981-deb5-42d0-98a8-2f8efca6cfeb",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.0498786,
+            "ultima_interaccion": 1755274569.0498793,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_65": {
+        "id": "60372e1d-be1d-4c43-bf32-999bdfb036b6",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.0624495,
+            "ultima_interaccion": 1755274569.0624506,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_66": {
+        "id": "ef67b03c-6eff-4fc8-a2b9-32bfc12393b4",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.074843,
+            "ultima_interaccion": 1755274569.074844,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_67": {
+        "id": "fb4e71cb-2cae-46fb-9029-11f8a15648c4",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.0893924,
+            "ultima_interaccion": 1755274569.0893934,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_68": {
+        "id": "72a6f847-1103-44a6-9557-385332fbd766",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.103632,
+            "ultima_interaccion": 1755274569.103633,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_69": {
+        "id": "d4f3ffa1-1c91-4c7d-9dcb-3117f1866c2e",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.1194263,
+            "ultima_interaccion": 1755274569.1194274,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_70": {
+        "id": "1716df85-f855-4352-9c7b-af925d252cea",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.132814,
+            "ultima_interaccion": 1755274569.132815,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_71": {
+        "id": "287b7437-26eb-4460-a98f-483162490efa",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.1461494,
+            "ultima_interaccion": 1755274569.1461508,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_72": {
+        "id": "1a1276df-db00-407e-abf8-0d1f3cc6c073",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.1617453,
+            "ultima_interaccion": 1755274569.1617463,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_73": {
+        "id": "e9ee15bf-b2bf-4bac-ad8d-ae395cd5a6d5",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.1753798,
+            "ultima_interaccion": 1755274569.1753807,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_74": {
+        "id": "e55e8a7c-f3e2-48c8-9c9f-ab43b85e88eb",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.1893513,
+            "ultima_interaccion": 1755274569.1893525,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_75": {
+        "id": "35c95ae7-6769-436c-8c2e-4e344b986390",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.2051365,
+            "ultima_interaccion": 1755274569.2051377,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_76": {
+        "id": "1a312203-8deb-4836-94b4-b01e0d6bb9f2",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.2197406,
+            "ultima_interaccion": 1755274569.2197416,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_77": {
+        "id": "e1c33929-e7f6-4e8a-a1e9-54a94ce93ddd",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.2356083,
+            "ultima_interaccion": 1755274569.2356093,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_78": {
+        "id": "cd9501c0-62ec-47b2-81bb-c2267c96b53c",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.2502437,
+            "ultima_interaccion": 1755274569.2502446,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_79": {
+        "id": "5b5d814e-3f89-41e7-8f42-e79b4b773417",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.2663162,
+            "ultima_interaccion": 1755274569.2663174,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_80": {
+        "id": "d8ab5544-1c85-4035-8f0e-f7ada1f0cf7a",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.2811487,
+            "ultima_interaccion": 1755274569.2811494,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_81": {
+        "id": "a2261ace-6c67-47a1-a850-26b39bd65e06",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.2977326,
+            "ultima_interaccion": 1755274569.2977333,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_82": {
+        "id": "511cc5b1-f3f3-4c37-b919-b6e0b241599e",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.3128524,
+            "ultima_interaccion": 1755274569.312854,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_83": {
+        "id": "17206e28-6922-4362-9122-f87f05fdb6d5",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.3306866,
+            "ultima_interaccion": 1755274569.3306875,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_84": {
+        "id": "5131d2db-d4c4-468c-b115-29922b284b22",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.3455346,
+            "ultima_interaccion": 1755274569.3455358,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_85": {
+        "id": "d726ec72-cc25-4522-be1d-1a3c32290478",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.3637743,
+            "ultima_interaccion": 1755274569.3637753,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_86": {
+        "id": "65ddbbbd-e24c-4db1-b474-9ab1d5992dd5",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.3791466,
+            "ultima_interaccion": 1755274569.3791475,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_87": {
+        "id": "0ac4b03c-51e0-4a52-a399-e6e3f64241dc",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.3972661,
+            "ultima_interaccion": 1755274569.3972678,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_88": {
+        "id": "f407849c-9025-477e-a3ae-a11afccab888",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.412968,
+            "ultima_interaccion": 1755274569.412969,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_89": {
+        "id": "0b37ff0f-df65-46e1-a820-50a3e4add2e6",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.4316893,
+            "ultima_interaccion": 1755274569.431693,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_90": {
+        "id": "96f27df1-c278-408a-a47d-162630fb7291",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.451405,
+            "ultima_interaccion": 1755274569.451406,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_91": {
+        "id": "fe6e2e43-6ebd-4a42-a926-2eb9d0a50305",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.4727933,
+            "ultima_interaccion": 1755274569.472794,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_92": {
+        "id": "519cf63d-3c8d-477b-bee6-b4d0487eae3d",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.489384,
+            "ultima_interaccion": 1755274569.489385,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_93": {
+        "id": "92733769-edd3-4d0f-b0f8-0ef194e798d6",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.5099173,
+            "ultima_interaccion": 1755274569.5099351,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_94": {
+        "id": "436cd347-7833-4e2b-bb6d-134698dd098a",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.5303576,
+            "ultima_interaccion": 1755274569.5303593,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_95": {
+        "id": "37054c36-a87c-4b94-953b-aacc9a2f27eb",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.549126,
+            "ultima_interaccion": 1755274569.549127,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_96": {
+        "id": "68cc02f8-7ba6-4b27-839c-d64363570026",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.5676107,
+            "ultima_interaccion": 1755274569.5676117,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_97": {
+        "id": "6718da15-dcf7-4d25-8358-108f41e2a916",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.5850825,
+            "ultima_interaccion": 1755274569.5850835,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_98": {
+        "id": "aaf6f86b-827b-4423-983e-6e05a3f00806",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.6038566,
+            "ultima_interaccion": 1755274569.6038582,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_99": {
+        "id": "e79a7042-bdd7-48d1-a9ab-26f572b9038a",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.620903,
+            "ultima_interaccion": 1755274569.6209037,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_100": {
+        "id": "874f6a33-b2ef-4519-990b-594bd47ff87f",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.6388977,
+            "ultima_interaccion": 1755274569.6388986,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_101": {
+        "id": "b60d475e-d99f-4804-8e8f-4518720bb759",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.6588414,
+            "ultima_interaccion": 1755274569.6588423,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_102": {
+        "id": "62cde003-c849-4d29-9e99-3cbda3d52a97",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.6780155,
+            "ultima_interaccion": 1755274569.6780167,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_103": {
+        "id": "8d9a2e20-3975-48ba-ac22-935dd96e6762",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.696458,
+            "ultima_interaccion": 1755274569.6964593,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_104": {
+        "id": "969fdb32-8c03-48e9-ae26-9c83e7507d15",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.7144556,
+            "ultima_interaccion": 1755274569.7144566,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_105": {
+        "id": "79d792cc-57b0-4da7-ab35-660675a31a3c",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.7340288,
+            "ultima_interaccion": 1755274569.7340298,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_106": {
+        "id": "8bf228d6-7151-442f-9f8d-0a91cc8d3b16",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.7520697,
+            "ultima_interaccion": 1755274569.7520707,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_107": {
+        "id": "06ee2123-10ab-4eb8-9555-4df269542541",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.7700975,
+            "ultima_interaccion": 1755274569.7700984,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_108": {
+        "id": "e3f65f91-84a6-4916-9ce0-432eb22ccf04",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.7901912,
+            "ultima_interaccion": 1755274569.7901921,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_109": {
+        "id": "6476e010-9c39-448c-b42c-1e3f89bcafd4",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.8433883,
+            "ultima_interaccion": 1755274569.8433895,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_110": {
+        "id": "e726d81e-3878-45f6-9159-3c523a66bf41",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.8646874,
+            "ultima_interaccion": 1755274569.8646884,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_111": {
+        "id": "42f2cd7e-5db0-4245-8e66-81c89478f37d",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.884642,
+            "ultima_interaccion": 1755274569.8846428,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_112": {
+        "id": "651b4fa4-46dd-46d7-a167-b36707288e90",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.9035416,
+            "ultima_interaccion": 1755274569.9035425,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_113": {
+        "id": "721fb32c-ada9-4a1f-af92-dbf4d3eb0664",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.9225638,
+            "ultima_interaccion": 1755274569.9225645,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_114": {
+        "id": "45d0e1f2-a9fc-4ed8-b9ef-64be903383fd",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.9434354,
+            "ultima_interaccion": 1755274569.9434366,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_115": {
+        "id": "e0ea2d1c-135c-4f0b-a831-d4afbbd1b3dc",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.9650483,
+            "ultima_interaccion": 1755274569.9650493,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_116": {
+        "id": "5f78068a-92c2-4109-ae1e-5bf094840e8e",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274569.9894848,
+            "ultima_interaccion": 1755274569.9894857,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_117": {
+        "id": "7c49c6e0-abf3-46fb-84e2-26087decbf82",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.0121102,
+            "ultima_interaccion": 1755274570.0121114,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_118": {
+        "id": "3e7b11f3-f2de-456d-a7ed-1bcf9174258c",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.0345428,
+            "ultima_interaccion": 1755274570.0345435,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_119": {
+        "id": "605b75a2-9ce2-4c91-8a51-c9c5af324bc2",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.0563028,
+            "ultima_interaccion": 1755274570.056304,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_120": {
+        "id": "c9064b40-2f3e-4478-a902-c8d4cf9eb53d",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.078129,
+            "ultima_interaccion": 1755274570.07813,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_121": {
+        "id": "2a461b3b-8ca5-446e-9dcf-6619794c597e",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.1007876,
+            "ultima_interaccion": 1755274570.100789,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_122": {
+        "id": "13c7e908-cb95-4f02-9cc0-723e240ebdfd",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.1228352,
+            "ultima_interaccion": 1755274570.122836,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_123": {
+        "id": "eccab4c8-0738-41d7-84d7-8b4744929d4c",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.1447742,
+            "ultima_interaccion": 1755274570.1447752,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_124": {
+        "id": "804492a7-4d57-49f5-9727-67965097eb80",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.168113,
+            "ultima_interaccion": 1755274570.168114,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_125": {
+        "id": "d49a61d7-638c-4754-84ef-a62dd5ca3bd1",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.190313,
+            "ultima_interaccion": 1755274570.190314,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_126": {
+        "id": "f9539a74-9dc7-42d5-aaa1-e220d805663b",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.2128778,
+            "ultima_interaccion": 1755274570.2128792,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_127": {
+        "id": "c5bda5d2-d6a6-420a-a340-959a30e5c3a1",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.235595,
+            "ultima_interaccion": 1755274570.2355957,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_128": {
+        "id": "a3295216-703d-47a6-9626-28c46385abd5",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.2578776,
+            "ultima_interaccion": 1755274570.2578785,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_129": {
+        "id": "7ced9dca-efb2-43a7-a458-2de50d25eddd",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.2818127,
+            "ultima_interaccion": 1755274570.281814,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_130": {
+        "id": "28efd338-a023-473a-b76f-8aaffdc5ee6e",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.3060944,
+            "ultima_interaccion": 1755274570.3060958,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_131": {
+        "id": "580e4efb-2cff-42ad-92dc-bb1bc93ffea9",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.3290884,
+            "ultima_interaccion": 1755274570.3290892,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_132": {
+        "id": "60380954-acca-4702-8b34-5844cdd06ff7",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.3530076,
+            "ultima_interaccion": 1755274570.3530087,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_133": {
+        "id": "b060432e-b8f7-4862-b4fa-65844e864b60",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.375954,
+            "ultima_interaccion": 1755274570.3759549,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_134": {
+        "id": "7b90745a-150d-479d-98d8-c52a1b12e087",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.3993733,
+            "ultima_interaccion": 1755274570.3993742,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_135": {
+        "id": "cc91afc0-b07e-4177-9bb2-33fc4a6bed03",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.4228833,
+            "ultima_interaccion": 1755274570.4228845,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_136": {
+        "id": "fe6e5758-1dbf-499a-ae0c-8fd1418e2f25",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.4471245,
+            "ultima_interaccion": 1755274570.447126,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_137": {
+        "id": "62700ff6-5ae3-421f-8bc7-cd9814932abc",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.4713943,
+            "ultima_interaccion": 1755274570.471395,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_138": {
+        "id": "45a34f0c-607b-43ba-b61b-cbbce72c3436",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.49881,
+            "ultima_interaccion": 1755274570.4988112,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_139": {
+        "id": "3b42b6a9-5185-4815-830e-3ccbae905763",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.5231206,
+            "ultima_interaccion": 1755274570.5231216,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_140": {
+        "id": "55510779-83f5-41d5-88b1-5468672fabff",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.5477307,
+            "ultima_interaccion": 1755274570.5477316,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_141": {
+        "id": "26c9d70c-5cfc-4354-b9f6-9139ed913334",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.5720978,
+            "ultima_interaccion": 1755274570.5720985,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_142": {
+        "id": "6f3344dd-1371-4662-a717-74d6d35ac506",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.5959263,
+            "ultima_interaccion": 1755274570.5959272,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_143": {
+        "id": "6a8346c2-5305-49f6-850b-44a1bcb3347f",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.6209884,
+            "ultima_interaccion": 1755274570.620989,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_144": {
+        "id": "cd970376-f937-4dda-91ed-ad8d2b61bd43",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.6455436,
+            "ultima_interaccion": 1755274570.6455448,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_145": {
+        "id": "473be489-ccda-4b3a-8948-b710a2ea0461",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.6709945,
+            "ultima_interaccion": 1755274570.6709955,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario_146": {
+        "id": "49389f44-f032-4ca7-8c40-ee8ef41ad418",
+        "variables_BHL": {
+            "Bondad": 50,
+            "Hostilidad": 50,
+            "L\u00f3gica": 50,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274570.699067,
+            "ultima_interaccion": 1755274570.6990683,
+            "tiempo_relacion": 0
+        }
+    },
+    "Nuevo_Genio": {
+        "id": "e97b5c9b-a4f7-414d-9e35-508e5c775f3f",
+        "variables_BHL": {
+            "Bondad": 10,
+            "Hostilidad": 10,
+            "L\u00f3gica": 90,
+            "Ego": 20
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755274572.0257096,
+            "ultima_interaccion": 1755274572.02571,
+            "tiempo_relacion": 0
+        }
+    },
+    "uziel": {
+        "id": "5ca02d97-8ace-4711-a8ed-2a03547742a8",
+        "variables_BHL": {
+            "Bondad": 90,
+            "Hostilidad": 0,
+            "L\u00f3gica": 80,
+            "Ego": 10
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755293019.6678882,
+            "ultima_interaccion": 1755293019.667889,
+            "tiempo_relacion": 0
+        }
+    },
+    "Usuario": {
+        "id": "23cfb30b-9580-46fc-9a01-1b20153d2873",
+        "variables_BHL": {
+            "b": 19,
+            "h": 1,
+            "l": 10,
+            "ego": 3
+        },
+        "variables_tiempo": {
+            "primera_interaccion": 1755351910.0286677,
+            "ultima_interaccion": 1755464634.213911,
+            "tiempo_relacion": 0
+        }
+    }
+}

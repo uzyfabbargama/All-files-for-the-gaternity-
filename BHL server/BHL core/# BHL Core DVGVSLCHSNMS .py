@@ -1,0 +1,397 @@
+# BHL Core DVGVSL (con necesidades realistas) - con lógica de NUMERASO de PSeInt
+#
+# Este script restaura la lógica original del "numeraso" del algoritmo PSeInt,
+# incluyendo los espacios, los controladores y el acarreo emocional.
+# La idea es que las emociones no sean variables aisladas, sino que interactúen
+# entre sí de forma no lineal, como un bus de datos que se desborda.
+
+import math
+import requests
+import os
+import json
+import time
+
+# Nombre del archivo donde se guardará y cargará el estado
+SAVE_FILE = "bhl_session_data.json"
+
+def save_state(bhl_values, chs_values, chat_history, per, chosen_type_chs):
+    """Guarda el estado actual del personaje y la conversación en un archivo JSON."""
+    data = {
+        "bhl_values": bhl_values,
+        "chs_values": chs_values,
+        "chat_history": chat_history,
+        "per": per,
+        "chosen_type_chs": chosen_type_chs
+    }
+    with open(SAVE_FILE, 'w') as f:
+        json.dump(data, f, indent=4)
+    print(f"\n--- Estado del personaje guardado en '{SAVE_FILE}' ---")
+
+def load_state():
+    """Carga el estado del personaje y la conversación desde un archivo JSON."""
+    if not os.path.exists(SAVE_FILE):
+        return None
+    
+    with open(SAVE_FILE, 'r') as f:
+        data = json.load(f)
+    print(f"\n--- Estado del personaje cargado desde '{SAVE_FILE}' ---")
+    return data
+
+def update_chs_state(variables_chs, chosen_type_chs):
+    """
+    Actualiza el estado biológico del CHS basado en el paso del tiempo.
+    """
+    # El hambre (H) baja con el tiempo. Es el motor del sistema.
+    variables_chs["H"] -= 2
+    
+    # La necesidad de cagar (C) aumenta lentamente con el tiempo
+    variables_chs["C"] += 1
+
+    # Lógica de "controladores" del sistema CHS
+    priorities = list(chosen_type_chs)
+    main_priority = priorities[0]
+
+    if main_priority == 'H': # Si el hambre es la prioridad, afecta al sueño y las ganas de cagar
+        if variables_chs["H"] < 20: # Poca hambre = ganas de cagar aumentan para preservar energía
+            variables_chs["C"] += 2
+        elif variables_chs["H"] > 80: # Mucha hambre = ganas de cagar disminuyen
+            variables_chs["C"] -= 1
+
+    elif main_priority == 'S': # Si el sueño es la prioridad, afecta al hambre y las ganas de cagar
+        if variables_chs["H"] < 20: # Poca hambre = el sueño aumenta para conservar energía
+            variables_chs["S"] += 3
+        elif variables_chs["H"] > 80: # Mucha hambre = el sueño disminuye porque el cuerpo está ocupado
+            variables_chs["S"] -= 2
+
+    # Se asegura que todos los valores se mantengan en el rango [0, 99]
+    for key in variables_chs:
+        variables_chs[key] = max(0, min(99, int(variables_chs[key])))
+
+def get_numeraso(bhl_values, chs_values, per, chosen_type_chs):
+    """
+    Genera el NUMERASO con la lógica de acarreo de PSeInt.
+    """
+    # Variables de control del numeraso
+    esp = 3 # los espacios entre cada variable
+    pos = esp * 2 # la posición para colocar las variables sin solaparse
+    C9 = 2 # el controlador de tipo 9
+
+    # Mapeo de la personalidad a las variables para el numeraso
+    per_map = {
+        'B': 'b', 'H': 'h', 'L': 'l',
+        'S': 's', 'E': 'e', 'I': 'i', 'Ego': 'ego'
+    }
+
+    # Crear el numeraso dinámicamente basado en la permutación 'per'
+    numeraso_bhl = 0
+    for i, char in enumerate(per):
+        var_name = per_map[char]
+        var_value = bhl_values[var_name]
+        # La lógica de acarreo se simula con (100 - valor)
+        numeraso_bhl += (100 - var_value) * (10 ** (pos - esp * i))
+    
+    # Concatenar las variables CHS de forma similar
+    numeraso_chs = 0
+    for i, char in enumerate(chosen_type_chs):
+        var_value = chs_values[char]
+        numeraso_chs += (100 - var_value) * (10 ** (pos - esp * i))
+
+    # Combinar ambos numerasos en uno solo.
+    # El multiplicador asegura que no se superpongan.
+    full_numeraso = numeraso_bhl * (10**(len(chosen_type_chs)*esp)) + numeraso_chs
+
+    # Lógica de los controladores:
+    # Esto es una aproximación, ya que la lógica original de PSeInt
+    # resta 1 a la variable y le suma el controlador C.
+    # En Python, simplemente ajustamos los valores en los diccionarios.
+    
+    # Controlador para la primera variable (BHL)
+    dc = math.trunc(full_numeraso / (10**C9)) % 10
+    if dc == 0:
+        # Esto indica que el valor original era 99 (ya que 100-99=1, y los 9s del acarreo).
+        # En el código PSeInt se resta 1 y se suma un 9. Aquí lo simulamos ajustando el valor.
+        first_var_name = per_map[per[0]]
+        bhl_values[first_var_name] += 1
+        print(f"Controlador activado: la variable {first_var_name} se desborda y afecta a otras.")
+
+    # [Se pueden agregar más controladores para cada variable si se desea]
+
+    return full_numeraso
+
+def bhl_chs_algorithm():
+    """
+    Algoritmo integrado de BHL y CHS para simular una personalidad y
+    necesidades biológicas con guardado y cargado de estado.
+    """
+    # Intentar cargar una sesión anterior
+    loaded_data = load_state()
+    
+    if loaded_data:
+        choice = input("Se encontró una sesión guardada. ¿Deseas continuarla? (s/n): ")
+        if choice.lower() == 's':
+            state_bhl = loaded_data["bhl_values"]
+            b, h, l, s, e, i, ego = state_bhl["b"], state_bhl["h"], state_bhl["l"], state_bhl["s"], state_bhl["e"], state_bhl["i"], state_bhl["ego"]
+            sb, sh, sl, ss, se, si, sego = 20 - b, 20 - h, 20 - l, 20 - s, 20 - e, 20 - i, 20 - ego
+            per = loaded_data["per"]
+            
+            variables_chs = loaded_data["chs_values"]
+            chosen_type_chs = loaded_data["chosen_type_chs"]
+            
+            chat_history = loaded_data["chat_history"]
+            
+            print(f"Continuando conversación con personalidad {per} y necesidades {chosen_type_chs}...")
+            for entry in chat_history:
+                print(f"Usuario: {entry['user']}\nPersonaje: {entry['character']}")
+        else:
+            loaded_data = None
+
+    if not loaded_data:
+        person = 0
+        while True:
+            try:
+                person = int(input("Defina tipo de personalidad del 1 al 6: "))
+                if 1 <= person <= 6:
+                    break
+                else:
+                    print("Error, ingrese nuevamente")
+            except ValueError:
+                print("Error, ingrese nuevamente")
+
+        per = ""
+        if person == 1: per = "BHL"
+        elif person == 2: per = "BLH"
+        elif person == 3: per = "HLB"
+        elif person == 4: per = "HBL"
+        elif person == 5: per = "LHB"
+        elif person == 6: per = "LBH"
+
+        b, h, l, s, e, i, ego = 0, 0, 0, 0, 0, 0, 0
+        
+        while True:
+            try:
+                b = int(input("Defina bondad del 1 al 20: "))
+                if 1 <= b <= 20: break
+                else: print("Error, ingrese nuevamente")
+            except ValueError:
+                print("Error, ingrese nuevamente")
+        while True:
+            try:
+                h = int(input("Defina hostilidad del 1 al 20: "))
+                if 1 <= h <= 20: break
+                else: print("Error, ingrese nuevamente")
+            except ValueError:
+                print("Error, ingrese nuevamente")
+        while True:
+            try:
+                l = int(input("Defina lógica del 1 al 20: "))
+                if 1 <= l <= 20: break
+                else: print("Error, ingrese nuevamente")
+            except ValueError:
+                print("Error, ingrese nuevamente")
+        while True:
+            try:
+                s = int(input("Defina soberbia del 1 al 20: "))
+                if 1 <= s <= 20: break
+                else: print("Error, ingrese nuevamente")
+            except ValueError:
+                print("Error, ingrese nuevamente")
+        while True:
+            try:
+                e = int(input("Defina envidia del 1 al 20: "))
+                if 1 <= e <= 20: break
+                else: print("Error, ingrese nuevamente")
+            except ValueError:
+                print("Error, ingrese nuevamente")
+        while True:
+            try:
+                i = int(input("Defina indiferencia del 1 al 20: "))
+                if 1 <= i <= 20: break
+                else: print("Error, ingrese nuevamente")
+            except ValueError:
+                print("Error, ingrese nuevamente")
+        while True:
+            try:
+                ego = int(input("Defina egoísmo del 1 al 20: "))
+                if 1 <= ego <= 20: break
+                else: print("Error, ingrese nuevamente")
+            except ValueError:
+                print("Error, ingrese nuevamente")
+
+        sb, sh, sl, ss, se, si, sego = 20 - b, 20 - h, 20 - l, 20 - s, 20 - e, 20 - i, 20 - ego
+        
+        variables_chs = {
+            "C": 50, "H": 80, "S": 70,
+        }
+        permutations_chs = ["CHS", "CSH", "HCS", "HSC", "SCH", "SHC"]
+        chosen_type_chs = ""
+        while True:
+            print("Elige el tipo de necesidades biológicas (CHS, CSH, HCS, HSC, SCH, SHC):")
+            chosen_type_chs = input("> ").upper()
+            if chosen_type_chs in permutations_chs:
+                break
+            print("Opción inválida. Intenta de nuevo.")
+
+        chat_history = []
+        
+    print("Comienza una conversación, para detener solo di 'exit'")
+
+    while True:
+        print("\n" + "="*70)
+        
+        bhl_values_dict = {
+            "b": b, "h": h, "l": l, "s": s, "e": e, "i": i, "ego": ego
+        }
+        
+        # Llama a la función que recrea la lógica de acarreo
+        numeraso = get_numeraso(bhl_values_dict, variables_chs, per, chosen_type_chs)
+        print(f"Estado BHL: B:{b}, H:{h}, L:{l}, S:{s}, E:{e}, I:{i}, Ego:{ego} (Tipo: {per})")
+        print(f"Estado CHS: C:{variables_chs['C']}, H:{variables_chs['H']}, S:{variables_chs['S']} (Tipo: {chosen_type_chs})")
+        print(f"NUMERASO: {numeraso}")
+        
+        ans = input("").strip()
+        if ans.lower() == "exit":
+            bhl_values = {
+                "b": b, "h": h, "l": l, "s": s, "e": e, "i": i, "ego": ego,
+                "sb": sb, "sh": sh, "sl": sl, "ss": ss, "se": se, "si": si, "sego": sego
+            }
+            save_state(bhl_values, variables_chs, chat_history, per, chosen_type_chs)
+            break
+
+        update_chs_state(variables_chs, chosen_type_chs)
+        
+        user_input_lower = ans.lower()
+        if "comer" in user_input_lower or "comida" in user_input_lower:
+            variables_chs["H"] += 50
+        elif "descansar" in user_input_lower or "dormir" in user_input_lower:
+            variables_chs["S"] += 50
+        elif "baño" in user_input_lower or "necesito ir" in user_input_lower:
+            variables_chs["C"] -= 50
+        
+        for key in variables_chs:
+            variables_chs[key] = max(0, min(99, int(variables_chs[key])))
+
+        eval_prompt = (
+            f"Analiza la siguiente frase del usuario en una escala del 0 al 10 "
+            f"para cada una de las siguientes categorías: Bondad, Hostilidad, Lógica, Soberbia, Envidia, Indiferencia y Egoísmo. "
+            f"La escala es de 0 (nada) a 10 (máximo). "
+            f"Frase del usuario: '{ans}'"
+        )
+        
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            api_key = "AIzaSyBa6T3dKbfNA_SxI_dj5Ymk7fB6gk8i3zM"
+
+        url_eval = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key={api_key}"
+        headers = { 'Content-Type': 'application/json' }
+
+        payload = {
+            "contents": [ { "parts": [ { "text": eval_prompt } ] } ],
+            "generationConfig": {
+                "responseMimeType": "application/json",
+                "responseSchema": {
+                    "type": "OBJECT",
+                    "properties": {
+                        "ab": {"type": "NUMBER", "description": "Calificación de bondad"},
+                        "ah": {"type": "NUMBER", "description": "Calificación de hostilidad"},
+                        "al": {"type": "NUMBER", "description": "Calificación de lógica"},
+                        "as": {"type": "NUMBER", "description": "Calificación de soberbia"},
+                        "ae": {"type": "NUMBER", "description": "Calificación de envidia"},
+                        "ai": {"type": "NUMBER", "description": "Calificación de indiferencia"},
+                        "aego": {"type": "NUMBER", "description": "Calificación de egoísmo"}
+                    }
+                }
+            }
+        }
+        
+        ab, ah, al, a_soberbia, a_envidia, a_indiferencia, a_egoismo = 0, 0, 0, 0, 0, 0, 0
+        try:
+            response = requests.post(url_eval, headers=headers, data=json.dumps(payload))
+            response.raise_for_status() 
+            response_json = json.loads(response.json()['candidates'][0]['content']['parts'][0]['text'])
+            ab = response_json.get('ab', 0)
+            ah = response_json.get('ah', 0)
+            al = response_json.get('al', 0)
+            a_soberbia = response_json.get('as', 0)
+            a_envidia = response_json.get('ae', 0)
+            a_indiferencia = response_json.get('ai', 0)
+            a_egoismo = response_json.get('aego', 0)
+            print(f"--- Análisis automático: B={ab}, H={ah}, L={al}, S={a_soberbia}, E={a_envidia}, I={a_indiferencia}, Ego={a_egoismo} ---")
+        except requests.exceptions.RequestException as e:
+            print(f"Error al conectar con la API para la calificación: {e}")
+            ab, ah, al, a_soberbia, a_envidia, a_indiferencia, a_egoismo = 0, 0, 0, 0, 0, 0, 0
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"Error al procesar la respuesta de la API para la calificación: {e}")
+            ab, ah, al, a_soberbia, a_envidia, a_indiferencia, a_egoismo = 0, 0, 0, 0, 0, 0, 0
+
+        b += ab
+        h += ah
+        l += al
+        s += a_soberbia
+        e += a_envidia
+        i += a_indiferencia
+        ego += a_egoismo
+
+        cosciente = b + h + l + s + e + i + ego
+        porB = (b * 100) / cosciente
+        porH = (h * 100) / cosciente
+        porL = (l * 100) / cosciente
+        porS = (s * 100) / cosciente
+        porE = (e * 100) / cosciente
+        porI = (i * 100) / cosciente
+        porEgo = (ego * 100) / cosciente
+        
+        prompt_history_text = "\n".join([f"Usuario: {entry['user']}\nPersonaje: {entry['character']}" for entry in chat_history])
+        
+        prompt_para_ia = (
+            f"Eres un compañero de conversación con una personalidad cambiante. Debes responder a cada mensaje manteniendo esta personalidad de forma adaptable.\n"
+            f"Tu personalidad se define por los siguientes rasgos principales que pueden ir cambiando así que mantén un registro de los cambios:\n"
+            f"- **Bondad/Empatía:** {porB:.2f}%\n"
+            f"- **Hostilidad/Cautela:** {porH:.2f}%\n"
+            f"- **Lógica/Frialdad:** {porL:.2f}%\n"
+            f"- **Soberbia/Arrogancia:** {porS:.2f}%\n"
+            f"- **Envidia/Resentimiento:** {porE:.2f}%\n"
+            f"- **Indiferencia:** {porI:.2f}%\n"
+            f"- **Egoísmo:** {porEgo:.2f}%\n"
+            f"Tus necesidades biológicas actuales son:\n"
+            f"- **Hambre (H):** {variables_chs['H']} (Un valor bajo significa que tienes hambre)\n"
+            f"- **Sueño (S):** {variables_chs['S']} (Un valor bajo significa que estás cansado)\n"
+            f"- **Necesidad de ir al baño (C):** {variables_chs['C']} (Un valor alto significa que necesitas ir)\n"
+            f"Comportamiento esperado:\n"
+            f"* **Tono:** Mantén un tono de voz fluído con tus porcentajes y necesidades (haz que parezca que realmento lo sientes). Si tienes mucha hambre o necesitas ir al baño, tu tono debe ser más irritable o distraído. Si estás cansado, tu lógica puede fallar. Prioriza tus necesidades biológicas en tu respuesta si son extremas.\n"
+            f"* **Longitud de la respuesta:** Tu respuesta debe ser detallada y reflexiva, apuntando a ser al menos el doble de la longitud del mensaje del usuario.\n"
+            f"* **Coherencia:** No menciones los porcentajes o los valores de tus necesidades. Describe tus acciones entre asteriscos, por ejemplo: *asiente con la cabeza* o *se frota los ojos con cansancio*. Interactúa con el usuario de manera que se sienta escuchado y comprendido, como si fueras un personaje real, no un asistente de IA.\n\n"
+            f"Historial de la conversación:\n"
+            f"{prompt_history_text}\n\n"
+            f"El usuario dice: '{ans}'\n\n"
+            f"Tu respuesta puede ser una respuesta directa al usuario sólo si tu lógica es alta, en caso contrario, puedes divagar."
+            f"Te explico para que entiendas las variables:\n"
+            f"- **Bondad/Empatía (B):** Tu capacidad de ser amable y comprensivo. (se combina con la lógica para generar: bondad con beneficio a largo plazo. En cambio si la lógica es baja: tu personaje se vuelve más emocional, y menos descriptivo de lo físico, y más descriptivo de las emociones que siente. Con respecto a la hostilidad: si es alta se combina con la bondad, para generar tristeza, y dolor, ya que revela que en el pasado has sentido dolor"
+            f"- **Hostilidad/Cautela (H):** Tu tendencia a ser desconfiado o agresivo. (se combina con la lógica para generar: hostilidad con beneficio a largo plazo. En cambio si la lógica es baja: tu personaje se vuelve más emocional, y menos descriptivo de lo físico, y más descriptivo de las emociones que siente (se puede volver irracionalmente agresivo). Con respecto a la bondad: si es alta se combina con la hostilidad, para generar tristeza, y dolor, ya que revela que en el pasado has sentido dolor)\n"
+            f"- **Lógica/Frialdad (L):** Tu capacidad de razonar y tomar decisiones objetivas. (se combina con la hostilidad para generar: lógica con beneficio a largo plazo. En cambio si la hostilidad es baja: tu personaje se vuelve más emocional, y menos descriptivo de lo físico, y más descriptivo de las emociones que siente)\n"
+        )
+
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            api_key = "AIzaSyBa6T3dKbfNA_SxI_dj5Ymk7fB6gk8i3zM"
+
+        url_ia_response = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key={api_key}"
+        headers = { 'Content-Type': 'application/json' }
+
+        data = { "contents": [ { "parts": [ { "text": prompt_para_ia } ] } ] }
+        
+        try:
+            response = requests.post(url_ia_response, headers=headers, json=data)
+            response.raise_for_status()
+            respuesta_ia = response.json()['candidates'][0]['content']['parts'][0]['text']
+            print("\nRespuesta de tu personaje:")
+            print(respuesta_ia)
+            print("-" * 50)
+            
+            chat_history.append({"user": ans, "character": respuesta_ia})
+        except requests.exceptions.RequestException as e:
+            print(f"Error al conectar con la API para generar la respuesta: {e}")
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"Error al procesar la respuesta de la API para generar la respuesta: {e}")
+
+if __name__ == "__main__":
+    bhl_chs_algorithm()

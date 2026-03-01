@@ -1,0 +1,235 @@
+<!-- index.html -->
+<!-- Este archivo contiene la interfaz de usuario. Usa HTML, CSS y JavaScript. -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHL: Tu compañero de IA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        .messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 18px;
+            border-radius: 20px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #2a2a2a;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-message {
+            background-color: #0d47a1;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .input-area {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #333;
+        }
+
+        .input-area input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .input-area button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .input-area button:hover {
+            background-color: #45a049;
+        }
+
+        .bhl-bars {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            height: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #333;
+        }
+
+        .bar {
+            height: 100%;
+            transition: width 0.5s ease-in-out;
+            position: relative;
+        }
+
+        .bar-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        #bondad { background-color: #4CAF50; }
+        #hostilidad { background-color: #f44336; }
+        #logica { background-color: #2196F3; }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="messages" id="messages-container">
+            <!-- Los mensajes del chat se añadirán aquí dinámicamente -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Escribe un mensaje...">
+            <button id="send-button">Enviar</button>
+        </div>
+    </div>
+
+    <div class="bhl-bars">
+        <div class="bar" id="bondad" style="width: 33%;">
+            <span class="bar-label">Bondad</span>
+        </div>
+        <div class="bar" id="hostilidad" style="width: 33%;">
+            <span class="bar-label">Hostilidad</span>
+        </div>
+        <div class="bar" id="logica" style="width: 33%;">
+            <span class="bar-label">Lógica</span>
+        </div>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('messages-container');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        // Referencias a las barras BHL
+        const bondadBar = document.getElementById('bondad');
+        const hostilidadBar = document.getElementById('hostilidad');
+        const logicaBar = document.getElementById('logica');
+
+        function appendMessage(message, type) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(type === 'user' ? 'user-message' : 'ai-message');
+            messageElement.textContent = message;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll
+        }
+
+        function updateBHLBars(bhl_values) {
+            const b = bhl_values.b;
+            const h = bhl_values.h;
+            const l = bhl_values.l;
+            
+            const total = b + h + l;
+            
+            // Calculamos los porcentajes
+            const bPercent = (b / total) * 100;
+            const hPercent = (h / total) * 100;
+            const lPercent = (l / total) * 100;
+
+            // Actualizamos el ancho de las barras
+            bondadBar.style.width = `${bPercent}%`;
+            hostilidadBar.style.width = `${hPercent}%`;
+            logicaBar.style.width = `${lPercent}%`;
+        }
+
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+
+            // Mostramos el mensaje del usuario
+            appendMessage(message, 'user');
+            userInput.value = '';
+
+            try {
+                // Realizamos la petición al servidor Flask
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // Mostramos la respuesta de la IA
+                appendMessage(data.response, 'ai');
+                
+                // Actualizamos las barras BHL con los nuevos valores del servidor
+                updateBHLBars(data.bhl_values);
+
+            } catch (error) {
+                console.error('Error:', error);
+                appendMessage('Lo siento, no pude comunicarme con la IA.', 'ai');
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

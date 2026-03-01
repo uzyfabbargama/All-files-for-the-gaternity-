@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Turing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* Estilos personalizados para el chat */
+        .message-container {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        .message {
+            max-width: 75%;
+            padding: 0.75rem 1rem;
+            border-radius: 1.5rem;
+            word-wrap: break-word;
+        }
+        .message-client {
+            background-color: #3b82f6; /* Azul de Tailwind */
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0.5rem;
+        }
+        .message-human {
+            background-color: #e5e7eb; /* Gris claro */
+            color: #1f2937; /* Gris oscuro */
+            margin-right: auto;
+            border-bottom-left-radius: 0.5rem;
+        }
+    </style>
+    <!-- Incluye la librería de Socket.IO para la comunicación en tiempo real -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-lg w-full flex flex-col space-y-8">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-gray-800">Prueba de Turing</h1>
+            <p class="mt-2 text-gray-500">Ajusta los valores y conversa con el "bot".</p>
+        </div>
+
+        <form id="turingForm" class="space-y-6">
+            <div class="space-y-4">
+                <div class="flex flex-col">
+                    <label for="bondad" class="text-lg font-medium text-gray-700">Bondad: <span id="bondadValue" class="font-bold text-blue-600">10</span></label>
+                    <input type="range" id="bondad" name="bondad" min="1" max="20" value="10" 
+                           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                           oninput="document.getElementById('bondadValue').innerText = this.value">
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="hostilidad" class="text-lg font-medium text-gray-700">Hostilidad: <span id="hostilidadValue" class="font-bold text-red-600">10</span></label>
+                    <input type="range" id="hostilidad" name="hostilidad" min="1" max="20" value="10" 
+                           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                           oninput="document.getElementById('hostilidadValue').innerText = this.value">
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="logica" class="text-lg font-medium text-gray-700">Lógica: <span id="logicaValue" class="font-bold text-green-600">10</span></label>
+                    <input type="range" id="logica" name="logica" min="1" max="20" value="10" 
+                           class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                           oninput="document.getElementById('logicaValue').innerText = this.value">
+                </div>
+            </div>
+
+            <hr class="border-t border-gray-200">
+
+            <div id="chatWindow" class="bg-gray-100 h-64 p-4 rounded-xl overflow-y-auto border border-gray-300 flex flex-col-reverse">
+                <p class="text-gray-500 italic text-center mt-auto">¡Hola! Comienza la conversación...</p>
+            </div>
+
+            <div class="flex flex-col space-y-2">
+                <textarea id="messageInput" name="message" rows="3" placeholder="Escribe tu mensaje aquí..."
+                          class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-200 resize-none" required></textarea>
+                <button type="submit" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-200">
+                    Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        // Conexión con el servidor de Flask usando Socket.IO
+        var socket = io();
+
+        // Referencias a los elementos del DOM
+        const form = document.getElementById('turingForm');
+        const messageInput = document.getElementById('messageInput');
+        const chatWindow = document.getElementById('chatWindow');
+
+        // Función para añadir mensajes al chat
+        function addMessage(text, sender) {
+            // Elimina el mensaje inicial si existe
+            const initialMessage = chatWindow.querySelector('p.italic');
+            if (initialMessage) {
+                initialMessage.remove();
+            }
+
+            const messageContainer = document.createElement('div');
+            messageContainer.className = 'message-container';
+            
+            const messageElement = document.createElement('div');
+            messageElement.innerText = text;
+            messageElement.classList.add('message');
+
+            if (sender === 'client') {
+                messageElement.classList.add('message-client');
+            } else {
+                messageElement.classList.add('message-human');
+            }
+
+            messageContainer.appendChild(messageElement);
+            chatWindow.prepend(messageContainer); // Añade el mensaje al principio para que el scroll se mantenga abajo
+        }
+
+        // Maneja el envío del formulario para enviar mensajes
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const messageText = messageInput.value.trim();
+            if (messageText) {
+                // Obtiene los valores de los deslizadores
+                const bondad = document.getElementById('bondad').value;
+                const hostilidad = document.getElementById('hostilidad').value;
+                const logica = document.getElementById('logica').value;
+
+                // Emite el mensaje al servidor, junto con los valores
+                socket.emit('message_from_client', {
+                    message: messageText,
+                    bondad: bondad,
+                    hostilidad: hostilidad,
+                    logica: logica
+                });
+                addMessage(messageText, 'client');
+                messageInput.value = ''; // Limpia el campo de texto
+            }
+        });
+
+        // Escucha las respuestas que vienen del humano (tú)
+        socket.on('message_for_client', function(data) {
+            addMessage(data.message, 'human');
+        });
+    </script>
+</body>
+</html>

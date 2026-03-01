@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb;
+        }
+        /* Estilos personalizados para el chat */
+        .message-container {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        .message {
+            max-width: 75%;
+            padding: 0.75rem 1rem;
+            border-radius: 1.5rem;
+            word-wrap: break-word;
+        }
+        .message-client {
+            background-color: #d1d5db; /* Gris de Tailwind */
+            color: #1f2937; /* Gris oscuro */
+            margin-right: auto;
+            border-bottom-left-radius: 0.5rem;
+        }
+        .message-human {
+            background-color: #22c55e; /* Verde de Tailwind */
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0.5rem;
+        }
+    </style>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-2xl shadow-xl max-w-lg w-full flex flex-col space-y-8">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-gray-800">Panel de Administrador</h1>
+            <p class="mt-2 text-gray-500">Responde al usuario y observa los valores.</p>
+        </div>
+        
+        <div class="space-y-4">
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700">Bondad: <span id="bondadValue" class="font-bold text-blue-600">10</span></p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700">Hostilidad: <span id="hostilidadValue" class="font-bold text-red-600">10</span></p>
+            </div>
+            <div class="flex flex-col">
+                <p class="text-lg font-medium text-gray-700">Lógica: <span id="logicaValue" class="font-bold text-green-600">10</span></p>
+            </div>
+        </div>
+
+        <hr class="border-t border-gray-200">
+
+        <div id="chatWindow" class="bg-gray-100 h-64 p-4 rounded-xl overflow-y-auto border border-gray-300 flex flex-col-reverse">
+            <p class="text-gray-500 italic text-center mt-auto">Esperando un mensaje del usuario...</p>
+        </div>
+        
+        <form id="adminForm" class="flex flex-col space-y-2">
+            <textarea id="responseInput" rows="3" placeholder="Escribe tu respuesta aquí..."
+                      class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-green-500 transition-colors duration-200 resize-none" required></textarea>
+            <button type="submit" class="bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-green-700 transition-colors duration-200">
+                Enviar Respuesta
+            </button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        var socket = io();
+        
+        const form = document.getElementById('adminForm');
+        const responseInput = document.getElementById('responseInput');
+        const chatWindow = document.getElementById('chatWindow');
+
+        const bondadValue = document.getElementById('bondadValue');
+        const hostilidadValue = document.getElementById('hostilidadValue');
+        const logicaValue = document.getElementById('logicaValue');
+
+        function addMessage(text, sender) {
+            const initialMessage = chatWindow.querySelector('p.italic');
+            if (initialMessage) {
+                initialMessage.remove();
+            }
+
+            const messageContainer = document.createElement('div');
+            messageContainer.className = 'message-container';
+            
+            const messageElement = document.createElement('div');
+            messageElement.innerText = text;
+            messageElement.classList.add('message');
+
+            if (sender === 'client') {
+                messageElement.classList.add('message-client');
+            } else {
+                messageElement.classList.add('message-human');
+            }
+
+            messageContainer.appendChild(messageElement);
+            chatWindow.prepend(messageContainer);
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const responseText = responseInput.value.trim();
+            if (responseText) {
+                socket.emit('message_from_human', { message: responseText });
+                addMessage(responseText, 'human');
+                responseInput.value = '';
+            }
+        });
+        
+        // Escucha los mensajes que vienen del amigo (el usuario)
+        socket.on('message_for_human', function(data) {
+            addMessage(data.message, 'client');
+            // Actualiza los valores de los deslizadores en la interfaz de admin
+            bondadValue.innerText = data.state.bondad;
+            hostilidadValue.innerText = data.state.hostilidad;
+            logicaValue.innerText = data.state.logica;
+        });
+    </script>
+</body>
+</html>
