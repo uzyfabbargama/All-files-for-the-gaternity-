@@ -1,0 +1,47 @@
+CLASS inventario = (VAR espacio(100,"El inventario se ha llenado"),
+VAR peso(1));
+
+CTRL control_peso = {0, stock+=1, total += peso()};
+CLASS control_objeto() = (CLASS stock += 1,
+VAR peso(),
+CTRL control_peso);
+
+Lista_de_objetos_y_reglas = ( VAR total(espacio),
+CLASS control_objeto(1),
+VAR palo(1, "Se ha agregado ()"),
+CLASS control_objeto(4),
+VAR Poción_de_vida(1, "Se ha agregado ()"),
+CLASS control_objeto(90),
+VAR Piedra_grande(1, "Se ha agregado ()") #Nota, esto reemplaza el nombre de la variable, y su output sería: Se ha agregado Piedra_grande" si, sin espacios, ese es un atajo, (aunque podés escribir Piedra grande pero hay que hacerlo directamente, pero para nuestro ejemplo es suficiente)
+CLASS control_objeto(7),
+VAR espada(1));
+
+#operaciones
+
+CLASS inventario(espacio) += 20 #ya tenía 20 de espacio ocupado anteriormente
+
+CLASS inventario(espacio) += CLASS Lista_de_objetos_y_reglas(palo) * 3 #le suma a stock del palo, 3, y le quita 3 de espacio al inventario
+CLASS inventario(espacio) += CLASS Lista_de_objetos_y_reglas(Poción_de_vida) * 3 #le quita 12 de espacio al inventario (además del stock)
+CLASS inventario(espacio) += CLASS Lista_de_objetos_y_reglas(espada)
+CLASS inventario(espacio) += Lista_de_objetos_y_reglas(Piedra_grande)
+#Dato extra
+
+CLASS experiencia_del_jugador = (VAR nivel(100, "has alcanzado el máximo nivel") #Establece el límite de nivel
+VAR XP(10, "has subido de nivel") #por cada 10 puntos de experiencia del jugador, se sube 1 el nivel
+);
+CLASS experiencia_del_jugador += VAR XP(10) #recibe 10 de experiencia y automáticamente sube 1 al nivel
+VAR valor_base = 100
+CLASS inventario(espacio) = valor_base #esto hace que siempre se ponga en 100, para evitar una escalada exponencial
+CLASS inventario(espacio) *= CLASS experiencia_del_jugador(nivel) #ahora está en 1, lo que no causa cambios, pero si se pone en 2, el espacio automáticamente, se duplicará, y si está en 3, se triplicara (todo respecto al valor base)
+
+CTRL clonador_control() = {1, peso, Lista_de_objetos_y_reglas() *= 2, valor, límite = 4}; #¿te diste cuenta que tiene 1, en lugar de 0, este control envía un registro por acarreo cada vez que realiza una acción, (multiplica el objeto, mientras no supere   
+CLASS clonador_de_bolsillo =( VAR límite(4, false), #esto hace algo emocionante, pero si se pasa del valor, lo convierte en false
+CTRL clonador_control(CLASS Lista_de_objetos_y_reglas)); #si recibe false, la operación del controlador se anula, y sólo puede recibir false, si el peso es mayor a 4, si es menor, la operación continúa
+
+
+#funciones heredadas
+VAR poción_básica( CLASS Lista_de_objetos_y_reglas(poción_de_vida,control_objeto(4))) #Esto hace que la poción básica se comuníque directamente con la función de lista de objetos, tome las reglas, y el peso de la poción de vida, y pueda interactuar como si estuviera dentro de la lista a pesar de no estarlo.
+
+#Para guardar/leer el estado
+CLASS inventario = <Inventario>
+CLASS Lista_de_objetos = <Objetos>

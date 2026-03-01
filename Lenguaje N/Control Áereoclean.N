@@ -1,0 +1,25 @@
+control_objeto = (posicion_X(1000),
+velocidadX(1),
+posicion_Y(1000),
+velocidadY(1));
+Reglas_de_separación = (si_se_pasa(1, false),
+distancia_minimaX((10,1), "Alerta Proximal", si_se_pasa), 
+distancia_minimaY((10,1), "Alerta Proximal", si_se_pasa),
+tiempo_min(15, "Alerta Temporal"));
+velocidad_derivada = (distancia(1000),
+totalX1(1000),
+totalY1(1000),
+resta{0, distancia += (totalX1 - totalY1)}
+inicio(1));
+aviones = (totalX(distancia_minimaX),
+RD = {0, += (velocidad_derivada(distancia))}
+revisar_distancias(1)
+velocidad_derivada(),
+regla1 = {0, velocidad_derivada(totalY1) += control_objeto(posicion_Y)}
+control_objeto(posicion_Y),
+control_objeto(velocidadY),
+regla1 = {0, velocidad_derivada(totalX1) += control_objeto(posicion_X)}, 
+control_objeto(posicion_X),
+control_objeto(velocidadX),
+totalY(distancia_minimaY),
+);

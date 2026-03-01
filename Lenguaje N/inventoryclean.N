@@ -1,0 +1,17 @@
+inventario = (espacio(100,"espacio lleno"),
+peso(1),
+);
+control_peso = {0, peso() += total, stock += 1}
+control_objeto(peso())= (stock(espacio)
+peso(),
+control_peso,
+);
+objetos = (total(espacio),
+control_objeto(2),
+palo(1),
+control_objeto(4),
+poción_de_vida(1),
+control_objeto(7),
+espada(1)
+);
+inventario += objetos.espada

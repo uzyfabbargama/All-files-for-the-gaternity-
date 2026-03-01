@@ -1,0 +1,11 @@
+CLASS calculador = (VAR número(10000),
+CTRL separador {0},
+VAR Mostrar (1, número),
+CTRL calcular {1, VAR número += valores_entrada},
+VAR empezar (1),
+VAR valores_entrada(1000));
+
+CLASS calculador(valores_entrada, empezar) += 30 * 30, 1
+
+#pasos, le asigna a valores_entrada, 900, luego activa la variable empezar, que a su vez activa el controlador, que le agrega a número los valores_entrada, y como es de tipo 1, activa a mostrar para que muestre el resultado de número (y el separador para no sumar accidentalmente 1 al resultado)
+#output: 900

@@ -1,0 +1,16 @@
+pedir_api_key = ("ingresa tu clave api") #aquí ingresas tu clave api, y se comunicará directamente con python
+
+
+CLASS Inventario = ( #aquí establecemos la clase de inventario, con espacio con límite de 100
+VAR espacio(100, "el inventario se ha llenado")
+);
+
+CLASS Stack(peso) = ( VAR stock(CLASS Inventario(VAR espacio)/VARpeso()), #aquí establecemos el límite la variable stock, como el límite de espacio de la clase inventario, y el peso que asignamamos como entrada
+CTRL control-flujo-registro {1, CLASS Inventario(VAR espacio) += peso()}, #le suma 1 a la variablede arriba automaticamente, mientras se comunica con la clase de inventario, para modificar el peso, además de iniciar la entrada
+);
+
+
+IA_item_peso = ("objetos añadidos por la IA")
+
+CLASS objetos = (CLASS Stack(peso:(IA_item_peso))
+VAR (IA_item_peso(1))); #Variable creada por la IA

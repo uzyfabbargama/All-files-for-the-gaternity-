@@ -1,0 +1,24 @@
+#Mi lenguaje N
+CLASS inventario = ( VAR espacio(100,"espacio lleno"),
+VAR peso(1),
+);
+#se traduce internamente a 1009, cada vez que recibe 1, el 9 se convierte a 10, y le suma 1 al espacio, y si llega a 100 el inventario se llena
+CTRLcontrol_peso = {0, peso() += total, stock += 1}
+#se traduce a un controlador binario 01, que aumenta el total y el stock
+CLASS control_objeto(VAR peso())= (VAR stock(espacio)
+VAR peso(),
+CTRL control_peso,
+)
+#esto es un bloque de código que sólo con asignarle el valor del peso al objeto, te aumenta el stock, y te lo suma a total
+CLASS objetos = ( VARtotal(espacio),
+CLASS control_objeto(2),
+VAR palo(1),
+CLASS control_objeto(4),
+VAR poción_de_vida(1),
+CLASS control_objeto(7),
+VAR espada(1)
+)
+#esta es la lógica de todos los objetos
+
+#ahora el acceso a los objetos
+CLASS inventario += objetos(espada) #esto añade la espada, y configura el peso, el espacio y el stock automáticamente, usando la lógica de la aritmética y los números

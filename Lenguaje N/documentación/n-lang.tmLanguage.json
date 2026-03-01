@@ -1,0 +1,44 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "N-Lang Syntax",
+    "scopeName": "source.nlang",
+    "fileTypes": ["nlang", "nl"],
+    "patterns": [
+        {
+            "name": "comment.line.number-sign.nlang",
+            "match": "#.*$"
+        },
+        {
+            "name": "keyword.declaration.nlang",
+            "match": "\\b(CLASS)\\b"
+        },
+        {
+            "name": "keyword.storage.type.nlang",
+            "match": "\\b(VAR)\\b"
+        },
+        {
+            "name": "keyword.control.nlang",
+            "match": "\\b(CTRL|if|else|for|end)\\b"
+        },
+        {
+            "name": "constant.language.nlang",
+            "match": "\\b(true|false|return|no_return)\\b"
+        },
+        {
+            "name": "constant.numeric.nlang",
+            "match": "\\b\\d+\\b"
+        },
+        {
+            "name": "string.quoted.double.nlang",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "variable.parameter.nlang",
+                    "match": "\\{[^\\}]+\\}"
+                }
+            ]
+        }
+    ],
+    "repository": {}
+}

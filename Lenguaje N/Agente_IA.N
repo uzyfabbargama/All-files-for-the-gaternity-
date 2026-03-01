@@ -1,0 +1,17 @@
+CLASS Agente = (Total(10),
+CTRL control_energía{1, total += "Se ha acabado la energía"}, #Suma a Total automáticamente, por cercanía y también le agrega un string para imprimir
+VAR batería(100), #Da un total de 100 de batería disponible
+VAR consumo(1), #flag para el consumo
+CTRL control_volar{0,Total += 1, "No puede volar"}, #le suma 1 a total, si no puede control_volar
+VAR no_vuela(1), #detecta si no vuela, (por el umbral de 1)
+CTRL control_calor{0, Total += 1, "Está muy caliente}, #Le suma a total
+VAR calor(100) #si llega a 100 de temperatura
+);
+
+CLASS Agente += CLASS Agente(consumo)*100
+CLASS Agente(Total) = "" #esto muestra el valor de total, (el total de problemas de un Agente) y sus problemas (ya que se suman los argumentos de strings)
+#Código para 100 agentes
+CLASS Agente[0]
+CLASS Agente[1]
+CLASS Agente[2]
+#.... y todos tienen su total, sus controles, y son como múltiples clases únicas

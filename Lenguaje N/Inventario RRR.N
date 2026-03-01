@@ -1,0 +1,22 @@
+#te aseguras que estés en la misma carpeta, y escribes cualquier variable = los datos a cargar. y aparte de inidicar el nombre del archivo.
+CLASS cargar = (inventory:max.N =[Inventario, Lista_de_objetos]) #el inventarió se cargó, pero no la Lista_de_objetos porque, lo nombramos objetos, entonces decimos
+CLASS cargar2 = (inventory:max.N[objetos]) #aquí ya funciona
+
+#ejemplo
+
+CLASS Inventario += CLASS objetos(espada) #y listo, funciona exactamente igual, mientras el otro archivo exista.
+
+
+#Mejorado
+
+# LISTAS REACTIVAS (como antes)
+VAR números [10, "lista llena"]
+VAR vacío [!1, "lista vacía"]
+
+# PERSISTENCIA (nueva sintaxis)
+CLASS inventario = <Inventario>                    # Carga completa
+CLASS guardar = <"inventory:max.N", [var1, var2]> # Guardado selectivo  
+CLASS cargar = <"inventory:max.N"[objetos]>       # Carga selectiva
+
+# MECANISMO DE COMPOSICIÓN (genial!)
+CLASS Inventario += CLASS objetos(espada)

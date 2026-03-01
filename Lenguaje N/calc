@@ -1,0 +1,14 @@
+0x7C = 124
+5B = 91
+FB = 251
+F3 = 243
+22 = 34
+A0 = 160
+22 A0 = 8864
+FB F3 = 64499, 
+7C 5B = 31835, 
+A = 1010, B = 1011 C = 1100, D = 1101, E = 1110, F = 1111
+ahora, cuando hice print mi función VAR, me salió 0x7C5BFBF322A0, y me quedé pensando a que eso equivale en mi sistema:
+0x7C5BFBF322A0 = 11 1110 01 011011 11 111011 11 1100110(25) 01 00010(30) 10 100000(32)
+CLASS clase = CTRL {1}, VAR(2), CTRL(0), VAR(37), CTRL(1), VAR(5), CTRL(1), VAR(25), CTRL(0), VAR(30), CTRL(1), VAR(32)
+¿notas que tan abismal es la diferencia? ¿por qué cuando puse print(VAR) (que es una función que hice en mi def) me dió ese número hexadecimal?

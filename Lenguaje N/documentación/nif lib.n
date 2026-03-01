@@ -1,0 +1,28 @@
+#Proviene de la familia del bif (bi - if), trif, tetraif, pentaif, hexaif, etcétera.
+#Por eso se llama "nif" de "if de n condiciones"
+CS = CLASS condición_separador = (VAR condición(1), #dos bits (11) #lo deja pasar
+CTRL {0}); #dos bits (01) bloquea acarreo
+nif(L, CS) = CLASS nif = (CS[1:L]); #total 4 bits (2 de seguridad, 2 de acción
+A(i) = CLASS nif(CS[i]) #índice sistemático, de condiciones
+
+#nif es un if simultáneo formado por la CLASS compacta CS, que permite que el sistema de las VAR y CTRL esté separado y se maneje concurrentemente, aprovechando que el CTRL {0} se traduce literalmente a 01, lo que anula el acarreo de la VAR(1) (11)
+#L es Limit, dice ¿cuantas condiciones ejecutar?
+#CS es la condición, que se va a la primera variable, que como es umbral 1, sólo se activa cuando recibe un true (ejemplo 4<5 (si), 5<4 (no))
+#A es el índice que puedes usar para acceder a cada condición del nif, y hacer una Acción
+#ejemplo
+#quién tiene mayor dinero
+Lucas = 30
+María = Lucas*2 * 0.5
+Juana = 50
+Mateo = 100 * 0.5
+Azul = 40
+Alfredo = (Lucas + María + Juana + Mateo + Azul) * BONUS #pero como BONUS jamás la declaré, Alfredo, fué estafado
+nif = (6, Lucas > María > Juana > Mateo > Azul > Alfredo, María > Lucas > Juana > Mateo > Azul > Alfredo, Juana > María > Lucas > Mateo > Azul > Alfredo, Mateo > María > Juana > Lucas > Azul > Alfredo, Azul > María > Juana > Mateo > Lucas > Alfredo, Alfredo > María > Juana > Mateo > Lucas > Azul)
+VAR Lucas (1, "Lucas es mayor") += A(1)
+VAR María (1, "María es mayor") += A(2)
+VAR Juana (1, "Juana es mayor") += A(3)
+VAR Mateo (1, "Mateo es mayor") += A(4)
+VAR Azul (1, "Azul es mayor") += A(5)
+VAR Alfredo (1, "Alfredo es mayor") += A(6)
+#sólo se activará si al menos uno es mayor, no si coincide el patrón
+# si es por ejemplo: Juana > Lucas(30) > Mateo(50) dirá: Juana, ya que, Lucas y Mateo se anulan, es decir, una or

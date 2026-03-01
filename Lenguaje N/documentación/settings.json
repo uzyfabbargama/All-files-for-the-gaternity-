@@ -1,0 +1,30 @@
+"editor.tokenColorCustomizations": {
+    "[Monokai Pro]": { // Reemplaza con el nombre de tu tema oscuro si es diferente
+        "textMateRules": [
+            {
+                "scope": "keyword.declaration.nlang",
+                "settings": {
+                    "foreground": "#A8CC6A" // Lima para CLASS
+                }
+            },
+            {
+                "scope": "keyword.storage.type.nlang",
+                "settings": {
+                    "foreground": "#FFB86C" // Naranja para VAR
+                }
+            },
+            {
+                "scope": "keyword.control.nlang",
+                "settings": {
+                    "foreground": "#8BE9FD" // Celeste para CTRL
+                }
+            },
+            {
+                "scope": "constant.language.nlang", // true, false, return
+                "settings": {
+                    "foreground": "#BD93F9" // Un púrpura suave para valores booleanos
+                }
+            }
+        ]
+    }
+}

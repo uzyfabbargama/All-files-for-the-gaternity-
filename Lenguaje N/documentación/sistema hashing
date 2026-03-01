@@ -1,0 +1,1 @@
+caracter = caracter(anterior/acumulado) xor cacter(nuevo)

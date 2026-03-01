@@ -1,0 +1,64 @@
+#(reenvié el mensaje de antes)
+
+#Es un lenguaje bastante cercano al hardware no necesita keywords y es bastante entendible para el humano ya que reglas locales permiten una complejidad exponencial
+#Es un lenguaje basado en objetos que utiliza la aritmética para el control de flujo, aquí un ejemplo del poder del N-Lang
+
+CLASS Inventario = ( VAR espacio(100,"el inventario se ha llenado"));
+#escribe un "el inventario se ha llenado" si el espacio llega a 100, (aquí establecemos valores límites para la variables, y están ligadas a inventario)
+CTRL Control_stock= {1, "se ha agregado(ítem)", Inventario(espacio) += (peso)};
+#esto es un equivalente a un if reutilizable, que suma 1 a la variable de arriba y envía un mensaje con respecto al Elemento que se llenó en la variable.
+CLASS Control_objeto =(stock(espacio/(peso)),
+CTRL Control_stock,
+VAR Ítem(1));
+#esto recibe cualquier ítem, y va directamente a control de stock, sumándole 1 a stock por el acarreo, (stock tiene límite de umbral entre la división de espacio del inventario por peso del objeto) e imprime el mensaje del ítem que se envió al inventario
+CLASS Objetos = (CLASS Control_objeto(peso:2),
+VAR Palo(1),
+CLASS Control_objeto(peso:7),
+VAR Espada(1),
+CLASS Control_objeto(peso:90),
+VAR Roca_Grande(1),
+CLASS Control_objeto(peso:4),
+VAR Poción_de_vida(1),
+CLASS Control_objeto(peso:2),
+VAR Cuchillo(1));
+
+#caracteristicas del jugador
+
+CTRL Control_por_inventario = {1, () += Inventario(espacio)}
+#aumenta la variable asignada cuántos más objetos hayan en el inventario.
+CLASS Jugador = ( VARlentitud(100),
+CTRL Control_por_inventario(lentitud),
+VAR Fuerza(100),
+CTRL Control_por_inventario(fuerza));
+
+#generación del mundo
+
+
+CLASS Posición = ( VAR stock(total),
+CTRL Chunk-adyacente_X{0, chunk[+1] += chunk[+1](X+:1)},
+VAR PosX(16),
+#actualiza la parte X del chunk, y envía la coordenada.
+VAR PosY(256, "se ha alcanzado el límite de altura"),
+CTRL Chunk-adyacente_Z{0, chunk[+1] += chunk[-1](Z+:1)},
+#actualiza el chunk adyacente en Z, envía la coordenada Z al otro chunk
+VAR PosZ(16),
+CTRL Recibir_bloque{0, (Z) += PosZ, (Y) += PosY, (X) += PosX});
+CLASS Chunk = (VAR total(65536),
+#recibe cualquier coordenada
+CLASS Posición(X:(), Y:(), Z:())
+VARTierra(1),
+CLASS Posición(X:(), Y:(), Z:()),
+VAR Piedra(1),
+CLASS Posición(X:(), Y:(), Z:()),
+VAR Madera(1),
+CLASS Posición(X:(), Y:(), Z:()),
+VAR Arena(1),
+CLASS Posición(X:(), Y:(), Z:()),
+VAR Hierro(1));
+
+#usos
+CLASS Objetos(Palo) += 1 #añade un palo, gestiona stock y reduce espacio, además de afectar la velocidad y fuerza del jugador
+CLASS Chunk += Arena, X(15), Y(25), Z(16) #aquí Z actualiza al chunk adyacente. Agrega arena en la posición
+CLASS Chunk[1] += Tierra, X(3), Y(3), Z(3) #agrega tierra en la posición.
+
+#Todo ésto sin ifs, sino dónde cada clase es un numeraso enorme y las variables son formas para aplicar el desplazamiento de bits para sumar 1 o afectar variables dentro de la clase instantaneamente.

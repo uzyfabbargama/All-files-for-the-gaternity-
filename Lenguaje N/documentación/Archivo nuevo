@@ -1,0 +1,15 @@
+ open = 1
+
+close = 0
+
+VAR río(1 "Estoy fluyendo"), #true
+
+CTRL compuerta {open, río2 += 1}, #true
+
+VAR río1(1, "he sido activado") #true
+
+VAR río2(2, "he sido doblemente activo") #true flujo de río 1 + CTRL compuerta.
+
+CTRL cerrar{close}, #se activa
+
+VAR río_seco(1) #aquí no pasa nada. 

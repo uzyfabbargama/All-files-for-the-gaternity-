@@ -1,0 +1,35 @@
+jejej, voy a hacer algo completamente diferente
+
+#usaré el for que definí antes en los archivos, y el if
+
+raíz(número, cantidad_dígitos) =  CLASS raíz = (VAR start(1),
+
+CTRL duplicar_número{1, duplicado += número}, #apenas inicia, duplica el valor, y lo guarda en duplicado
+
+for (en 0 hasta cantidad_dígitos cada 1),
+
+CTRL preparar_número {1, resto += número*99},
+
+for (en 0 hasta 10 cada 1),
+
+CTRL contador {0, i += 1},
+
+i(10),
+
+if (((número*9 + i) * i) > resto), #aquí asigna a nuestro if si es mayor que nuestro resto
+
+CTRL colocar_primer_dígito{0, número += número*9 + (i-1)*2}, #si se pasa, asume que el i anterior era el número), y le agrega otro dígito ya duplicado
+
+#es mejor usar número += número*9, que número *= 10, debido a que triplica los pasos, en cambio en el otro, son menos pasos, (una suma))
+
+VAR número(10**20),
+
+VAR resto(10**20),
+
+VAR duplicado(10**20));
+
+#en resumen hace esto
+
+#toma el número, lo duplica y lo guada en duplicado,
+
+#

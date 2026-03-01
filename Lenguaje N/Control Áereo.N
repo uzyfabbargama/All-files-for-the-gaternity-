@@ -1,0 +1,28 @@
+control_objeto = (posicion_X(1000), #establecemos las propiedades de velocidad, y posicion
+velocidadX(1),
+posicion_Y(1000),
+velocidadY(1));
+
+
+Reglas_de_separación = (si_se_pasa(1, false) #si se pasa, anula el límite de distancia minima, y no envía el mensaje
+distancia_minimaX((10,1), "Alerta Proximal", si_se_pasa), 
+distancia_minimaY((10,1), "Alerta Proximal", si_se_pasa), #al tener dos umbrales, tiene de máximo 10, y mínimo 1, enviando la alerta ante la distancia entre esos
+tiempo_min(15, "Alerta Temporal")); #lo del tiempo no sabía como usarlo
+velocidad_derivada = (distancia(1000), #toma los dos totales y mediante el inicio, se activa por su umbral 1, y activa la resta de lod totales
+totalX1(1000),
+totalY1(1000),
+resta{0, distancia += (totalX1 - totalY1)} #y aquí, toma lo del inicio, le da a distancia el valor de la resta de los totales X para un avión, e Y para otro
+inicio(1) #aquí está la mecha, el punto para iniciar la operación
+);
+aviones = (totalX(distancia_minimaX),
+RD = {0, += (velocidad_derivada(distancia))}
+revisar_distancias(1)
+velocidad_derivada(),
+regla1 = {0, velocidad_derivada(totalY1) += control_objeto(posicion_Y)}
+control_objeto(posicion_Y),
+control_objeto(velocidadY),
+regla1 = {0, velocidad_derivada(totalX1) += control_objeto(posicion_X)}, 
+control_objeto(posicion_X),
+control_objeto(velocidadX),
+totalY(distancia_minimaY),
+);

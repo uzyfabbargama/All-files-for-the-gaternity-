@@ -1,0 +1,13 @@
+
+Agente = (Total(10),
+control_energía{1, total += "Se ha acabado la energía"},
+batería(100),
+consumo(1),
+control_volar{0,Total += 1, "No puede volar"},
+no_vuela(1),
+control_calor{0, Total += 1, "Está muy caliente},);
+Agente += Agente(consumo)*100
+Agente(Total) = "" 
+Agente[0]
+Agente[1]
+Agente[2]

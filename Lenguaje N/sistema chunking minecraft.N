@@ -1,0 +1,56 @@
+#Contador de chunks
+chunk = (total(65536) #total de bloques
+block(1) #detecta un bloque
+)
+control_posición = (posiciónX(16),
+chunk_adyacenteY{0, chunk[+1](block) += 1}, #reemplazamos (0) (que anula el acarreo y es un separador) ahora le suma 1 al bloque del chunk
+posiciónZ(16),
+(0), #anula el acarreo, es un separador
+posiciónY(256, "se ha pasado el límite de altura"), #
+dureza(), #lo dejamos vacío para recibir el dato de la dureza
+control_bloque{0, posiciónX += (), posiciónY += (), posiciónZ() chunk(block) += 1}, #aquí reciben los datos de posición y le suma 1 a block del chunk mismo para registrarlo
+recibir_bloque(1),
+);
+
+bloque(
+control_posición(() () () (2)), #se prepara para recibir las pocisiones y tiene de dureza 2
+Tierra(1),
+control_posición(() () () (8)),
+piedra(1),
+control_posición(() () () (4)), 
+Madera(1),
+control_posición(() () () (5)), 
+mesa_de_trabajo(1),
+control_posición(() () () (4)), 
+cofre(1),
+control_posición(() () () (4)), 
+valla_de_roble(1),
+control_posición(() () () (4)), 
+vidrio(1),
+control_posición(() () () (6)), 
+carbón(1),
+control_posición(() () () (9)), 
+mineral_de_hierro(1),
+control_posición(() () () (4)), 
+tronco_de_roble(1),
+control_posición(() () () (8)), 
+adoquín(1),
+control_posición(() () () (14)), 
+mineral_de_diamante(1),
+control_posición(() () () (12)), 
+mineral_de_redstone(1),
+control_posición(() () () (20)), 
+Mineral_de_cobalto(1),
+control_posición(() () () (9)), 
+pistón(1),
+control_posición(() () () (1)), 
+Fuego(1),
+);
+
+#construir una casa (ejemplo)
+área=(invertir(-1)
+zonac{0,control_posición[+6] += (1)(1)(+1)}, #cada 6 en x le suma 1 a Z, y vuelve a empezar
+zona(6),
+);
+bloque += adoquín*36, (adoquín[+1](control_posición[+1](+1)(1)(1))), área #para el eje X repite la multiplicación 6 veces aumentando en 1 en 1 (un for)
+#la función área, toma grupos de 6, a zona, y le suma 1 a Z, dejando el valor de X igual, y luego envía el -1 (un umbral que da 0, y detiene la ejecución)
