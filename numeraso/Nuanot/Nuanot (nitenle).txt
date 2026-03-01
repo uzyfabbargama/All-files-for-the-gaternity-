@@ -1,0 +1,192 @@
+//lógica completa de la nuanot
+
+module nuanot_sumador_completo(
+    input [7:0] a, // Entrada de 8 bits
+    input [7:0] b, // Entrada de 8 bits
+    input [2:0] i, // La nitenle de 3 bits
+    output [7:0] sum, // Salida de 8 bits
+    output carry_out // Salida de acarreo (carry out),
+    output [2:0] carry_memory,
+    input [2:0] eraser
+);
+    // Declaración de los cables de acarreo (carry wires)
+    // El tamaño del array es 7, ya que hay 7 acarreos entre los 8 bits.
+    wire [10:0] carry;
+
+    // ----- Lógica del sumador bit a bit (conectada en cadena) -----
+    // Bit 0 (el bit menos significativo)
+    // El acarreo de entrada (carry_in) es 0 para el primer bit.
+    assign sum[0] = a[0] ^ b[0];
+    assign carry[0] = a[0] & b[0];
+
+    // Bit 1
+    // La suma es el XOR de los dos bits y el acarreo de entrada.
+    // El acarreo de salida es el OR de los ANDs.
+    assign sum[1] = a[1] ^ b[1] ^ carry[0];
+    assign carry[1] = (a[1] & b[1]) | (a[1] & carry[0]) | (b[1] & carry[0]);
+
+    // Bit 2
+    assign sum[2] = a[2] ^ b[2] ^ carry[1];
+    assign carry[2] = (a[2] & b[2]) | (a[2] & carry[1]) | (b[2] & carry[1]);
+    
+    // Bit 3
+    assign sum[3] = a[3] ^ b[3] ^ carry[2];
+    assign carry[3] = (a[3] & b[3]) | (a[3] & carry[2]) | (b[3] & carry[2]);
+
+    // Bit 4
+    assign sum[4] = a[4] ^ b[4] ^ carry[3];
+    assign carry[4] = (a[4] & b[4]) | (a[4] & carry[3]) | (b[4] & carry[3]);
+
+    // Bit 5
+    assign sum[5] = a[5] ^ b[5] ^ carry[4];
+    assign carry[5] = (a[5] & b[5]) | (a[5] & carry[4]) | (b[5] & carry[4]);
+
+    // Bit 6
+    assign sum[6] = a[6] ^ b[6] ^ carry[5];
+    assign carry[6] = (a[6] & b[6]) | (a[6] & carry[5]) | (b[6] & carry[5]);
+
+    // Bit 7 (el bit más significativo)
+    assign sum[7] = a[7] ^ b[7] ^ carry[6];
+    assign carry[7] = (a[7] & b[7]) | (a[7] & carry[6]) | (b[7] & carry[6]);
+
+    // Bit 8 (comenzamos los Nitenles)
+    assign sum[8] = i[0] ^ carry[7];
+    assign carry[8] = i[0] & carry[7];
+
+    //Bit 9 (ahora colocamos la memoria)
+    assign sum[9] = i[1] ^ carry[8]
+    assign carry[9] = i[1] & carry[8];
+    assign carry_memory[0] = ~sum[9] & ~(sum[9] & ~eraser[0]); //el eraser borra la memoria cuando es 1, si es 0 se mantiene el valor
+
+    //Bit 10 (penúltimo bit, que también tiene memoria)
+    assign sum[10] = i[2] ^ carry[9];
+    assign carry[10] = 1[2] & carry[9];
+    assign carry_memory[1] = ~sum[10] & ~((sum[10]) & eraser[1]); //el eraser borra la memoria cuando es 1, si es 0 se mantiene el valor
+    // El acarreo final del sumador de 11 bits es el acarreo del último bit.
+    assign carry_out = carry[10];
+    //Bit 11 (último bit, que también tiene memoria)
+    assign sum[11] = i[3] ^ carry[10];
+    assign carry[11] = i[3] & carry[10];
+    assign carry_memory[2] = ~sum[11] & ~(sum[11] & eraser[2]); //el eraser borra la memoria cuando es 1, si es 0 se mantiene el valor
+endmodule
+// ----- Módulo de prueba (Testbench) para el sumador de 8 bits -----
+   // Declaración de las señales de entrada y salida para el array
+    reg [7:0] a_vec [1:0];
+    reg [7:0] b_vec [1:0];
+    reg [2:0] i_vec [1:0];
+    reg [2:0] eraser_vec [1:0];
+    
+    wire [7:0] sum_vec [1:0];
+    wire carry_out_vec [1:0];
+    wire [2:0] carry_memory_vec [1:0];
+    
+    // Instancia del array de Nuanots
+    // Instanciamos 9 Nuanots
+    nuanot_sumador_completo nuanot_array [8:0] (
+        .a(a_vec),
+        .b(b_vec),
+        .i(i_vec),
+        .eraser(eraser_vec),
+        .sum(sum_vec),
+        .carry_out(carry_out_vec),
+        .carry_memory(carry_memory_vec)
+    );
+
+    // Bloque de inicialización para la simulación
+    initial begin
+        // Inicializamos las entradas del primer Nuanot
+        a_vec[0] = 8'b00001010; // 10
+        b_vec[0] = 8'b00000101; // 5
+        i_vec[0] = 3'b000;
+        eraser_vec[0] = 1'b0;
+
+        // Inicializamos las entradas del segundo Nuanot
+        a_vec[1] = 8'b00000011; // 3
+        b_vec[1] = 8'b00000010; // 2
+        i_vec[1] = 3'b000;
+        eraser_vec[1] = 1'b0;
+        
+        // Inicializamos las entradas del segundo Nuanot
+        a_vec[1] = 8'b00000011; // 3
+        b_vec[1] = 8'b00000010; // 2
+        i_vec[1] = 3'b000;
+        eraser_vec[2] = 1'b0;
+
+        // Inicializamos las entradas del segundo Nuanot
+        a_vec[1] = 8'b00000011; // 3
+        b_vec[1] = 8'b00000010; // 2
+        i_vec[1] = 3'b000;
+        eraser_vec[3] = 1'b0;
+
+        // Inicializamos las entradas del primer Nuanot
+        a_vec[0] = 8'b00001010; // 10
+        b_vec[0] = 8'b00000101; // 5
+        i_vec[0] = 3'b000;
+        eraser_vec[4] = 1'b0;
+
+        // Inicializamos las entradas del segundo Nuanot
+        a_vec[1] = 8'b00000011; // 3
+        b_vec[1] = 8'b00000010; // 2
+        i_vec[1] = 3'b000;
+        eraser_vec[5] = 1'b0;
+        
+        // Inicializamos las entradas del segundo Nuanot
+        a_vec[1] = 8'b00000011; // 3
+        b_vec[1] = 8'b00000010; // 2
+        i_vec[1] = 3'b000;
+        eraser_vec[6] = 1'b0;
+
+        // Inicializamos las entradas del segundo Nuanot
+        a_vec[1] = 8'b00000011; // 3
+        b_vec[1] = 8'b00000010; // 2
+        i_vec[1] = 3'b000;
+        eraser_vec[7] = 1'b0;
+
+        // Inicializamos las entradas del segundo Nuanot
+        a_vec[1] = 8'b00000011; // 3
+        b_vec[1] = 8'b00000010; // 2
+        i_vec[1] = 3'b000;
+        eraser_vec[8] = 1'b0;
+        // Mostrar el encabezado de la simulación
+        $monitor("Tiempo=%t, a[0]=%b, b[0]=%b, sum[0]=%b, a[1]=%b, b[1]=%b, sum[1]=%b", 
+                 $time, a_vec[0], b_vec[0], sum_vec[0], a_vec[1], b_vec[1], sum_vec[1]);
+
+        #10; // Esperar para que la lógica se propague
+
+        // Cambiamos los valores para un nuevo caso de prueba
+        a_vec[0] = 8'b11100110; // comparar entre dos números 50 > 25 
+        b_vec[0] = 8'b00110010; // el 50
+        i_vec[0] = 3'011 //aquí se activaría la memoria para almacenar y leer el datos
+
+        a_vec[1] = 8'b11111011; // 4
+        b_vec[1] = 8'b00000010; // 2
+        i_vec[1] = 3'b001 //aquí nos daría una resta convencional, donde los primeros bits del i, no se transmiten (de hecho, la memoria, no se activa, bloqueada por el noveno bit
+
+        a_vec[2] = 8'b00000000; // 0
+        b_vec[2] = 8'b00000000; // 0
+        i_vec[2] = 3'b000 //aquí se activa la memoria, cuando no se hizo nada, lo que significa que el sistema ante un arranque 0, puede empezar a tener actividad
+
+        a_vec[3] = 8'b11111111; // 255
+        b_vec[3] = 8'b00000001; // 1
+        i_vec[3] = 3'b111; //aquí el bit se pasa a otra nuanot
+
+        a_vec[4] = 8'b11111111; // 255
+        b_vec[4] = 8'b00000000; // 1
+        i_vec[4] = 3'b011 //para la memoria
+        eraser[4] = 1'b1 //y la borramos, lo que significa que independientemente si hay un 0, la memoria está desactivada, lo que significa que bloqueamos un camino para el sistema, y sólo dejamos paso libre otro, (o podemos dejar ninguno, o abrir ambos)
+        a_vec[5] = 8'b00000000; // 4
+        b_vec[5] = 8'b00000000; // 2
+
+        a_vec[6] = 8'b00000000; // 255
+        b_vec[6] = 8'b00000000; // 1
+        
+        a_vec[7] = 8'b00000000; // 4
+        b_vec[7] = 8'b00000000; // 2
+
+        a_vec[8] = 8'b00000000; 
+        b_vec[8] = 8'b00000000; 
+        #10;
+        $finish;
+    end
+
+endmodule
