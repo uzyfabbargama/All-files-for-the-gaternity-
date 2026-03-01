@@ -1,0 +1,74 @@
+Guion: El Modelo de la Plata QR
+Duración: 8 minutos
+
+Personaje Principal: Tu voz, con un tono calmado, sincero y directo. No hay un avatar de ti mismo en pantalla, solo los dibujos.
+
+ESCENA 1 (0:00 - 0:45)
+[Pantalla Negra, solo un título en blanco: "El Problema"]
+VOZ (Tú): "La inflación. La corrupción. La desesperanza. Son palabras que conocemos demasiado bien. Hemos escuchado a economistas, a políticos... a todos. Nos han dicho que la solución está en un plan, en un acuerdo, en un ajuste."
+
+[Aparece un círculo que representa la sociedad. Del círculo, salen líneas hacia arriba y hacia abajo, representando la incertidumbre.]
+VOZ (Tú): "Pero el problema persiste. Porque el verdadero problema no es económico. Es más profundo."
+
+[Aparece un billete de cien pesos. Se ve gastado y se achica con cada segundo. Aparece un billete de un dólar. Se ve limpio y se agranda.]
+VOZ (Tú): "El verdadero problema es la desconfianza. En nuestro dinero. En nuestros líderes. En el futuro."
+
+ESCENA 2 (0:45 - 2:00)
+[Se ve una soga. Un lado es la 'Casta' (con sombreros de copa). El otro lado es el 'Pueblo' (gente con caras tristes y cansadas).]
+VOZ (Tú): "La economía actual es un juego de suma cero. Un tira y afloja. Si la casta gana, el pueblo pierde. Es un juego donde el dinero es la herramienta para manipular y controlar."
+
+[Aparece un billete de mil pesos. En un lado hay una cara feliz. En el otro lado, una cara triste.]
+VOZ (Tú): "Nuestro dinero no es un activo; es una herramienta de control. Y mientras más nos esforzamos, más se nos escapa de las manos."
+
+[Aparece un billete de cien pesos y un billete de un dólar. El billete de cien pesos se rompe en pedazos y se lo lleva el viento.]
+VOZ (Tú): "Es un sistema que nos obliga a vivir en la informalidad para sobrevivir. Un sistema roto que no se puede arreglar."
+
+ESCENA 3 (2:00 - 3:30)
+[Aparece un título en pantalla: "La Solución: El Modelo de la Plata QR".]
+VOZ (Tú): "Yo no soy un político, ni un economista. Solo soy un joven de 19 años que se preguntó: '¿Qué pasaría si el dinero no fuera una herramienta de control, sino una herramienta de transparencia?'"
+
+[Se dibuja un billete de cien pesos. En el centro, un código QR.]
+VOZ (Tú): "Este es el Modelo de la Plata QR. Un billete que no es ni completamente físico ni completamente virtual."
+
+[El billete se agranda. El código QR brilla.]
+VOZ (Tú): "Para las personas mayores, es un billete de toda la vida. Pueden tocarlo, sentirlo, y usarlo. La tecnología es invisible, pero el valor está ahí."
+
+[Aparece un negocio. Un cliente le da un billete de cien pesos. El comerciante saca un celular, escanea el QR, y el billete se convierte en 200 pesos en su pantalla.]
+VOZ (Tú): "Para los negocios, el billete es un activo. Al escanear el QR, el valor del billete se duplica. Esto crea un incentivo para unirse al sistema y para que el dinero sea legal."
+
+ESCENA 4 (3:30 - 5:00)
+[Aparece una balanza. En un lado, un billete de dólar. En el otro, un billete de pesos que se ve más fuerte y más pesado.]
+VOZ (Tú): "En el Modelo de la Plata QR, el valor del dinero no se basa en la especulación, sino en la producción y la transparencia. El dinero es un reflejo de la confianza que tiene la gente en el sistema."
+
+[Aparecen diferentes dibujos: un agricultor cosechando, un artista pintando, un programador trabajando.]
+VOZ (Tú): "El valor ya no es solo sobre bienes y servicios. Es sobre las personas. El conocimiento, el arte, el trabajo duro... Todo lo que la gente valora, tiene un valor en este sistema. Es un juego de suma positiva, donde si una persona gana, todos ganan."
+
+[Aparece una "Q" gigante. Dentro de ella, hay dibujos de personas, arte, y edificios.]
+VOZ (Tú): "La 'Q' ya no es solo una medida de bienes. Es una medida de la prosperidad y la calidad de vida de cada uno."
+
+ESCENA 5 (5:00 - 6:30)
+[Aparece un título en pantalla: "La Paradoja de la Confianza".]
+VOZ (Tú): "Muchos me preguntan: '¿Cómo puede funcionar un plan sin confianza?' La respuesta es: no la necesita. La confianza es el combustible de los viejos modelos, pero es la consecuencia del nuestro."
+
+[Se ve una línea de personas que dudan. Al final de la línea, hay una puerta con el logo de la Plata QR. La primera persona entra y se le duplica el dinero en la pantalla del celular. La gente de atrás se ve sorprendida.]
+VOZ (Tú): "Al principio, la gente no necesita creer en el sistema; solo necesita ver que su dinero con el QR vale más. Ese incentivo tangible es lo que rompe la paradoja."
+
+[Se dibuja un ojo. El ojo se convierte en un billete. El billete se convierte en un corazón.]
+VOZ (Tú): "Con el tiempo, la transparencia genera confianza. Y esa confianza genera prosperidad. Y la prosperidad se convierte en la nueva norma."
+
+ESCENA 6 (6:30 - 7:30)
+[Aparece un título en pantalla: "¿Quién soy yo?".]
+VOZ (Tú): "Tengo 19 años. No estudié formalmente en ninguna universidad. Pero mientras los economistas aprendían sus teorías, yo aprendía la realidad."
+
+[Aparece una persona. Su cabeza es una caja de herramientas. Saca una lupa, un martillo, un microscopio y los usa para analizar un billete.]
+VOZ (Tú): "Mi conocimiento viene de los primeros principios. De hacerme preguntas que la 'casta' nunca se hizo. '¿Qué pasaría si el dinero fuera una herramienta?' '¿Y si la seguridad fuera descentralizada?'"
+
+[Se ve un dibujo del planeta Tierra. Argentina brilla en blanco y negro. El resto del mundo, en color.]
+VOZ (Tú): "El plan no es económico. Es un plan de ingeniería social. Y si funciona aquí, puede funcionar en cualquier parte."
+
+ESCENA 7 (7:30 - 8:00)
+[El logo de Plata QR aparece en pantalla. Se hace más grande y más brillante.]
+VOZ (Tú): "Estamos en un punto de inflexión. Podemos seguir jugando el mismo juego, o podemos cambiar las reglas. Podemos seguir esperando un futuro que nunca llega, o podemos empezar a construirlo ahora."
+
+[Aparece la frase en pantalla: "El cambio no viene de arriba. Viene de adentro." Se desvanece y aparece un mensaje final: "Comparte este video si crees que es hora de un cambio."]
+VOZ (Tú): "El futuro no es un lugar al que vamos, es un lugar que creamos. El futuro es ahora. Y tú tienes el poder de empezar a crearlo."
