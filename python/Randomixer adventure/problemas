@@ -1,0 +1,20 @@
+14212153 tomamos el número
+14 =1, 4
+21 =2, 1
+21 =2, 1
+53 =5, 3
+
+(2, 1), (2, 1), (|1, 4), (5, 3)
+red = max(S, T)
+yellow = max (U, V)
+green = max (W, X)
+blue = max (Y, Z)
+red1 = min (S, T)
+yellow1 = min (U, V)
+green1 = min (W, X)
+blue1 = min (Y, Z)
+
+#cambiemos de estrategia
+
+red 
+
