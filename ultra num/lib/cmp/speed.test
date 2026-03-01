@@ -1,0 +1,6 @@
+Generando 1,000,000 de pesos...
+
+--- RESULTADOS ---
+NumPy (loadtxt): 1.5662 segundos
+Tu Motor NMXT:  0.6437 segundos
+¡Tu motor es 2.4 veces más rápido!
