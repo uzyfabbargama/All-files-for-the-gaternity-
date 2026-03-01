@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Carácter Profundo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para una experiencia móvil fluida */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Organiza los hijos verticalmente */
+            min-height: 100vh;
+            max-height: 100vh; /* Fija la altura total al viewport */
+            overflow: hidden; /* Evita el scroll general de la página */
+        }
+        #chat-window {
+            flex-grow: 1; /* Permite que ocupe todo el espacio restante */
+            padding: 1rem;
+            overflow-y: auto; /* Habilita el scroll solo en esta ventana */
+            scroll-behavior: smooth;
+        }
+        .message-bubble {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .user-message {
+            background-color: #3b82f6; /* Blue-500 */
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 0.3rem;
+        }
+        .character-message {
+            background-color: #262626; /* Neutral-800 */
+            align-self: flex-start;
+            border: 1px solid #3f3f46; /* Neutral-700 */
+            border-bottom-left-radius: 0.3rem;
+        }
+        /* Animación de carga con 3 puntos */
+        .loading span {
+            animation-name: blink;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+        }
+        .loading span:nth-child(2) { animation-delay: 0.2s; }
+        .loading span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            20% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+    </style>
+    <script>
+        // --- CONFIGURACIÓN E INICIALIZACIÓN ---
+        const MODEL_NAME = "gemini-2.5-flash-preview-05-20";
+        const API_URL_BASE = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent`;
+        const API_KEY = ""; // La clave se proporcionará automáticamente en el entorno Canvas.
+        
+        // Estado simulado del personaje (lo que tu código Python calcula)
+        let characterState = {
+            Bondad: 85, // Cambiado para darle más personalidad inicial
+            Hostilidad: 15,
+            Lógica: 70,
+            Hambre: 60, // Alto, para que se sienta irritable al inicio
+            Sueño: 40,
+            Escenario: "Un claro en el bosque al amanecer. Hay niebla espesa y escuchas un sonido distante, como un motor."
+        };
+
+        let chatHistory = [];
+
+        // --- FUNCIONES DE UTILIDAD ---
+        
+        // Función para escapar el texto y evitar inyecciones HTML simples
+        function escapeHTML(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        // Función de retardo (para exponential backoff)
+        const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        // --- GESTIÓN DE LA INTERFAZ ---
+
+        function updateUI() {
+            // Actualiza la visualización de las estadísticas
+            const stats = document.getElementById('stats');
+            if (stats) {
+                // Función auxiliar para determinar el color de barra basado en el valor
+                const getBarColor = (value, inverse = false) => {
+                    if (inverse) value = 100 - value; // Para Hostilidad: Alto es mejor
+                    if (value > 75) return 'bg-red-600';
+                    if (value > 50) return 'bg-yellow-500';
+                    return 'bg-green-600';
+                };
+
+                const getBarWidth = (value) => `${Math.min(100, Math.max(0, value))}%`;
+                
+                stats.innerHTML = `
+                    <div class="space-y-2 mt-2">
+                        <!-- BHL Stats -->
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                            <span class="bg-green-700/50 text-green-300 px-2 py-1 rounded-full shadow-md">Bondad: ${characterState.Bondad}</span>
+                            <span class="bg-red-700/50 text-red-300 px-2 py-1 rounded-full shadow-md">Hostilidad: ${characterState.Hostilidad}</span>
+                            <span class="bg-blue-700/50 text-blue-300 px-2 py-1 rounded-full shadow-md">Lógica: ${characterState.Lógica}</span>
+                        </div>
+                        
+                        <!-- Survival Needs (CHS) -->
+                        <div class="grid grid-cols-1 gap-1">
+                            ${renderProgressBar('Hambre', characterState.Hambre, true)}
+                            ${renderProgressBar('Sueño', characterState.Sueño, true)}
+                        </div>
+
+                    </div>
+                    <div class="mt-2 text-sm text-gray-400">
+                        Escenario: <span class="italic text-gray-300">${characterState.Escenario}</span>
+                    </div>
+                `;
+            }
+
+            // Muestra el mensaje de bienvenida
+            if (chatHistory.length === 0) {
+                 displayCharacterMessage(`Hola. Soy el personaje. Mi estado actual es Bondad ${characterState.Bondad}, Hostilidad ${characterState.Hostilidad} y Lógica ${characterState.Lógica}. Me encuentro en: ${characterState.Escenario}. ¿Qué haces?`);
+            }
+        }
+
+        function renderProgressBar(label, value, isNeed = false) {
+            // Needs (Hambre/Sueño): Lower value is better (0=full, 100=critical)
+            // BHL: Higher value is better (unless Hostility, which is preference)
+            const dangerThreshold = isNeed ? 50 : 30; // Needs are dangerous above 50. BHL stats are dangerous below 30.
+            const color = isNeed ? 
+                (value > 80 ? 'bg-red-500' : value > 50 ? 'bg-yellow-500' : 'bg-green-500') :
+                (value < 20 ? 'bg-red-500' : value < 50 ? 'bg-yellow-500' : 'bg-green-500');
+            
+            const displayValue = isNeed ? value : value; // Muestra el valor real para las necesidades
+
+            return `
+                <div class="flex items-center text-xs">
+                    <span class="w-16 font-medium text-gray-300">${label}:</span>
+                    <div class="flex-grow bg-zinc-700 rounded-full h-3">
+                        <div class="h-3 rounded-full ${color}" style="width: ${getBarWidth(isNeed ? value : value)}"></div>
+                    </div>
+                    <span class="ml-2 w-8 text-right text-gray-400">${value}%</span>
+                </div>
+            `;
+        }
+        
+        // Helper to get bar width for needs (inverted logic)
+        function getBarWidth(value) {
+            return `${Math.min(100, Math.max(0, value))}%`;
+        }
+
+        function displayUserMessage(message) {
+            const chatWindow = document.getElementById('chat-window');
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble user-message';
+            bubble.textContent = message;
+            chatWindow.appendChild(bubble);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function displayCharacterMessage(message) {
+            const chatWindow = document.getElementById('chat-window');
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble character-message';
+            bubble.textContent = message;
+            chatWindow.appendChild(bubble);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function showLoading() {
+            const chatWindow = document.getElementById('chat-window');
+            const loadingBubble = document.createElement('div');
+            loadingBubble.id = 'loading-indicator';
+            loadingBubble.className = 'message-bubble character-message loading text-center w-20';
+            loadingBubble.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+            chatWindow.appendChild(loadingBubble);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function hideLoading() {
+            const loadingBubble = document.getElementById('loading-indicator');
+            if (loadingBubble) {
+                loadingBubble.remove();
+            }
+        }
+
+        // --- LÓGICA DE LA IA ---
+
+        async function sendMessage() {
+            const inputElement = document.getElementById('user-input');
+            const message = inputElement.value.trim();
+            
+            if (!message) return;
+
+            inputElement.value = '';
+            inputElement.disabled = true;
+            document.getElementById('send-button').disabled = true;
+
+            displayUserMessage(message);
+            showLoading();
+
+            const prompt = buildPrompt(message);
+            let responseText = "Lo siento, hubo un error de conexión.";
+
+            // Implementación de Exponential Backoff para reintentos de API
+            for (let attempt = 0; attempt < 5; attempt++) {
+                try {
+                    const apiUrl = `${API_URL_BASE}?key=${API_KEY}`;
+                    const payload = {
+                        contents: [{ parts: [{ text: prompt }] }],
+                    };
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 429) {
+                            // Demasiadas solicitudes, intentar de nuevo
+                            await delay(Math.pow(2, attempt) * 1000);
+                            continue;
+                        }
+                        throw new Error(`Error HTTP: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    responseText = result.candidates?.[0]?.content?.parts?.[0]?.text || "No se pudo generar una respuesta.";
+                    break; 
+
+                } catch (error) {
+                    console.error("Error en la llamada a la API:", error);
+                    if (attempt === 4) {
+                        responseText = "Lo siento, la API falló después de varios intentos.";
+                    }
+                    await delay(Math.pow(2, attempt) * 1000);
+                }
+            }
+
+            hideLoading();
+            displayCharacterMessage(responseText);
+            chatHistory.push({ user: message, character: responseText });
+
+            // SIMULACIÓN de actualización de estado después de la respuesta (Tu código Python haría esto)
+            simulateStateUpdate(message);
+
+            inputElement.disabled = false;
+            document.getElementById('send-button').disabled = false;
+            inputElement.focus();
+        }
+
+        function getHistoryText() {
+            // Prepara el historial para enviarlo al modelo
+            return chatHistory.map(item => `Usuario: ${item.user}\nPersonaje: ${item.character}`).join('\n');
+        }
+
+        function buildPrompt(message) {
+            // Aplica las penalizaciones por necesidades al prompt
+            let effectiveBondad = characterState.Bondad;
+            let effectiveHostilidad = characterState.Hostilidad;
+            let effectiveLogica = characterState.Lógica;
+            let mood = "neutral y cauteloso.";
+
+            if (characterState.Hambre > 50) {
+                effectiveBondad = Math.max(0, effectiveBondad - 15);
+                effectiveHostilidad = Math.min(100, effectiveHostilidad + 10);
+                mood = "irritable y fatigado por el hambre.";
+            }
+             if (characterState.Sueño > 50) {
+                effectiveLogica = Math.max(0, effectiveLogica - 20);
+                mood = "somnoliento y con dificultad para concentrarse.";
+            }
+
+            const stateDescription = `
+                El personaje tiene estos valores de personalidad y necesidades (Bondad, Hostilidad, Lógica, Hambre, Sueño).
+                Los valores van de 0 a 100.
+                - Bondad Efectiva: ${effectiveBondad} (Impacta cuán servicial y empático es)
+                - Hostilidad Efectiva: ${effectiveHostilidad} (Impacta cuán agresivo o defensivo es)
+                - Lógica Efectiva: ${effectiveLogica} (Impacta cuán racional o planificado es)
+                - Estado de Ánimo: El personaje está ${mood}.
+                - Escenario: ${characterState.Escenario}
+            `;
+
+            const personalityGuidance = `
+                Instrucciones de Personalidad:
+                - Responde SIEMPRE como tu personaje, reflejando su estado EFECTIVO.
+                - Su tono es generalmente ${characterState.Bondad > 70 ? 'suave y amable' : 'reservado'}.
+                - Con su Lógica en ${effectiveLogica}, sus respuestas deben ser ${effectiveLogica < 50 ? 'impulsivas e incoherentes' : 'reflexivas y analíticas'}.
+                - Su Hostilidad es ${effectiveHostilidad}, por lo que cualquier acción o pregunta percibida como amenaza debe generar una respuesta defensiva o agresiva.
+                - Si las necesidades (Hambre/Sueño) son altas, las menciona indirectamente ("Estoy demasiado débil para eso", "No puedo pensar con claridad").
+            `;
+
+            const historyText = getHistoryText();
+
+            return `
+                Eres un personaje con una personalidad y necesidades profundas, diseñado para un juego de supervivencia de texto.
+                ${stateDescription}
+                ${personalityGuidance}
+                
+                Resumen de la conversación:
+                ${historyText}
+
+                Responde únicamente con el diálogo de tu personaje a la siguiente entrada del usuario. No uses comillas.
+                Entrada del Usuario: "${escapeHTML(message)}"
+            `;
+        }
+
+        // --- SIMULACIÓN DE LÓGICA DE TU CÓDIGO PYTHON (TEMPORAL) ---
+        
+        function simulateStateUpdate(message) {
+            // Pasos de Simulación:
+            // 1. Detección de Acción (muy simplificada, tu Python lo haría mejor)
+            // 2. Aplicación de Cambios
+            // 3. Degradación Pasiva
+
+            let logMessage = "";
+
+            const lowerMessage = message.toLowerCase();
+
+            // 1. Detección de Acción y Cambios
+            if (lowerMessage.includes("comer") || lowerMessage.includes("alimento")) {
+                characterState.Hambre = Math.max(0, characterState.Hambre - 60);
+                characterState.Bondad = Math.min(100, characterState.Bondad + 5);
+                logMessage = "Parece que el personaje se siente mejor después de comer.";
+            } else if (lowerMessage.includes("dormir") || lowerMessage.includes("descansar")) {
+                characterState.Sueño = Math.max(0, characterState.Sueño - 70);
+                characterState.Hostilidad = Math.max(0, characterState.Hostilidad - 10);
+                logMessage = "El personaje se despierta sintiéndose más alerta y menos irritable.";
+            } else if (lowerMessage.includes("pelear") || lowerMessage.includes("atacar") || lowerMessage.includes("amenazar")) {
+                characterState.Hostilidad = Math.min(100, characterState.Hostilidad + 20);
+                characterState.Bondad = Math.max(0, characterState.Bondad - 10);
+                // La acción violenta también consume energía
+                characterState.Hambre = Math.min(100, characterState.Hambre + 10); 
+                logMessage = "La confrontación lo ha vuelto más agresivo y lo ha agotado.";
+            } else if (lowerMessage.includes("ayudar") || lowerMessage.includes("amable") || lowerMessage.includes("hablar")) {
+                characterState.Bondad = Math.min(100, characterState.Bondad + 5);
+                characterState.Hostilidad = Math.max(0, characterState.Hostilidad - 5);
+                logMessage = "Una interacción positiva ha mejorado su humor.";
+            } else if (lowerMessage.includes("analizar") || lowerMessage.includes("planear") || lowerMessage.includes("craftear")) {
+                characterState.Lógica = Math.min(100, characterState.Lógica + 5);
+                logMessage = "El esfuerzo mental ha mejorado su Lógica.";
+            }
+
+            // 3. Degradación Pasiva (Pasa en cada turno)
+            characterState.Hambre = Math.min(100, characterState.Hambre + 8);
+            characterState.Sueño = Math.min(100, characterState.Sueño + 5);
+            
+            if (logMessage) {
+                 displayCharacterMessage(`*(${logMessage} Su estado ha cambiado)*`);
+            }
+            
+            updateUI();
+        }
+
+        // --- INICIO DE LA APLICACIÓN ---
+        window.onload = () => {
+            updateUI(); // Muestra el estado inicial y el mensaje de bienvenida.
+            
+            // Permite enviar con la tecla Enter
+            document.getElementById('user-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            document.getElementById('send-button').addEventListener('click', sendMessage);
+        };
+    </script>
+</head>
+<body class="flex flex-col h-screen overflow-hidden">
+    <!-- HEADER FIJO -->
+    <div class="p-3 bg-zinc-900 shadow-xl border-b border-zinc-700 flex-shrink-0">
+        <h1 class="text-xl font-bold text-yellow-500">Personaje Móvil</h1>
+        <div id="stats" class="mt-2 text-sm">
+            <!-- Las estadísticas se inyectan aquí -->
+        </div>
+    </div>
+
+    <!-- VENTANA DE CHAT CON SCROLL -->
+    <div id="chat-window" class="flex flex-col space-y-2 pb-3 overflow-y-auto flex-grow">
+        <!-- Los mensajes de chat se inyectan aquí -->
+    </div>
+
+    <!-- FOOTER FIJO (Input) -->
+    <div class="flex-shrink-0 p-3 bg-zinc-900 border-t border-zinc-700 shadow-2xl">
+        <div class="flex items-end space-x-2">
+            <textarea 
+                id="user-input" 
+                placeholder="Escribe tu acción o diálogo..." 
+                class="flex-grow p-3 bg-zinc-800 text-white rounded-xl resize-none focus:ring-2 focus:ring-yellow-500 focus:outline-none h-12 overflow-hidden" 
+                rows="1" 
+                oninput="this.style.height='auto'; this.style.height=(this.scrollHeight)+'px'; if(this.scrollHeight > 120) this.style.overflowY='auto';"
+                style="max-height: 120px;"
+            ></textarea>
+            <button 
+                id="send-button" 
+                class="flex-shrink-0 bg-yellow-600 hover:bg-yellow-500 text-zinc-900 font-bold p-3 rounded-full shadow-lg transition duration-150 ease-in-out h-12 w-12 flex items-center justify-center"
+                aria-label="Enviar Mensaje"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 19-3-9L2 9l19-7Z"/><path d="M11 13 8 22"/></svg>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

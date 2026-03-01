@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Carácter Profundo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos base para la experiencia móvil fluida */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            flex-direction: column; 
+            min-height: 100vh;
+            max-height: 100vh; 
+            overflow: hidden; 
+        }
+        /* Estilo para las secciones de página (SPA) */
+        .page-content {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            width: 100%;
+        }
+        /* Estilos del chat (solo en la página 3) */
+        #chat-window {
+            flex-grow: 1; 
+            padding: 1rem;
+            overflow-y: auto; 
+            scroll-behavior: smooth;
+        }
+        .message-bubble {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .user-message {
+            background-color: #3b82f6; /* Blue-500 */
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 0.3rem;
+        }
+        .character-message {
+            background-color: #262626; /* Neutral-800 */
+            align-self: flex-start;
+            border: 1px solid #3f3f46; /* Neutral-700 */
+            border-bottom-left-radius: 0.3rem;
+        }
+        /* Animación de carga */
+        .loading span {
+            animation-name: blink;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+        }
+        .loading span:nth-child(2) { animation-delay: 0.2s; }
+        .loading span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            20% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+        .range-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #4b5563; /* Gray-600 */
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #f59e0b; /* Yellow-500 */
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .range-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #f59e0b;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    <script>
+        // --- CONFIGURACIÓN E INICIALIZACIÓN ---
+        const MODEL_NAME = "gemini-2.5-flash-preview-05-20";
+        const API_URL_BASE = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent`;
+        
+        let API_KEY = ""; 
+        let currentPage = 'page-1-api';
+        
+        // Estado inicial del personaje y la partida
+        let characterState = {
+            Bondad: 50,
+            Hostilidad: 50,
+            Lógica: 50,
+            Hambre: 50, 
+            Sueño: 50,
+            Escenario: "Un claro en el bosque al amanecer, sintiéndose observado.",
+            Name: "NPC Profundo"
+        };
+        let chatHistory = [];
+        const STORAGE_KEY_API = 'geminiApiKey';
+        const STORAGE_KEY_SAVES = 'characterGameSaves';
+
+        // Función de utilidad para escapar HTML (necesaria para el prompt de Gemini)
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/&/g, '&amp;')
+                      .replace(/</g, '&lt;')
+                      .replace(/>/g, '&gt;')
+                      .replace(/"/g, '&quot;')
+                      .replace(/'/g, '&#039;');
+        }
+
+
+        // --- NAVEGACIÓN (SPA) ---
+        
+        function goToPage(pageId) {
+            const pages = ['page-1-api', 'page-2-setup', 'page-3-chat', 'page-4-list'];
+            pages.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.classList.add('hidden');
+                }
+            });
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                currentPage = pageId;
+                
+                // Muestra el botón de Guardar solo en la página de Chat
+                const saveButton = document.getElementById('save-game-button');
+                if (saveButton) {
+                    saveButton.style.display = (pageId === 'page-3-chat' ? 'block' : 'none');
+                }
+
+                if (pageId === 'page-4-list') {
+                    loadGameList(); // Carga la lista de partidas al entrar a la página
+                }
+            }
+        }
+
+        // --- PÁGINA 1: GESTIÓN DE LA CLAVE API ---
+
+        function getApiKey() {
+            if (API_KEY && API_KEY !== "") return API_KEY;
+            
+            const storedKey = localStorage.getItem(STORAGE_KEY_API);
+            if (storedKey) {
+                API_KEY = storedKey;
+                return API_KEY;
+            }
+
+            goToPage('page-1-api'); // Asegura que estemos en la página de API si no hay clave
+            return null;
+        }
+
+        function saveAndValidateApi() {
+            const input = document.getElementById('api-key-input');
+            const key = input.value.trim();
+            const errorDisplay = document.getElementById('api-error');
+
+            if (key.length > 20) { // Validación básica de longitud
+                localStorage.setItem(STORAGE_KEY_API, key);
+                API_KEY = key;
+                errorDisplay.textContent = 'Clave guardada. ¡Continuando!';
+                errorDisplay.classList.remove('text-red-500');
+                errorDisplay.classList.add('text-green-500');
+                
+                // Si la clave es válida (asumimos), pasamos a la configuración.
+                goToPage('page-2-setup'); 
+            } else {
+                errorDisplay.textContent = 'Error: La clave API parece muy corta. Por favor, verifica.';
+                errorDisplay.classList.remove('text-green-500');
+                errorDisplay.classList.add('text-red-500');
+            }
+        }
+
+        // --- PÁGINA 2: CONFIGURACIÓN INICIAL ---
+        
+        function applySetup() {
+            const name = document.getElementById('char-name-input').value.trim() || "NPC Profundo";
+            const escenario = document.getElementById('scenario-input').value.trim();
+            
+            // Usar IDs de la nueva estructura HTML
+            const b = parseInt(document.getElementById('range-bondad').value);
+            const h = parseInt(document.getElementById('range-hostilidad').value);
+            const l = parseInt(document.getElementById('range-logica').value);
+            const hambre = parseInt(document.getElementById('range-hambre').value);
+            const sueño = parseInt(document.getElementById('range-sueno').value);
+			const baño = parseInt(document.getElementById('range-bano').value);
+
+            if (!escenario) {
+                document.getElementById('setup-error').textContent = 'El Escenario no puede estar vacío.';
+                return;
+            }
+
+            characterState = {
+                Bondad: b,
+                Hostilidad: h,
+                Lógica: l,
+                Hambre: hambre, 
+                Sueño: sueño,
+                Baño: baño,
+                Escenario: escenario,
+                Name: name
+            };
+            
+            chatHistory = []; // Reiniciamos la historia para una nueva partida
+            
+            // Mensaje de bienvenida inicial
+            const initialMessage = `Hola. Mi estado inicial es: Bondad ${characterState.Bondad}, Hostilidad ${characterState.Hostilidad}, Hambre ${characterState.Hambre}%, Sueño ${characterState.Sueño}%. Estoy en: ${characterState.Escenario}. ¿Qué haces?`;
+            chatHistory.push({ user: "INICIO DE PARTIDA", character: initialMessage });
+
+            // Limpiamos la ventana de chat antes de ir
+            document.getElementById('chat-window').innerHTML = '';
+            
+            updateUI();
+            goToPage('page-3-chat');
+        }
+
+        function updateRangeLabel(id, value) {
+            document.getElementById(id).textContent = value;
+        }
+
+        // --- PÁGINA 3: CHAT Y LÓGICA DE JUEGO (MAIN GAME) ---
+
+        function updateUI() {
+            const stats = document.getElementById('stats');
+            if (stats) {
+                // Actualiza el nombre y el estado
+                document.getElementById('header-title').textContent = characterState.Name;
+
+                stats.innerHTML = `
+                    <div class="space-y-2 mt-2">
+                        <!-- BHL Stats (Valores Cualitativos) -->
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                            <span class="bg-green-700/50 text-green-300 px-2 py-1 rounded-full shadow-md">Bondad: ${characterState.Bondad}</span>
+                            <span class="bg-red-700/50 text-red-300 px-2 py-1 rounded-full shadow-md">Hostilidad: ${characterState.Hostilidad}</span>
+                            <span class="bg-blue-700/50 text-blue-300 px-2 py-1 rounded-full shadow-md">Lógica: ${characterState.Lógica}</span>
+                        </div>
+                        
+                        <!-- Survival Needs (CHS) - Barras -->
+                        <div class="grid grid-cols-1 gap-1">
+                            ${renderProgressBar('Hambre', characterState.Hambre)}
+                            ${renderProgressBar('Sueño', characterState.Sueño)}
+                        </div>
+
+                    </div>
+                    <div class="mt-2 text-sm text-gray-400">
+                        Escenario: <span class="italic text-gray-300">${characterState.Escenario}</span>
+                    </div>
+                `;
+            }
+
+            // Repinta el historial de chat al cargar (o después de aplicar setup)
+            const chatWindow = document.getElementById('chat-window');
+            if (chatWindow && currentPage === 'page-3-chat') {
+                chatWindow.innerHTML = '';
+                chatHistory.forEach((item, index) => {
+                    if (item.user !== "INICIO DE PARTIDA") {
+                        displayMessage(item.user, 'user', false);
+                    }
+                    displayMessage(item.character, 'character', false);
+                });
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+        }
+        
+        function renderProgressBar(label, value) {
+            const color = (value > 80 ? 'bg-red-500' : value > 50 ? 'bg-yellow-500' : 'bg-green-500');
+            const barWidth = `${Math.min(100, Math.max(0, value))}%`;
+
+            return `
+                <div class="flex items-center text-xs">
+                    <span class="w-16 font-medium text-gray-300">${label}:</span>
+                    <div class="flex-grow bg-zinc-700 rounded-full h-3">
+                        <div class="h-3 rounded-full ${color}" style="width: ${barWidth}"></div>
+                    </div>
+                    <span class="ml-2 w-8 text-right text-gray-400">${value}%</span>
+                </div>
+            `;
+        }
+
+        function displayMessage(message, role, autoScroll = true) {
+            const chatWindow = document.getElementById('chat-window');
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble ' + (role === 'user' ? 'user-message' : 'character-message');
+            bubble.textContent = message;
+            chatWindow.appendChild(bubble);
+            if (autoScroll) {
+                 chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+        }
+
+        function showLoading() {
+            const chatWindow = document.getElementById('chat-window');
+            const loadingBubble = document.createElement('div');
+            loadingBubble.id = 'loading-indicator';
+            loadingBubble.className = 'message-bubble character-message loading text-center w-20';
+            loadingBubble.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+            chatWindow.appendChild(loadingBubble);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function hideLoading() {
+            const loadingBubble = document.getElementById('loading-indicator');
+            if (loadingBubble) {
+                loadingBubble.remove();
+            }
+        }
+
+        async function sendMessage() {
+            const inputElement = document.getElementById('user-input');
+            const message = inputElement.value.trim();
+            
+            if (!message) return;
+
+            const currentApiKey = getApiKey();
+            if (!currentApiKey) return; // Si getApiKey no devuelve la clave (muestra la Pág 1), detener.
+
+            inputElement.value = '';
+            inputElement.disabled = true;
+            document.getElementById('send-button').disabled = true;
+            inputElement.style.height = '48px'; 
+
+            displayMessage(message, 'user');
+            showLoading();
+
+            let responseText = await getGeminiResponse(message, currentApiKey);
+            
+            // --- LÓGICA DE JUEGO (Actualización de BHL/CHS) ---
+            // Degradación pasiva (Pasa en cada turno)
+            characterState.Hambre = Math.min(100, characterState.Hambre + 8);
+            characterState.Sueño = Math.min(100, characterState.Sueño + 5);
+            
+            // Pequeña simulación de impacto en BHL basado en Hostilidad (ejemplo)
+            if (characterState.Hambre > 80) {
+                 characterState.Lógica = Math.max(1, characterState.Lógica - 5);
+                 characterState.Hostilidad = Math.min(100, characterState.Hostilidad + 5);
+            }
+            // FIN DE LA LÓGICA DE JUEGO
+
+            updateUI(); 
+
+            hideLoading();
+            displayMessage(responseText, 'character');
+            chatHistory.push({ user: message, character: responseText });
+
+
+            inputElement.disabled = false;
+            document.getElementById('send-button').disabled = false;
+            inputElement.focus();
+        }
+
+        function getHistoryText() {
+            return chatHistory.map(item => `Usuario: ${item.user}\nPersonaje: ${item.character}`).join('\n');
+        }
+
+        async function getGeminiResponse(message, apiKey) {
+            const apiUrl = `${API_URL_BASE}?key=${apiKey}`;
+            
+            // Aseguramos que los valores sean enteros para el prompt
+            const b = Math.round(characterState.Bondad);
+            const h = Math.round(characterState.Hostilidad);
+            const l = Math.round(characterState.Lógica);
+            const ham = Math.round(characterState.Hambre);
+            const sue = Math.round(characterState.Sueño);
+
+            const prompt = `
+                Eres ${characterState.Name}, un personaje con una personalidad y necesidades profundas.
+                - Bondad: ${b}, Hostilidad: ${h}, Lógica: ${l}
+                - Hambre: ${ham}%, Sueño: ${sue}%
+                - Escenario: ${characterState.Escenario}
+
+                Instrucciones de Tono (Refleja tu estado):
+                - Tu tono es ${h > 70 ? 'agresivo y desconfiado' : b > 70 ? 'compasivo y servicial' : 'neutral'}.
+                - Si el Hambre (${ham}%) o el Sueño (${sue}%) son altos (más de 80), tus respuestas deben ser irritables, menos cooperativas y ligeramente incoherentes (baja Lógica).
+
+                Resumen de la conversación:
+                ${getHistoryText()}
+
+                Responde únicamente con el diálogo de tu personaje a la siguiente entrada del usuario. No uses comillas.
+                Entrada del Usuario: "${escapeHTML(message)}"
+            `;
+            
+            try {
+                // Implementación de Backoff para reintentar la llamada en caso de fallo temporal
+                let result = null;
+                const maxRetries = 3;
+                for (let i = 0; i < maxRetries; i++) {
+                    const payload = { contents: [{ parts: [{ text: prompt }] }] };
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (response.ok) {
+                        result = await response.json();
+                        break;
+                    }
+                    
+                    if (response.status === 400 || response.status === 401) {
+                        localStorage.removeItem(STORAGE_KEY_API);
+                        goToPage('page-1-api');
+                        return "⚠️ Error: La clave API es inválida o ha expirado. Por favor, reintenta y pon una clave válida.";
+                    }
+
+                    if (i < maxRetries - 1) {
+                         await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000)); // Espera 1s, 2s, 4s
+                    } else {
+                         throw new Error(`Fallo después de ${maxRetries} reintentos con el código: ${response.status}`);
+                    }
+                }
+
+                return result?.candidates?.[0]?.content?.parts?.[0]?.text || "No se pudo generar una respuesta.";
+
+            } catch (error) {
+                console.error("Error en la llamada a Gemini:", error);
+                return `Lo siento, hubo un problema de conexión o del servidor: ${error.message}`;
+            }
+        }
+        
+        // --- PÁGINA 4: LISTA DE PARTIDAS (Persistencia) ---
+
+        // NOTA: Reemplacé 'prompt' y 'alert' con código de modal simple para compatibilidad con el entorno (aunque no es visible, es buena práctica)
+        function showModal(message, isPrompt = false, callback = null) {
+            const existingModal = document.getElementById('custom-modal');
+            if (existingModal) existingModal.remove();
+
+            const modalHtml = `
+                <div id="custom-modal" class="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+                    <div class="bg-zinc-800 p-6 rounded-xl shadow-2xl w-11/12 max-w-xs text-white">
+                        <p id="modal-message" class="mb-4">${message}</p>
+                        ${isPrompt ? `<input id="modal-input" type="text" placeholder="Escribe aquí" class="w-full p-2 mb-4 bg-zinc-700 rounded-lg text-white">` : ''}
+                        <div class="flex justify-end space-x-2">
+                            ${isPrompt ? `<button id="modal-cancel" class="bg-gray-600 px-3 py-1 rounded">Cancelar</button>` : ''}
+                            <button id="modal-confirm" class="bg-yellow-600 px-3 py-1 rounded">${isPrompt ? 'Guardar' : 'Aceptar'}</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+            const modal = document.getElementById('custom-modal');
+            const confirmBtn = document.getElementById('modal-confirm');
+            const input = document.getElementById('modal-input');
+            const cancelBtn = document.getElementById('modal-cancel');
+
+            confirmBtn.onclick = () => {
+                modal.remove();
+                if (callback) {
+                    const value = isPrompt ? input.value.trim() : true;
+                    callback(value);
+                }
+            };
+            
+            if (isPrompt) {
+                 cancelBtn.onclick = () => modal.remove();
+            } else {
+                 confirmBtn.onclick = () => modal.remove();
+            }
+        }
+        
+
+        function saveGame() {
+            showModal("Ingresa un nombre para guardar esta partida:", true, (saveName) => {
+                if (saveName) {
+                    const saves = JSON.parse(localStorage.getItem(STORAGE_KEY_SAVES) || '[]');
+                    const saveTime = new Date().toLocaleString();
+                    const newSave = {
+                        id: Date.now(),
+                        name: saveName,
+                        time: saveTime,
+                        state: characterState,
+                        history: chatHistory
+                    };
+                    saves.push(newSave);
+                    localStorage.setItem(STORAGE_KEY_SAVES, JSON.stringify(saves));
+                    showModal(`Partida "${saveName}" guardada exitosamente.`);
+                    loadGameList();
+                }
+            });
+        }
+        
+        function loadGame(saveId) {
+            const saves = JSON.parse(localStorage.getItem(STORAGE_KEY_SAVES) || '[]');
+            const save = saves.find(s => s.id === saveId);
+            
+            if (save) {
+                characterState = save.state;
+                chatHistory = save.history;
+                showModal(`Partida "${save.name}" cargada.`);
+                updateUI();
+                goToPage('page-3-chat');
+            }
+        }
+        
+        function deleteGame(saveId) {
+            showModal("¿Estás seguro de que quieres eliminar esta partida?", false, (confirmed) => {
+                if (confirmed) {
+                    let saves = JSON.parse(localStorage.getItem(STORAGE_KEY_SAVES) || '[]');
+                    saves = saves.filter(s => s.id !== saveId);
+                    localStorage.setItem(STORAGE_KEY_SAVES, JSON.stringify(saves));
+                    showModal("Partida eliminada.");
+                    loadGameList();
+                }
+            });
+        }
+
+        function loadGameList() {
+            const listContainer = document.getElementById('save-list-container');
+            const saves = JSON.parse(localStorage.getItem(STORAGE_KEY_SAVES) || '[]');
+            
+            if (saves.length === 0) {
+                listContainer.innerHTML = '<p class="text-gray-400 italic">No hay partidas guardadas.</p>';
+                return;
+            }
+            
+            listContainer.innerHTML = saves.map(save => `
+                <div class="bg-zinc-700 p-4 rounded-xl shadow-md flex justify-between items-center mb-2">
+                    <div>
+                        <p class="font-bold text-yellow-400">${escapeHTML(save.name)}</p>
+                        <p class="text-xs text-gray-300">Escenario: ${escapeHTML(save.state.Escenario.substring(0, 40))}...</p>
+                        <p class="text-xs text-gray-400">Guardado: ${save.time}</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button onclick="loadGame(${save.id})" class="bg-blue-600 hover:bg-blue-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                            Cargar
+                        </button>
+                        <button onclick="deleteGame(${save.id})" class="bg-red-600 hover:bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                            Borrar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- INICIO DE LA APLICACIÓN ---
+        window.onload = () => {
+            // Inicializa la navegación
+            const storedKey = localStorage.getItem(STORAGE_KEY_API);
+            if (storedKey) {
+                // Si ya hay clave, salta a la página de configuración
+                API_KEY = storedKey;
+                goToPage('page-2-setup');
+            } else {
+                // Si no hay clave, muestra la página API
+                goToPage('page-1-api');
+            }
+            
+            // Inicializa los eventos
+            document.getElementById('save-api-button').addEventListener('click', saveAndValidateApi);
+            document.getElementById('start-game-button').addEventListener('click', applySetup);
+            document.getElementById('send-button').addEventListener('click', sendMessage);
+            
+            // Llama a updateUI al inicio para configurar los títulos y el estado
+            updateUI(); 
+        };
+    </script>
+</head>
+<body class="flex flex-col h-screen overflow-hidden">
+    <!-- HEADER FIJO -->
+    <div class="p-3 bg-zinc-900 shadow-xl border-b border-zinc-700 flex-shrink-0">
+        <h1 id="header-title" class="text-xl font-bold text-yellow-500">Configuración</h1>
+        <div id="navigation-buttons" class="mt-2 flex space-x-2">
+            <button onclick="goToPage('page-2-setup')" class="text-xs text-gray-400 hover:text-white">Nueva Partida</button>
+            <button onclick="goToPage('page-4-list')" class="text-xs text-gray-400 hover:text-white">Partidas Guardadas</button>
+            <button onclick="goToPage('page-1-api')" class="text-xs text-gray-400 hover:text-white">API Key</button>
+            <button onclick="saveGame()" class="text-xs bg-green-700/50 text-green-300 hover:bg-green-600 hover:text-white px-2 py-1 rounded-full font-semibold" id="save-game-button" style="display: none;">Guardar Partida</button>
+        </div>
+        <div id="stats" class="mt-2 text-sm">
+            <!-- Las estadísticas se inyectan aquí -->
+        </div>
+    </div>
+
+    <!-- PÁGINA 1: CLAVE API (Inicial) -->
+    <div id="page-1-api" class="page-content flex flex-col justify-center items-center">
+        <div class="bg-zinc-800 p-6 rounded-xl shadow-2xl w-full max-w-sm">
+            <h2 class="text-2xl font-bold text-yellow-400 mb-4 text-center">Clave API de Gemini</h2>
+            <p class="text-sm text-gray-300 mb-4">
+                Ingresa tu clave personal para usar el modelo de IA. Se guardará en tu navegador.
+            </p>
+            <input 
+                id="api-key-input" 
+                type="text" 
+                placeholder="Tu clave API (AIza...)" 
+                class="w-full p-3 bg-zinc-700 text-white rounded-lg focus:ring-yellow-500 focus:outline-none"
+            >
+            <p id="api-error" class="text-sm mt-2 text-gray-400"></p>
+            <button 
+                id="save-api-button" 
+                class="mt-4 w-full bg-yellow-600 hover:bg-yellow-500 text-zinc-900 font-bold p-3 rounded-lg transition duration-150"
+            >
+                Guardar y Continuar
+            </button>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: CONFIGURACIÓN INICIAL DE LA PARTIDA (CORREGIDA) -->
+    <div id="page-2-setup" class="page-content hidden">
+        <h2 class="text-2xl font-bold text-yellow-400 mb-4">Configurar Partida</h2>
+        <div class="bg-zinc-800 p-4 rounded-xl shadow-lg space-y-4">
+            
+            <!-- Nombre del Personaje -->
+            <div>
+                <label for="char-name-input" class="block text-sm font-medium text-gray-300">Nombre del Personaje</label>
+                <input id="char-name-input" type="text" value="NPC Profundo" class="w-full p-2 bg-zinc-700 text-white rounded-lg focus:ring-yellow-500 focus:outline-none">
+            </div>
+
+            <!-- Escenario -->
+            <div>
+                <label for="scenario-input" class="block text-sm font-medium text-gray-300">Escenario Inicial</label>
+                <textarea id="scenario-input" rows="3" class="w-full p-2 bg-zinc-700 text-white rounded-lg resize-none focus:ring-yellow-500 focus:outline-none" placeholder="Describe el entorno y la situación inicial..."></textarea>
+            </div>
+            
+            <!-- Sliders BHL - Atributos -->
+            <h3 class="font-semibold text-gray-200 pt-2 border-t border-zinc-700">Atributos (0-100)</h3>
+            <div class="space-y-4">
+                <!-- Bondad -->
+                <div class="flex flex-col">
+                    <label class="text-sm font-medium text-gray-300">Bondad: <span id="label-bondad" class="font-bold text-yellow-400">50</span></label>
+                    <input type="range" min="0" max="100" value="50" class="range-slider" id="range-bondad" oninput="updateRangeLabel('label-bondad', this.value)">
+                </div>
+                <!-- Hostilidad -->
+                <div class="flex flex-col">
+                    <label class="text-sm font-medium text-gray-300">Hostilidad: <span id="label-hostilidad" class="font-bold text-yellow-400">50</span></label>
+                    <input type="range" min="0" max="100" value="50" class="range-slider" id="range-hostilidad" oninput="updateRangeLabel('label-hostilidad', this.value)">
+                </div>
+                <!-- Lógica -->
+                <div class="flex flex-col">
+                    <label class="text-sm font-medium text-gray-300">Lógica: <span id="label-logica" class="font-bold text-yellow-400">50</span></label>
+                    <input type="range" min="0" max="100" value="50" class="range-slider" id="range-logica" oninput="updateRangeLabel('label-logica', this.value)">
+                </div>
+            </div>
+
+            <!-- Sliders CHS (Necesidades) -->
+            <h3 class="font-semibold text-gray-200 pt-2 border-t border-zinc-700">Necesidades (0=Satisfecho, 100=Crítico)</h3>
+            <div class="space-y-4">
+                <!-- Hambre -->
+                <div class="flex flex-col">
+                    <label class="text-sm font-medium text-gray-300">Hambre: <span id="label-hambre" class="font-bold text-red-400">50</span></label>
+                    <input type="range" min="0" max="100" value="50" class="range-slider" id="range-hambre" oninput="updateRangeLabel('label-hambre', this.value)">
+                </div>
+                <!-- Sueño -->
+                <div class="flex flex-col">
+                    <label class="text-sm font-medium text-gray-300">Sueño: <span id="label-sueno" class="font-bold text-purple-400">50</span></label>
+                    <input type="range" min="0" max="100" value="50" class="range-slider" id="range-sueno" oninput="updateRangeLabel('label-sueno', this.value)">
+                </div>
+                <!-- Baño -->
+                <div class="flex flex-col">
+    				<label class="text-sm font-medium text-gray-300">Evacuar: <span id="label-bano" class="font-bold text-red-400">50</span></label>
+    				<input type="range" min="0" max="100" value="50" class="range-slider" id="range-bano" oninput="updateRangeLabel('label-bano', this.value)">
+				</div>
+            </div>
+            
+            <p id="setup-error" class="text-sm mt-2 text-red-500"></p>
+
+            <button 
+                id="start-game-button" 
+                class="mt-4 w-full bg-green-600 hover:bg-green-500 text-white font-bold p-3 rounded-lg transition duration-150"
+            >
+                Empezar Partida (Chat)
+            </button>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: CHAT PRINCIPAL (EL JUEGO) -->
+    <div id="page-3-chat" class="flex flex-col flex-grow hidden">
+        <!-- VENTANA DE CHAT CON SCROLL -->
+        <div id="chat-window" class="flex flex-col space-y-2 pb-3 overflow-y-auto flex-grow">
+            <!-- Los mensajes de chat se inyectan aquí -->
+        </div>
+
+        <!-- FOOTER FIJO (Input) -->
+        <div class="flex-shrink-0 p-3 bg-zinc-900 border-t border-zinc-700 shadow-2xl">
+            <div class="flex items-end space-x-2">
+                <textarea 
+                    id="user-input" 
+                    placeholder="Escribe tu acción o diálogo..." 
+                    class="flex-grow p-3 bg-zinc-800 text-white rounded-xl resize-none focus:ring-2 focus:ring-yellow-500 focus:outline-none h-12 overflow-hidden" 
+                    rows="1" 
+                    oninput="this.style.height='auto'; this.style.height=(this.scrollHeight)+'px'; if(this.scrollHeight > 120) this.style.overflowY='auto';"
+                    style="max-height: 120px; min-height: 48px;"
+                ></textarea>
+                <button 
+                    id="send-button" 
+                    class="flex-shrink-0 bg-yellow-600 hover:bg-yellow-500 text-zinc-900 font-bold p-3 rounded-full shadow-lg transition duration-150 ease-in-out h-12 w-12 flex items-center justify-center"
+                    aria-label="Enviar Mensaje"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 19-3-9L2 9l19-7Z"/><path d="M11 13 8 22"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 4: LISTA DE PARTIDAS GUARDADAS -->
+    <div id="page-4-list" class="page-content hidden">
+        <h2 class="text-2xl font-bold text-yellow-400 mb-4">Partidas Guardadas</h2>
+        <div id="save-list-container" class="space-y-3">
+            <!-- La lista de partidas se inyecta aquí -->
+        </div>
+        <button onclick="goToPage('page-2-setup')" class="mt-6 w-full bg-zinc-700 hover:bg-zinc-600 text-white font-bold p-3 rounded-lg transition duration-150">
+            Volver y Empezar una Partida Nueva
+        </button>
+    </div>
+</body>
+</html>

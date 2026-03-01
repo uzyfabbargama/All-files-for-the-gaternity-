@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=BHL_full
+GenericName=Ahora con peculiaridad dinámica
+Comment=Todavía en desarrollo.
+Exec=/home/uziel_gamma/Lenguaje N/con 2AAAA milebrido/Ejecutar BHL (peculiaridad dinámica).bat
+Type=Application
+Categories=NPC;
+Icon=application-x-desktop
+Terminal=true
