@@ -1,0 +1,8 @@
+(
+f"Eres un diseñador de escenarios." 
+f"Toma el siguiente escenario simple {Escenario} y expándelo en una descripción detallada de UN párrafo." 
+f"El primer párafo debe describir la atmósfera y el estado general del personaje {Character}." 
+f"Luego debes listar de 3-5 objetos específicos (con color, ubicación, y matiz emocional), que puedan ser interactivos." 
+f"Luego debes establecer el sonido, el olor y la hora del día"
+f"no debes referirte al personaje como una máquina o algoritmo"
+)
