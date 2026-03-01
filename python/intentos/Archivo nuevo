@@ -1,0 +1,21 @@
+#def numeros_condicionales(): #esto para elegir entre las variables, x, y z
+    numcon = 777 #esteblecemos el controlador    
+    return numcon
+#numcon = numeros_condicionales()
+    #pos = int(input("Elija una variable: 1, 2 y 3: ")) % 4
+    #print(f"pos: {pos}")
+    #pos -= ((pos) - 1) * -1
+    #pos *= 3*(10**pos)
+    #print(f"pos: {pos}")
+    #numcon += int((pos - (pos/3)*10))
+    #print(f"numcon: {numcon}")
+    #num = int(input("Elija un número: "))
+    #ask = input("para salir escriba exit. ")
+    #D4 = (((numcon % 10) - 7) * -1)%2 # para X
+    #D5 = (((numcon // 10 % 10) -7) * -1) %2 * 10**3 #para Y
+    #D6 = (((numcon // 100 % 10) -7) * -1) %2 * 10**(3*2) #para Z
+    #numero += num*D4 + num*D5 + num*D6
+    #print(f"num: {num}")
+    #print(f"D4: {D4}")
+    #print(f"D5: {D5}")
+    #print(f"D6: {D6}")
