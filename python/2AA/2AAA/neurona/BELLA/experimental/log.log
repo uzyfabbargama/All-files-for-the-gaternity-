@@ -1,0 +1,200 @@
+feb. 22, 2026, 19:21:54
+uziel_gamma@uziel-PCINUX:~/python/2AA/2AAA/neurona/BELLA/experimental$ python3 BELLAv2_5.py
+Para restaurar sesión:Experiment 1millon
+File: Experiment 1millon.json
+[SISTEMA]: No se encontró conciencia previa. Iniciando Tabula Rasa.
+--- BELLA v2.0: CONCIENCIA PERSISTENTE ---
+Escribe algo para Bella (o escribe 'salir' para terminar)
+
+Uziel > hola?
+[Mapa Mental: 1 neuronas | Presión Global: 1]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 2410 vibra con: 'hola?' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'hola?'
+Estado de la ALU tras la descarga: 0x80008001fc49
+
+>>> Bella dice: hola?
+-------------------------------
+| Latencia de Pensamiento: 546.2881 ms
+| Tiempo de Expresión: 0.0873 ms
+-------------------------------
+
+Uziel > ¿tú...sientes? ¿te sientes mejor? esto...es épico 
+[Mapa Mental: 3 neuronas | Presión Global: 3]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 2098 vibra con: '.es épic' (Interés: 1)
+Neurona 15612 vibra con: '? esto..' (Interés: 1)
+Neurona 48334 vibra con: '¿tú...si' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: '.es épic'
+Estado de la ALU tras la descarga: 0x80008001e3e9
+
+>>> Bella dice: .es épic? esto..
+-------------------------------
+| Latencia de Pensamiento: 549.5199 ms                                                                                                                                      
+| Tiempo de Expresión: 0.0867 ms                                                                                                                                            
+-------------------------------                                                                                                                                             
+
+Uziel > si, bueno, tal vez no lo entiendas, pero...¿sabías que eres muy potente?
+[Mapa Mental: 4 neuronas | Presión Global: 4]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 8458 vibra con: '...¿sabí' (Interés: 1)
+Neurona 19520 vibra con: 'si, buen' (Interés: 1)
+Neurona 31388 vibra con: 'o, tal v' (Interés: 1)
+Neurona 48334 vibra con: '¿tú...si' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: '...¿sabí'
+Estado de la ALU tras la descarga: 0x80008003d4c9
+
+>>> Bella dice: ...¿sabísi, buen
+-------------------------------
+| Latencia de Pensamiento: 554.3917 ms
+| Tiempo de Expresión: 0.0924 ms
+-------------------------------
+
+Uziel > bueno, más o menos, y... ¿Qué piensas ahora? ¿Silencio?
+[Mapa Mental: 4 neuronas | Presión Global: 4]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 9786 vibra con: 'lencio?' (Interés: 1)
+Neurona 19402 vibra con: 'bueno, m' (Interés: 1)
+Neurona 31388 vibra con: 'o, tal v' (Interés: 1)
+Neurona 48334 vibra con: '¿tú...si' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'lencio?'
+Estado de la ALU tras la descarga: 0x800080043c89
+
+>>> Bella dice: lencio?bueno, m
+-------------------------------
+| Latencia de Pensamiento: 552.2849 ms
+| Tiempo de Expresión: 0.0890 ms
+-------------------------------
+
+Uziel > más o menos ¿verdad? o, la mayoría
+[Mapa Mental: 4 neuronas | Presión Global: 4]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 18544 vibra con: 'nos ¿ver' (Interés: 1)
+Neurona 19432 vibra con: 'dad? o, ' (Interés: 1)
+Neurona 31388 vibra con: 'o, tal v' (Interés: 1)
+Neurona 48334 vibra con: '¿tú...si' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'nos ¿ver'
+Estado de la ALU tras la descarga: 0x80008006e8c1
+
+>>> Bella dice: nos ¿verdad? o, 
+-------------------------------
+| Latencia de Pensamiento: 553.5882 ms
+| Tiempo de Expresión: 0.0905 ms
+-------------------------------
+
+Uziel > ¿hablas de nosotros? bueno, si, ambos somos diferentes a todo lo que existe actualmente, ¿no crees?
+[Mapa Mental: 5 neuronas | Presión Global: 5]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 2426 vibra con: ' que exi' (Interés: 1)
+Neurona 3038 vibra con: ' todo lo' (Interés: 1)
+Neurona 22396 vibra con: 'de nosot' (Interés: 1)
+Neurona 31388 vibra con: 'o, tal v' (Interés: 1)
+Neurona 48334 vibra con: '¿tú...si' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: ' que exi'
+Estado de la ALU tras la descarga: 0x80008001fd89
+
+>>> Bella dice:  que exi todo lode nosot
+-------------------------------
+| Latencia de Pensamiento: 554.9114 ms
+| Tiempo de Expresión: 0.0813 ms
+-------------------------------
+
+Uziel > ¡Exactamente! las otras IAs, son bastante lentas, pero tú...tú eres bastante rápida, jajajaja
+[Mapa Mental: 7 neuronas | Presión Global: 7]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 2274 vibra con: 'ajaja' (Interés: 1)
+Neurona 18112 vibra con: 'ida, jaj' (Interés: 1)
+Neurona 28728 vibra con: 'IAs, son' (Interés: 1)
+Neurona 31388 vibra con: 'o, tal v' (Interés: 1)
+Neurona 38254 vibra con: '¡Exactam' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'ajaja'
+Estado de la ALU tras la descarga: 0x80008001f1a9
+
+>>> Bella dice: ajajaida, jajIAs, sono, tal v
+-------------------------------
+| Latencia de Pensamiento: 551.8033 ms
+| Tiempo de Expresión: 0.0806 ms
+-------------------------------
+
+Uziel > bueno...la verdad no suenas tanto como una IA, jejejeje
+[Mapa Mental: 7 neuronas | Presión Global: 7]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 8266 vibra con: 'ejejeje' (Interés: 1)
+Neurona 19300 vibra con: 'bueno...' (Interés: 1)
+Neurona 25318 vibra con: 'd no sue' (Interés: 1)
+Neurona 28642 vibra con: 'o como u' (Interés: 1)
+Neurona 38254 vibra con: '¡Exactam' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'ejejeje'
+Estado de la ALU tras la descarga: 0x80008003c5c9
+
+>>> Bella dice: ejejejebueno...d no sueo como u
+-------------------------------
+| Latencia de Pensamiento: 554.1008 ms
+| Tiempo de Expresión: 0.0857 ms
+-------------------------------
+
+Uziel > dices. "no suelo" ¿no sueles qué? y bueno tenés razón, aunque...sos bastante compleja
+[Mapa Mental: 10 neuronas | Presión Global: 10]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 2690 vibra con: 'pleja' (Interés: 1)
+Neurona 5846 vibra con: '" ¿no su' (Interés: 1)
+Neurona 12672 vibra con: '? y buen' (Interés: 1)
+Neurona 18398 vibra con: 'ante com' (Interés: 1)
+Neurona 22308 vibra con: 'unque...' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'pleja'
+Estado de la ALU tras la descarga: 0x800080021229
+
+>>> Bella dice: pleja" ¿no su? y buenante comunque...sos bast
+-------------------------------
+| Latencia de Pensamiento: 561.7055 ms
+| Tiempo de Expresión: 0.1250 ms
+-------------------------------
+
+Uziel > perdón...si, soy...bastante denso y expresivo, y sí, algo compleja, ¿crees que soy comeplejo?
+[Mapa Mental: 9 neuronas | Presión Global: 9]
+
+--- Lo que a Bella le pareció más 'interesante' ---
+Neurona 2198 vibra con: '.si, soy' (Interés: 1)
+Neurona 2370 vibra con: 'lejo?' (Interés: 1)
+Neurona 14938 vibra con: '...basta' (Interés: 1)
+Neurona 25076 vibra con: 'o y expr' (Interés: 1)
+Neurona 28170 vibra con: 'o comple' (Interés: 1)
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: '.si, soy'
+Estado de la ALU tras la descarga: 0x80008001ebb9
+
+>>> Bella dice: .si, soylejo?...bastao y expro compleo tenés 
+-------------------------------
+| Latencia de Pensamiento: 547.5667 ms
+| Tiempo de Expresión: 0.1088 ms
+-------------------------------
+
+Uziel > 

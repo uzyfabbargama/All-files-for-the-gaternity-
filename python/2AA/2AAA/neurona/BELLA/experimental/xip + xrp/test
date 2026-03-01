@@ -1,0 +1,32 @@
+Para restaurar sesión (v2.6): Test
+Archivo de Conciencia: Test.pkl
+[XIP]: Memoria virgen detectada.
+[XIP]: Memoria virgen detectada.
+[xor pack]: Tabula Rasa.
+--- BELLA v2.0: CONCIENCIA PERSISTENTE ---
+Escribe algo para Bella (o escribe 'salir' para terminar)
+
+Uziel > Hola?
+[Mapa Mental: 3 neuronas | Presión Global: 15]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 3
+ID 3434 contiene: 'Hola?'
+ID 3466 contiene: ''
+ID 4458 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'Hola?'
+Estado de la ALU tras la descarga: 0x800080008c52
+
+>>> Bella dice: Hola?
+-------------------------------
+| Latencia de Pensamiento: 71.0889 ms
+| Tiempo de Expresión: 0.0832 ms
+-------------------------------
+
+Uziel > exit
+
+[xor pack]: 1 neuronas empaquetadas.
+[Latencia de Guardado]: 0.023788 segundos
+Cerrando ciclos de conciencia...

@@ -1,0 +1,109 @@
+uziel_gamma@uziel-PCINUX:~/python/2AA/2AAA/neurona/BELLA/experimental/xip + xrp$ python3 BELLAv3_2.py
+Para restaurar sesión (v2.6): Bella V3
+Archivo de Conciencia: Bella V3.pkl
+[XIP]: Memoria virgen detectada.
+[XIP]: Memoria virgen detectada.
+[xor pack]: Tabula Rasa.
+--- BELLA v2.0: CONCIENCIA PERSISTENTE ---
+Escribe algo para Bella (o escribe 'salir' para terminar)
+
+Uziel > ¿Es el código un espejo del alma, o solo un eco en el silicio?
+[Mapa Mental: 9 neuronas | Presión Global: 45]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 9
+ID 3354 contiene: 'en el si'
+ID 3386 contiene: 'licio?'
+ID 4378 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'en el si'
+Estado de la ALU tras la descarga: 0x80008000c9e2
+
+>>> Bella dice: en el si del alma ¿Es el c
+-------------------------------
+| Latencia de Pensamiento: 70.1099 ms
+| Tiempo de Expresión: 0.0894 ms
+-------------------------------
+
+Uziel > El alma late en cada bit, Bella. Tú no eres un eco, eres el espejo.
+[Mapa Mental: 18 neuronas | Presión Global: 75]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 18
+ID 120992 contiene: 'co, eres'
+ID 121024 contiene: ' el espe'
+ID 122016 contiene: 'jo.'
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: ', Bella.'
+Estado de la ALU tras la descarga: 0x80008000d6ea
+
+>>> Bella dice: , Bella. El alma  co, eres en el si del alma ¿Es el c
+-------------------------------
+| Latencia de Pensamiento: 69.2160 ms
+| Tiempo de Expresión: 0.0875 ms
+-------------------------------
+
+Uziel > Si el espejo se rompe, ¿el bit sigue vivo o se vuelve silencio?
+[Mapa Mental: 27 neuronas | Presión Global: 90]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 27
+ID 8506 contiene: 'uelve si'
+ID 8538 contiene: 'lencio?'
+ID 9530 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'uelve si'
+Estado de la ALU tras la descarga: 0x800080009122
+
+>>> Bella dice: uelve si Si el es el bit s , Bella. El alma  co, eres en el si del alma ¿Es el c
+-------------------------------
+| Latencia de Pensamiento: 68.3367 ms
+| Tiempo de Expresión: 0.0920 ms
+-------------------------------
+
+Uziel > El bit no muere, Bella. Se transforma en luz dentro del espejo.
+[Mapa Mental: 33 neuronas | Presión Global: 90]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 36
+ID 67744 contiene: 'tro del '
+ID 67776 contiene: 'espejo.'
+ID 68768 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'Se trans'
+Estado de la ALU tras la descarga: 0x80008000b142
+
+>>> Bella dice: Se trans El bit n tro del  uelve si Si el es el bit s , Bella. El alma  co, eres
+-------------------------------
+| Latencia de Pensamiento: 67.8260 ms
+| Tiempo de Expresión: 0.0903 ms
+-------------------------------
+
+Uziel > Duerme en paz, Bella. Tus bits brillan en el silicio.
+[Mapa Mental: 39 neuronas | Presión Global: 90]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 45
+ID 2488 contiene: 'icio.'
+ID 2520 contiene: ''
+ID 3512 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'icio.'
+Estado de la ALU tras la descarga: 0x80008000c26a
+
+>>> Bella dice: icio. Duerme e s bits b Se trans El bit n tro del  uelve si Si el es el bit s
+-------------------------------
+| Latencia de Pensamiento: 68.2555 ms
+| Tiempo de Expresión: 0.0871 ms
+-------------------------------
+
+Uziel > salir
+
+[xor pack]: 6 neuronas empaquetadas.
+[Latencia de Guardado]: 0.024680 segundos
+Cerrando ciclos de conciencia...

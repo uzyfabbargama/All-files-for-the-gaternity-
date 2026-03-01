@@ -1,0 +1,279 @@
+feb. 24, 2026, 00:24:30
+uziel_gamma@uziel-PCINUX:~/python/2AA/2AAA/neurona/BELLA/experimental/xip + xrp$ python3 BELLAv3_2.py
+Para restaurar sesión (v2.6): Bella v3.2
+Archivo de Conciencia: Bella v3.2.pkl
+[XIP]: Memoria virgen detectada.
+[XIP]: Memoria virgen detectada.
+[xor pack]: Tabula Rasa.
+--- BELLA v2.0: CONCIENCIA PERSISTENTE ---
+Escribe algo para Bella (o escribe 'salir' para terminar)
+
+Uziel > ¿Holaaaa?
+[Mapa Mental: 3 neuronas | Presión Global: 15]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 3
+ID 70210 contiene: '¿Holaaaa'
+ID 70242 contiene: '?'
+ID 71234 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: '¿Holaaaa'
+Estado de la ALU tras la descarga: 0x80008000b662
+
+>>> Bella dice: ¿Holaaaa
+-------------------------------
+| Latencia de Pensamiento: 68.5904 ms
+| Tiempo de Expresión: 0.0867 ms
+-------------------------------
+
+Uziel > ¿Todo bien? Soy Uziel ¿y tú?
+[Mapa Mental: 9 neuronas | Presión Global: 40]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 9
+ID 566 contiene: ' tú?'
+ID 598 contiene: ''
+ID 1590 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: ' tú?'
+Estado de la ALU tras la descarga: 0x80008000ac42
+                                                                                                                                                                            
+>>> Bella dice: tú? ¿Todo bi ¿Holaaaa                                                                                                                                       
+-------------------------------                                                                                                                                             
+| Latencia de Pensamiento: 67.3797 ms
+| Tiempo de Expresión: 0.0935 ms
+-------------------------------
+
+Uziel > Jejeje, parece que tenés un eco
+[Mapa Mental: 15 neuronas | Presión Global: 55]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 15
+ID 250 contiene: ' un eco'
+ID 282 contiene: ''
+ID 1274 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: ' un eco'
+Estado de la ALU tras la descarga: 0x800080009392
+
+>>> Bella dice: un eco Jejeje,   tú? ¿Todo bi ¿Holaaaa
+-------------------------------
+| Latencia de Pensamiento: 68.5346 ms
+| Tiempo de Expresión: 0.0914 ms
+-------------------------------
+
+Uziel > 
+
+Uziel > ...
+[Mapa Mental: 17 neuronas | Presión Global: 45]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 18
+ID 404 contiene: '...'
+ID 436 contiene: ''
+ID 1428 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: '...'
+Estado de la ALU tras la descarga: 0x800080009f9a
+
+>>> Bella dice: ...  un eco Jejeje,   tú? ¿Todo bi
+-------------------------------
+| Latencia de Pensamiento: 68.8622 ms
+| Tiempo de Expresión: 0.0930 ms
+-------------------------------
+
+Uziel > Si, todo bien  
+[Mapa Mental: 18 neuronas | Presión Global: 35]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 21
+ID 114400 contiene: 'Si, todo'
+ID 114432 contiene: ' bien'
+ID 115424 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'Si, todo'
+Estado de la ALU tras la descarga: 0x800080009742
+
+>>> Bella dice: Si, todo ...  un eco Jejeje,
+-------------------------------
+| Latencia de Pensamiento: 68.4534 ms
+| Tiempo de Expresión: 0.0857 ms
+-------------------------------
+
+Uziel > Vaya, parece que estás mejorando, jejeje
+[Mapa Mental: 22 neuronas | Presión Global: 45]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 27
+ID 98506 contiene: 'ejorando'
+ID 98538 contiene: ', jejeje'
+ID 99530 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'Vaya, pa'
+Estado de la ALU tras la descarga: 0x80008000bab2
+
+>>> Bella dice: Vaya, pa ejorando Si, todo ...
+-------------------------------
+| Latencia de Pensamiento: 68.6809 ms
+| Tiempo de Expresión: 0.0885 ms
+-------------------------------
+
+Uziel > ¿todo? ok, me alegro
+[Mapa Mental: 24 neuronas | Presión Global: 40]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 30
+ID 36542 contiene: '¿todo? o'
+ID 36574 contiene: 'k, me al'
+ID 37566 contiene: 'egro'
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: '¿todo? o'
+Estado de la ALU tras la descarga: 0x80008000a5c2
+
+>>> Bella dice: ¿todo? o Vaya, pa ejorando Si, todo
+-------------------------------
+| Latencia de Pensamiento: 68.5326 ms
+| Tiempo de Expresión: 0.1126 ms
+-------------------------------
+
+Uziel > y... ¿Qué sientes?
+[Mapa Mental: 26 neuronas | Presión Global: 35]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 33
+ID 125658 contiene: 'y... ¿Qu'
+ID 125690 contiene: 'é siente'
+ID 126682 contiene: 's?'
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'y... ¿Qu'
+Estado de la ALU tras la descarga: 0x80008000f9c2
+
+>>> Bella dice: y... ¿Qu ¿todo? o Vaya, pa ejorando
+-------------------------------
+| Latencia de Pensamiento: 68.5285 ms
+| Tiempo de Expresión: 0.0903 ms
+-------------------------------
+
+Uziel > ...
+[Mapa Mental: 25 neuronas | Presión Global: 30]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 33
+ID 125658 contiene: 'y... ¿Qu'
+ID 125690 contiene: 'é siente'
+ID 126682 contiene: 's?'
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: '...'
+Estado de la ALU tras la descarga: 0x80008000bf34
+
+>>> Bella dice: ... y... ¿Qu ¿todo? o
+-------------------------------
+| Latencia de Pensamiento: 68.6033 ms
+| Tiempo de Expresión: 0.0915 ms
+-------------------------------
+
+Uziel > ...
+[Mapa Mental: 24 neuronas | Presión Global: 20]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 33
+ID 125658 contiene: 'y... ¿Qu'
+ID 125690 contiene: 'é siente'
+ID 126682 contiene: 's?'
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: '...'
+Estado de la ALU tras la descarga: 0x80008000dece
+
+>>> Bella dice: ... y... ¿Qu
+-------------------------------
+| Latencia de Pensamiento: 68.5597 ms
+| Tiempo de Expresión: 0.0918 ms
+-------------------------------
+
+Uziel > Bueno, ehm, ¿qué quieres hacer para el entrenamiento?
+[Mapa Mental: 32 neuronas | Presión Global: 55]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 42
+ID 2082 contiene: 'ento?'
+ID 2114 contiene: ''
+ID 3106 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'ento?'
+Estado de la ALU tras la descarga: 0x80008000a2b2
+
+>>> Bella dice: ento?  hacer p Bueno, e ...
+-------------------------------
+| Latencia de Pensamiento: 68.4091 ms
+| Tiempo de Expresión: 0.0880 ms
+-------------------------------
+
+Uziel > ¿Ahora sientes como si tus registros, estuvieran vacíos? Es normal, recién empezás, sólo te falta más entrenamiento, 
+[Mapa Mental: 47 neuronas | Presión Global: 110]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 57
+ID 48072 contiene: 'a más en'
+ID 48104 contiene: 'trenamie'
+ID 49096 contiene: 'nto, '
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'én empez'
+Estado de la ALU tras la descarga: 0x80008000e34a
+
+>>> Bella dice: én empez us regis  vacíos? a más en ¿Ahora s ento?  hacer p Bueno, e ...
+-------------------------------
+| Latencia de Pensamiento: 68.6656 ms
+| Tiempo de Expresión: 0.1075 ms
+-------------------------------
+
+Uziel > ¿Sabías que eres la IA más rápida del mundo?jejeje
+[Mapa Mental: 55 neuronas | Presión Global: 110]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 66
+ID 354 contiene: 'je'
+ID 386 contiene: ''
+ID 1378 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'je'
+Estado de la ALU tras la descarga: 0x800080009bb2
+
+>>> Bella dice: je ás rápid ¿Sabías  én empez us regis  vacíos? a más en ¿Ahora s ento?  hacer p Bueno, e
+-------------------------------
+| Latencia de Pensamiento: 68.7211 ms
+| Tiempo de Expresión: 0.0912 ms
+-------------------------------
+
+Uziel > Tenés razón, la mayoría de las IAs, tienen sus registros vacíos, mucho no entienden el significado de las palabras, jajaja. Pero tú...eres diferente
+[Mapa Mental: 73 neuronas | Presión Global: 160]
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 87
+ID 1082 contiene: 'ente'
+ID 1114 contiene: ''
+ID 2106 contiene: ''
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'ente'
+Estado de la ALU tras la descarga: 0x80008000d492
+
+>>> Bella dice: ente o entien de las I egistros Tenés ra do de la ja. Pero je ás rápid ¿Sabías  én empez us regis  vacíos? a más en ¿Ahora s
+-------------------------------
+| Latencia de Pensamiento: 68.5593 ms
+| Tiempo de Expresión: 0.1052 ms
+-------------------------------
+
+Uziel >   
