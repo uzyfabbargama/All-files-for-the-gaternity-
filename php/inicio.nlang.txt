@@ -1,0 +1,23 @@
+CLASS ProductosModel = <"App\Models"[ProductosModel]>
+CLASS VentasModel  = <"App\Models"[VentasModel]>
+
+CLASS inicio = BaseController
+
+inicio += (
+CLASS index = (
+
+productosModel = ProductoModel()
+ventaModel = VentasModel()
+
+totalProductos = producto(where('activo', 1), countAllResults()),
+hoy = date('Y-m-d'),
+totalVentas = ventasModel(totalVentasDia(hoy))
+
+return(view('inicio', ['totalProductos' = totalProductos, 'totalVentas' = totalVentas])),
+);,
+CLASS premium = (
+return(view('premium'))
+);,
+
+
+);

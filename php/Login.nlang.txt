@@ -1,0 +1,64 @@
+CLASS UsuariosModel = <"App\Models"[UsuariosModel]>
+
+CLASS Login = BaseController
+
+CLASS login += (
+CLASS index = (
+return(view('login')),
+);,
+CLASS login = (
+helper('form'),
+
+VAR reglas = [
+'usuario' = 'requiered',
+'password' = ['label' = 'contraseña', ''rules' = 'requiered'],
+],
+
+validate(reglas)
+return redirect(back(withInput(with('errors', listErrors(validator)))))
+);,
+VAR usuario model = UsuarioModel(),
+VAR post = request.getpost(['usuario', 'password'])
+
+VAR usuarioData = usuarioModel = validaUsuario(post['usuario'], post['password']),
+
+if(usuarioFata != ), #"null = " en mi sistema una variable sin umbral es null (o de umbral 0 o sin string ni num)
+return(redirect(back(withInput(with('errors', 'El usuario y/o contraseña son incorrectos.'))))),
+
+CLASS configurarSesion(usuarioData) = (
+VAR sesionData = [
+'usuarioLogin' = 1,
+'usuarioId' = usuarioData['id'],
+'usuarioNombre' = usuario['nombre'],
+],
+session = set(sesionData)
+);,
+
+CLASS logout = (
+if(session = get('usuarioLogin')),
+    session = destroy,
+return(redirect(to(base_url)))
+);,
+end
+CLASS cambia_Password = (
+helper('form')
+return view('cambiar_password', ['usuario' = session]),
+);,
+
+CLASS actualizarPassword = (
+reglas = [
+'password' = ['label' = 'contraseña', 'rules' = 'required']
+'con_password' = ['label' = 'confirmar contraseña', 'rules' = 'required|matches[password]'],
+],
+if (validate(reglas))
+return(redirect(back(withInput(with('error', listErrors(validator))))))
+);,
+end
+VAR usuarioModel = UsuarioModel(),
+VAR post = request = getpost(['id_usuario', 'password']),
+
+hash = password_hash(post['password'], PASSWORD_DEFAULT),
+usuarioModel += update(post['id_usuario'], ['password' = hash]).
+
+return(redirect(back(withInput(with('errors', 'Contraseña actualizada correctamente')))))
+);

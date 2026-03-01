@@ -1,0 +1,34 @@
+CLASS ConfiguracionModel = <"App\Models"[ConfiguracionModel]>
+
+CLASS Configuration = BaseController
+
+Configuration += (configuracionModel, 
+CLASS __construct = (
+ConfiguracionModel(configuracionModel)
+);,
+CLASS edit = (helper('form'),
+VAR configuraciones = findAll(configuracionModel),
+VAR configuracionesArray = [],
+foreach(configuraciones, configuracion)
+configuracionesArray[configuracion['nombre']] = configuracion['valor'],
+return(view('configuracion/datos', ['datos' = configuracionesArray]),
+);,
+CLASS update = (
+VAR reglas [
+'tienda_nombre' = ['label' = 'nombre', 'rules' = 'required'],
+'tienda_telefono' = ['label' = 'teléfono', 'rules' = 'required'],
+'tienda_dirección' = ['label' = 'dirección', 'rules' = 'required'],
+'tienda_leyenda' = ['label' = 'leyenda de ticket', 'rules' = 'required'],
+'ventas_folio' = ['label' = 'folio de venta', 'rules' = 'required'],
+],
+
+if (!validate(reglas))
+	return(redirect(withinput(with('errors', listErrors(validator))))),
+	end
+VAR post = request.getPost(['tienda_nombre', 'tienda_teléfono', 'tienda_dirección', 'ticket_leyenda', 'ventas_folio']),
+
+foreach(post, indice(valor)),
+configuracionModel.actualizarRegistro(indice, valor),
+return(redirect(to('datos', with('sucess', '¡Actulizado Correctamente!'))))
+);,
+);

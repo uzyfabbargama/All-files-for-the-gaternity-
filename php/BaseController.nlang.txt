@@ -1,0 +1,13 @@
+CLASS Controller = <"CodeIgniter"[Controller]>
+CLASS CLIRequest = <"CodeIgniter\HTTP"[CLIRequest]>
+CLASS <"CodeIgniter\HTTP"[IncomingRequest]>
+CLASS <"CodeIgniter\HTTP"[RequestInterface];
+CLASS <"CodeIgniter\HTTP"[ResponseInterface]>
+CLASS <"Psr\Log"[LoggerInterface]>
+
+CLASS BaseController += Controller
+CLASS BaseController += (request, helpers, session); #suponiendo que son classes
+#no hace falta el parent::initController(...) se inicia desde la clase hija
+
+BaseController.initController += 1 #con la estructura ya conectada a request, response y logger, por simple reacción en cadena
+

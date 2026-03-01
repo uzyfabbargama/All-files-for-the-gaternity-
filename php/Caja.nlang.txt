@@ -1,0 +1,101 @@
+CLASS ProductosModel = <"App\Models"[ProductosModel>
+CLASS TemporalCajaModel = <"App\Models"[TemporalCajaModel]>
+
+CLASS caja = BaseController
+CLASS caja += (CLASS index = (view);,
+CTRL end {0},
+CLASS inserta = (if (this_request != isAJAX())
+VAR stop (1, "Error, detener ejecución, solicitud inválida")
+end,
+VAR error (5, ""), #usamos CTRL para sumarle el mensaje (5 para activarlo)
+VAR código = request.getPost('codigo'),
+VAR cantidad = request.getPost('cantidad'),
+VAR idVenta = request.getPost('id_venta'),
+#$productosModel = new ProductosModel();
+ProductoModel(productosModel), #función que crea las características del objeto, usando una función con argumentos
+TemporalCajaModel(temporalModel),
+VAR producto = first(productosModel, where(VAR codigo == {codigo}, VAR activo(2) == 1)), #la función first toma como argumento la función where y el modelo del producto
+if(producto != input_usuario)
+CTRL no_producto {1, error += "No existe el producto"},
+CTRL mostrar {1, error += 5} #muestra el mensaje
+CTRL vaciar {1, error *= 0} #elimina string
+else,
+VAR idProducto = producto.id, #de la variable idProducto, se toma el 'id'
+VAR productoCodigo = producto.codigo,
+VAR productoNombre = producto.nombre,
+VAR productoExistencia = producto.existencia,
+VAR productoPrecioVenta = producto.precio,
+
+VAR precioVenta = temporalModel(first(where('id_venta' = idVenta, 'id_producto' = idProducto))) += if(productoVenta.cantidad == 0) #la cantidad que ingresa el usuario
+VAR cantidad += if(productoVenta.cantidad == 0)
+
+if(VAR productoInventariable == 1 & productoExistencia < cantidad)
+CTRL no_existe {1, error += "No hay suficientes existencias"}
+mostrar,
+vaciar,
+else
+VAR subtotal = cantidad * produtoPrecioVenta,
+
+CLASS data = (VAR idventa,
+VAR idProducto,
+VAR productoCodigo,
+VAR productoNombre
+VAR productoPrecioVenta
+VAR cantidad,
+VAR subtotal);,
+
+if(productoVenta),
+temporalModel(actualizarProductoVenta(idproducto, idVenta, cantidad, subtotal)),
+else,
+temporalModel(insert(data)),
+end
+res['datos'] = cargaProductos(idVenta),
+res['total'] = totalPorVenta(number_format(temporalModel), idVenta),
+res['error'] = error
+echo json_encode(res)
+);,
+);
+
+CLASS elimina =(
+if(this_request != isAJAX)
+stop #variable ya declarada
+end
+
+
+TemporalCajaModel(temporalModel)
+
+idProducto = request.getPost('id_producto')
+idVenta = request.getPost('id_venta')
+
+productoVenta = temporalModel(first(where 'id_venta' = idventa, 'id_producto' = idProducto)),
+end,
+if (cantidad > 0),
+temporalModel(actualizaProductoVenta(idProducto, idVenta, cantidad, subtotal)),
+else,
+temporalModel(eliminar(idProducto, idVenta),
+end,
+res['datos'] = cargaProductos(idVenta),
+res['total'] = number_format(temporalModel(totalPorVenta(idVenta)), 2, '.', ','),
+res['error'] = '',
+echo json_encode(res),
+);
+
+CLASS cargaProductos(idVenta) =(
+helper['form'], #tal vez otra CLASS
+TemporalCajaModel(temporalModel),
+VAR resultado = temporalModel(where('id_venta' = idVenta)),
+VAR fila = '',
+numFila = 0,
+
+foreach(resultado, row),
+CTRL aumentar {0, numFila += 1}, #incrementa la fila
+fila = "<tr id='fila" + numFila + "'>",
+fila = "<td>" + esc(row['codigo']) + "</td>",
+fila = "<td>" + esc(row['nombre']) + "</td>",
+fila = "<td>" + row['precio'],
+fila = "<td>" + row['cantidad'],
+fila = "<td>" + row['importe'],
+fila = "<td><a onclik=\"eliminaProducto(" + row['id_producto'] + ", '" + "')\" class='borrar'><span class='fas fa-fw fa-trash'></span></a></td>",
+fila = "</tr>",
+return(file(fila))
+);
