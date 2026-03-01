@@ -1,0 +1,11 @@
+uziel_gamma@uziel-PCINUX:~/NUM/xorid pack/asm$ python3 venganza4.py
+--- PREPARANDO 1000000 VARIABLES ---
+¡EMPIEZA LA COMPETENCIA!
+
+JSON:   2.18885 seg
+PICKLE: 1.15109 seg
+XIP:    0.35663 seg
+------------------------------
+RESULTADO: XIP es 3.23x más rápido que Pickle
+RESULTADO: XIP es 6.14x más rápido que JSON
+BASE: Pickle es 1.90x más rápido que JSON

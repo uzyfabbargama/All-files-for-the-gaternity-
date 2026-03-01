@@ -1,0 +1,201 @@
+uziel_gamma@uziel-PCINUX:~/NUM/xorid$ python3 xorid_dic.py
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> que onda
+
+Pasos del cálculo:
+------------------------------
+Carácter 'q' (113) | (0 ^ 113) << 1 = 226
+Carácter 'u' (117) | (226 ^ 117) << 1 = 302
+Carácter 'e' (101) | (302 ^ 101) << 1 = 662
+Carácter ' ' (32) | (662 ^ 32) << 1 = 1388
+Carácter 'o' (111) | (1388 ^ 111) << 1 = 2566
+Carácter 'n' (110) | (2566 ^ 110) << 1 = 5328
+Carácter 'd' (100) | (5328 ^ 100) << 1 = 10600
+Carácter 'a' (97) | (10600 ^ 97) << 1 = 21010
+------------------------------
+Resultado final del ID: 21010
+uziel_gamma@uziel-PCINUX:~/NUM/xorid$ python3 xorid_dic.py
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> Qué onda
+
+Pasos del cálculo:
+------------------------------
+Carácter 'Q' (81) | (0 ^ 81) << 1 = 162
+Carácter 'u' (117) | (162 ^ 117) << 1 = 430
+Carácter 'é' (233) | (430 ^ 233) << 1 = 654
+Carácter ' ' (32) | (654 ^ 32) << 1 = 1372
+Carácter 'o' (111) | (1372 ^ 111) << 1 = 2662
+Carácter 'n' (110) | (2662 ^ 110) << 1 = 5136
+Carácter 'd' (100) | (5136 ^ 100) << 1 = 10472
+Carácter 'a' (97) | (10472 ^ 97) << 1 = 20754
+------------------------------
+Resultado final del ID: 20754
+uziel_gamma@uziel-PCINUX:~/NUM/xorid$ python3 xorid_dic.py
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> ¿Qué onda?
+
+Pasos del cálculo:
+------------------------------
+Carácter '¿' (191) | (0 ^ 191) << 1 = 382                                                                                                                                   
+Carácter 'Q' (81) | (382 ^ 81) << 1 = 606                                                                                                                                   
+Carácter 'u' (117) | (606 ^ 117) << 1 = 1110                                                                                                                                
+Carácter 'é' (233) | (1110 ^ 233) << 1 = 2430
+Carácter ' ' (32) | (2430 ^ 32) << 1 = 4796
+Carácter 'o' (111) | (4796 ^ 111) << 1 = 9638
+Carácter 'n' (110) | (9638 ^ 110) << 1 = 19344
+Carácter 'd' (100) | (19344 ^ 100) << 1 = 38888
+Carácter 'a' (97) | (38888 ^ 97) << 1 = 77586
+Carácter '?' (63) | (77586 ^ 63) << 1 = 155226
+------------------------------
+Resultado final del ID: 155226
+uziel_gamma@uziel-PCINUX:~/NUM/xorid$ python3 xorid_dic.py
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> ¿qué onda?
+
+Pasos del cálculo:
+------------------------------
+Carácter '¿' (191) | (0 ^ 191) << 1 = 382
+Carácter 'q' (113) | (382 ^ 113) << 1 = 542
+Carácter 'u' (117) | (542 ^ 117) << 1 = 1238
+Carácter 'é' (233) | (1238 ^ 233) << 1 = 2174
+Carácter ' ' (32) | (2174 ^ 32) << 1 = 4284
+Carácter 'o' (111) | (4284 ^ 111) << 1 = 8614
+Carácter 'n' (110) | (8614 ^ 110) << 1 = 17296
+Carácter 'd' (100) | (17296 ^ 100) << 1 = 34792
+Carácter 'a' (97) | (34792 ^ 97) << 1 = 69394
+Carácter '?' (63) | (69394 ^ 63) << 1 = 138842
+------------------------------
+Resultado final del ID: 138842
+uziel_gamma@uziel-PCINUX:~/NUM/xorid$ python3 xorid_dic.py
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> ¿Qué onda?.
+
+Pasos del cálculo:
+------------------------------
+Carácter '¿' (191) | (0 ^ 191) << 1 = 382
+Carácter 'Q' (81) | (382 ^ 81) << 1 = 606
+Carácter 'u' (117) | (606 ^ 117) << 1 = 1110
+Carácter 'é' (233) | (1110 ^ 233) << 1 = 2430
+Carácter ' ' (32) | (2430 ^ 32) << 1 = 4796
+Carácter 'o' (111) | (4796 ^ 111) << 1 = 9638
+Carácter 'n' (110) | (9638 ^ 110) << 1 = 19344
+Carácter 'd' (100) | (19344 ^ 100) << 1 = 38888
+Carácter 'a' (97) | (38888 ^ 97) << 1 = 77586
+Carácter '?' (63) | (77586 ^ 63) << 1 = 155226
+Carácter '.' (46) | (155226 ^ 46) << 1 = 310504
+------------------------------
+Resultado final del ID: 310504
+uziel_gamma@uziel-PCINUX:~/NUM/xorid$ python3 xorid_dic.py
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> Hello. My name it's Uziel. And you?
+
+Pasos del cálculo:
+------------------------------
+Carácter 'H' (72) | (0 ^ 72) << 1 = 144
+Carácter 'e' (101) | (144 ^ 101) << 1 = 490
+Carácter 'l' (108) | (490 ^ 108) << 1 = 780
+Carácter 'l' (108) | (780 ^ 108) << 1 = 1728
+Carácter 'o' (111) | (1728 ^ 111) << 1 = 3422
+Carácter '.' (46) | (3422 ^ 46) << 1 = 6880
+Carácter ' ' (32) | (6880 ^ 32) << 1 = 13696
+Carácter 'M' (77) | (13696 ^ 77) << 1 = 27546
+Carácter 'y' (121) | (27546 ^ 121) << 1 = 55238
+Carácter ' ' (32) | (55238 ^ 32) << 1 = 110540
+Carácter 'n' (110) | (110540 ^ 110) << 1 = 220996
+Carácter 'a' (97) | (220996 ^ 97) << 1 = 441930
+Carácter 'm' (109) | (441930 ^ 109) << 1 = 883790
+Carácter 'e' (101) | (883790 ^ 101) << 1 = 1767510
+Carácter ' ' (32) | (1767510 ^ 32) << 1 = 3535084
+Carácter 'i' (105) | (3535084 ^ 105) << 1 = 7069962
+Carácter 't' (116) | (7069962 ^ 116) << 1 = 14140156
+Carácter ''' (39) | (14140156 ^ 39) << 1 = 28280246
+Carácter 's' (115) | (28280246 ^ 115) << 1 = 56560522
+Carácter ' ' (32) | (56560522 ^ 32) << 1 = 113121108
+Carácter 'U' (85) | (113121108 ^ 85) << 1 = 226242050
+Carácter 'z' (122) | (226242050 ^ 122) << 1 = 452484336
+Carácter 'i' (105) | (452484336 ^ 105) << 1 = 904968498
+Carácter 'e' (101) | (904968498 ^ 101) << 1 = 1809937070
+Carácter 'l' (108) | (1809937070 ^ 108) << 1 = 3619874180
+Carácter '.' (46) | (3619874180 ^ 46) << 1 = 7239748436
+Carácter ' ' (32) | (7239748436 ^ 32) << 1 = 14479496936
+Carácter 'A' (65) | (14479496936 ^ 65) << 1 = 28958993746
+Carácter 'n' (110) | (28958993746 ^ 110) << 1 = 57917987448
+Carácter 'd' (100) | (57917987448 ^ 100) << 1 = 115835974712
+Carácter ' ' (32) | (115835974712 ^ 32) << 1 = 231671949360
+Carácter 'y' (121) | (231671949360 ^ 121) << 1 = 463343898770
+Carácter 'o' (111) | (463343898770 ^ 111) << 1 = 926687797754
+Carácter 'u' (117) | (926687797754 ^ 117) << 1 = 1853375595294
+Carácter '?' (63) | (1853375595294 ^ 63) << 1 = 3706751190594
+------------------------------
+Resultado final del ID: 3706751190594
+uziel_gamma@uziel-PCINUX:~/NUM/xorid$ Hola. Mi nombre es Uziel. ¿Y tú?
+Hola.: no se encontró la orden
+uziel_gamma@uziel-PCINUX:~/NUM/xorid$ python3 xorid_dic.py
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> Hola. Mi nombre es Uziel. ¿Y tú?
+
+Pasos del cálculo:
+------------------------------
+Carácter 'H' (72) | (0 ^ 72) << 1 = 144
+Carácter 'o' (111) | (144 ^ 111) << 1 = 510
+Carácter 'l' (108) | (510 ^ 108) << 1 = 804
+Carácter 'a' (97) | (804 ^ 97) << 1 = 1674
+Carácter '.' (46) | (1674 ^ 46) << 1 = 3400
+Carácter ' ' (32) | (3400 ^ 32) << 1 = 6864
+Carácter 'M' (77) | (6864 ^ 77) << 1 = 13626
+Carácter 'i' (105) | (13626 ^ 105) << 1 = 27302
+Carácter ' ' (32) | (27302 ^ 32) << 1 = 54540
+Carácter 'n' (110) | (54540 ^ 110) << 1 = 109252
+Carácter 'o' (111) | (109252 ^ 111) << 1 = 218454
+Carácter 'm' (109) | (218454 ^ 109) << 1 = 436854
+Carácter 'b' (98) | (436854 ^ 98) << 1 = 873512
+Carácter 'r' (114) | (873512 ^ 114) << 1 = 1747124
+Carácter 'e' (101) | (1747124 ^ 101) << 1 = 3494306
+Carácter ' ' (32) | (3494306 ^ 32) << 1 = 6988548
+Carácter 'e' (101) | (6988548 ^ 101) << 1 = 13977282
+Carácter 's' (115) | (13977282 ^ 115) << 1 = 27954530
+Carácter ' ' (32) | (27954530 ^ 32) << 1 = 55908996
+Carácter 'U' (85) | (55908996 ^ 85) << 1 = 111818146
+Carácter 'z' (122) | (111818146 ^ 122) << 1 = 223636400
+Carácter 'i' (105) | (223636400 ^ 105) << 1 = 447272882
+Carácter 'e' (101) | (447272882 ^ 101) << 1 = 894545838
+Carácter 'l' (108) | (894545838 ^ 108) << 1 = 1789091716
+Carácter '.' (46) | (1789091716 ^ 46) << 1 = 3578183508
+Carácter ' ' (32) | (3578183508 ^ 32) << 1 = 7156367080
+Carácter '¿' (191) | (7156367080 ^ 191) << 1 = 14312733870
+Carácter 'Y' (89) | (14312733870 ^ 89) << 1 = 28625467886
+Carácter ' ' (32) | (28625467886 ^ 32) << 1 = 57250935708
+Carácter 't' (116) | (57250935708 ^ 116) << 1 = 114501871568
+Carácter 'ú' (250) | (114501871568 ^ 250) << 1 = 229003742804
+Carácter '?' (63) | (229003742804 ^ 63) << 1 = 458007485654
+------------------------------
+Resultado final del ID: 458007485654
+uziel_gamma@uziel-PCINUX:~/NUM/xorid$ python3 xorid_dic.py
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> ollllllllllllllllllll
+
+Pasos del cálculo:
+------------------------------
+Carácter 'o' (111) | (0 ^ 111) << 1 = 222
+Carácter 'l' (108) | (222 ^ 108) << 1 = 356
+Carácter 'l' (108) | (356 ^ 108) << 1 = 528
+Carácter 'l' (108) | (528 ^ 108) << 1 = 1272
+Carácter 'l' (108) | (1272 ^ 108) << 1 = 2344
+Carácter 'l' (108) | (2344 ^ 108) << 1 = 4744
+Carácter 'l' (108) | (4744 ^ 108) << 1 = 9672
+Carácter 'l' (108) | (9672 ^ 108) << 1 = 19272
+Carácter 'l' (108) | (19272 ^ 108) << 1 = 38472
+Carácter 'l' (108) | (38472 ^ 108) << 1 = 76872
+Carácter 'l' (108) | (76872 ^ 108) << 1 = 153672
+Carácter 'l' (108) | (153672 ^ 108) << 1 = 307272
+Carácter 'l' (108) | (307272 ^ 108) << 1 = 614472
+Carácter 'l' (108) | (614472 ^ 108) << 1 = 1228872
+Carácter 'l' (108) | (1228872 ^ 108) << 1 = 2457672
+Carácter 'l' (108) | (2457672 ^ 108) << 1 = 4915272
+Carácter 'l' (108) | (4915272 ^ 108) << 1 = 9830472
+Carácter 'l' (108) | (9830472 ^ 108) << 1 = 19660872
+Carácter 'l' (108) | (19660872 ^ 108) << 1 = 39321672
+Carácter 'l' (108) | (39321672 ^ 108) << 1 = 78643272
+Carácter 'l' (108) | (78643272 ^ 108) << 1 = 157286472
+------------------------------
+Resultado final del ID: 157286472

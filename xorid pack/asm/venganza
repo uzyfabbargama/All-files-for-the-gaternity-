@@ -1,0 +1,40 @@
+uziel_gamma@uziel-PCINUX:~/NUM/xorid pack$ python3 '/home/uziel_gamma/NUM/xorid pack/Xip.py' 
+[S] Memoria sincronizada en: conciencia_uziel.xip
+  [L] Línea 2: Sintonizado ID 302206 (maria_dinero) -> 500
+  [L] Línea 3: Sintonizado ID 4454398 (bella_conciencia) -> 1048576
+  [L] Línea 4: Sintonizado ID 75094 (modo_turbo) -> activado
+
+[ÉXITO] El valor de 'maria_dinero' es: 500
+uziel_gamma@uziel-PCINUX:~/NUM/xorid pack$ cd ~
+uziel_gamma@uziel-PCINUX:~$ source juegos/bin/activate
+(juegos) uziel_gamma@uziel-PCINUX:~$ cd Num/"xorid pack"
+bash: cd: Num/xorid pack: No existe el archivo o el directorio
+(juegos) uziel_gamma@uziel-PCINUX:~$ cd 'Num/xorid pack'
+bash: cd: Num/xorid pack: No existe el archivo o el directorio
+(juegos) uziel_gamma@uziel-PCINUX:~$ cd 'NUM/xorid pack'
+(juegos) uziel_gamma@uziel-PCINUX:~/NUM/xorid pack$ xip_game.py
+xip_game.py: no se encontró la orden
+(juegos) uziel_gamma@uziel-PCINUX:~/NUM/xorid pack$ python3 xip_game.py
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+[SISTEMA] Buscando sintonía con save_game.xip...
+[XIP] ¡Progreso sintonizado en el disco!
+(juegos) uziel_gamma@uziel-PCINUX:~/NUM/xorid pack$ python3 xip_game.py
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.3)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+[SISTEMA] Buscando sintonía con save_game.xip...
+^CTraceback (most recent call last):
+  File "/home/uziel_gamma/NUM/xorid pack/xip_game.py", line 81, in <module>
+    img = fuente.render(f"PUNTOS: {puntos} | 'S' para Guardar con .xip", True, (255, 255, 255))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+(juegos) uziel_gamma@uziel-PCINUX:~/NUM/xorid pack$ python3 benchmark.json
+python3: can't open file '/home/uziel_gamma/NUM/xorid pack/benchmark.json': [Errno 2] No such file or directory
+(juegos) uziel_gamma@uziel-PCINUX:~/NUM/xorid pack$ python3 benchmark.py
+--- INICIANDO BENCHMARK (10,000 REGISTROS) ---
+Tiempo JSON: 13.6046 ms
+Tiempo XIP:  126.4812 ms
+
+Diferencia: XIP es 0.11 veces más rápido en lógica de lexeo.
+(juegos) uziel_gamma@uziel-PCINUX:~/NUM/xorid pack$
