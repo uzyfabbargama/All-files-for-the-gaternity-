@@ -297,7 +297,7 @@ def bhl_chs_algorithm():
             return variables_bhl
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
-            api_key = "AIzaSyBa6T3dKbfNA_SxI_dj5Ymk7fB6gk8i3zM"
+            api_key = "" #API KEY
 
         url_eval = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key={api_key}"
         headers = { 'Content-Type': 'application/json' }
@@ -420,3 +420,4 @@ if __name__ == "__main__":
     bhl_chs_algorithm()
 
     
+
