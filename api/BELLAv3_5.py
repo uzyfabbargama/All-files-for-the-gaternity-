@@ -1,5 +1,5 @@
 # =======================================================
-# BELLA v3.4: MOTOR DE PERSONALIDAD (4096 NEURONAS)feb. 24, 2026, 11:32:33
+# BELLA v3.4: MOTOR DE PERSONALIDAD (131k NEURONAS)feb. 24, 2026, 11:32:33
 # =======================================================
 #web
 # Configuración de Arquitectura
