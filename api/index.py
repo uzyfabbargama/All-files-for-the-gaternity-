@@ -1,4 +1,5 @@
 import tornado.ioloop
+import tornado.wsgi
 import tornado.web
 import json
 import os
@@ -101,11 +102,13 @@ def make_app():
         (r"/", MainHandler),
         (r"/chat", ChatHandler),
     ])
-
+app = tornado.wsgi.WSGIContainer(make_app())
 if __name__ == "__main__":
+    import tornado.httpserver
+    server = tornado.httserver.HTTPServer(make_app())
     app = make_app()
     # Cambia el puerto si lo necesitas
-    app.listen(8888)
+    server.listen(8888)
     print("--- BELLA v3.3 ONLINE ---")
     print("Accede desde tu celular usando la IP de tu PC puerto 8888")
     print("Ejemplo: http://192.168.1.22:8888")
