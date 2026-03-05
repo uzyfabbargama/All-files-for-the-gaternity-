@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "tornado" }
+    { "source": "/(.*)", "destination": "/api/index.py", "dependences": "tornado"}
   ]
 }
