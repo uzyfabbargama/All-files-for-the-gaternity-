@@ -9,10 +9,10 @@ from BELLAv3_5 import (
     entrenar_con_voz, 
     proyectar_interes_28, 
     exps, 
-    guardar_xor_pack_28, 
-    cargar_xor_pack # <-- Asegúrate de que esta función exista para recargar
+    #guardar_xor_pack_28, 
+    #cargar_xor_pack # <-- Asegúrate de que esta función exista para recargar
 )
-cargar_xor_pack()
+#cargar_xor_pack()
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -92,7 +92,7 @@ class ChatHandler(tornado.web.RequestHandler):
             "stats": stats
         }))
         # 4. Persistencia inmediata (aprovechando la velocidad de XIP)
-        guardar_xor_pack_28()
+        #guardar_xor_pack_28()
         
         # Nota: cargar_xor_pack() solo es necesario si otro proceso cambió el archivo.
         # Si Bella es el único proceso, no necesitas recargar lo que acabas de guardar.
