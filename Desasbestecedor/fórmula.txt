@@ -1,0 +1,21 @@
+proporciones
+magnesio = 50%
+
+flúor = 28.125%
+
+sodio = 12.5%
+nombre: Des-asbestecedor
+litio = 6.25%
+
+estroncio = 1.5625%
+
+hidrógeno = 1.5625
+
+extra = fósforo y limo para extraer el HF
+
+
+ácido lítico (disuelve rocas) + flúor + magnesio
+
+ácido lítico = flúor + litio + sodio + estroncio + hidrógeno
+
+extra de fósforo y limo, para extraer y reducir el HF
