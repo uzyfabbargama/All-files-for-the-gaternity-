@@ -1,0 +1,19 @@
+ r9 = 0x8000800080008000
+; r8 = 0
+
+shr r9, 15      ; bit15 → bit0
+or  r8b, r9b    ; r8b bit0 = 1
+shr r9, 1       ; elimina ese bit, trae el siguiente a bit0
+
+shr r9, 14      ; bit31 → bit0 (porque 31-15-1-14 = 1? No, revisemos)
+or  r8b, r9b    ; r8b bit1 = 1
+shr r9, 2       ; elimina
+
+shr r9, 13      ; bit47 → bit0
+or  r8b, r9b    ; r8b bit2 = 1
+shr r9, 3       ; elimina
+
+shr r9, 12      ; bit63 → bit0
+or  r8b, r9b    ; r8b bit3 = 1
+shr r9, 4       ; elimina
+arreglado, xd
