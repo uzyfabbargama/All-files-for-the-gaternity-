@@ -1,0 +1,14 @@
+#N-Lang 
+#Numberase
+
+VAR agua (100, "hirviendo") += 100 #hirviendo
+CTRL proceso {1, molino += 1} #0xFFFF
+VAR tubo (12, "tubo activado")
+
+CLASS tubería (argumento) = (
+    VAR a (1) += argumento
+);
+
+tubería(condición)
+
+CTRL muro {0} #0x7FFF
