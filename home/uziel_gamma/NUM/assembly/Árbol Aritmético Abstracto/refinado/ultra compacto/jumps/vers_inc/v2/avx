@@ -1,0 +1,8 @@
+Operaciones de "Presión" Masiva:
+VMOVDQA ymm, [mem]: Carga 256 bits (16 variables) desde tu NameSpace a un registro en un solo movimiento.
+
+VPADDW ymm1, ymm2, ymm3: Suma empaquetada de 16 bits. Esto es N-Lang puro: suma 16 "gotas" de presión a 16 variables distintas en un solo ciclo de reloj.
+
+VPEXTRQ r64, xmm, imm8: Extrae un bloque de 64 bits de un registro vectorial a un registro general para cuando necesites que el "portavoz" procese un goteo crítico.
+
+VPCMPEQW ymm1, ymm2, ymm3: Compara 16 variables al mismo tiempo. Genera una máscara de bits que tus CTRL pueden usar para decidir si bloquean o permiten el flujo.

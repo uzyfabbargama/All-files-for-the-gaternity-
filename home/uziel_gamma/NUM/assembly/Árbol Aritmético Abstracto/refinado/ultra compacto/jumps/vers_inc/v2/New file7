@@ -1,0 +1,25 @@
+nasm -f elf64 -g -F dwarf LPC2IN.asm -o LPC2IN.o; ld LPC2IN.o -o LPC2IN
+./LPC2IN
+
+
+break _Parser
+run
+
+watch $r13 if $r13 > 12
+
+record
+layout regs
+layout asm
+cd NUM/assembly; cd "Árbol Aritmético Abstracto/refinado/ultra compacto"; cd jumps/vers_inc
+
+# 1. Ponemos un breakpoint al inicio para que el contexto de registros exista
+break _start
+
+# 2. Corremos hasta el inicio
+run
+
+# 3. Ahora configuramos el watchpoint condicional con el símbolo $
+watch $r13 if $r13 > 12
+
+# 4. Le decimos que continúe hasta que ocurra el evento o termine
+continue

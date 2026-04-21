@@ -1,0 +1,57 @@
+se llama N-Lang, 
+
+r15 (viene del memotecnico: read IS (read 15)) contiene todo lo que el lenguaje necesita saber
+
+r9 (le ayuda a la PC a tomar condiciones, sin muchas ramas, y a dividir la ejecución)
+
+r14 (el ID del xorid)
+
+r12 y r10 (los números)
+
+y estoy pensando en agregar AVX, para el manejo de las variables (2 bytes)
+
+la estructura de memoria va a ser así:
+
+VAR = [4 bytes[20 bits de ID, 12 bits de tipo de keyword]][2 bytes][2 bytes][8 bytes]
+
+1ra sección: ID + TIPO: {
+VAR = 784 = 0x310
+CTRL = 1856 = 0x740
+CLASS = 3906 = 0xf42
+}
+
+2da sección: valor
+
+3ra sección: valor de restauración
+
+4ta sección: dirección de memoria, otorgada por el kernel por la macro expanse, (si es 0, se anula)
+
+CTRL = [4 bytes][2 bytes][2 bytes][4 bytes][4 bytes]
+
+1ra sección: ID + TIPO: {
+VAR = 784 = 0x310
+CTRL = 1856 = 0x740
+CLASS = 3906 = 0xf42
+}
+
+2. valor
+
+3. valor de restauración
+
+4. ID de variable o CTRL de destino
+
+5. valor para el destino
+
+CLASS = [4 bytes][8 bytes.....][4 bytes]
+
+1ra sección: ID + TIPO: {
+VAR = 784 = 0x310
+CTRL = 1856 = 0x740
+CLASS = 3906 = 0xf42
+}
+
+2. 8 bytes por operando
+
+3. 4 bytes por ID para llamar a diferentes secciones de los 8 MB
+
+(cuando se escribe "CLASS nombre (" lee bloques de 8 en 8, hasta que se topa con un ") = (" y ahí lee de 4 en 4
