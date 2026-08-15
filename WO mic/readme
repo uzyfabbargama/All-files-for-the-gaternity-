@@ -1,0 +1,4 @@
+#Para activar el Loop de audio, ¡Muy importante!
+sudo modprobe snd-aloop
+#Para iniciar
+arecord -D hw:Loopback,1,0 -f S16_LE -V mono /dev/null
