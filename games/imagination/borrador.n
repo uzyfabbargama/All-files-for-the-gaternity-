@@ -1,0 +1,68 @@
+print("Bienvenidos al juego")
+VAR vida = 100
+VAR hambre = 100
+VAR sed = 100
+VAR baño = 100
+VAR juego = [0x1000000]
+VAR COUNT = [0x32500]
+VAR byte_in_game = 0
+VAR cosas_agregadas = 0
+CTRL end {0}
+
+CLASS crear_seccion(seccion) = (
+	#byte_in_game
+	VAR total_bytes = len(seccion)+2,
+	for(in 0 to len(seccion) each 1),
+		CTRL tomar_byte {chain, juego[byte_in_game] = ord(seccion)},
+		CTRL actualizar_byte{chain, byte_in_game += 1}
+	endfor()
+	
+	if (total_bytes >= 255)
+	CTRL iniciar_for {chain, for (in 0 to len(total_bytes>>8) each 1)}
+		CTRL tomar_byte {chain, byte[for.in] = total_bytes&0xff}
+		CTRL agregar_al_contador {chain, COUNT[cosas_agregadas<<8] = total_bytes}
+		CTRL actualizar_cosas {chain, cosas_agregadas += 1}
+	endfor
+	else
+		agregar_al_contador
+		actualizar_cosas
+		byte_in_game += 2 # 2 ceros de separación
+);
+
+CLASS crear_linker(linker) = (
+	VAR num = linker,
+	CTRL game_linkID = {chain, juego[byte_in_game] = num}
+        byte_in_game += 3 # 3 ceros de separación
+);
+
+CLASS agregar_cosa_al_juego (cosa) = (
+	VAR i = 0,
+	VAR total_bytes = len(cosa)+1
+	for(in 0 to len(cosa) each 1),
+		juego[i] = ord[cosa[i]],
+		i += 1,
+	end,
+	if (total_bytes >= 255)
+	CTRL{chain, for (in 0 to len(total_bytes>>8) each 1)}
+		CTRL tomar_byte {chain, byte[for.in] = total_bytes&ff}
+		CTRL agregar_al_contador {chain, COUNT[cosas_agregadas<<8] = total_bytes}
+	else
+	
+	agregar_al_contador,
+	byte_in_game = 1 #un cero de separación
+	);
+	
+crear_seccion("sala_principal")
+	agregar_cosa_al_juego("sofá")
+        crear_linker(1)
+	agregar_cosa_al_juego("cocina")
+        crear_linker(2)
+	agregar_cosa_al_juego("patio")
+        crear_linker(3)
+	agregar_cosa_al_juego("escaleras")
+crear_seccion("cocina")
+	crear_linker(4)
+	agregar_cosa_al_juego("heladera")
+	crear_linker(5)
+	agregar_cosa_al_juego("mesa")
+	...

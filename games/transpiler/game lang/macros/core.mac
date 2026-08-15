@@ -1,0 +1,24 @@
+%macro xorid 0
+hand1 ^= hand
+hand1 <<= 1
+caracter += 1
+hand = ord(font_code[caracter])
+%endmacro
+
+%macro saltear_linea 0
+while hand != 10:
+    caracter += 1
+    hand = ord(font_code[caracter])
+caracter += 1
+hand1 ^= hand1
+%endmacro
+
+%macro ver_procesar_llave 0
+    hand = ord(font_code[caracter])
+    if hand == ord("{"):
+        contador_llaves += 1
+        caracter += 1
+    elif hand == ord("}"):
+        contador_llaves -= 1
+        caracter += 1
+%endmacro

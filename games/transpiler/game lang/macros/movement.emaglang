@@ -1,0 +1,32 @@
+Movement : code {
+	// colisiones
+			if (Mapa.Object.X == Personaje.SeeX || Mapa.X == Personaje.SeeMX) {
+				MoveX == 0
+			}
+			if (Mapa.Object.Y == Personaje.SeeY || Mapa.Object.Y == Personaje.SeeMY) {
+				MoveY = 0
+			}
+			if (Mapa.Z == Personaje.SeeZ || Mapa.Object.Z == Personaje.SeeMZ) {
+				MoveZ = 0
+			}
+			if (Keyword.Key("w")) {
+				MoveZ += 1
+			} else {
+				MoveZ -= min(0, 1) // restar 1, excepto si es 0
+			}
+			if (Keyword.Key("s")) {
+				MoveZ -= 1
+			} else {
+				Move += max(0, 1) // sumar 1, excepto si es 0
+			}
+			if (Keyword.Key("d")) {
+				MoveX += 1
+			} else {
+				MoveX -= min(0, 1) 
+			}
+			if (Keyword.Key("a")) {
+				MoveX -= 1
+			}else {
+				MoveX -= max(0, 1)
+			}
+}

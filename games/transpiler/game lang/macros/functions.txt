@@ -1,0 +1,93 @@
+
+
+
+
+%macro function_conditional
+def conditional():
+    global_initial %_, conditional_structures, %_
+    if hand1 == KW_if:
+        hand = ord(font_code[caracter])
+        if hand == ord("("): #ver paréntesis
+            while hand != ord(")"):
+                text += font_code[caracter]
+                caracter += 1
+                hand = ord(font_code[caracter])
+            conditional_structures.append(text)
+            hand = ord(font_code[caracter])
+            if hand == ord("{"): # el cuerpo
+                while hand != ord("}"):
+                    text += font_code[caracter]
+                    caracter += 1
+                    hand = ord(font_code[caracter])
+                conditional_structures.append(text)
+                text = chr(ord(text[0]) & 0) # destructor de texto
+                hand1 ^= hand1
+                %rep 2
+                xorid
+                %endrep
+                if hand1 == KW_if:
+                    conditional()
+                elif hand1 == KW_else:
+                	caracter -= 2
+                	%rep 4
+                	xorid
+                	%endrep
+                    conditional()
+    elif hand1 == KW_while:
+        hand = ord(font_code[caracter])
+        if hand == ord("("): #ver paréntesis
+            while hand != ord(")"):
+                text += font_code[caracter]
+                caracter += 1
+                hand = ord(font_code[caracter])
+            conditional_structures.append(text)
+            hand = ord(font_code[caracter])
+            if hand == ord("{"): # el cuerpo
+            while hand != ord("}"):
+                text += font_code[caracter]
+                caracter += 1
+                hand = ord(font_code[caracter])
+            conditional_structures.append(text)
+            text = chr(ord(text[0]) & 0) # destructor de texto
+    elif hand1 == KW_for:
+        hand = ord(font_code[caracter])
+        if hand == ord("("): #ver paréntesis
+            while hand != ord(")"):
+                text += font_code[caracter]
+                caracter += 1
+                hand = ord(font_code[caracter])
+            conditional_structures.append(text)
+            hand = ord(font_code[caracter])
+            if hand == ord("{"): # el cuerpo
+            while hand != ord("}"):
+                text += font_code[caracter]
+                caracter += 1
+                hand = ord(font_code[caracter])
+            conditional_structures.append(text)
+            text = chr(ord(text[0]) & 0) # destructor de texto
+%endmacro
+%macro function_tipado 0
+def tipado():
+        global hand, hand1
+        caracter += 1
+        if hand == KW_int:
+            tipo = "int"
+        elif hand == KW_str:
+            tipo = "str"
+        elif hand == KW_list:
+            caracter += 1
+            if hand == ord(":")
+                #ver llaves
+                caracter += 1
+                hand = ord(font_code[caracter])
+                if hand == ord("{"):
+                    contador_llaves += 1
+                    caracter += 1
+                elif hand == ord("}"):
+                    contador_llaves -= 1
+                    caracter += 1
+                    tomar_variable()
+                    tipado()
+        elif hand == KW_code:
+            code_struct()
+%endmacro

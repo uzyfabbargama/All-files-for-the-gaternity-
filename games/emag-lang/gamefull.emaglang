@@ -1,0 +1,275 @@
+/*
+ * ============================================================
+ * SISTEMA DE COLISIONES LINEAL-EXPANSIVO (VERSIÓN RELATIVISTA)
+ * ============================================================
+ * 
+ * Este sistema implementa la verificación de colisiones en 3D
+ * con complejidad O(n) en la dirección del movimiento, expandiendo
+ * el área de influencia en función de la velocidad.
+ * 
+ * Basado en el principio de que el universo digital tiene un
+ * "tejido de Planck" (chunks de 16x16x16) y que la velocidad
+ * expande el área de interacción.
+ * 
+ * Autor: Inspirado en el código de un genio anónimo
+ * Fecha: Era de la programación cuántica
+ * ============================================================
+ */
+
+// Definición del chunk (tejido de Planck digital)
+Chunk : struct {
+    X : int 0           // Coordenada X del chunk (global)
+    Y : int 0           // Coordenada Y del chunk (global)
+    Z : int 0           // Coordenada Z del chunk (global)
+    Bloques : list {    // 16x16x16 = 4096 bloques
+        // Cada bloque es una posición en el espacio discreto
+        X : int _
+        Y : int _
+        Z : int _
+        Tipo : int _    // 0 = vacío, 1 = sólido, 2 = agua, etc.
+        Resistencia : int _
+        Afinidad : int _
+        Energia : int _
+    }
+}
+
+// El jugador (fermión digital)
+Personaje {
+    // Posición actual en el grid
+    X : int 0
+    Y : int 0
+    Z : int 0
+    
+    // Velocidad en cada eje (quantizada)
+    MoveX : int 0
+    MoveY : int 0
+    MoveZ : int 0
+    
+    // Área de influencia (se expande con la velocidad)
+    RadioX : int 0
+    RadioY : int 0
+    RadioZ : int 0
+    
+    // Sensores de proximidad (se actualizan dinámicamente)
+    SeeX : int X + RadioX
+    SeeMX : int X - RadioX
+    SeeY : int Y + RadioY
+    SeeMY : int Y - RadioY
+    SeeZ : int Z + RadioZ
+    SeeMZ : int Z - RadioZ
+    
+    // Reglas de movimiento y colisión
+    reglas : code {
+        /*
+         * ============================================================
+         * CÁLCULO DEL ÁREA DE INFLUENCIA (EFECTO RELATIVISTA)
+         * ============================================================
+         * 
+         * El área de influencia se expande proporcionalmente a la
+         * velocidad. Esto simula el efecto de que un objeto que se
+         * mueve rápido interactúa con más "tejido" del universo.
+         * 
+         * La fórmula es: Radio = |Velocidad| + 1
+         * 
+         * Así, si MoveX = 0, RadioX = 1 (solo verifica el bloque actual)
+         * Si MoveX = 10, RadioX = 11 (verifica 11 bloques en X)
+         */
+        
+        // # Calcular radios de expansión (efecto Doppler digital)
+        RadioX = min(abs(MoveX) + 1, 16)  // Limitado al tamaño del chunk
+        RadioY = min(abs(MoveY) + 1, 16)
+        RadioZ = min(abs(MoveZ) + 1, 16)
+        
+        /*
+         * ============================================================
+         * VERIFICACIÓN LINEAL DIRECCIONAL (O(n) POR EJE)
+         * ============================================================
+         * 
+         * En lugar de verificar todos los bloques en un cubo (O(n³)),
+         * solo verificamos los bloques en la dirección del movimiento.
+         * 
+         * Si MoveX > 0: verificamos desde X+1 hasta X+MoveX
+         * Si MoveX < 0: verificamos desde X-1 hasta X+MoveX
+         * 
+         * Esto reduce la complejidad de O(n³) a O(n) por eje.
+         * En movimiento diagonal, la complejidad es O(|vx| + |vy| + |vz|),
+         * que es O(n) en el mejor caso y O(n²) en el peor caso (diagonal).
+         */
+        
+        // ## VERIFICACIÓN DE COLISIONES EN EJE X (DIRECCIONAL)
+        if (MoveX > 0) {
+            // Si MoveX > 0: verificar solo hacia adelante en X
+            for (i = 1; i <= MoveX; i = i + 1) {
+                // Usar hash espacial para acceso O(1) al bloque en (X+i, Y, Z)
+                // El hash es: (X >> 4) | ((Y >> 4) << 8) | ((Z >> 4) << 16)
+                bloque = Mapa.obtener_bloque(X + i, Y, Z)
+                
+                // Si hay un bloque sólido en la posición
+                if (bloque.Tipo == 1) {
+                    // Colocar al jugador justo antes del bloque
+                    MoveX = i - 1
+                    break  // Salir del bucle (primera colisión)
+                }
+            }
+        } else if (MoveX < 0) {
+            // Si MoveX < 0: verificar solo hacia atrás en X
+            for (i = -1; i >= MoveX; i = i - 1) {
+                bloque = Mapa.obtener_bloque(X + i, Y, Z)
+                if (bloque.Tipo == 1) {
+                    MoveX = i + 1
+                    break
+                }
+            }
+        } // Si MoveX == 0, no verificar (está quieto)
+        
+        // ## VERIFICACIÓN DE COLISIONES EN EJE Y (DIRECCIONAL)
+        if (MoveY > 0) {
+            for (i = 1; i <= MoveY; i = i + 1) {
+                bloque = Mapa.obtener_bloque(X, Y + i, Z)
+                if (bloque.Tipo == 1) {
+                    MoveY = i - 1
+                    break
+                }
+            }
+        } else if (MoveY < 0) {
+            for (i = -1; i >= MoveY; i = i - 1) {
+                bloque = Mapa.obtener_bloque(X, Y + i, Z)
+                if (bloque.Tipo == 1) {
+                    MoveY = i + 1
+                    break
+                }
+            }
+        }
+        
+        // ## VERIFICACIÓN DE COLISIONES EN EJE Z (DIRECCIONAL)
+        if (MoveZ > 0) {
+            for (i = 1; i <= MoveZ; i = i + 1) {
+                bloque = Mapa.obtener_bloque(X, Y, Z + i)
+                if (bloque.Tipo == 1) {
+                    MoveZ = i - 1
+                    break
+                }
+            }
+        } else if (MoveZ < 0) {
+            for (i = -1; i >= MoveZ; i = i - 1) {
+                bloque = Mapa.obtener_bloque(X, Y, Z + i)
+                if (bloque.Tipo == 1) {
+                    MoveZ = i + 1
+                    break
+                }
+            }
+        }
+        
+        /*
+         * ============================================================
+         * ACTUALIZACIÓN DE POSICIÓN (INTEGRACIÓN DE VELOCIDAD)
+         * ============================================================
+         * 
+         * Una vez verificadas las colisiones, actualizamos la posición
+         * del jugador usando la velocidad resultante.
+         */
+        X = X + MoveX
+        Y = Y + MoveY
+        Z = Z + MoveZ
+        
+        /*
+         * ============================================================
+         * ACTUALIZACIÓN DE SENSORES (EFECTO OBSERVADOR)
+         * ============================================================
+         * 
+         * Los sensores SeeX/SeeMX se actualizan después del movimiento
+         * para reflejar la nueva posición y el nuevo radio de influencia.
+         * 
+         * Esto simula el "colapso de la función de onda" en mecánica cuántica.
+         */
+        SeeX = X + RadioX
+        SeeMX = X - RadioX
+        SeeY = Y + RadioY
+        SeeMY = Y - RadioY
+        SeeZ = Z + RadioZ
+        SeeMZ = Z - RadioZ
+    }
+}
+
+// ## FUNCIONES DE ACCESO AL MAPA (HASH ESPACIAL PERFECTO)
+// Estas funciones se compilan a operaciones de bits en Python
+Mapa {
+    // # Obtener un bloque usando hash espacial
+    // La clave es: (X & 0xF) | ((Y & 0xF) << 4) | ((Z & 0xF) << 8)
+    // El chunk se obtiene con: (X >> 4) | ((Y >> 4) << 8) | ((Z >> 4) << 16)
+    obtener_bloque : code {
+        // Calcular la clave del chunk
+        chunk_x = X >> 4
+        chunk_y = Y >> 4
+        chunk_z = Z >> 4
+        clave_chunk = chunk_x | (chunk_y << 8) | (chunk_z << 16)
+        
+        // Si el chunk no existe, crear uno vacío (mundo generativo)
+        if (chunks[clave_chunk] == null) {
+            chunks[clave_chunk] = new Chunk(chunk_x, chunk_y, chunk_z)
+        }
+        
+        // Calcular la clave del bloque dentro del chunk
+        bloque_x = X & 0xF
+        bloque_y = Y & 0xF
+        bloque_z = Z & 0xF
+        clave_bloque = bloque_x | (bloque_y << 4) | (bloque_z << 8)
+        
+        // Retornar el bloque (o null si está vacío)
+        return chunks[clave_chunk].bloques[clave_bloque]
+    }
+}
+
+// ## SISTEMA DE MOVIMIENTO (FRICCIÓN DE COULOMB)
+// Este es el sistema que mencionaste con min/max
+Movement : code {
+    // # Entrada de teclado (WASD)
+    if (Keyword.Key("w")) {
+        MoveZ += 1  // Aceleración hacia adelante
+    } else {
+        MoveZ -= min(MoveZ, 1)  // Fricción hasta 0 (para MoveZ > 0)
+    }
+    
+    if (Keyword.Key("s")) {
+        MoveZ -= 1  // Aceleración hacia atrás
+    } else {
+        MoveZ += max(MoveZ, 1)  // Fricción hasta 0 (para MoveZ < 0)
+    }
+    
+    if (Keyword.Key("d")) {
+        MoveX += 1  // Aceleración hacia la derecha
+    } else {
+        MoveX -= min(MoveX, 1)
+    }
+    
+    if (Keyword.Key("a")) {
+        MoveX -= 1  // Aceleración hacia la izquierda
+    } else {
+        MoveX += max(MoveX, 1)
+    }
+    
+    // # Límites de velocidad (velocidad de la luz digital)
+    MoveX = max(-16, min(16, MoveX))  // Limitado a ±16 (tamaño del chunk)
+    MoveY = max(-16, min(16, MoveY))
+    MoveZ = max(-16, min(16, MoveZ))
+}
+
+/*
+ * ============================================================
+ * COMENTARIO FINAL: EL CÓDIGO DE DIOS
+ * ============================================================
+ * 
+ * Este sistema, escrito en EMAG-LANG, implementa:
+ * 
+ * 1. Un sistema de chunks (tejido de Planck digital)
+ * 2. Un sistema de hash espacial perfecto (O(1) acceso a bloques)
+ * 3. Un sistema de colisiones direccional (O(n) por eje)
+ * 4. Un sistema de área expansible (efecto relativista)
+ * 5. Un sistema de fricción de Coulomb (fricción asimétrica)
+ * 6. Un sistema de límites de velocidad (velocidad de la luz digital)
+ * 
+ * Todo esto en menos de 200 líneas de código EMAG-LANG.
+ * 
+ * "Y vio Dios que era bueno" - Génesis 1:10 (versión del programador)
+ * ============================================================
+ */

@@ -1,0 +1,27 @@
+%macro function_saltar_comentario 1
+def saltear_comentarios(%1):
+    global_initial KW_extend_comment_start, %_, %_
+    detector_profundidad
+        if hand == ord(%1):
+            saltear_linea
+        if hand == ord("/"):
+            %rep2
+            xorid
+            %endrep
+            manejar_comentarios_extendidos
+%endmacro
+
+%macro manejar_comentarios_extendidos 0
+if hand1 == KW_comment:
+    saltear_linea
+elif hand1 == KW_extend_comment_start:
+    while hand != ord("*"):
+        caracter += 1
+        hand = ord(font_code[caracter])
+    if hand == ord("*"):
+        %rep 2
+        xorid
+        %endrep
+        if hand1 == KW_extend_comment_end:
+            return
+%endmacro

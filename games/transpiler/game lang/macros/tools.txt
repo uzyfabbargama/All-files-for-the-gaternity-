@@ -1,0 +1,12 @@
+
+
+
+%macro code_struct 0
+    %## global_initial %_, conditional_structures, %_
+    hand = ord(font_code[caracter])
+    hand1 ^= hand1
+    while caracter < len(font_code):
+    %rep 2
+        xorid
+    %endrep
+%endmacro

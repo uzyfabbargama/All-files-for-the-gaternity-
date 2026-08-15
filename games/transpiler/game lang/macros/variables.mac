@@ -1,0 +1,26 @@
+%macro verificar_mayuscula_y_guion_bajo 0
+if hand > 62 and hand < 90
+	hand1 ^= hand1
+	while hand != ord(" "):
+		if hand == ord("_")
+			print("No usar guión bajo para nombres de variables")
+			sys.exit(1)
+		xorid
+	lista_variables.append(hand1)
+	caracter += 1
+else:
+	print("Empezar variables con mayúscula al principio")
+	sys.exit(1)
+%endmacro
+
+%macro function_tomar_variable 0
+def tomar_variable():
+    global_initial %_, %_, lista_variables
+    hand = ord(font_code[caracter])
+    if contador_llaves > 1:
+        hand = ord(font_code[caracter])
+        verificar_mayuscula_y_guion_bajo
+    else:
+        hand = ord(font_code[caracter])
+        verificar_mayuscula_y_guion_bajo
+%endmacro
