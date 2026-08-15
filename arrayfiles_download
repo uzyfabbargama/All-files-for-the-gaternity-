@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Definimos el array de nombres
+nombres=('/home/uziel_gamma/Descargas/Python-3.9.0/Lib/urllib/__pycache__/response.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/urllib/__pycache__/request.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/urllib/__pycache__/error.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/urllib/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/urllib/__pycache__/parse.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/ensurepip/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/ensurepip/__pycache__/__main__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/ensurepip/_bundled/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/lib2to3/pgen2/__pycache__/tokenize.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/lib2to3/pgen2/__pycache__/driver.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/lib2to3/pgen2/__pycache__/token.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/lib2to3/pgen2/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/lib2to3/pgen2/__pycache__/grammar.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/lib2to3/pgen2/__pycache__/parse.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/lib2to3/pgen2/__pycache__/pgen.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/lib2to3/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/xmlrpc/__pycache__/client.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/xmlrpc/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/json/__pycache__/scanner.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/json/__pycache__/decoder.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/json/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/json/__pycache__/encoder.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/http/__pycache__/client.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/http/__pycache__/cookies.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/http/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/http/__pycache__/cookiejar.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/ctypes/__pycache__/_endian.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/ctypes/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/html/__pycache__/parser.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/html/__pycache__/entities.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/html/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/xml/sax/__pycache__/xmlreader.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/xml/sax/__pycache__/_exceptions.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/xml/sax/__pycache__/__init__.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/xml/sax/__pycache__/handler.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/xml/sax/__pycache__/saxutils.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/xml/parsers/__pycache__/expat.cpython-39.pyc'
+'/home/uziel_gamma/Descargas/Python-3.9.0/Lib/xml/parsers/__pycache__/__init__.cpython-39.pyc'
+)
+
+# Iteramos sobre cada elemento
+for nombre in "${nombres[@]}"; do
+    echo "Procesando: $nombre"
+    sudo mv "$nombre" /media/uziel_gamma/BMA
+done

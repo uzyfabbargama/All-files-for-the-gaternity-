@@ -1,0 +1,60 @@
+import socket
+import pyaudio
+import threading
+import struct
+import time
+
+# Configuración
+CHUNK = 1024
+FORMAT = pyaudio.paInt16
+CHANNELS = 1
+RATE = 22050
+UMBRAL = 300 # Bajamos el umbral para que sea más fácil testear
+PUERTO_LOCAL = 49962
+IP_DESTINO = '147.185.221.30'
+PUERTO_DESTINO = 49962
+
+def modo_receptor():
+    try:
+        p = pyaudio.PyAudio()
+        stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, output=True)
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sock.bind(('0.0.0.0', PUERTO_LOCAL))
+        print("[*] Receptor listo.")
+        while True:
+            data, addr = sock.recvfrom(CHUNK * 2)
+            stream.write(data)
+    except Exception as e:
+        print(f"[-] Error en Receptor: {e}")
+
+def modo_emisor():
+    try:
+        p = pyaudio.PyAudio()
+        stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        print("[*] Emisor listo.")
+        while True:
+            data = stream.read(CHUNK, exception_on_overflow=False)
+            count = len(data) // 2
+            shorts = struct.unpack("%dh" % count, data)
+            volumen = sum(abs(s) for s in shorts) / count
+            if volumen > UMBRAL:
+                sock.sendto(data, (IP_DESTINO, PUERTO_DESTINO))
+    except Exception as e:
+        print(f"[-] Error en Emisor: {e}")
+
+# ... todo el código anterior ...
+
+print("--- Iniciando Transurgencia de Audio ---")
+t1 = threading.Thread(target=modo_receptor, daemon=True)
+t2 = threading.Thread(target=modo_emisor, daemon=True)
+
+t1.start()
+t2.start()
+
+# EL ANCLA: Esto obliga a Windows a mantener la terminal abierta
+try:
+    while True:
+        time.sleep(0.1) 
+except KeyboardInterrupt:
+    print("\nDeteniendo sistema...")

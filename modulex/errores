@@ -1,0 +1,64 @@
+uziel_gamma@uziel-PCINUX:~/modulex$ nasm -f elf64 -g -F dwarf modulex_v5.asm -o modulex_v5.o
+modulex_v5.asm:3: error: parser: instruction expected
+modulex_v5.asm:153: error: comma, colon, decorator or end of line expected after operand
+uziel_gamma@uziel-PCINUX:~/modulex$ nasm -f elf64 -g -F dwarf modulex_v5.asm -o modulex_v5.o
+modulex_v5.asm:3: error: parser: instruction expected
+modulex_v5.asm:153: error: comma, colon, decorator or end of line expected after operand
+uziel_gamma@uziel-PCINUX:~/modulex$ nasm -f elf64 -g -F dwarf modulex_v5.asm -o modulex_v5.o
+modulex_v5.asm:4: warning: uninitialized space declared in non-BSS section `.data': zeroing [-w+zeroing]
+modulex_v5.asm:138: error: invalid combination of opcode and operands
+modulex_v5.asm:31: ... from macro `is_kw' defined here
+modulex_v5.asm:140: error: symbol `_start.num' not defined
+modulex_v5.asm:142: error: invalid combination of opcode and operands
+modulex_v5.asm:31: ... from macro `is_kw' defined here
+modulex_v5.asm:143: error: invalid combination of opcode and operands
+modulex_v5.asm:39: ... from macro `capturar_byte' defined here
+modulex_v5.asm:146: error: invalid combination of opcode and operands
+modulex_v5.asm:31: ... from macro `is_kw' defined here
+modulex_v5.asm:147: error: invalid combination of opcode and operands
+modulex_v5.asm:39: ... from macro `capturar_byte' defined here
+modulex_v5.asm:148: error: invalid combination of opcode and operands
+modulex_v5.asm:99: ... from macro `procesar_bytes' defined here
+modulex_v5.asm:151: error: invalid combination of opcode and operands
+modulex_v5.asm:31: ... from macro `is_kw' defined here
+modulex_v5.asm:163: error: invalid combination of opcode and operands
+uziel_gamma@uziel-PCINUX:~/modulex$ nasm -f elf64 -g -F dwarf modulex_v5.asm -o modulex_v5.o
+modulex_v5.asm:4: warning: uninitialized space declared in non-BSS section `.data': zeroing [-w+zeroing]
+modulex_v5.asm:140: error: symbol `_start.num' not defined
+modulex_v5.asm:143: error: invalid combination of opcode and operands
+modulex_v5.asm:39: ... from macro `capturar_byte' defined here
+modulex_v5.asm:147: error: invalid combination of opcode and operands
+modulex_v5.asm:39: ... from macro `capturar_byte' defined here
+modulex_v5.asm:148: error: invalid combination of opcode and operands
+modulex_v5.asm:99: ... from macro `procesar_bytes' defined here
+modulex_v5.asm:163: error: invalid combination of opcode and operands
+uziel_gamma@uziel-PCINUX:~/modulex$ nasm -f elf64 -g -F dwarf modulex_v5.asm -o modulex_v5.o
+modulex_v5.asm:4: warning: uninitialized space declared in non-BSS section `.data': zeroing [-w+zeroing]
+modulex_v5.asm:140: error: symbol `_start.num' not defined
+modulex_v5.asm:143: error: invalid combination of opcode and operands
+modulex_v5.asm:39: ... from macro `capturar_byte' defined here
+modulex_v5.asm:147: error: invalid combination of opcode and operands
+modulex_v5.asm:39: ... from macro `capturar_byte' defined here                                                                                                              
+modulex_v5.asm:148: error: invalid combination of opcode and operands                                                                                                       
+modulex_v5.asm:99: ... from macro `procesar_bytes' defined here                                                                                                             
+modulex_v5.asm:163: error: invalid combination of opcode and operands
+uziel_gamma@uziel-PCINUX:~/modulex$ nasm -f elf64 -g -F dwarf modulex_v5.asm -o modulex_v5.o
+modulex_v5.asm:4: warning: uninitialized space declared in non-BSS section `.data': zeroing [-w+zeroing]
+modulex_v5.asm:143: error: invalid combination of opcode and operands
+modulex_v5.asm:39: ... from macro `capturar_byte' defined here
+modulex_v5.asm:147: error: invalid combination of opcode and operands
+modulex_v5.asm:39: ... from macro `capturar_byte' defined here
+modulex_v5.asm:148: error: invalid combination of opcode and operands
+modulex_v5.asm:99: ... from macro `procesar_bytes' defined here
+modulex_v5.asm:163: error: invalid combination of opcode and operands
+uziel_gamma@uziel-PCINUX:~/modulex$ nasm -f elf64 -g -F dwarf modulex_v5.asm -o modulex_v5.o
+modulex_v5.asm:4: warning: uninitialized space declared in non-BSS section `.data': zeroing [-w+zeroing]
+modulex_v5.asm:148: error: invalid combination of opcode and operands
+modulex_v5.asm:99: ... from macro `procesar_bytes' defined here
+modulex_v5.asm:163: error: invalid combination of opcode and operands
+uziel_gamma@uziel-PCINUX:~/modulex$ nasm -f elf64 -g -F dwarf modulex_v5.asm -o modulex_v5.o
+modulex_v5.asm:149: error: invalid combination of opcode and operands
+modulex_v5.asm:100: ... from macro `procesar_bytes' defined here
+modulex_v5.asm:164: error: invalid combination of opcode and operands
+uziel_gamma@uziel-PCINUX:~/modulex$ nasm -f elf64 -g -F dwarf modulex_v5.asm -o modulex_v5.o
+uziel_gamma@uziel-PCINUX:~/modulex$ 
