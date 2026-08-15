@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+FMLCorePlugin: net.mcreator.uzyopt.UzyCorePlugin
+FMLCorePluginContainsFMLMod: true
+Created-By: 17.0.18 (Ubuntu)
+
