@@ -1,0 +1,26 @@
+Para convertir tu arquitectura **UZY-128** en una verdadera prueba de estrés para PSeInt y medir la velocidad de refresco de pantalla, necesitas forzar al sistema a realizar el ciclo más pesado posible: **la auto-modificación masiva de la RAM de video.**
+
+Aquí te explico cómo configurar esta prueba técnica:
+
+### 1. El concepto de la prueba: "Ruido Transurgente"
+[cite_start]La forma más agresiva de estresar PSeInt no es solo sumar números, sino obligar al subproceso `Dibujar_Pantalla` a procesar 256 cambios de caracteres ASCII en cada ciclo[cite: 21, 22]. 
+* [cite_start]**El objetivo:** Llenar la `R_RAM` con valores aleatorios o incrementales y forzar a `Limpiar Pantalla` y al bucle `Para` de renderizado a trabajar a su máxima capacidad[cite: 21, 22].
+
+### 2. Configuración de la secuencia de Opcodes
+[cite_start]Para que la arquitectura se estrese a sí misma, puedes programar un bucle que escriba en la memoria de video y luego use **V-Ans** para saltar[cite: 13, 14]:
+
+* [cite_start]**Paso 1 (Escritura):** Usa el Opcode **16** (Save) para escribir un valor incremental en una dirección de la `R_RAM`[cite: 11, 14].
+* [cite_start]**Paso 2 (Iteración):** Usa una suma (Opcode **1**) para aumentar el valor del registro **V** y, mediante `vans = 2` (**VB**), mueve ese resultado a la dirección de memoria del siguiente ciclo[cite: 11, 13].
+* [cite_start]**Paso 3 (Salto):** Como el **PC** es una "facilitación de hardware", deja que recorra toda la `A_RAM` escribiendo en la pantalla en cada paso[cite: 25, 26].
+
+### 3. Implementación en el Algoritmo
+Dentro de tu `Repetir` en `hola.psc`, puedes insertar este código de estrés:
+
+> [cite_start]**Nota técnica:** Al no tener un retardo (`Esperar`), PSeInt intentará ejecutar los procesos de `Limpiar Pantalla` y la concatenación de la cadena `textura` tan rápido como el procesador de tu PC lo permita[cite: 21, 22, 28].
+
+### 4. ¿Qué observar en la prueba?
+* [cite_start]**Latencia de `Limpiar Pantalla`:** Si notas un parpadeo constante, has llegado al límite de la velocidad de refresco del terminal de PSeInt[cite: 21].
+* [cite_start]**Carga de CPU:** Al procesar la `textura` para cada uno de los 256 píxeles simulados, verás cuánto tarda en reconstruir la cadena `linea` antes de hacer el `Escribir` final[cite: 21, 22].
+* [cite_start]**V-Ans 20 (4+16):** Si usas el valor **20** para modificar la `A_RAM` mientras el programa corre, estarás probando no solo la velocidad visual, sino la estabilidad de la lógica de auto-escritura en tiempo real[cite: 26, 28].
+
+¿Te gustaría que definamos los valores específicos para llenar la `A_RAM` desde la posición 1 y que empiece a "bombardear" la pantalla con caracteres aleatorios?
