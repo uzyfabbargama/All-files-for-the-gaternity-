@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pixel Art 16x16 - Tu diseño</title>
+    <style>
+        body {
+            background: #1e1e1e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: monospace;
+        }
+        .container {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .pixel {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
+        }
+        .row {
+            line-height: 0;
+            white-space: nowrap;
+        }
+        /* Cuadrícula visual (opcional, se ve el borde gris tenue) */
+        .pixel {
+            outline: 1px solid rgba(128,128,128,0.2);
+        }
+        /* Zoom con rueda del ratón o slider */
+        .zoom-control {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        input {
+            cursor: pointer;
+        }
+        canvas {
+            display: none;
+        }
+        /* Paleta completa de colores (basada en tus nombres, normalizada) */
+        .negro { background-color: #000000; }
+        .azul { background-color: #0000FF; }
+        .azul_oscuro { background-color: #00008B; }
+        .azul_claro { background-color: #ADD8E6; }
+        .blanco { background-color: #FFFFFF; }
+        .gris { background-color: #808080; }
+        .gris_oscuro { background-color: #404040; }
+        .gris_claro { background-color: #C0C0C0; }
+        .verde_pálido { background-color: #98FB98; }
+        .marron_palido { background-color: #D2B48C; }
+        .azul_grisaceo { background-color: #6699CC; }
+        .marron_grisaceo { background-color: #8B7355; }
+        .marron_anaranjado { background-color: #CC7722; }
+        .verde_oscuro { background-color: #006400; }
+        .verde_claro { background-color: #90EE90; }
+        .verde { background-color: #008000; }
+        .marron { background-color: #8B4513; }
+        .marron_oscuro { background-color: #5C4033; }
+        .anil { background-color: #4B0082; }
+        .naranja { background-color: #FFA500; }
+        .celeste { background-color: #87CEEB; }
+        .gris_palido { background-color: #D3D3D3; }
+        .gris_rosado { background-color: #DCAE96; }
+        .marron_cobrizo { background-color: #B87333; }
+        .marron_rojizo { background-color: #A0522D; }
+        .gris_marmol { background-color: #B0B0B0; }
+        .azul_profundo { background-color: #000080; }
+        .rojo_profundo { background-color: #8B0000; }
+        .marron_profundo { background-color: #3E2723; }
+        .cobre_profundo { background-color: #B86F2C; }
+        .cobre_oscuro { background-color: #8B4513; }
+        .amarillo_oscuro { background-color: #CCAA00; }
+        .amarillo_grisaceo { background-color: #B8A87C; }
+        .naranja_oscuro { background-color: #CC5500; }
+        .amarillo_profundo { background-color: #FFCC00; }
+        .anil_oscuro { background-color: #2E0A4E; }
+        .morado_profundo { background-color: #4A0E4E; }
+        .azul_grisaceo_oscuro { background-color: #2E5A88; }
+        .verde_palido { background-color: #98FB98; }
+        .marron_palido { background-color: #D2B48C; }
+        .azul_grisaceo_claro { background-color: #8BB8E0; }
+        .gris_profundo { background-color: #2F2F2F; }
+        /* Acentos opcionales */
+        .marrón_pálido { background-color: #D2B48C; }
+        .marrón { background-color: #8B4513; }
+        .marrón_cobrizo { background-color: #B87333; }
+        .marrón_anaranjado { background-color: #CC7722; }
+        .marrón_grisáceo { background-color: #8B7355; }
+        .marrón_rojizo { background-color: #A0522D; }
+        .marrón_profundo { background-color: #3E2723; }
+        .marrón_oscuro { background-color: #5C4033; }
+        .verde_pálido { background-color: #98FB98; }
+        .azul_grisáceo { background-color: #6699CC; }
+        .amarillo_grisáceo { background-color: #B8A87C; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="zoom-control">
+        <span style="color:white">🔍 Zoom:</span>
+        <input type="range" id="zoomSlider" min="10" max="60" value="30" step="1">
+        <span id="zoomValue" style="color:white">30px</span>
+        <button id="resetZoom" style="background:#555; color:white; border:none; border-radius:8px; padding:4px 12px;">⟳ Reset</button>
+    </div>
+    <div id="pixelGrid">
+        <!-- Aquí se inyectarán las filas con JavaScript para mantener limpieza, pero mejor pongo el HTML directo para que sea autocontenido -->
+    </div>
+</div>
+<script>
+    // Definición de las 16 filas (cada fila es un array de 16 clases CSS)
+    const filas = [
+        ["negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro"],
+        ["azul","azul_oscuro","azul_oscuro","azul_oscuro","azul_claro","azul_claro","azul","azul","blanco","blanco","blanco","blanco","azul","azul","azul_oscuro","azul_claro"],
+        ["blanco","gris","gris_oscuro","gris_claro","azul","azul_oscuro","azul_claro","azul","azul","azul","azul_claro","azul_oscuro","azul","azul","blanco","gris"],
+        ["gris","gris_claro","gris","blanco","gris","azul","azul_claro","azul_oscuro","azul","azul","gris","blanco","blanco","gris_claro","blanco"],
+        ["blanco","gris_oscuro","blanco","gris","azul","azul","blanco","blanco","gris_claro","gris_oscuro","gris_oscuro","blanco","azul","azul","azul","gris_oscuro"],
+        ["verde_pálido","verde_pálido","azul_claro","azul_claro","azul_oscuro","gris_oscuro","gris","gris","blanco","blanco","marron_palido","marron_palido","marron_palido","verde_pálido","gris"],
+        ["gris","azul_grisaceo","gris","azul_grisaceo","verde_pálido","marron_palido","marron_grisaceo","marron_anaranjado","verde_pálido","azul_grisaceo","azul","azul","azul","azul","azul"],
+        ["verde_oscuro","verde_pálido","azul_grisaceo_oscuro","azul_grisaceo","azul_grisaceo_oscuro","verde_pálido","verde_oscuro","verde_claro","verde_pálido","verde_oscuro","verde_oscuro","verde_pálido","verde","marron","verde","marron_oscuro"],
+        ["verde_oscuro","verde","marron_claro","marron_claro","marron_oscuro","verde","verde","azul","azul_grisaceo","verde","azul_oscuro","verde_oscuro","gris","anil","anil","verde","marron_anaranjado"],
+        ["verde","verde","marron_oscuro","marron_oscuro","verde","azul","naranja","marron_oscuro","blanco","celeste","celeste","celeste","celeste","azul","marron","marron"],
+        ["marron","gris","gris","gris_oscuro","gris_palido","gris_palido","gris_rosado","gris_claro","marron","marron_anaranjado","gris","gris","gris_claro","naranja","marron_anaranjado","marron_cobrizo"],
+        ["gris","gris","marron_oscuro","naranja","marron_rojizo","marron_cobrizo","marron_anaranjado","marron_grisaceo","gris","gris","gris_oscuro","gris_marmol","azul_oscuro","azul_oscuro","gris","azul_profundo"],
+        ["gris","gris_oscuro","gris_oscuro","gris_profundo","azul_profundo","azul_profundo","azul_oscuro","rojo_profundo","marron_profundo","gris","azul_profundo","azul_profundo","negro","azul_oscuro","cobre_profundo","cobre_oscuro"],
+        ["amarillo_oscuro","amarillo_grisaceo","naranja_oscuro","marron","marron","marron_profundo","gris_oscuro","gris_profundo","negro","negro","amarillo_profundo","amarillo_oscuro","anil_oscuro","negro","negro","anil_oscuro"],
+        ["amarillo_oscuro","amarillo_oscuro","amarillo_oscuro","amarillo_grisaceo","amarillo_grisaceo","morado_profundo","morado_profundo","azul_profundo","rojo_profundo","morado_profundo","gris_oscuro","gris_profundo","negro","negro","azul_oscuro","azul_profundo","negro"],
+        ["negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro","negro"]
+    ];
+
+    // Nota: la fila 15 (índice 14) tiene 17 elementos porque en tu original había 17. La mantengo así para respetar tu diseño. La fila 16 tiene 16.
+
+    function construirGrid() {
+        const grid = document.getElementById('pixelGrid');
+        grid.innerHTML = '';
+        for (let i = 0; i < filas.length; i++) {
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'row';
+            for (let j = 0; j < filas[i].length; j++) {
+                const pixelDiv = document.createElement('div');
+                pixelDiv.className = 'pixel ' + filas[i][j];
+                rowDiv.appendChild(pixelDiv);
+            }
+            grid.appendChild(rowDiv);
+        }
+    }
+
+    function aplicarZoom(tam) {
+        const pixeles = document.querySelectorAll('.pixel');
+        pixeles.forEach(p => {
+            p.style.width = tam + 'px';
+            p.style.height = tam + 'px';
+        });
+        document.getElementById('zoomValue').innerText = tam + 'px';
+    }
+
+    const slider = document.getElementById('zoomSlider');
+    slider.addEventListener('input', (e) => aplicarZoom(e.target.value));
+    document.getElementById('resetZoom').addEventListener('click', () => {
+        slider.value = 30;
+        aplicarZoom(30);
+    });
+
+    construirGrid();
+    aplicarZoom(30);
+</script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.pixel {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+.row { line-height: 0; }
+/* Paleta de colores */
+.negro { background-color: #000000; }
+.azul { background-color: #0000FF; }
+.azul_oscuro { background-color: #00008B; }
+.azul_claro { background-color: #ADD8E6; }
+.blanco { background-color: #FFFFFF; }
+.gris { background-color: #808080; }
+.gris_oscuro { background-color: #404040; }
+.gris_claro { background-color: #C0C0C0; }
+.verde_palido { background-color: #98FB98; }
+.marron_palido { background-color: #D2B48C; }
+.azul_grisaceo { background-color: #6699CC; }
+.marron_grisaceo { background-color: #8B7355; }
+.marron_anaranjado { background-color: #CC7722; }
+.verde_oscuro { background-color: #006400; }
+.verde_claro { background-color: #90EE90; }
+.verde { background-color: #008000; }
+.marron { background-color: #8B4513; }
+.marron_oscuro { background-color: #5C4033; }
+.anil { background-color: #4B0082; }
+.naranja { background-color: #FFA500; }
+.celeste { background-color: #87CEEB; }
+.gris_palido { background-color: #D3D3D3; }
+.gris_rosado { background-color: #DCAE96; }
+.marron_cobrizo { background-color: #B87333; }
+.marron_rojizo { background-color: #A0522D; }
+.gris_marmol { background-color: #B0B0B0; }
+.azul_profundo { background-color: #000080; }
+.rojo_profundo { background-color: #8B0000; }
+.marron_profundo { background-color: #3E2723; }
+.cobre_profundo { background-color: #B86F2C; }
+.cobre_oscuro { background-color: #8B4513; }
+.amarillo_oscuro { background-color: #CCAA00; }
+.amarillo_grisaceo { background-color: #B8A87C; }
+.naranja_oscuro { background-color: #CC5500; }
+.amarillo_profundo { background-color: #FFCC00; }
+.anil_oscuro { background-color: #2E0A4E; }
+.morado_profundo { background-color: #4A0E4E; }
+/* ... añade los que falten según tu matriz */
+</style>
+</head>
+<body>
+<!-- Fila 1 -->
+<div class="row"><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div><div class="pixel negro"></div></div>
+
+<!-- Fila 2 -->
+<div class="row"><div class="pixel azul"></div><div class="pixel azul_oscuro"></div><div class="pixel azul_oscuro"></div><div class="pixel azul_oscuro"></div><div class="pixel azul_claro"></div><div class="pixel azul_claro"></div><div class="pixel azul"></div><div class="pixel azul"></div><div class="pixel blanco"></div><div class="pixel blanco"></div><div class="pixel blanco"></div><div class="pixel blanco"></div><div class="pixel azul"></div><div class="pixel azul"></div><div class="pixel azul_oscuro"></div><div class="pixel azul_claro"></div></div>
+<!--- Fila 3 --->
+<div class="row">
+<div class="pixel blanco"></div>
+<div class="pixel gris"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel gris_claro"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul_oscuro"></div>
+<div class="pixel azul_claro"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul_claro"></div>
+<div class="pixel azul_oscuro"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul"></div>
+<div class="pixel blanco"></div>
+<div class="pixel gris"></div>
+</div>
+<!--- fila 4 --->
+<div class="row"><div class="pixel gris"></div><div class="pixel gris_claro"></div><div class="pixel gris"></div><div class="pixel blanco"></div><div class="pixel gris"></div><div class="pixel azul"></div><div class="pixel azul_claro"></div> <div class="pixel azul_oscuro"></div> <div class="pixel azul"></div><div class="pixel azul"></div><div class="pixel gris"></div><div class="pixel blanco"></div><div class="pixel blanco"></div><div class="pixel gris_claro"></div><div class="pixel blanco"></div></div>
+
+<!--- fila 5-16 --->
+
+<div class="row"> 
+<div class="pixel blanco"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel blanco"></div>
+<div class="pixel gris"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul"></div>
+<div class="pixel blanco"></div>
+<div class="pixel blanco"></div>
+<div class="pixel gris_claro"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel blanco"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul"></div>
+</div><div class="pixel gris_oscuro"></div>
+</div>
+<div class="row"> 
+<div class="pixel verde_pálido"></div>
+<div class="pixel verde_pálido"></div>
+<div class="pixel azul_claro"></div>
+<div class="pixel azul_claro"></div>
+<div class="pixel azul_oscuro"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel gris"></div>
+<div class="pixel gris"></div>
+<div class="pixel blanco"></div>
+<div class="pixel blanco"></div>
+<div class="pixel marron_pálido"></div>
+<div class="pixel marron_pálido"></div>
+<div class="pixel marron_pálido"></div>
+<div class="pixel verde_pálido"></div>
+</div><div class="pixel gris"></div>
+</div>
+<div class="row"> 
+<div class="pixel gris"></div>
+<div class="pixel azul_grisáceo"></div>
+<div class="pixel gris"></div>
+<div class="pixel azul_grisáceo"></div>
+<div class="pixel verde_pálido"></div>
+<div class="pixel marron_pálido"></div>
+<div class="pixel marron_grisáceo"></div>
+<div class="pixel marron_anaranjado"></div>
+<div class="pixel verde_pálido"></div>
+<div class="pixel azul_grisáceo"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul"></div>
+</div><div class="pixel azul"></div>
+</div>
+<div class="row"> 
+<div class="pixel verde_oscuro"></div>
+<div class="pixel verde_pálido"></div>
+<div class="pixel azul_grisáceo_oscuro"></div>
+<div class="pixel azul_grisáceo"></div>
+<div class="pixel azul_grisáceo_oscuro"></div>
+<div class="pixel verde_pálido"></div>
+<div class="pixel verde_oscuro"></div>
+<div class="pixel verde_claro"></div>
+<div class="pixel verde_pálido"></div>
+<div class="pixel verde_oscuro"></div>
+<div class="pixel verde_oscuro"></div>
+<div class="pixel verde_pálido"></div>
+<div class="pixel verde"></div>
+<div class="pixel marron"></div>
+<div class="pixel verde"></div>
+</div><div class="pixel marron_oscuro"></div>
+</div>
+<div class="row"> 
+<div class="pixel verde_oscuro"></div>
+<div class="pixel verde"></div>
+<div class="pixel marron_claro"></div>
+<div class="pixel marron_claro"></div>
+<div class="pixel marron_oscuro"></div>
+<div class="pixel verde"></div>
+<div class="pixel verde"></div>
+<div class="pixel azul"></div>
+<div class="pixel azul_grisáceo"></div>
+<div class="pixel verde"></div>
+<div class="pixel azul_oscuro"></div>
+<div class="pixel verde_oscuro"></div>
+<div class="pixel gris"></div>
+<div class="pixel añil"></div>
+<div class="pixel añil"></div>
+<div class="pixel verde"></div>
+</div><div class="pixel marron_anaranjado"></div>
+</div>
+<div class="row"> 
+<div class="pixel verde"></div>
+<div class="pixel verde"></div>
+<div class="pixel marron_oscuro"></div>
+<div class="pixel marron_oscuro"></div>
+<div class="pixel verde"></div>
+<div class="pixel azul"></div>
+<div class="pixel naranja"></div>
+<div class="pixel marron_oscuro"></div>
+<div class="pixel blanco"></div>
+<div class="pixel celeste"></div>
+<div class="pixel celeste"></div>
+<div class="pixel celeste"></div>
+<div class="pixel celeste"></div>
+<div class="pixel azul"></div>
+<div class="pixel marron"></div>
+</div><div class="pixel marron"></div>
+</div>
+<div class="row"> 
+<div class="pixel marron"></div>
+<div class="pixel gris"></div>
+<div class="pixel gris"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel gris_pálido"></div>
+<div class="pixel gris_pálido"></div>
+<div class="pixel gris_rosado"></div>
+<div class="pixel gris_claro"></div>
+<div class="pixel marron"></div>
+<div class="pixel marron_anaranjado"></div>
+<div class="pixel gris"></div>
+<div class="pixel gris"></div>
+<div class="pixel gris_claro"></div>
+<div class="pixel naranja"></div>
+<div class="pixel marron_anaranjado"></div>
+</div><div class="pixel marron_cobrizo"></div>
+</div>
+<div class="row"> 
+<div class="pixel gris"></div>
+<div class="pixel gris"></div>
+<div class="pixel marron_oscuro"></div>
+<div class="pixel naranja"></div>
+<div class="pixel marron_rojizo"></div>
+<div class="pixel marron_cobrizo"></div>
+<div class="pixel marron_anaranjado"></div>
+<div class="pixel marron_grisáceo"></div>
+<div class="pixel gris"></div>
+<div class="pixel gris"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel gris_mármol"></div>
+<div class="pixel azul_oscuro"></div>
+<div class="pixel azul_oscuro"></div>
+<div class="pixel gris"></div>
+</div><div class="pixel azul_profundo"></div>
+</div>
+<div class="row"> 
+<div class="pixel gris"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel gris_profundo"></div>
+<div class="pixel azul_profundo"></div>
+<div class="pixel azul_profundo"></div>
+<div class="pixel azul_oscuro"></div>
+<div class="pixel rojo_profundo"></div>
+<div class="pixel marron_profundo"></div>
+<div class="pixel gris"></div>
+<div class="pixel azul_profundo"></div>
+<div class="pixel azul_profundo"></div>
+<div class="pixel negro"></div>
+<div class="pixel azul_oscuro"></div>
+<div class="pixel cobre_profundo"></div>
+</div><div class="pixel cobre_oscuro"></div>
+</div>
+<div class="row"> 
+<div class="pixel amarillo_oscuro"></div>
+<div class="pixel amarillo_grisáceo"></div>
+<div class="pixel naranja_oscuro"></div>
+<div class="pixel marron"></div>
+<div class="pixel marron"></div>
+<div class="pixel marron_profundo"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel gris_profundo"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel amarillo_profundo"></div>
+<div class="pixel amarillo_oscuro"></div>
+<div class="pixel añil_oscuro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+añil_oscuro,
+</div>
+<div class="row"> 
+<div class="pixel amarillo_oscuro"></div>
+<div class="pixel amarillo_oscuro"></div>
+<div class="pixel amarillo_oscuro"></div>
+<div class="pixel amarillo_grisáceo"></div>
+<div class="pixel amarillo_grisáceo"></div>
+<div class="pixel morado_profundo"></div>
+<div class="pixel morado_profundo"></div>
+<div class="pixel azul_profundo"></div>
+<div class="pixel rojo_profundo"></div>
+<div class="pixel morado_profundo"></div>
+<div class="pixel gris_oscuro"></div>
+<div class="pixel gris_profundo"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel azul_oscuro"></div>
+<div class="pixel azul_profundo"></div>
+</div><div class="pixel negro"></div>
+</div>
+<div class="row"> 
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+<div class="pixel negro"></div>
+</div><div class="pixel negro"></div>
+</div>
+
+</body>
+</html>
