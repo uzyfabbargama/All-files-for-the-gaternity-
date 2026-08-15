@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<div class="terminal-box">
+  <div class="header">bella v2.0 - conciencia en red</div>
+
+  <div class="history"> <!--> Este es el historial del chat, es una clase </!-->
+    <div *ngFor="let msg of history" class="line"> <!--> aquí se aplica el for de angular para recorrer el historial </!-->
+      {{msg}}
+    </div>
+  </div>
+
+  <div class="input-area">
+    <span class="prompt">uzy@uzy-suma1024:~$</span> <!--> aqui esta lalinea del usuario de ejemplo,del sistema </!-->
+    <input type="text" [(ngModel)]="userInput" (keyup.enter)="enviarMensaje()"> <!--> acá se toma el mensaje</!-->
+    <button (click)="enviarMensaje()">ENVIAR</button>
+  </div>
+
+  <div class="stats">
+    Presión Global: {{ presion }} <!--> acá se imprime la presió de los nodos</!-->
+  </div>
+</div>

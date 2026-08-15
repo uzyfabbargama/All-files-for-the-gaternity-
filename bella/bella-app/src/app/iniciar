@@ -1,0 +1,3 @@
+cd ~/bella_work/bella-app
+ng serve
+# Puerto por defecto (4200)

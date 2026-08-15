@@ -1,0 +1,11 @@
+.terminal-box{
+  background-color: #0d0d0d;            /* Fondo casi negro */
+  color : #00ff41;                      /* Texto verde neón (estilo matrix/terminal) */
+  padding: 20px;                        /* Espaciado interno de 20px (pixeles)) */
+  font-family:'Courier New', monospace; /* Corregido, antes front-family*/
+  height: 80vh;
+}
+.stats {
+    color: #ffaa00;        /*Texto en naranja/ámbar, para info*/
+    font-size: 0.9em;      /* Tamaño ligeramente más pequeño, para no tapar el contenido*/
+    margin-top: 10px;}     /* Separación superior de 10px */
