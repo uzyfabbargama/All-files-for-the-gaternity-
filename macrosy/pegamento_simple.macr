@@ -1,0 +1,5 @@
+%macro imprimir 1
+    print(%1)
+%endmacro
+# → print("Hola mundo")
+imprimir "Hola %/mundo"  

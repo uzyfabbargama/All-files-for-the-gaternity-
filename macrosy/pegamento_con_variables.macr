@@ -1,0 +1,7 @@
+%assign nombre "Juan"
+%assign apellido "Pérez"
+%macro saludo 1
+    print("Hola, " + %1)
+%endmacro
+
+saludo "Sr. %/%[nombre] %/%[apellido]"  # → print("Hola, Sr. Juan Pérez")

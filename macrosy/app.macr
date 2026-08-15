@@ -1,0 +1,156 @@
+%macro aplicacion_web 7
+    %## ============================================
+    %## ARQUITECTURA: Chip web completo
+    %## PARAMS:
+    %##   %1 = backend (flask/django/fastapi) o %_ para omitir
+    %##   %2 = frontend (react/vue/html) o %_ para omitir
+    %##   %3 = base_datos (postgres/mysql/sqlite) o %_ para omitir
+    %##   %4 = auth (jwt/sessions/oauth) o %_ para omitir
+    %##   %5 = api (rest/graphql) o %_ para omitir
+    %##   %6 = cache (redis/memcached) o %_ para omitir
+    %##   %7 = testing (pytest/unittest) o %_ para omitir
+    %## ============================================
+    
+    %## --- CIRCUITO 1: BACKEND ---
+    %if "%1" != "%_"
+        # ===== BACKEND: %1 =====
+        from %1 import Flask, render_template
+        app = Flask(__name__)
+        
+        @app.route('/')
+        def home():
+            return render_template('index.html')
+        
+        @app.route('/api/data')
+        def api_data():
+            return {"status": "ok", "data": "Hello from %1"}
+        
+        if __name__ == '__main__':
+            app.run(debug=True, port=5000)
+    %endif
+    
+    %## --- CIRCUITO 2: FRONTEND ---
+    %if "%2" != "%_"
+        # ===== FRONTEND: %2 =====
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Aplicación %2</title>
+            <script src="https://cdn.jsdelivr.net/npm/%2@18/umd/%2.production.min.js"></script>
+        </head>
+        <body>
+            <div id="root"></div>
+            <script>
+                const App = () => {
+                    const [data, setData] = React.useState([]);
+                    
+                    React.useEffect(() => {
+                        fetch('/api/data')
+                            .then(r => r.json())
+                            .then(setData);
+                    }, []);
+                    
+                    return (
+                        <div>
+                            <h1>🚀 Aplicación con %2</h1>
+                            <pre>{JSON.stringify(data, null, 2)}</pre>
+                        </div>
+                    );
+                };
+                
+                ReactDOM.render(<App />, document.getElementById('root'));
+            </script>
+        </body>
+        </html>
+    %endif
+    
+    %## --- CIRCUITO 3: BASE DE DATOS ---
+    %if "%3" != "%_"
+        # ===== BASE DE DATOS: %3 =====
+        import %3
+        
+        class Database:
+            def __init__(self):
+                self.conn = %3.connect(
+                    host='localhost',
+                    database='mi_app',
+                    user='user',
+                    password='pass'
+                )
+            
+            def query(self, sql):
+                cursor = self.conn.cursor()
+                cursor.execute(sql)
+                return cursor.fetchall()
+        
+        db = Database()
+        
+        @app.route('/db/query')
+        def db_query():
+            result = db.query("SELECT * FROM users LIMIT 10")
+            return {"rows": result}
+    %endif
+    
+    %## --- CIRCUITO 4: AUTENTICACIÓN ---
+    %if "%4" != "%_"
+        # ===== AUTENTICACIÓN: %4 =====
+        from %4 import JWTManager, create_access_token
+        
+        app.config['JWT_SECRET_KEY'] = 'super-secret-key'
+        jwt = JWTManager(app)
+        
+        @app.route('/login')
+        def login():
+            token = create_access_token(identity={'user': 'admin'})
+            return {"token": token}
+        
+        @app.route('/protected')
+        @jwt_required()
+        def protected():
+            return {"message": "Acceso autorizado con %4"}
+    %endif
+    
+    %## --- CIRCUITO 5: API ---
+    %if "%5" != "%_"
+        # ===== API: %5 =====
+        from %5 import Api, Resource
+        
+        api = Api(app)
+        
+        class UserResource(Resource):
+            def get(self, user_id):
+                return {"user_id": user_id, "name": f"Usuario {user_id}"}
+        
+        api.add_resource(UserResource, '/api/user/<int:user_id>')
+    %endif
+    
+    %## --- CIRCUITO 6: CACHE ---
+    %if "%6" != "%_"
+        # ===== CACHE: %6 =====
+        import %6
+        
+        cache = %6.Redis(host='localhost', port=6379, db=0)
+        
+        @app.route('/cache/<key>')
+        def get_cache(key):
+            value = cache.get(key)
+            if value:
+                return {"cached": value.decode()}
+            return {"cached": "No encontrado"}
+    %endif
+    
+    %## --- CIRCUITO 7: TESTING ---
+    %if "%7" != "%_"
+        # ===== TESTING: %7 =====
+        import %7
+        
+        class TestApp:
+            def test_home(self):
+                response = app.test_client().get('/')
+                assert response.status_code == 200
+            
+            def test_api(self):
+                response = app.test_client().get('/api/data')
+                assert response.json()['status'] == 'ok'
+    %endif
+%endmacro
