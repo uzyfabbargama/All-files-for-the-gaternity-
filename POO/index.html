@@ -1,0 +1,17 @@
+<!DOCTYPE>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <tittle>Referenciando a JS en HTML</tittle>
+    </head>
+    <body>
+        <section>
+            <button id="btm_alerta"> Click aquí </button>
+        </section>
+        <script>
+		document.getElementById('btm_alerta').onclick = function(){
+			alert("Hola mundo");
+		}
+	</script> 
+	</body>
+</html>
