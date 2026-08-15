@@ -1,0 +1,33 @@
+
+
+FX​=(porX+50)//100 #para las banderas
+
+el usuario coloca los valores
+
+B = 30
+
+H = 40
+
+L = 10
+
+se suman todos
+
+total = 80
+
+porb = 37, porh = 50, porl = 12 #sólo tomamos los valores enteros
+
+y se aplica el porcentaje
+
+usamos el número 50 que llamaremos "mitad" y le pondremos límite de mod 100 además de el valor inicial 50
+
+valor_inicial, valor = 150, 150
+
+#Aquí, sólo dará true, si un número es mayor al 50
+
+flagB += not(valor%200 * porb*(valor//100) % 2) #esto hace que si uno supera el 50, activa el valor a 200, y se multiplica esa cifra (0 o 1), para activar o desactivar la variable
+
+flagH += not(valor%200 * porh*(valor//100) % 2)
+
+flagL += not(valor%100 * porL*(valor//100) % 2)
+
+y esas flags las usamos para mover las posciones uno o hasta 3 pasos, para acomodar las variables crecientes 

@@ -1,0 +1,5 @@
+existen porque la PC en su mayoría es secuencial
+You
+8:04 PM
+no puede ejecutar muchas tareas a la vez, sólo puede simular o tratar de repartirse las atreas entre núcleos, (causando a veces errores de sincornización de estado, y por eso el profe crístian nos pide encarecidamente que usemos stateless, por el problema de la concurrencia)
+un pequeño resumen

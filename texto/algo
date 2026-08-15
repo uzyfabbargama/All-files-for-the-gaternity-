@@ -1,0 +1,104 @@
+import argparse
+import os
+from pathlib import Path
+import sys
+import textwrap
+
+#!/usr/bin/env python3
+"""
+Create a minimal Python project skeleton in the current directory.
+
+Usage:
+    python3 algo             # if this file is saved as 'algo' and marked executable
+    python3 algo --name mypkg
+"""
+
+TEMPLATE = {
+    "pyproject.toml": """\
+    [build-system]
+    requires = ["setuptools>=42", "wheel"]
+    build-backend = "setuptools.build_meta"
+
+    [project]
+    name = "{fps_name_quoted}"
+    version = "0.1.0"
+    description = "A simple Python project"
+    authors = [{name = "dumation", email = mailto:"}]
+    """,
+    ".gitignore": """\
+    __pycache__/
+    .venv/
+    .env
+    *.pyc
+    .pytest_cache/
+    """,
+    "README.md": "# {name}\n\nA short description of the project.\n",
+    "src/__init__": "",
+    "src/pkg/__init__.py": '__version__ = "0.1.0"\n',
+    "src/pkg/__main__.py": textwrap.dedent("""\
+        def main():
+            print("Hello from {name}!")
+
+        if __name__ == "__main__":
+            main()
+        """),
+    "tests/test_basic.py": textwrap.dedent("""\
+        def test_smoke():
+            assert 1 + 1 == 2
+        """),
+}
+
+def safe_write(path: Path, content: str, force: bool = False):
+    if path.exists() and not force:
+        print(f"skip {path} (exists)")
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content)
+    print(f"created {path}")
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--name", "-n", default="my_package", help="Project package name")
+    parser.add_argument("--force", "-f", action="store_true", help="Overwrite existing files")
+    args = parser.parse_args()
+
+    root = Path.cwd()
+    pkg_name = args.name.strip()
+    if not pkg_name.isidentifier():
+        print("Invalid package name. Use a valid Python identifier.", file=sys.stderr)
+        sys.exit(1)
+
+    # Render and write files
+    for rel, tpl in TEMPLATE.items():
+        # replace placeholder package name and project name
+        content = tpl.format(name=pkg_name, name_quoted=f'"{pkg_name}"')
+        # special handling for src/pkg -> actual package path
+        rel_path = rel.replace("pkg", pkg_name)
+        path = root / rel_path
+        # for a marker file (like src/__init__), create directory only
+        if rel.endswith("/__init__") or rel.endswith("/__init__"):
+            (root / rel_path).mkdir(parents=True, exist_ok=True)
+            print(f"created dir {root/rel_path}")
+            continue
+        safe_write(path, content, force=args.force)
+
+    # Make a small CLI runner at project root
+    runner = root / "run.py"
+    runner_content = textwrap.dedent(f"""\
+        from {pkg_name} import __version__
+
+        def main():
+            print("Package: {pkg_name}, version:", __version__)
+
+        if __name__ == "__main__":
+            main()
+        """)
+    safe_write(runner, runner_content, force=args.force)
+
+    print("\nDone. Next steps:")
+    print(" - Create a virtual environment: python3 -m venv .venv")
+    print(" - Activate it: source .venv/bin/activate  (or .venv\\Scripts\\activate on Windows)")
+    print(" - Install dev deps, run tests: pip install pytest && pytest")
+
+if __name__ == "__main__":
+    main()

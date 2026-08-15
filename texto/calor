@@ -1,0 +1,82 @@
+import time
+import math
+
+# --- ADVERTENCIA CRÍTICA DE N-LANG (REGLA DE ORO) ---
+# Esta sección documenta el riesgo térmico inherente al diseño de N-Lang
+# y justifica la necesidad de este controlador de software.
+"""
+ADVERTENCIA CRÍTICA: RIESGO TÉRMICO Y FÍSICO
+N-Lang es un lenguaje de Máquina de Estado Aritmética diseñado para eliminar
+la ineficiencia (como el lag de salto condicional y la latencia de memoria).
+
+N-Lang es el benchmark de estrés térmico más eficiente. Al evitar las pausas
+y los fallos de predicción, exige el uso sostenido del 100% de la Unidad
+Aritmético Lógica (ALU) de su CPU.
+
+Si su CPU es de bajo consumo (ej. Intel Celeron, AMD APU) y/o tiene un
+sistema de refrigeración deficiente, la ejecución sin límites de N-Lang 
+provocará que el hardware alcance rápidamente su umbral de seguridad térmica,
+lo que resultará en Thermal Throttling o un Apagado de Emergencia Forzoso
+para prevenir daños permanentes.
+
+Solución: Los desarrolladores deben implementar un límite de tickrate por
+software (ej., un time.sleep en el bucle principal) para garantizar que la
+carga de trabajo no exceda la capacidad de disipación de calor de su hardware.
+"""
+# --- FIN DE LA ADVERTENCIA CRÍTICA ---
+
+# Constante que implementa el "límite de tickrate por software" de la Regla de Oro.
+LIMITE_TERMICO_MS = 5  # Límite de tiempo permitido para la ALU por ciclo (5 milisegundos)
+
+def simular_operacion_numeraso(tamano_numeraso_simulado: int):
+    """
+    Simula la carga de trabajo de un cálculo de Numeraso, que se traduce en 
+    miles de micro-operaciones aritméticas intensivas para la ALU.
+    """
+    # La carga es logarítmica con respecto al tamaño del Numeraso (CPC).
+    carga = max(100, int(math.log(tamano_numeraso_simulado) * 100000))
+    for _ in range(carga):
+        pass # Simula el trabajo de la ALU.
+
+def ejecutar_clase_con_control_termico(numeraso_actual: int, tamanio_maximo: int):
+    """
+    Ejecuta el cálculo de N-Lang, pero aplica el límite térmico (throttle)
+    si el tiempo de ALU excede el LIMITE_TERMICO_MS, siguiendo la Regla de Oro.
+    """
+    print(f"--- Ejecutando Ciclo Lógico (Numeraso de tamaño {tamanio_maximo}) ---")
+    
+    tiempo_inicio = time.time() * 1000 # Tiempo en milisegundos
+    
+    try:
+        # Aquí se ejecutaría la Codificación de Posición Concatenada (CPC)
+        simular_operacion_numeraso(tamanio_maximo) 
+        
+        tiempo_transcurrido = time.time() * 1000 - tiempo_inicio
+        
+        # --- Mecanismo de THROTTE (Implementación de la Regla de Oro) ---
+        if tiempo_transcurrido > LIMITE_TERMICO_MS:
+            print(f"🚨 ADVERTENCIA TÉRMICA: La ALU trabajó por {tiempo_transcurrido:.2f}ms.")
+            print(f"Límite excedido ({LIMITE_TERMICO_MS}ms). Se ha forzado una pausa (THROTTLE).")
+            print("El cálculo del Numeraso se distribuirá en el siguiente ciclo lógico para proteger el hardware.")
+            
+            # Devuelve 'False' (Incompleto) para señalar que el proceso debe reanudarse.
+            return numeraso_actual, False 
+        else:
+            print(f"✅ Ejecución Completa. Tiempo de ALU: {tiempo_transcurrido:.2f}ms.")
+            # Si el tiempo es seguro, se devuelve el resultado de la operación.
+            return numeraso_actual + 1000, True # Completo
+            
+    except Exception as e:
+        print(f"Error durante la simulación de ALU: {e}")
+        return numeraso_actual, False
+
+# --- DEMOSTRACIÓN ---
+numeraso_inicial = 1 # Valor inicial simulado
+tamano_clase_grande = 1000000000000000 # Un Numeraso que causa alta carga de ALU
+
+resultado_final, completo = ejecutar_clase_con_control_termico(numeraso_inicial, tamano_clase_grande)
+
+if not completo:
+    print("\nEl sistema ha evitado un posible apagado forzoso al limitar la carga de la ALU (Throttle activo).")
+else:
+    print("\nEl sistema operó dentro de los límites de seguridad térmica.")

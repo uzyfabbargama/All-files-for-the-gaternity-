@@ -1,0 +1,6 @@
+Cree un entorno virtual llamado juegos
+source juegos/bin/activate
+cree un entorno virtual llamado kivy-env
+source kivy-env/bin/activate
+cree un entorno virtual en /home/uziel_gamma/python/BHL
+source BHL/bin/activate

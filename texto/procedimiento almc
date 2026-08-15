@@ -1,0 +1,21 @@
+-- 1. Crear el procedimiento almacenado con un parámetro de entrada (@ID)
+CREATE PROCEDURE ObtenerEmpleadoPorID
+    @ID INT -- Definición del parámetro: nombre y tipo de dato
+AS
+BEGIN
+    -- 2. Consulta SQL que usa el parámetro
+    SELECT
+        ID_Empleado,
+        Nombre,
+        Apellido,
+        Salario
+    FROM
+        Empleados
+    WHERE
+        ID_Empleado = @ID; -- Filtra usando el parámetro
+END
+GO
+
+-- 3. Cómo ejecutar el procedimiento
+EXEC ObtenerEmpleadoPorID @ID = 5; -- Pasar el valor 5 al parámetro @ID
+q

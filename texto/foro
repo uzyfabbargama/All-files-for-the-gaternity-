@@ -1,0 +1,477 @@
+The comment block for Python 
+Ideas
+
+250
+views
+
+15
+likes
+
+7
+links
+
+10
+users
+
+
+
+
+
+read
+6 min
+
+
+Aug 4
+5h
+
+​
+
+post by uzyfabbargama 15 hours ago
+
+Uzyfabbargama
+
+4
+15h
+Hello, It’s a pleasure to be able to share this with you all. I know you’re a great community, and I hope you like this idea.
+
+"Not everything that is efficient is beautiful."
+Yes, you heard right, Yes, you heard right, I’ve seen other attempts to make comments in Python allow blocks
+
+“Just comment line by line. Just comment line by line”: It’s been repeated many times, it almost seems like dogma, IDEs automated it, but I believe we are more than that
+“#| |#”, “#! #!”, “@@@ @@@” /* */: These are some ideas from the community to address this, but in my opinion (I don’t know if you share it) they are anti-Python, think about it, adds unnecessary syntactic overhead, and the solutions are quite generic; we need something more in the style of Python.
+My approach: use a combination of existing symbols, nothing complex, combine the # + """ = #""",It’s simple: combine the triple double quote code, which is already used to create string blocks (and is misused to comment code blocks), and you won’t have the string problem (which it does have to use only triple double quotes)
+Examples
+#To be able to version your code To be able to version your code
+
+# This is a line comment
+
+print("example funcionality")
+
+#Instead, this would be the hypothetical block comment (multi-line)
+
+#"""
+
+print("deactivate functionality")
+
+#""" 
+
+
+Does this remind you of anything? Yeah, it’s identical to multi-line strings, which makes implementation trivial (well, almost)
+
+Pseudo-code of python lexer
+
+if actual_character == "#":
+
+    if three_next_characters == '"""':
+
+        # Modo bloque: saltar hasta encontrar #""" (que es # + 3 comillas)
+
+        while current_position < len(code):
+
+            if current_character == '#':
+
+                if three_next_characters == '"""':
+
+                    break  # Cierre encontrado
+
+            advance()
+
+    else:
+
+        # Modo línea: saltar hasta newline
+
+        while current_character != '\n':
+
+            advance()
+
+
+PD: Thank you, Jelle Zijlstra, Thank you for encouraging me to publish my idea in the community, and for taking the time to read my pull request.
+
+
+
+
+
+
+post by uzyfabbargama 14 hours ago
+post by tstefan 14 hours ago
+
+Stefan
+tstefan
+14h
+My approach: use a combination of existing symbols, nothing complex, combine the # + """ = #"""
+That’s a breaking change. The following code is currently valid, but would be broken under your proposal:
+
+#"""
+print("Hallo")
+#"""
+Long story short, “use a combination of existing symbols” is not a particularly good design principle. While I do not propose to add any new way to write comments to Python, the addition of C-style comments /* ... */ (which has been proposed before) would actually not be a breaking change since the current Python grammar does not allow cases where a / token is followed by a * token.
+
+
+post by JoBe 13 hours ago
+
+jobe
+13h
+Native versioning — you can have multiple versions of code and activate/deactivate them with a single character
+
+Most modern IDEs / Editors (like VSCode) support this already. You can have a key bind (for me ctrl + #) to comment/uncomment a block in any language while keeping new lines and indentation intact.
+
+Also, your second point about nesting is repeated…
+
+Edit: Fixed parenthesis..
+
+
+post by uzyfabbargama 13 hours ago
+
+Uzyfabbargama
+
+Stefan
+13h
+I appreciate your criticism, and it’s true, plus it’s simple to implement.
+
+(But the IDE solution doesn’t have free pop-up versioning that lets you refactor code with a “sed” command. Furthermore, the idea of /* would add operand overload on top of / (which is already division and integer division))
+
+
+post by uzyfabbargama 13 hours ago
+
+Uzyfabbargama
+
+jobe
+13h
+Thanks for the criticism, but honestly, it sounds like IDE elitism (I know that’s not what you meant, but think about how much RAM most IDEs that use that use—quite a lot). My proposal is simple.And I’ve even implemented it in C and assembler, since it copies the triple quote system (which already works for text) but for comments (the same search code without inventing anything new, and Furthermore, it is practically very unlikely that there are codes that use #“”", (i.e., it is backward compatible)
+
+
+Anerdw
+Andrew5057
+Regular
+12h
+the idea of /* would add operand overload on top of / (which is already division and integer division
+
+I’m not really sure what you mean here. Do you mean that it would literally require an operator overload for division? If so, that’s not the case; the RHS wouldn’t even be a valid Python expression. Do you mean that it’s just another use case for the / symbol that people would have to keep in their heads? If so, that wouldn’t really be a problem; the contexts are just so obviously different that it shouldn’t matter.
+
+I’m not particularly for or against the /* ... */ multiline syntax in Python, but I don’t think this argument against it is a particularly good one.
+
+Furthermore, it is practically very unlikely that there are codes that use #“”", (i.e., it is backward compatible)
+
+See this code search, which has over 97 thousand hits. “It’s unlikely” is not a good reason to release a breaking change unless you have very, very solid proof of that.
+
+
+post by uzyfabbargama 12 hours ago
+
+Uzyfabbargama
+12h
+Andrew, you’re right that there are 97,000 views on GitHub. But the vast majority of those are uses of #“”" as a hack for block comments. My proposal doesn’t break those uses; it legitimizes them. And in the unlikely event that someone has used #“”" as a normal inline comment, the change doesn’t affect their code because inline comments are ignored anyway. So there’s no real change.
+
+
+post by Eneg 12 hours ago
+
+Eneg
+12h
+in the unlikely event that someone has used #“”" as a normal inline comment, the change doesn’t affect their code because inline comments are ignored anyway.
+
+#"""
+print("Hallo")
+#"""
+This is currently valid code that prints Hallo. Your change would stop it from printing Hallo.
+
+
+post by Rosuav 11 hours ago
+
+Chris Angelico
+Rosuav
+11h
+Furthermore, it is practically very unlikely that there are codes that use #“”", (i.e., it is backward compatible)
+
+“Unlikely” does not mean “impossible”, and actually, I’ve quite often used the commenting-out of a triple quoted string’s opening as a means of quickly enabling/disabling a block of code. Granted, I usually write # """ with a space in it, but it’s entirely possible that I’d miss out the space occasionally, since it’s normally not a problem to do so.
+
+So this will have the potential to cause breakage. The question is, is it worth that? Is the ability to make block comments worth potentially changing the meaning of existing code, without any error message? It’s a very subtle form of breakage; most programs will continue to work correctly, but the ones that break will do so in a very strange way.
+
+Personally, I don’t think so. Block comments are a nice-to-have, but not immensely valuable (Python’s managed a few decades without them, after all).
+
+IDEs automated it, but I believe we are more than that
+
+You seem to have something against IDEs. I don’t blame you for disliking the heavyweight “all-inclusive” IDEs, but there are plenty of text editors that don’t use a huge amount of RAM, and yet have a way to block comment/uncomment code in various languages. For example, the editor I use is SciTE, and I can select a block of text and hit Ctrl-Q to toggle comment; and this works in basically any language. I’m not sure what you’ll consider a fair test of measure memory usage, but I keep SciTE running permanently on my laptop with 4GB of memory; he struggles to load web pages with too much JS in them some days, but SciTE is still lean. According to top it’s using about 20MB of RSS, putting it roughly comparable to (and a little below) Thunar the file manager.
+
+All this is not to say that this is a useless proposal, but just that the juice isn’t worth the squeeze.
+
+post by Andrew5057 11 hours ago
+post by Rosuav 11 hours ago
+
+Chris Angelico
+Rosuav
+11h
+Andrew, you’re right that there are 97,000 views on GitHub. But the vast majority of those are uses of #“”" as a hack for block comments. My proposal doesn’t break those uses; it legitimizes them.
+
+Except that it DOES break them. I did probably the same GitHub search you did and started looking through the first hits:
+
+github.com/leostat/rtfm
+rtfm.py
+a807a8019
+#!/usr/bin/env python3
+"""# Yay its now python3!
+##
+# Inspired by : https://xkcd.com/293/
+# https://www.amazon.co.uk/Rtfm-Red-Team-Field-Manual/dp/1494295504
+# Thanks for the Scaffolding Max!
+##"""
+import optparse
+import urllib.request, urllib.parse, urllib.error
+import hashlib
+import sys
+import sqlite3
+import os.path
+import signal
+#########################################################################
+# RTFM: Just Read the Friggin Manual
+This opens with """# and closes with ##""" so it’s a perfectly normal triple quoted string, and wouldn’t be affected by this proposal. (It’s not being legitimized, it’s completely untouched.)
+
+github.com/huntergregal/PNG-IDAT-Payload-Generator
+idat.py
+2e14d262a
+    while (i < len(payload) - 3):
+        r = payload[i]
+        g = payload[i + 1]
+        b = payload[i + 2]
+        im.putpixel((x, 0), (r, g, b))
+        i += 3
+        x += 1
+    im.save(output_image, optimize=False, compress_level=6)
+def verify(filename, clear_payload):
+    #"""
+    # I would like to verify if the PNG is valid and not corrupt but Pillow .verify() is not yet implemented
+    im = Image.open(filename)
+    im.verify()
+    im.close()
+    #"""
+    content = open(filename, "rb").read()
+    assert(clear_payload in content)
+if __name__ == "__main__":
+    payload = b"a39f67546f2c24152b116712546f112e29152b2167226b6f5f5310"
+This would suddenly disable code that is meant to be active. I’m not sure what the author’s intent is here, but this block of code would change meaning under your proposal.
+
+github.com/rikdz/GraphWriter
+eval.py
+f228420aa
+hypo = {}
+ref = {}
+i = 0
+for vid, caption in cand.items():
+    hypo[i] = [caption]
+    ref[i] = temp_ref[vid]
+    i += 1
+# compute scores
+final_scores = self.score(ref, hypo)
+#"""
+# print out scores
+print ('Bleu_1:\t', final_scores['Bleu_1'])
+print ('Bleu_2:\t', final_scores['Bleu_2'])
+print ('Bleu_3:\t', final_scores['Bleu_3'])
+print ('Bleu_4:\t', final_scores['Bleu_4'])
+print ('METEOR:\t', final_scores['METEOR'])
+print ('ROUGE_L:', final_scores['ROUGE_L'])
+#print ('CIDEr:\t', final_scores['CIDEr'])
+# """
+github.com/317070/Twitch-plays-LSD-neural-net
+twitch.py
+2c71719c4
+if __name__=="__main__":
+    """
+    i=0
+    with TwitchOutputStream(640, 480, 30) as stream:
+        for _ in xrange(3000):
+            t = time.time()
+            #image_array = np.random.randint(255, size=(height, width, 3)).astype('uint8')
+            stream.send_frame( (i%255)/255.0 *np.ones((480, 640, 3)) )
+            #print "frame", i
+            i+=15
+    #"""
+    """
+    chatstream = TwitchChatStream()
+    while True:
+        received = chatstream.twitch_recieve_messages()
+        if received:
+            print received
+        import random
+        #chatstream.send_chat_message("Hello %f"%random.random())
+        time.sleep(1)
+    #"""
+So would these. Presumably the intention in these examples is to be able to easily disable the code; you could call that a code smell, but it’s still going to result in a behavioural change, removing blocks of code that existing versions of Python execute.
+
+post by uzyfabbargama 11 hours ago
+post by uzyfabbargama 11 hours ago
+post by Rosuav 11 hours ago
+post by uzyfabbargama 11 hours ago
+post by uzyfabbargama 11 hours ago
+
+Uzyfabbargama
+
+Chris Angelico
+11h
+Native versioning is quite simple, you’re going to love it, here’s an example .
+
+#“”"
+
+code deactivate
+
+#“”"
+
+##“”"
+
+code activated # because # Cancels the #“”" rule
+
+##“”",
+
+###“”"
+
+code also activated
+
+###“”"
+
+you just need erase one # for switch between anidated versions,this emerge for the #“”"
+
+This alone infine anidated without use ram and stack
+
+
+post by uzyfabbargama 11 hours ago
+
+Uzyfabbargama
+
+Chris Angelico
+11h
+Chris, entiendo tu confusión. Los IDEs pueden comentar/descomentar bloques, pero no pueden hacer esto:
+
+python
+
+#“”" VERSIÓN 1 (estable)
+
+def procesar(data):
+
+return data \* 2
+#“”"
+
+##“”" VERSIÓN 2 (experimental)
+
+def procesar(data):
+
+return \[x \* 2 for x in data\]
+##“”"
+
+Con un solo sed, puedo cambiar la versión activa:
+
+bash
+
+sed -i ‘s/^#“”“/##”“”/g’ archivo.py
+
+sed -i ‘s/^##“”“/#”“”/g’ archivo.py
+
+Eso es nativo. No depende de un IDE. Y permite anidamiento infinito sin usar memoria ni stack.
+
+¿Puede un IDE hacer eso?
+
+(Ups, I said it in Spanish, it doesn’t matter, they have a translator, right?
+
+
+post by uzyfabbargama 11 hours ago
+
+Uzyfabbargama
+11h
+Chris, I understand your confusion. IDEs can comment/uncomment blocks, but they can’t do this:
+
+python
+
+#“”" VERSION 1 (stable)
+
+def process(data):
+
+return data \* 2
+#“”"
+
+##“”" VERSION 2 (experimental)
+
+def process(data):
+
+return \[x \* 2 for x in data\]
+##“”"
+
+With a single sed, I can switch the active version:
+
+bash
+
+sed -i ‘s/^#“”“/##”“”/g’ file.py
+
+sed -i ‘s/^##“”“/#”“”/g’ file.py
+
+That’s native. It doesn’t depend on an IDE. And it allows infinite nesting without using memory or stack.
+
+Can an IDE do that?
+
+(Okay, I’ve translated it, I hope it’s helpful. )
+
+
+post by hprodh 10 hours ago
+post by nedbat 7 hours ago
+
+Ned Batchelder
+nedbat
+CPython core developer
+7h
+sed -i 's/^#"""/##"""/g' file.py
+sed -i 's/^##"""/#"""/g' file.py
+If I’m not mistaken, the second line will undo the effect of the first line, no? If you want to manipulate lines with sed, you should use markers in your comments:
+
+#:section 1
+blah blah
+#:end
+##:section 2
+#blah blah
+##:end
+Then you can use
+
+sed -i '/:section 1/,/:end/s/^/#/' file.py
+sed -i '/:section 2/,/:end/s/^#//' file.py
+to swap which part is commented out. No changes to Python needed, it works now. Plus, you have readable labels to the sections.
+
+Manipulating Python code with sed is a very unusual use-case, but it’s one that today’s Python is already accommodating.
+
+
+post by gcewing 6 hours ago
+
+Greg Ewing
+gcewing
+
+Uzyfabbargama
+6h
+That looks quite confusing to read. You need to take notice of exactly
+how many #s there are to tell which parts are active. – but only on
+lines where the # is followed by “”". No longer can you just skim and
+ignore any line that starts with #.
+
+Also it’s rather specialised, allowing you to toggle between 2 versions,
+but not choose one of 3 or more.
+
+
+post by tstefan 5 hours ago
+
+Stefan
+tstefan
+5h
+def verify(filename, clear_payload):
+    #"""
+    # I would like to verify if the PNG is valid and not corrupt but Pillow .verify() is not yet implemented
+    im = Image.open(filename)
+    im.verify()
+    im.close()
+    #"""
+    content = open(filename, "rb").read()
+This would suddenly disable code that is meant to be active. I’m not sure what the author’s intent is here, but this block of code would change meaning under your proposal.
+
+This is actually not a totally uncommon pattern; the code snippet can be “deactivated” by one keystroke:
+
+def verify(filename, clear_payload):
+    """
+    # I would like to verify if the PNG is valid and not corrupt but Pillow .verify() is not yet implemented
+    im = Image.open(filename)
+    im.verify()
+    im.close()
+    #"""
+    content = open(filename, "rb").read()
+This turns these few lines into a multi-line string literal that is just discarded. This construct can be (ab)used as a multi-line comment. (In this particular case, it is a doc string, but maybe the author did not care about this.)

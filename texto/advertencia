@@ -1,0 +1,9 @@
+ADVERTENCIA CRÍTICA: RIESGO TÉRMICO Y FÍSICO
+
+"N-Lang es un lenguaje de Máquina de Estado Aritmética diseñado para eliminar la ineficiencia (como el lag de salto condicional y la latencia de memoria).
+
+N-Lang es el benchmark de estrés térmico más eficiente. Al evitar las pausas y los fallos de predicción, exige el uso sostenido del 100% de la Unidad Aritmético Lógica (ALU) de su CPU.
+
+Si su CPU es de bajo consumo (ej. Intel Celeron, AMD APU) y/o tiene un sistema de refrigeración deficiente, la ejecución sin límites de N-Lang provocará que el hardware alcance rápidamente su umbral de seguridad térmica, lo que resultará en Thermal Throttling o un Apagado de Emergencia Forzoso para prevenir daños permanentes.
+
+Solución: Los desarrolladores deben implementar un límite de tickrate por software (ej., un time.sleep en el bucle principal) para garantizar que la carga de trabajo no exceda la capacidad de disipación de calor de su hardware."

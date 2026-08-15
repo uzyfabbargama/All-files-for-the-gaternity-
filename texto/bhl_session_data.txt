@@ -1,0 +1,11 @@
+{
+    "bhl_values": 920920920,
+    "Exp_B": 0,
+    "Exp_H": 0,
+    "Exp_L": 0,
+    "chs_values": 951951951,
+    "Exp_S": 0,
+    "Exp_Hu": 0,
+    "Exp_C": 0,
+    "chat_history": []
+}
