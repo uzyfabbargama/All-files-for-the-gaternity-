@@ -1,0 +1,9 @@
+armadura de tierra:
+al usar tierra o superdirts, mejoras las habilidades
+pantalones: 7 de tierra/superdirt (dan velocidad nivel VII, se multiplica por un 10% por cada nivel de superdirt usado)
+botas: no hacen nada
+pechera: acelera la producción de tierra (ontienes 50% más de tierra por cada nivel de superdirt) 8 de tierra/superdirt
+casco: visión nocturna (te permite saltarte un paso de transmutación, por cada nivel de superdirt (es decir, podrías crear elementos con la mente, si tienes justo los materiales, para eso debes cargar el casco con memoria para por ejemplo almacenar que cada x de tierra, te dé un diamante, y obtiens un slot de memoria pot nivel de superdirt)
+espada de tierra: hace 1 de daño (se multiplica por 9 por cada nivel de superdirt)
+pala de tierra: pésima velocidad (aumenta eficiencia y duplica tierra por cada nivel de superdirt)
+hacha de tierra: muy lenta (aumenta velocidad, y hay una probabilidad que te dé mesas de trabajo (si usas un transformador y una mesa de trabajo, te dará un item que te permite transmutar con las fórmulas del todocraft, totalmente gratis, o curar tu vida)

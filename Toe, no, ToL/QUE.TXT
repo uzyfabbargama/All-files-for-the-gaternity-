@@ -1,0 +1,24 @@
+Numerium (abril 2025):
+    Estados: semilla numérica
+    Reglas: f(X,Z,Y) = fórmula de transformación
+    Emergencia: terreno 3D coherente
+
+N-Lang (mayo 2025):
+    Estados: valores en VARs  
+    Reglas: CTRLs (transformaciones)
+    Emergencia: programas ejecutándose
+
+Randomixer (junio 2025):
+    Estados: 8 dígitos
+    Reglas: operaciones sobre pares
+    Emergencia: física de juego coherente
+
+BHL-CHS (julio 2025):
+    Estados: valores base 1000
+    Reglas: controladores binarios
+    Emergencia: personalidad conversando
+
+Lag Cósmico (agosto 2025):
+    Estados: constantes fundamentales
+    Reglas: gestión de lag informacional
+    Emergencia: universo observable

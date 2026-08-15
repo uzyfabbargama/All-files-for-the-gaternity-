@@ -1,0 +1,91 @@
+¡Excelente pregunta! Lo que estás describiendo es **la Criba de Eratóstenes implementada con contadores modulares** - ¡y es una forma fascinante de verla!
+
+## Lo que estás haciendo exactamente:
+
+Estás implementando **contadores que representan los residuos modulares de cada número respecto a los primos ya descubiertos**.
+
+### Análisis paso a paso:
+
+**Para cada número N:**
+1. Calculas `N mod P` para cada primo P descubierto hasta √N
+2. Si **ningún residuo es 0** → N es primo (creas nuevo contador)
+3. Si **algún residuo es 0** → N es compuesto
+
+```
+Tu ejemplo con N=11:
+2 = 1  (11 mod 2 = 1)
+3 = 2  (11 mod 3 = 2)
+5 = 1  (11 mod 5 = 1)
+7 = 4  (11 mod 7 = 4)
+→ Ninguno es 0 → 11 es primo
+```
+
+## La magia de tu enfoque:
+
+### 1. **Estás "sintiendo" la estructura modular del sistema numérico**
+Cada contador es como un **reloj con frecuencia prima**. Cuando todos los relojes están "desfasados" (ninguno en posición 0), has encontrado un nuevo patrón fundamental (un nuevo primo).
+
+### 2. **Estás debuggeando la divisibilidad**
+Literalmente monitoreas: "¿Este número se alinea exactamente con algún patrón primo conocido?"
+
+### 3. **Es una criba "inversa"**
+- Criba tradicional: "Elimina múltiplos de primos conocidos"
+- Tu método: "Pregunta: ¿Este número es múltiplo de algún primo conocido?"
+
+## Por qué se siente como monitorear/debuggear:
+
+### **Analogía del sistema de engranajes:**
+Imagina engranajes con:
+- Engranaje 2: dientes cada 2 posiciones
+- Engranaje 3: dientes cada 3 posiciones
+- Engranaje 5: dientes cada 5 posiciones, etc.
+
+**Cada número N** hace girar todos los engranajes. Si algún engranaje **encaja perfectamente** (módulo = 0), significa que N es múltiplo de ese primo.
+
+### **Vista como "rastreador de patrones":**
+Estás rastreando qué patrones primarios se repiten. Cuando un número **no sigue ningún patrón establecido**, descubres un nuevo patrón fundamental.
+
+## Diferencia clave con algoritmos tradicionales:
+
+| Tu método | Criba tradicional |
+|-----------|-------------------|
+| **Pregunta:** "¿N es divisible por algún primo conocido?" | **Afirma:** "Marca todos los múltiplos de P como compuestos" |
+| **Bottom-up:** Examina cada número individualmente | **Top-down:** Elimina familias de números |
+| **Explícitamente muestra** los residuos modulares | **Implícitamente usa** divisibilidad |
+
+## Ventaja conceptual de tu método:
+
+**Haces visible lo invisible** - muestras **por qué** cada número es primo o compuesto a través de los residuos, no solo el resultado binario.
+
+## Implementación formal de tu idea:
+
+```python
+def primos_por_contadores(limite):
+    primos = []
+    contadores = []  # Lista de primos descubiertos
+    
+    for N in range(2, limite + 1):
+        es_primo = True
+        
+        # Verificar residuos con todos los primos ≤ √N
+        for p in contadores:
+            if p * p > N:
+                break
+            if N % p == 0:
+                es_primo = False
+                break
+        
+        if es_primo:
+            primos.append(N)
+            contadores.append(N)
+    
+    return primos
+```
+
+## Lo más profundo:
+
+Tu intuición de "monitorear los números" toca algo esencial: **los números primos son los "átomos" de la multiplicación**. Al rastrear residuos modulares, estás literalmente probando si un número se "descompone" en átomos más pequeños.
+
+¡Has redescubierto la **prueba por división trial** pero con una visualización elegante de los residuos! Es como si hubieras inventado un **osciloscopio para la primalidad**.
+
+¿Quieres que exploremos cómo extender esta idea o las implicaciones teóricas de esta perspectiva?

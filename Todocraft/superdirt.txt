@@ -1,0 +1,4 @@
+las Superdirt, tienen de límite hasta el nivel 99, y funcionan de la siguiente forma:
+lvl 1 = 9 de tierra → usarla en lugar de tierra, reduce el costo de la energía a 9 veces
+lvl 2 = 81 de tierra → reduce la energía de uso a 1/81, 
+problema: requieren una energía cada vez más exponencial ejemplo: para una nivel 10, requieres: 3486784401 de tierra, y de energía (si haces por partes), sería inmensa, a pesar de que sepas que con 9 superdirt lvl 1, gastes 1 de energía para una de lvl 2.

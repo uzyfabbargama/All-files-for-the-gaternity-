@@ -1,0 +1,15 @@
+holaaaa, creé un nuevo hardware llamado Nuanot, que se programa pintando en un paint casero en tonos de grises + 3 colores (RGB):
+el mismo funciona con umbrales de 8 bits + 3 direcciones
+Adder de 8 bits: recibe 16 bits (8 + 8 bits), y los pasa por un sumador, que si colapsa va a la Nitenle. (Esto da los 256 "sabores")
+Nitenle (Nine + Ten + Eleven) = un sistema de flujo de control que tiene 5 bits, 3 bits direccionales, y 2 bits bloqueadores:
+                                                             R = red = recibe 1 del Adder, y si él mismo está en 1 mueve a derecha (si BR está inactivo) y le suma 1 a L
+                                                             L = Blue = si él mismo está en 1 y recibe 1 del R mueve a la izquierda (Si BL está inactivo) y envía 1 a F.
+                                                             F = Si él mismo está en 1, y recibe de L, envía el bit directo al frente (no tiene bloqueadores)
+Total de componentes: 
+                                      XORs: 16
+                                      ANDs: 16
+Especificaciones técinas verificadas:
+                                                             AND = 4 transistores
+                                                             XOR = 6 transistores
+4*16 + 6*16 = 160 transistores (Con 1 memoria de 1 byte por Nuanot), 
+Es decir, puede comunicarse con como máximo 3 vecinas, (por eso se pueden construir (sin cambiar el hardware) buses y calles de comunicación (si los estableces a 255 (color máximo y depende de si es verde, azul o rojo, modificas la dirección) o 0 (para memoria máxima) o todos los valores intermedios (para cualquier programa, y umbral que necesites)

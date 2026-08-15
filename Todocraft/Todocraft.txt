@@ -1,0 +1,7 @@
+Planta morada → tronco morado → 4 x tablón morado → 8 x palot → 24 x palo de madera → 6 x tablón de madera
+Planta morada x8 + (Redstone/oro/diamante/lapislázuli/carbón/hierro/esmeralda) → x5 (el mineral respectivo
+Planta morada + jugador colisiona con ella = jugador muere
+planta morada + 4 x bloques (carbón/hierro/redstone/oro/lapislázuli/diamante/esmeralda → 1 x mineral (hierro/redstone/oro/lapislázuli/diamante/esmeralda) (respectivamente)
+tronco morado (resistencia a las explosiones, sirve de combustible para hornos (hasta 8))
+hoja rosa (al cocinarse genera slime, es parte del tronco morado)
+piedra → piedra lisa → (repetir 4 veces) → tronco de piedra → 4 tablones de piedra → 32 palos → 8 tablones de madera

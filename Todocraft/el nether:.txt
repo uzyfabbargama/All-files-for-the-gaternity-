@@ -1,0 +1,5 @@
+2 de netherrack = 1 mesa de crafteo (para tener 9 slots vs los 4 del inventario
+2 de arena de almas + 1 de netherrack = 8 de piedra
+2 de cuarzo + 2 de carbón + 5 de netherrack = 16 de arena de almas
+1 de planta morada + 4 de netherrack = 1 mineral de cuarzo
+polide pickaxe: cuarzo x4 (antes era 1 por mena)

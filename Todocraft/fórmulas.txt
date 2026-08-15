@@ -1,0 +1,26 @@
+ 4x de tierra = madera
+
+4x de madera = piedra
+
+madera 2x + piedra 2x = carbón
+
+piedra 2x + tierra 2x = arena
+
+piedra 2x + 2x arena = grava
+
+vidrio x4 = diamante
+
+diamante 4x = 4x obsidiana
+
+2x vidrio, 1x tierra, 1x arena = pasto
+
+4x piedra lisa (que se hace cocinando piedra) = 1 lingote hierro
+
+4x bloques de hierro + planta morada (que se hace concinando pasto, se hace) = redstone 
+4x bloques de redstone + pĺanta morada = oro 
+4x bloques de oro = lapislázuli 
+4x bloques de lapislázuli = diamante 
+4x bloques de diamante = esmeralda 
+
+2x carbón + 2x arena = 4x polvora
+2x carbón + 2x grava = 9x pólvora
