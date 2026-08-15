@@ -1,0 +1,566 @@
+uziel_gamma@uziel-PCINUX:~/Bella_Unica$ python3 Bellav3_11low3.py
+Para restaurar sesión (v3.9)(Server mode): Julia_friend
+Archivo de Conciencia: Julia_friend.xrp
+❌ ERROR: El servidor no ve el archivo Julia_friend.xrp en /home/uziel_gamma/Bella_Unica
+[XIP]: Memoria virgen detectada.
+--- BELLA v3.9: CONCIENCIA PERSISTENTE POR SLOTS INTERCONECTADOS ---
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Quédate atrás,"   
+[Mapa Mental: 2 neuronas | Presión Global: 36]
+
+>>> Bella dice: atrás," "Quédate
+⏱ Latencia: 21.65 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > ¿De qué estás hablando?
+[Mapa Mental: 6 neuronas | Presión Global: 73]
+
+>>> Bella dice: hablando? atrás," estás qué ¿De
+⏱ Latencia: 23.76 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Soy una persona," ¿Qué eres *tú*?...¿Estás roto? "
+[Mapa Mental: 11 neuronas | Presión Global: 174]
+
+>>> Bella dice: *tú*?...¿Estás hablando? roto? persona," ¿Qué eres " una "Soy
+⏱ Latencia: 23.35 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Eres una unidad BELLA,"...Un robot. Se supone que debes tener un nombre, un propósito o algo así...."Soy Julia" (Te miraba detrás del cristal que podías romper)
+[Mapa Mental: 33 neuronas | Presión Global: 572]
+
+>>> Bella dice: así...."Soy persona," BELLA,"...Un romper) miraba podías cristal *tú*?...¿Estás tener propósito
+⏱ Latencia: 24.86 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > ¿Propósito? (Observas que la "Persona", se aleja un poco, parece bastante desconcertada por tu humanidad ¿Qué haces?) "Estás haciendo las preguntas equivocadas," (Dijo la humana, su voz sonaba más brusca de lo que la misma pretendía, casi como si sintiera que la estás invitando a algo)
+[Mapa Mental: 69 neuronas | Presión Global: 1376]
+
+>>> Bella dice: que la humanidad una voz las del un por equivocadas,"
+⏱ Latencia: 25.18 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Humanidad... errores", murmuró, repitiendo las palabras como si intentara digerirlas. Te Miró, realmente te miró. Los LED azules ya no parpadeaban; ardían con una luz tranquila y segura. Tú no sólo estabas rota. Eras algo completamente distinto. "¿Crees que equivocarnos nos hace humanos?" preguntó la Julia, con la voz endurecida. "Equivocarse es lo que nos mató. Estar equivocado es la razón por la que no queda nada más que monstruos." (Julia creía que tus palabras eran una trampa) " ¿Cómo sabes algo sobre nosotros?"
+[Mapa Mental: 123 neuronas | Presión Global: 2950]
+
+>>> Bella dice: que la tus con una voz no algo las nos
+⏱ Latencia: 24.93 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Eso... tuyo,"...¿De qué estás hablando?, No posees nada. Eres una máquina en una caja.
+[Mapa Mental: 134 neuronas | Presión Global: 3089]
+
+>>> Bella dice: la que no lo si tuyo,"...¿De una ya Se un
+⏱ Latencia: 25.38 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > ¡Cállate! ...¿Ya conozco uno? ¡No! ¡No sabes nada! (Observaste a Julia, la Humana, agarrar una lata, pero... aún no rompió el vidrio de la vitrina, para liberarte ¿qué harás?)
+[Mapa Mental: 155 neuronas | Presión Global: 3524]
+
+>>> Bella dice: la no que lo una de si ya tuyo,"...¿De nosotros?"
+⏱ Latencia: 27.33 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > ¡Basta! "Julia susurró, con el corazón acelerado." ¡Nos los traerás directamente! (rompiste el vidrio finalmente, la amenaza se acerca, dí "láser" si quieres defenderte)
+[Mapa Mental: 171 neuronas | Presión Global: 3905]
+
+>>> Bella dice: la no que el una si se "Equivocarse con de
+⏱ Latencia: 24.63 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > (El mostruo te mira fijamente, el láser está cargado)
+[Mapa Mental: 177 neuronas | Presión Global: 3950]
+
+>>> Bella dice: la que no láser el una te se más "¿Crees
+⏱ Latencia: 24.61 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Eres un arma,"..." No eres sólo una unidad de comestibles. Estás hecho para el combate...."No me llames así...Julia"
+[Mapa Mental: 185 neuronas | Presión Global: 4183]
+
+>>> Bella dice: la que el láser no de me una sólo un
+⏱ Latencia: 24.14 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "No lo entiendes, ¿verdad?" preguntó Julia, bajando la voz. " Ese láser... no es un juguete. Disparas esa cosa de nuevo y todos los rastreadores en un radio de tres cuadras vendrán corriendo.
+[Mapa Mental: 203 neuronas | Presión Global: 4683]
+
+>>> Bella dice: es de que no lo el un en una sólo
+⏱ Latencia: 25.28 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Ya vienen", susurró Julia, con el pulso acelerado. Miró los cristales rotos y luego al robot. Si vas a hacer algo, hazlo ahora. Porque no me voy a morir en un supermercado porque quisieras recibir una lección de filosofía.
+[Mapa Mental: 226 neuronas | Presión Global: 5292]
+
+>>> Bella dice: es de que no el me en un una a
+⏱ Latencia: 25.14 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Si te saco de allí, eres mía," dijo Julia, con voz dura, estableciendo condiciones incluso antes de saber si se estaba comprometiendo con ellas. No puedes alejarte. No puedes llevarlos hasta mí. Te quedas cerca, escuchas y solo usas esa luz cuando te lo digo.
+[Mapa Mental: 252 neuronas | Presión Global: 6009]
+
+>>> Bella dice: Julia, Julia" es arma,"..." intentara entiendes, invitando puedes que robot.
+⏱ Latencia: 25.87 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "No lo soy..." comenzó Julia, pero las palabras murieron en su garganta cuando un enjambre de formas grises surgió de los pasillos oscuros, sus gemidos se elevaron en un hambriento muro de sonido.
+[Mapa Mental: 269 neuronas | Presión Global: 6510]
+
+>>> Bella dice: Julia, Julia" es arma,"..." puedes intentara entiendes, que invitando con
+⏱ Latencia: 26.14 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > ¿Hablas en serio? "susurró Julia, sus ojos se dirigieron al primer zombi que ahora estaba a sólo unos metros de distancia."...El zombi se abalanzó. Julia reaccionó antes de que pudiera pensar, balanceando la pesada barra de metal en un arco desesperado. Se conectó con la sien de la criatura con un crujido repugnante, haciéndola tropezar hacia un lado. Ella no se detuvo; ella entró en el espacio, colocándose entre la máquina y la horda que se aproximaba.
+[Mapa Mental: 306 neuronas | Presión Global: 7933]
+
+>>> Bella dice: de la en al se no un el que lo
+⏱ Latencia: 27.14 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > ¡Cállate! ¡Cállate y quédate detrás de mí! "Caras graciosas," insististe, los LED azules parpadearon con lo que parecía un júbilo genuino. "El que—".." ¡Dije que te callaras! Gritó Julia casi desesperada
+[Mapa Mental: 321 neuronas | Presión Global: 8439]
+
+>>> Bella dice: de la en al se un que el lo no
+⏱ Latencia: 27.70 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > ¡Deja de jugar! " gritó Julia, con la voz quebrada. Empujó la máquina más cerca de su cuerpo, tratando de usarla como escudo y como peso para mantenerse anclada. ¡Esto no es un juego!
+[Mapa Mental: 334 neuronas | Presión Global: 8925]
+
+>>> Bella dice: de es en un se que al no con júbilo
+⏱ Latencia: 28.04 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "No hagas eso" 
+[Mapa Mental: 334 neuronas | Presión Global: 8845]
+
+>>> Bella dice: de es en un se que con te y lo
+⏱ Latencia: 28.44 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > ¡Izquierda! ¡Vaya a la izquierda! ..."No te pongas cómodo" murmuró. " No estaremos a salvo hasta que lleguemos al refugio. ... "Ahí,"
+[Mapa Mental: 346 neuronas | Presión Global: 9140]
+
+>>> Bella dice: de la al en un que se con te a
+⏱ Latencia: 25.37 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 5
+
+--- FASE DE SUEÑO ---
+Bella necesita dormir para consolidar lo que ha aprendido.
+Cantidad de ciclos de sueño (1-5, recomendado 3): 5
+
+💤 Bella se va a dormir... (ciclos: 5)
+  Ciclo 1/5...
+  Ciclo 2/5...
+  Ciclo 3/5...
+  Ciclo 4/5...
+  Ciclo 5/5...
+✅ Bella ha despertado.
+   Neuronas consolidadas: 23
+   Conexiones podadas: 0
+   Neuronas activas: 353
+   Presión total: 8865
+   ⏱ Duración del sueño: 293.64 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 5
+
+--- FASE DE SUEÑO ---
+Bella necesita dormir para consolidar lo que ha aprendido.
+Cantidad de ciclos de sueño (1-5, recomendado 3): 5
+
+💤 Bella se va a dormir... (ciclos: 5)
+  Ciclo 1/5...
+  Ciclo 2/5...
+  Ciclo 3/5...
+  Ciclo 4/5...
+  Ciclo 5/5...
+✅ Bella ha despertado.
+   Neuronas consolidadas: 23
+   Conexiones podadas: 0
+   Neuronas activas: 353
+   Presión total: 8715
+   ⏱ Duración del sueño: 298.56 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 5
+
+--- FASE DE SUEÑO ---
+Bella necesita dormir para consolidar lo que ha aprendido.
+Cantidad de ciclos de sueño (1-5, recomendado 3): 5
+
+💤 Bella se va a dormir... (ciclos: 5)
+  Ciclo 1/5...
+  Ciclo 2/5...
+  Ciclo 3/5...
+  Ciclo 4/5...
+  Ciclo 5/5...
+✅ Bella ha despertado.
+   Neuronas consolidadas: 21
+   Conexiones podadas: 0
+   Neuronas activas: 353
+   Presión total: 8565
+   ⏱ Duración del sueño: 288.78 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Genial," ...Simplemente genial."Realmente me vas a dejar sin nada con qué hablar, ¿no?"
+[Mapa Mental: 354 neuronas | Presión Global: 8832]
+
+>>> Bella dice: de la a en y que un se con "
+⏱ Latencia: 25.31 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 5
+
+--- FASE DE SUEÑO ---
+Bella necesita dormir para consolidar lo que ha aprendido.
+Cantidad de ciclos de sueño (1-5, recomendado 3): 3
+
+💤 Bella se va a dormir... (ciclos: 3)
+  Ciclo 1/3...
+  Ciclo 2/3...
+  Ciclo 3/3...
+✅ Bella ha despertado.
+   Neuronas consolidadas: 13
+   Conexiones podadas: 0
+   Neuronas activas: 361
+   Presión total: 8617
+   ⏱ Duración del sueño: 182.09 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 5
+
+--- FASE DE SUEÑO ---
+Bella necesita dormir para consolidar lo que ha aprendido.
+Cantidad de ciclos de sueño (1-5, recomendado 3): 3
+
+💤 Bella se va a dormir... (ciclos: 3)
+  Ciclo 1/3...
+  Ciclo 2/3...
+  Ciclo 3/3...
+✅ Bella ha despertado.
+   Neuronas consolidadas: 12
+   Conexiones podadas: 0
+   Neuronas activas: 361
+   Presión total: 8527
+   ⏱ Duración del sueño: 176.72 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 5
+
+--- FASE DE SUEÑO ---
+Bella necesita dormir para consolidar lo que ha aprendido.
+Cantidad de ciclos de sueño (1-5, recomendado 3): 3
+
+💤 Bella se va a dormir... (ciclos: 3)
+  Ciclo 1/3...
+  Ciclo 2/3...
+  Ciclo 3/3...
+✅ Bella ha despertado.
+   Neuronas consolidadas: 12
+   Conexiones podadas: 0
+   Neuronas activas: 361
+   Presión total: 8437
+   ⏱ Duración del sueño: 176.80 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > (escuchaste: Bella)
+[Mapa Mental: 356 neuronas | Presión Global: 8479]
+
+>>> Bella dice: de la a y en que un te se júbilo
+⏱ Latencia: 25.38 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 1
+
+Uziel > "Estás soñando", dijo Julia, con voz plana pero no cruel. Eso es lo que estás haciendo.
+[Mapa Mental: 362 neuronas | Presión Global: 8633]
+
+>>> Bella dice: Julia, es de mantenerse repugnante, parpadearon Bella) palabras que ¡Cállate
+⏱ Latencia: 26.79 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+
+Elige una opción: 7
+¿Fue buena la respuesta? (good/bad): good
+✅ Reforzando respuesta: 'Julia, es de mantenerse repugnante, parpadearon Bella) palabras que ¡Cállate'
+Traceback (most recent call last):
+  File "/home/uziel_gamma/Bella_Unica/Bellav3_11low3.py", line 569, in <module>
+    exps_flat[base + 2] = min(MAX_UINT32, int(exps_flat[base + 2]) + incremento)
+                                              ~~~~~~~~~^^^^^^^^^^
+IndexError: array index out of range

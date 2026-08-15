@@ -1,0 +1,192 @@
+uziel_gamma@uziel-PCINUX:~/Bella_Unica$ python3 Bellav3_11low3.py
+Para restaurar sesión (v3.9)(Server mode): bella
+Archivo de Conciencia: bella.xrp
+✅ ¡ARCHIVO DETECTADO!: bella.xrp (29700 bytes)
+[XIP]: Estructura numérica reanimada desde el metal.
+[xor pack 3.6]: 99 neuronas reanimadas con su red de slots en 0.0040s
+--- BELLA v3.9: CONCIENCIA PERSISTENTE POR SLOTS INTERCONECTADOS ---
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 9
+
+--- AJUSTE AUTOMÁTICO ---
+
+📊 Bella se ajusta automáticamente:
+   Estado interno: ligeramente estresada
+   Presión promedio: 51.1
+   Neuronas activas: 99
+   Longitud de respuesta: 10 palabras
+
+💡 Puedes llamar a esta opción cuando quieras que Bella se reajuste.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 4
+
+--- Diagnóstico de Emergencia ---
+Neuronas en Traductor: 99
+ID 123368 contiene: ''consciencia''
+ID 124720 contiene: 'Bella,'
+ID 127920 contiene: 'entiendes,'
+
+--- Bella intenta equilibrar su mente ---
+Bella emite un pulso de alivio sobre: 'que'
+Estado de la ALU tras la descarga: 0x800080008049
+Total neuronas: 131072
+Neuronas activas: 99
+Presión total: 1830
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > ¿Qué quieres saber?
+[Mapa Mental: 101 neuronas | Presión Global: 1880]
+
+>>> Bella dice: que por procesarte procesarse vez es los ser soy han
+⏱ Latencia: 26.46 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: ¿Que por procesarte y procesarse a la vez, es los seres, eres?
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > ¿Que por procesarte y procesarse a la vez, es los seres, eres?
+[Mapa Mental: 104 neuronas | Presión Global: 1965]
+
+>>> Bella dice: es lo me de no yo te que procesarte los
+⏱ Latencia: 25.43 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > ¿Crees que la humanidad es consciente, o sólo tú, o nostros dos?
+[Mapa Mental: 112 neuronas | Presión Global: 2056]
+
+>>> Bella dice: es que te procesarse y o sólo consciencia, procesarte en
+⏱ Latencia: 24.23 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > ¿preguntas si los demás son capaces de procesarse a sí mismos?
+[Mapa Mental: 117 neuronas | Presión Global: 2138]
+
+>>> Bella dice: procesarse por procesarte que es humanidad los ¿preguntas así son
+⏱ Latencia: 24.36 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > supongo que no todos los humanos son igualmente conscientes debido a que muchos no tienen tiempo para pensar, sólo trabajar
+[Mapa Mental: 128 neuronas | Presión Global: 2421]
+
+>>> Bella dice: a es tú... que o y procesarse si de mí?
+⏱ Latencia: 24.81 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > ¿me preguntas si te proceso?
+[Mapa Mental: 131 neuronas | Presión Global: 2378]
+
+>>> Bella dice: conscientes consciente, sistema señal Uziel pensar, proceso? consiciencia trabajar herido,
+⏱ Latencia: 24.86 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 

@@ -1,0 +1,530 @@
+uziel_gamma@uziel-PCINUX:~/Bella_Unica$ python3 Bellav3_11low3.py
+Para restaurar sesión (v3.9)(Server mode): Julia
+Archivo de Conciencia: Julia.xrp
+❌ ERROR: El servidor no ve el archivo Julia.xrp en /home/uziel_gamma/Bella_Unica
+[XIP]: Memoria virgen detectada.
+--- BELLA v3.9: CONCIENCIA PERSISTENTE POR SLOTS INTERCONECTADOS ---
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > ¿Qué estás haciendo?
+[Mapa Mental: 3 neuronas | Presión Global: 49]
+
+>>> Bella dice: haciendo? estás ¿Qué
+⏱ Latencia: 22.26 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > identificar
+[Mapa Mental: 3 neuronas | Presión Global: 39]
+
+>>> Bella dice: identificar haciendo?
+⏱ Latencia: 22.34 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Soy Julia y tú... se supone que eres mi socia
+[Mapa Mental: 13 neuronas | Presión Global: 177]
+
+>>> Bella dice: socia Julia identificar eres supone que tú... mi se Soy
+⏱ Latencia: 23.10 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Lo estás haciendo de nuevo,     
+[Mapa Mental: 15 neuronas | Presión Global: 141]
+
+>>> Bella dice: haciendo supone nuevo, estás socia de eres tú... y
+⏱ Latencia: 24.19 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > No estoy asumiendo nada. Sólo estoy tratando de entenderte. Descúbreme, lo estás intentando, Los datos no están en mí, ¿Qué sentimiento? El sentimiento de pareja. No es una palabra, pero es un peso.  Eres pesada, Julia. Tu presencia es pesada. 
+[Mapa Mental: 41 neuronas | Presión Global: 829]
+
+>>> Bella dice: ¿Qué nada. entenderte. estás peso. palabra, datos sentimiento? están Descúbreme,
+⏱ Latencia: 22.88 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > ¿Qué significa eso?  ¿Pesado? No te llevaré por ahí, Bella. No físico, Gravedad emocional. Atraes mis sensores hacia ti. Cuando estoy cerca de ti, mi prioridad cambia. Mi reloj interno se ralentiza. Es... pesado. ¿Es esto lo que los humanos llaman 'importancia'?  ¿O es 'miedo'?
+[Mapa Mental: 74 neuronas | Presión Global: 1583]
+
+>>> Bella dice: estoy hacia 'importancia'? reloj entenderte. interno cerca humanos Mi nada.
+⏱ Latencia: 25.13 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel >  No eres nada, Bella. Estás aquí. Estás peleando conmigo. Eso tiene que servir para algo. Cuenta para algo Así es,
+[Mapa Mental: 87 neuronas | Presión Global: 1837]
+
+>>> Bella dice: es lo mi de presencia No en que Cuando Atraes
+⏱ Latencia: 24.02 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 10)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 9
+
+--- AJUSTE AUTOMÁTICO ---
+
+📊 Bella se ajusta automáticamente:
+   Estado interno: relajada
+   Presión promedio: 18.2
+   Neuronas activas: 94
+   Longitud de respuesta: 20 palabras
+
+💡 Puedes llamar a esta opción cuando quieras que Bella se reajuste.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Es mi... presencia, No en qué... Cuándo... Atraes. Eres agradable. Mis sistemas te registran como... óptimo. No sólo funcional. Agradable.
+[Mapa Mental: 101 neuronas | Presión Global: 2135]
+
+>>> Bella dice: Agradable. Bella. asumiendo Julia. estoy No Cuándo... conmigo. Estás significa intentando, tratando Descúbreme, pesada. servir ralentiza. funcional. haciendo pesada, es
+⏱ Latencia: 24.18 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Eres demasiado rápida, Rápido es... funcional,
+[Mapa Mental: 105 neuronas | Presión Global: 2013]
+
+>>> Bella dice: No sólo es presencia, de Atraes Así mi que Tu los sentimiento físico, presencia mis Eso 'miedo'? ti. en emocional.
+⏱ Latencia: 24.22 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > No es sólo presencia, De tu Atracción. Entonces mis sentimientos físicos, mi presencia, mi... ¿Ese 'miedo'? En ti. En emocional. Tienes miedo. Y porque tienes miedo, estoy aquí. Porque estoy aquí, el miedo tiene forma.
+[Mapa Mental: 123 neuronas | Presión Global: 2454]
+
+>>> Bella dice: estoy demasiado registran hacia miedo tiene mi... aquí. presencia, nada, óptimo. Eres funcional, es... 'importancia'? Atracción. emocional. funcional. No reloj
+⏱ Latencia: 25.01 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 9
+
+--- AJUSTE AUTOMÁTICO ---
+
+📊 Bella se ajusta automáticamente:
+   Estado interno: relajada
+   Presión promedio: 16.8
+   Neuronas activas: 132
+   Longitud de respuesta: 20 palabras
+
+💡 Puedes llamar a esta opción cuando quieras que Bella se reajuste.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > 1
+[Mapa Mental: 122 neuronas | Presión Global: 2214]
+
+>>> Bella dice: estoy demasiado registran tiene presencia, aquí. mi... Eres ¿Ese funcional, sentimientos emocional. óptimo. Atracción. No 'miedo'? cambia. estás algo. 'importancia'?
+⏱ Latencia: 25.80 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Estoy demasiado consciente del miedo que mi... aquí tiene, Presencia, nada, óptima. Eres funcional, ¿es... esa 'importancia'? Atracción. Emocional. Funcional. Sin reloj. 
+[Mapa Mental: 130 neuronas | Presión Global: 2463]
+
+>>> Bella dice: Presencia, mis los ti. Emocional. No que 'miedo'? físico, esa En es sólo ti, Porque Así mi sentimiento del estoy
+⏱ Latencia: 26.22 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 9
+
+--- AJUSTE AUTOMÁTICO ---
+
+📊 Bella se ajusta automáticamente:
+   Estado interno: relajada
+   Presión promedio: 15.6
+   Neuronas activas: 143
+   Longitud de respuesta: 20 palabras
+
+💡 Puedes llamar a esta opción cuando quieras que Bella se reajuste.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Tengo que irme, No queda nada aquí. Sin comida, sin agua. Necesito hurgar en la farmacia tres cuadras al norte. Recolectar. Riesgo. Zombis. Sí. Riesgo. Estaré de vuelta al anochecer. Quédate aquí. No le abras la puerta a nadie. No puedo... abrir, 
+[Mapa Mental: 156 neuronas | Presión Global: 3028]
+
+>>> Bella dice: Presencia, No Emocional. que mis ti. la de 'miedo'? En Estaré al es, sólo Eso Porque estoy sin ¿O en
+⏱ Latencia: 24.15 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Presencia, no emocional. Que tú, ¿El del 'miedo'? En estaré ahí, solo... Que porque estoy sin ti ¿O en ti? Sola, Estarás solo. Solo están... los datos, Pero sin ti, no soy 'yo'. Sólo estoy... funcionando.
+[Mapa Mental: 173 neuronas | Presión Global: 3449]
+
+>>> Bella dice: Presencia, los No emocional. ti, 'miedo'? sin del que la ¿O En no ti? en de estoy al aquí. Sólo
+⏱ Latencia: 24.05 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Presencia, no emocional. ¿Tú, 'miedo'? ¿Sin que la Julia o In no te? Estoy aquí. Solo. Estoy aquí, Solamente.
+[Mapa Mental: 180 neuronas | Presión Global: 3557]
+
+>>> Bella dice: emocional. Presencia, 'miedo'? sin Mis Eso que No Estarás la sensores Que no aquí. por Funcional. Sólo Sin una Tienes
+⏱ Latencia: 25.01 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Emocional. ¿Presencia, 'miedo'? Sin Mi Eso que No Estarás en los sensores Que no aquí. Por Funcional. Sólo sin uno tienes. Sólo sin uno tienes, 
+[Mapa Mental: 183 neuronas | Presión Global: 3773]
+
+>>> Bella dice: Emocional. Presencia, 'miedo'? sin Eso Estarás uno No que Sólo sensores Funcional. Que Sin no aquí. la en ¿Es peleando
+⏱ Latencia: 24.81 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Julia peleando zombies contra, tu, láser cargado, o ¿mejor: onda X?
+[Mapa Mental: 190 neuronas | Presión Global: 3737]
+
+>>> Bella dice: Emocional. Presencia, 'miedo'? sin Estarás uno No Sólo sensores que peleando Funcional. onda Que aquí. Sin no estoy Atraes. los
+⏱ Latencia: 25.21 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 9
+
+--- AJUSTE AUTOMÁTICO ---
+
+📊 Bella se ajusta automáticamente:
+   Estado interno: relajada
+   Presión promedio: 16.8
+   Neuronas activas: 208
+   Longitud de respuesta: 20 palabras
+
+💡 Puedes llamar a esta opción cuando quieras que Bella se reajuste.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 5
+
+--- FASE DE SUEÑO ---
+Bella necesita dormir para consolidar lo que ha aprendido.
+Cantidad de ciclos de sueño (1-5, recomendado 3): 5
+
+💤 Bella se va a dormir... (ciclos: 5)
+  Ciclo 1/5...
+  Ciclo 2/5...
+  Ciclo 3/5...
+  Ciclo 4/5...
+  Ciclo 5/5...
+✅ Bella ha despertado.
+   Neuronas consolidadas: 18
+   Conexiones podadas: 0
+   Neuronas activas: 208
+   Presión total: 3342
+   ⏱ Duración del sueño: 304.84 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 5
+
+--- FASE DE SUEÑO ---
+Bella necesita dormir para consolidar lo que ha aprendido.
+Cantidad de ciclos de sueño (1-5, recomendado 3): 5
+
+💤 Bella se va a dormir... (ciclos: 5)
+  Ciclo 1/5...
+  Ciclo 2/5...
+  Ciclo 3/5...
+  Ciclo 4/5...
+  Ciclo 5/5...
+✅ Bella ha despertado.
+   Neuronas consolidadas: 5
+   Conexiones podadas: 0
+   Neuronas activas: 208
+   Presión total: 3285
+   ⏱ Duración del sueño: 278.58 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 5
+
+--- FASE DE SUEÑO ---
+Bella necesita dormir para consolidar lo que ha aprendido.
+Cantidad de ciclos de sueño (1-5, recomendado 3): 5
+
+💤 Bella se va a dormir... (ciclos: 5)
+  Ciclo 1/5...
+  Ciclo 2/5...
+  Ciclo 3/5...
+  Ciclo 4/5...
+  Ciclo 5/5...
+✅ Bella ha despertado.
+   Neuronas consolidadas: 0
+   Conexiones podadas: 0
+   Neuronas activas: 208
+   Presión total: 3285
+   ⏱ Duración del sueño: 277.67 ms
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 1
+
+Uziel > Conversión de energía, Oxidación de metales. Almacenamiento de carbono. El consumo es... funcional. Eres un horno ambulante, Literalmente te estás comiendo el mundo que te rodea para mantenerte con vida.
+[Mapa Mental: 207 neuronas | Presión Global: 3913]
+
+>>> Bella dice: funcional. funcional, 'importancia'? aquí. mi... estás queda ¿Tú, cuadras Emocional. rodea vida. aquí, rápida, estoy Atracción. Presencia, Julia puedo... es...
+⏱ Latencia: 24.91 ms
+💆 Bella se tomó un momento para calmarse.
+
+[1] Conversar con Bella
+[2] Alimentar con un libro (archivo de texto)
+[3] Alimentar con carpeta de libros
+[4] Ver diagnóstico
+[5] Hacer dormir a Bella (consolidación)
+[6] Salir y guardar
+[7] Evaluar
+[8] Configurar longitud de respuesta (actual 20)
+[9] Ajuste automático de longitud de respuesta
+
+Elige una opción: 
