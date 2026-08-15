@@ -1,0 +1,113 @@
+inicio
+Comandos
+cl = change log
+lm = loop mode
+cc = change_command
+Introduce comando: 
+> 0
+n 0 = inicio
+> cc
+Comandos
+cl = change log
+lm = loop mode
+cc = change_command
+Introduce comando: cl
+Introduce log nuevo: fin _start
+n 0 = fin _start
+> 5
+n 5 = fin _start
+> cc
+Comandos
+cl = change log
+lm = loop mode
+cc = change_command
+Introduce comando: cl
+Introduce log nuevo: entrada a loopProcess
+n 5 = entrada a loopProcess
+> 1
+n 6 = entrada a loopProcess
+> cc
+Comandos
+cl = change log
+lm = loop mode
+cc = change_command
+Introduce comando: lm
+Iteración del bucle: 0
+¡Modo bucle activado!
+n 6 = 1 entrada a loopProcess
+> n 7
+n 6 = 1 entrada a loopProcess
+> 7
+n 13 = 2 entrada a loopProcess
+> 7
+n 20 = 3 entrada a loopProcess
+> 7
+n 27 = 4 entrada a loopProcess
+> 7
+n 34 = 5 entrada a loopProcess
+> 7
+n 41 = 6 entrada a loopProcess
+> 7
+n 48 = 7 entrada a loopProcess
+entrada a loopProcess
+Comandos
+cl = change log
+lm = loop mode
+cc = change_command
+Introduce comando: lm
+Iteración del bucle: 7
+¡Modo bucle activado!
+> 7
+n 7 = 7 entrada a loopProcess
+> 48
+n 55 = 8 entrada a loopProcess
+> 7
+n 62 = 9 entrada a loopProcess
+> 7
+n 69 = 10 entrada a loopProcess
+> cc 
+Comandos
+cl = change log
+lm = loop mode
+cc = change_command
+Introduce comando: cl
+Introduce log nuevo: ¡Bucle encontrado!
+n 69 = ¡Bucle encontrado!
+> 7 
+n 76 = ¡Bucle encontrado!
+> 1
+n 77 = ¡Bucle encontrado!
+> cc
+Comandos
+cl = change log
+lm = loop mode
+cc = change_command
+Introduce comando: cl
+Introduce log nuevo: modo seek
+n 77 = modo seek
+> 21
+n 98 = modo seek
+> cc
+Comandos
+cl = change log
+lm = loop mode
+cc = change_command
+Introduce comando: cl  
+Introduce log nuevo: entrando a seguir buscando
+n 98 = entrando a seguir buscando
+> 1  
+n 99 = entrando a seguir buscando
+> cc
+Comandos
+cl = change log
+lm = loop mode
+cc = change_command
+Introduce comando: lm
+Iteración del bucle: 1
+¡Modo bucle activado!
+n 99 = 1 entrando a seguir buscando
+> 64
+n 163 = 2 entrando a seguir buscando
+> 124
+n 287 = 3 entrando a seguir buscando
+>

@@ -1,0 +1,69 @@
+;rax mazo amarillo
+;rbx mazo azul
+;rcx mazo verde
+;rdx mazo celeste
+;r8 al r15 mazo negro
+
+section .data
+    ; Definimos como dq (64 bits) para que entre limpio en r9 más adelante. 
+    ; Si necesitas más de 64 bits, usamos un puntero.
+    random dq 0x2346372463274723
+    banderas db 0x00
+    vidas db 0x4
+
+global _start
+
+; Definiciones sin comas
+%define bloq 10
+%define rev 13
+%define doble 14
+%define civilian 0
+%define dirt 1
+%define bomb 2
+%define nukebomb 3
+
+; El nombre del macro ahora coincide perfectamente abajo
+%macro detectar_vloque 3
+    mov r9, [random]
+    %assign posicion %3 << 3
+    shr r9, posicion
+    and r9, 0xff
+    and r8, 0xff
+    cmp r9, %1
+    setz r8b
+    and r8, 0x1
+    shl r8, %2
+    or r15, r8
+%endmacro
+
+_start: 
+    xor rax, rax
+    xor rbx, rbx
+    xor rcx, rcx
+    
+    ; Limpieza manual rápida de r8 a r14 para evitar el conflicto de rfack
+    xor r8, r8
+    xor r9, r9
+    xor r10, r10
+    xor r11, r11
+    xor r12, r12
+    xor r13, r13
+    xor r14, r14
+    xor r15, r15
+
+    %assign i 0
+    %rep 8
+        detectar_vloque bloq, 0, i
+        detectar_vloque rev, 1, i
+        detectar_vloque doble, 2, i
+        detectar_vloque civilian, 3, i
+        detectar_vloque dirt, 4, i
+        detectar_vloque bomb, 5, i
+        detectar_vloque nukebomb, 6, i
+        %assign i i+1    ; ¡No te olvides de incrementar la i para que no sea un bucle infinito de compilación!
+    %endrep
+
+    ; Syscall de salida limpia para que no te dé Segmentation Fault al terminar
+    mov rax, 60
+    xor rdi, rdi
+    syscall
