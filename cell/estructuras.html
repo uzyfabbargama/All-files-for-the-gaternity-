@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador del Universo (1MB)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: #00ff41; font-family: 'Courier New', Courier, monospace; overflow: hidden; }
+        canvas { 
+            image-rendering: pixelated; 
+            cursor: crosshair; 
+            border: 1px solid #333;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+        }
+        .panel { background: rgba(10, 10, 10, 0.9); border-left: 1px solid #333; }
+        .stat-value { color: #fff; font-weight: bold; }
+        input[type=range] { accent-color: #00ff41; }
+    </style>
+</head>
+<body class="flex h-screen">
+
+    <!-- Área de Visualización -->
+    <div class="flex-1 flex flex-col relative overflow-hidden">
+        <div id="viewport-container" class="flex-1 flex items-center justify-center bg-black">
+            <canvas id="universoCanvas"></canvas>
+        </div>
+        
+        <!-- Overlay de Coordenadas -->
+        <div class="absolute bottom-4 left-4 bg-black/80 p-2 text-xs border border-green-900/50">
+            POS: <span id="viewX">0</span>, <span id="viewY">0</span> | 
+            ZOOM: <span id="viewZoom">1.0</span>x | 
+            EDAD: <span id="viewAge">0</span> M.A.
+        </div>
+    </div>
+
+    <!-- Panel de Control (El Alien) -->
+    <div class="w-80 panel p-6 flex flex-col gap-6 shadow-xl">
+        <div>
+            <h1 class="text-xl font-bold mb-1 italic">TRANSURGENCIA v8</h1>
+            <p class="text-[10px] opacity-50 uppercase tracking-widest text-green-500">Motor de Bajo Nivel / Athlon Simulation</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="flex flex-col gap-1">
+                <label class="text-xs uppercase">Velocidad de Simulación</label>
+                <input type="range" id="speedRange" min="0" max="100" value="30" class="w-full">
+                <div class="flex justify-between text-[10px]">
+                    <span>PAUSA</span>
+                    <span>TIEMPO REAL</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label class="text-xs uppercase">Zoom Estructural</label>
+                <input type="range" id="zoomRange" min="1" max="20" step="0.1" value="2" class="w-full">
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label class="text-xs uppercase">Flujo de Calor (Derecha/Abajo)</label>
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id="heatFlow" checked>
+                    <span class="text-xs italic text-gray-400">Activo (Asimetría Vectorial)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-800 pt-4 space-y-2 text-sm">
+            <div class="flex justify-between">
+                <span>Temp. Simulación:</span>
+                <span class="stat-value text-blue-400">21°C</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Calor Persistente:</span>
+                <span id="statCalor" class="stat-value text-red-500">1</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Celdas Activas:</span>
+                <span id="statCeldas" class="stat-value">1,000,000</span>
+            </div>
+        </div>
+
+        <div class="mt-auto space-y-2">
+            <button id="resetBtn" class="w-full py-2 bg-red-900/20 border border-red-500/50 text-red-500 hover:bg-red-900/40 text-xs uppercase font-bold transition-all">
+                Colapsar Universo (Reset)
+            </button>
+            <p class="text-[9px] text-gray-500 text-center leading-tight">
+                ADVERTENCIA: La manipulación directa de bytes puede causar infecciones de ruido semántico.
+            </p>
+        </div>
+    </div>
+
+<script>
+    /**
+     * LÓGICA DEL UNIVERSO (Port de universo.asm)
+     * Optimizada para el navegador pero respetando las reglas de XOR y calor.
+     */
+    const SIZE = 1000; // 1000x1000 = 1MB
+    const buffer = new Uint8Array(SIZE * SIZE);
+    let calorPersistente = 1;
+    let edad = 86400000;
+
+    // Inicialización con ruido "histórico"
+    function initUniverso() {
+        for(let i=0; i < buffer.length; i++) {
+            // Arriba: Tecnología (más ordenada)
+            if (i < 200000) buffer[i] = Math.random() > 0.98 ? 255 : 0;
+            // Medio: Enfriadores (caos masivo)
+            else if (i < 700000) buffer[i] = Math.random() * 50;
+            // Abajo: NPCs y Vida (bloques)
+            else {
+                if (Math.random() > 0.995) {
+                    // Generar una "casita" o "npc" inicial
+                    for(let x=0; x<5; x++) for(let y=0; y<5; y++) buffer[i + x + y*SIZE] = 120;
+                }
+            }
+        }
+    }
+
+    const canvas = document.getElementById('universoCanvas');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    let zoom = 2;
+    let offsetX = 0;
+    let offsetY = 800; // Empezamos viendo a los NPCs
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth - 320;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Loop de Transurgencia (Motor ASM simulado)
+    function step() {
+        if (parseFloat(document.getElementById('speedRange').value) === 0) return;
+        
+        const speed = document.getElementById('speedRange').value / 10;
+        const heatActive = document.getElementById('heatFlow').checked;
+
+        for (let s = 0; s < speed; s++) {
+            edad++;
+            // Procesamos una fracción del MB para mantener 60fps
+            for (let i = 1001; i < buffer.length - 1001; i++) {
+                // Lógica de Vecindad (XOR y Reequilibrio)
+                let center = buffer[i];
+                let up = buffer[i - SIZE];
+                let down = buffer[i + SIZE];
+                let left = buffer[i - 1];
+                let right = buffer[i + 1];
+
+                // Simulación de update_cell macro
+                let diff = (up ^ center) & 0xFF;
+                buffer[i] = (buffer[i] + (diff * 0.01)) & 0xFF;
+                
+                // Bit 8 / Calor (Desborde del bit 7)
+                if (center > 240) {
+                    calorPersistente = (calorPersistente + 0.0001) % 255;
+                    buffer[i] = (buffer[i] - 10) & 0xFF; // Disipación
+                    
+                    if (heatActive) {
+                        // Flujo derecha/abajo
+                        let target = i + 1 + SIZE;
+                        if (target < buffer.length) buffer[target] = (buffer[target] + 2) & 0xFF;
+                    }
+                }
+            }
+        }
+    }
+
+    // Renderizado con Zoom y Cámara
+    function render() {
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const viewW = Math.floor(canvas.width / zoom);
+        const viewH = Math.floor(canvas.height / zoom);
+
+        const imgData = ctx.createImageData(viewW, viewH);
+        const data = imgData.data;
+
+        for (let y = 0; y < viewH; y++) {
+            for (let x = 0; x < viewW; x++) {
+                let bufX = Math.floor(x + offsetX);
+                let bufY = Math.floor(y + offsetY);
+                
+                if (bufX >= 0 && bufX < SIZE && bufY >= 0 && bufY < SIZE) {
+                    let val = buffer[bufY * SIZE + bufX];
+                    let idx = (y * viewW + x) * 4;
+                    
+                    // Estética de fósforo verde/blanco
+                    data[idx] = val * 0.8;     // R
+                    data[idx+1] = val;         // G
+                    data[idx+2] = val * 0.9;   // B
+                    data[idx+3] = 255;         // A
+                }
+            }
+        }
+
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = viewW;
+        tempCanvas.height = viewH;
+        tempCanvas.getContext('2d').putImageData(imgData, 0, 0);
+
+        ctx.save();
+        ctx.scale(zoom, zoom);
+        ctx.drawImage(tempCanvas, 0, 0);
+        ctx.restore();
+
+        // Actualizar HUD
+        document.getElementById('viewX').innerText = Math.floor(offsetX);
+        document.getElementById('viewY').innerText = Math.floor(offsetY);
+        document.getElementById('viewZoom').innerText = zoom.toFixed(1);
+        document.getElementById('viewAge').innerText = (edad / 1000000).toFixed(2);
+        document.getElementById('statCalor').innerText = Math.floor(calorPersistente);
+    }
+
+    function loop() {
+        step();
+        render();
+        requestAnimationFrame(loop);
+    }
+
+    // Controles de Cámara
+    window.addEventListener('keydown', (e) => {
+        const stepSize = 20 / zoom;
+        if (e.key === 'ArrowUp') offsetY -= stepSize;
+        if (e.key === 'ArrowDown') offsetY += stepSize;
+        if (e.key === 'ArrowLeft') offsetX -= stepSize;
+        if (e.key === 'ArrowRight') offsetX += stepSize;
+        
+        // Limites
+        offsetX = Math.max(0, Math.min(SIZE - canvas.width/zoom, offsetX));
+        offsetY = Math.max(0, Math.min(SIZE - canvas.height/zoom, offsetY));
+    });
+
+    document.getElementById('zoomRange').addEventListener('input', (e) => {
+        zoom = parseFloat(e.target.value);
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+        calorPersistente = 1;
+        initUniverso();
+    });
+
+    // Iniciar
+    initUniverso();
+    loop();
+
+</script>
+</body>
+</html>
