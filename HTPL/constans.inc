@@ -1,0 +1,9 @@
+%define KW_if 360
+%define KW_else 1078
+%define KW_open_bracket 246
+%define KW_close_bracket 250
+%define KW_equal 122
+%define KW_double_quote 68
+%define KW_simple_quote 78
+%define KW_let 540
+%define KW_isvar 2240

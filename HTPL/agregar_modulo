@@ -1,0 +1,2 @@
+read -p "Ingresa el nombre módulo: " nombre
+featherpad $nombre
