@@ -1,0 +1,79 @@
+#CLASSs
+#CLASS nombre = <"enlace | directorio | ruta"[alias]>
+CLASS org.lwjgl.opengl.GL11 = <"lwjgl.org"[GL11.opengl]> #toma de la web
+CLASS org.lwjgl.input.Keyboard = <"lwjgl.org"[input.Keyboard]>
+
+CLASS net.minecraftforge.fml.relauncher = <"minecraftforge.net"[Side]>
+CLASS net.minecraftforge.fml.common.network.simpleimpl = <"minecraftforge.net"[MessageContext]>
+CLASS net.minecraftforge.fml.common.network.simpleimpl = <"minecraftforge.net"[IMessageHandler]>
+CLASS  net.minecraftforge.fml.common.network.simpleimpl = <"minecraftforge.net"[IMessage]>
+CLASS net.minecraftforge.fml.common.event= <"minecraftforge.net"[FMLPreInitializationEvent]>
+
+CLASS net.minecraft.world = <"minecraft.net"[World]>
+CLASS net.minecraft.util.math = <"miencarft.net"[BlockPos]>
+CLASS net.minecraft.util = <"minecraft.net"[ResourceLocation]>
+CLASS net.minecraft.tileentity = <"minecraft.net"[TileEntity]>
+CLASS net.minecraft.item = <"minecraft.net"[ItemStack]>
+CLASS net.minecraft.inventory = <"minecraft.net"[Slot]>
+CLASS net.minecraft.inventory = <"minecraft.net"[InventoryBasic]>
+CLASS net.minecraft.inventory = <"minecraft.net"[IInventory]>
+CLASS net.minecraft.inventory = <"minecraft.net"[Container]>
+CLASS net.minecraft.init = <"minecraft.net"[Blocks]>
+CLASS net.minecraft.entity.player = <"minecraft.net"[EntityPlayerMP]>
+CLASS net.minecraft.entity.player = <"minecraft.net"[EntityPlayer]>
+CLASS net.minecraft.client.gui.inventory = <"minecraft.net"[GuiContainer]>
+CLASS net.minecraft.client.gui = <"minecraft.net"[GuiButton]>
+
+CLASS net.mcreator.supermc = <""[Supermc]>
+CLASS net.mcreator.supermc = <""[ElementsSupermc]>
+
+CLASS java.util.function. = <""[Supplier]>
+CLASS java.util. = <"util.java"[Map]>
+CLASS java.util. = <"util.java"[HashMap]>
+
+CLASS java.io. = <"io.java"[IOException]>
+
+#extend y herencia
+GuiInventory += ElementsSupermc.ModElement
+GuiInventory += (
+VAR GUIID[0] = 1, #umbral 0 = 16 bits
+VAR GUIID[1] = 0, #ahora son 32 bits de un int
+HashMap(
+guistate = new(HashMap()) # genera un nuevo HashMap
+),
+GuiInventory(ElementsSuperamc, instance) = super(instance, 2)
+);
+
+CLASS preInit(FMLInitiallizationEvent(event)) = (
+	elements.addNetworkMessage(GUIButtonPressedMessageHandler, #llamada a clase anidada
+	GUIButtonPressedMessage, #otra clase
+	Side.SERVER #parece ser parte del servidor de MC
+);
+
+CLASS GuiContainerMod += (
+Container += Supplier(Map(Integer, Slot))
+):
+GuiContainerMod += (
+IInventory (internal),
+CLASS World(word) = (word),
+CLASS EntityPlayer(entity) = (entity),
+CLASS intlistpos = (VAR x[0], x[1], VAR y[0], y[1], VAR z[0], z[1]),
+Map(Intenger, Slot) = customSlots += new(HashMap()) = (
+world = VAR world,
+entity = VAR entity,
+x[0:1] = VAR x[0:1],
+y[0:1] = VAR y[0:1],
+z[0:1] = VAR z[0:1],
+internal = new(InventoryBasic("", true, 2)),
+TileEntity(ent) = world.getTileEntity(new(BlockPos(x[0:1], y[0:1], z[0:1]))
+if (instanceof(ent, IInventory)), #siendo instanceof una CLASS que hace booleanos
+ CTRL inventory_logic {0, internal = ent(IInventory)},
+customSlots.put(0, add.SlotContaines(new(Slot(internal, 0, 12, 53) = (
+VAR isItemValid(2) += (stack(ItemStack)) = (
+return(new(ItemStack(Block.BEDROCK. (VAR entero), (1)).getItem() == stack.getItem())
+);););
+customSlots.put(1, addSlotToContainer(new(Slot(internal, 1, 30, 53)) = (
+VAR isItemStack(2) += 
+
+);
+);
