@@ -1,0 +1,17 @@
+#la sintaxis es:
+#CLASS alias = <"tu ruta"[nombre_de_la_clase]>
+CLASS gnulmod = <"net.mcreator"[gnulmod]>
+VAR null = 0
+CLASS MinecraftForge =<"net.minecraftforge.common"[MinecraftForge]>
+CLASS FMLPreInitializationEvent =<"net.minecraftforge.fml.common.event"[]>
+CLASS procedure =<"net.mcreator.gnulmod"[]>
+
+CLASS EventHandlerRegistry = (
+    CLASS registerHandlers({FMLPreInitializationEvent: event}) = (  #ah, ahora entiendo, FMLPreInitializationEvent, ahora es event
+        MinecraftForge.EVENT_BUS.register(ProcedureLifetick.TriggerHandler()), #tomamos de MinecraftForge, el EVENT_BUS, y metemos en el registro, lo del procedure, en la parte de TriggerHandler
+        MinecraftForge.EVENT_BUS.register(ProcedureDrinkwater()),
+        MinecraftForge.EVENT_BUS.register(ProcedureManualMining(null)),
+        MinecraftForge.EVENT_BUS.register(ProcedureEatListener()),
+        MinecraftForge.EVENT_BUS.register(ProcedureClaypotHandler()),
+    ),
+);

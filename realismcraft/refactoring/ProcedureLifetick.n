@@ -1,0 +1,155 @@
+CLASS gnulmod = <"net.mcreator"[gnulmod]>
+
+CLASS * = <"toolkit.n"[if/else/while/for/switch/json/bif]> 
+CLASS var_64 = <"super_var.n"[Super_var4dw]> 
+CLASS var_32 = <"super_var.n"[Super_var2dw]>
+CLASS boolean = <"typescript.n[bool]">
+CLASS float = <"typescript.n"[floatIEEE_754]>
+CLASS math = <"math.n"[math]>
+CLASS ternary = <"trinary"[ternary]
+CLASS % = <"module"[module]>
+VAR pass = 1
+VAR cut = 0
+
+CLASS TickEvent = <"net.minecraftforge.fml.common.gameevent"[TickEvent]>
+CLASS SubscribeEvent = <"net.minecraftforge.fml.common.eventhandler"[SubscribeEvent]>
+CLASS FMLPreInitializationEvent = <"net.minecraftforge.fml.common.event"[FMLPreInitializationEvent]>
+CLASS WorldServer = <"net.minecraft.world"[WorldServer]>
+CLASS BlockPos = <"net.minecraft.util"[math.BlockPos]>
+CLASS EnumParticleTypes = <"net.minecraft.util"[EnumParticleTypes]>
+CLASS DamageSource = <"net.minecraft.util"[DamageSource]>
+CLASS PotionEffect = <"net.minecraft.potion"[PotionEffect]>
+CLASS NBTTagCompound = <"net.minecraft.nbt"[NBTTagCompound]>
+CLASS MobEffects = <"net.minecraft.init"[MobEffects]>
+CLASS EntityPlayer = <"net.minecraft.entity.player"[EntityPlayer]>
+
+CLASS  = <"net.mcreator.gnulmod"[NumerasoEngine]>
+CLASS  = <"net.mcreator.gnulmod"[ElementsGnulmod]>
+
+CLASS @ = <"Java_anottations"[*]>
+CLASS super = <"super_java64"[super_instancer]>
+@(ElementsGnulmod.ModElement.Tag)
+CLASS ProcedureLifetick = ElementsGnulmod.ModElement #herencia
+
+ProcedureLifetick(ElementsGnulmod.instance) += ( #extensión
+	super(instance, 1),
+	CLASS onTickStatic(TickEvent.PlayerTickEvent = event) = (
+		if(event.phase == TickEvent.Phase.END & !event.player.world.isRemote)
+			CTRL player_logic {pass, EntityPlayer.player = event.player;},
+			CTRL obtener_nbt {pass, NBTTagCompound.nbt = player.getEntityData()},
+			bif(!nbt.hasKey("gnul_pulmon")
+				#pulmón
+				CTRL hacer_numeraso_pulmon {pass, nbt.setLong("gnul_pulmon", NumerasoEngine.makeNumeraso(500, true, 1023, true, 500, true))},
+				CTRL hacer_numeraso_pulmonxp {pass, nbt.setLong("gnul_pulmon_xp", 0L)},
+				#corazón
+				CTRL hacer_numeraso_corazon {pass, nbt.setLong("gnul_corazon", NumerasoEngine.makeNumeraso(500, true, 1023, true, 500, true))},
+				CTRL hacer_numeraso_corazonxp {pass, nbt.setLong("gnul_corazon_xp", 0L)},
+				#temperatura
+				CTRL hacer_numeraso_temperatura {pass, nbt.setLong("gnul_temp", NumerasoEngine.makeNumeraso(0, true, 500, true, 0, true))},
+				CTRL hacer_numeraso_temperaturaxp {pass, nbt.setLong("gnul_temp_xp", 0L)},
+				#pierna izquierda
+				CTRL hacer_numeraso_izquierda {pass, nbt.setLong("gnul_leg_l", NumerasoEngine.makeNumeraso(0, true, 500, true, 200, true))},
+				CTRL hacer_numeraso_izquierdaxp {pass, nbt.setLong("gnul_leg_lxp", 0L)},
+				#pierna derecha
+				CTRL hacer_numeraso_derecha {pass, nbt.setLong("gnul_leg_r", NumerasoEngine.makeNumeraso(0, true, 500, true, 200, true))},
+				CTRL hacer_numeraso_derechaxp {pass, nbt.setLong("gnul_leg_rxp", 0L)},
+				#hueso pierna izquierda
+				CTRL hacer_numeraso_hueso_izquierda {pass, nbt.setLong("gnul_leg_l_bn", NumerasoEngine.makeNumeraso(0, true, 500, true, 200, true))},
+				CTRL hacer_numeraso_hueso_izquierdasp {pass, nbt.setLong("gnul_leg_l_bnxp", 0L)},
+				#hueso pierna derecha
+				CTRL hacer_numeraso_hueso_derecha {pass, nbt.setLong("gnul_leg_r_bn", NumerasoEngine.makeNumeraso(0, true, 500, true, 200, true))},
+				CTRL hacer_numeraso_hueso_derechaxp {pass, nbt.setLong("gnul_leg_r_bnxp", 0L)},
+				#músculo pierna izquierda
+				CTRL hacer_numeraso_musculo_izquierda {pass, nbt.setLong("gnul_leg_l_ml", NumerasoEngine.makeNumeraso(0, true, 500, true, 200, true))},
+				CTRL hacer_numeraso_musculo_izquierdaxp {pass, nbt.setLong("gnul_leg_l_mlxp", 0L)},
+				#músculo pierna derecha
+				CTRL hacer_numeraso_musculo_derecha {pass, nbt.setLong("gnul_leg_r_ml", NumerasoEngine.makeNumeraso(0, true, 500, true, 200, true))},
+				CTRL hacer_numeraso_musculo_derechaxp {cut, nbt.setLong("gnul_leg_r_mlxp", 0L)},
+				#lectura de registros
+				var_64(pulmon = nbt.getLong("gnul_pulmon")),
+				var_64(pulmonXP = nbt.getLong("gnul_pulmon_xp")),
+				var_64(corazon = nbt.getLong("gnul_corazon")),
+				var_64(corazonXP = nbt.getLong("gnul_corazon_xp")),
+				var_64(temp = nbt.getLong("gnul_temp")),
+				var_64(tempXP = nbt.getLong("gnul_temp_xp")),
+				var_64(kidney = nbt.getLong("gnul_kidney")),
+				var_64(kidneyXP = nbt.getLong("gnul_kidney_xp")),
+				var_64(leg_l = nbt.getLong("gnul_leg_l")),
+				var_64(leg_lxp = nbt.getLong("gnul_leg_lxp")),
+				var_64(leg_r = nbt.getLong("gnul_leg_r")),
+				var_64(leg_rxp = nbt.getLong("gnul_leg_rxp")),
+				var_64(leg_r_bn = nbt.getLong("gnul_leg_r_bn")),
+				var_64(leg_r_bnxp = nbt.getLong("gnul_leg_r_bnxp");),
+				var_64(leg_l_bn = nbt.getLong("gnul_leg_l_bn")),
+				var_64(leg_l_bnxp = nbt.getLong("gnul_leg_l_bnxp")),
+				var_64(leg_l_ml = nbt.getLong("gnul_leg_l_ml")),
+				var_64(leg_l_mlxp = nbt.getLong("gnul_leg_l_mlxp")),
+				var_64(leg_r_ml = nbt.getLong("gnul_leg_r_ml")),
+				var_64(leg_r_mlxp = nbt.getLong("gnul_leg_r_mlxp")),
+				#sistema digestivo
+				var_32 (buffMusculo = nbt.getInteger("gnul_buff_musculo")),
+				var_32 (buffHueso = nbt.getInteger("gnul_buff_hueso")),
+				var_32 (buffVitals = nbt.getInteger("gnul_buff_vitals")),
+				
+				var_64 (res_Corazon = NumerasoEngine.applyRules(corazon, corazonXP, sendentarismo + castigoCorazon, ejercisio + buffVitals),
+				var_64 (resKidney = NumerasoEngine.applyRules(kidney, kidneyXP, saludK + buffVitals, faltaAgua, saludK + buffVitals, faltaAgua + inputFalta + (buffVitals/10), saludK, saludK + inputLimpia + (buffVitals/10))),
+				#limpiar los buffs
+				nbt.setInteger("gnul_buff_musculo", 0),
+				nbt.setInteger("gnul_buff_hueso", 0),
+				nbt.setInteger("gnul_buff_vitals", 0),
+				#temperatura
+				var_32(f = math(temp >> NumerasoEngine.posZ) & NumerasoEngine.MASK10),
+				var_32(sTemp = math(temp >> NumerasoEngine.posY) & NumerasoEngine.MASK10),
+				var_32(cTemp = math(temp >> NumerasoEngine.posX) & NumerasoEngine.MASK10),
+				#corazon
+				var_32(ejercisio = math(corazon >> NumerasoEngine.posZ) & NumerasoEngine.MASK10),
+				var_32(salud = math(corazon >> NumerasoEngine.posY) & NumerasoEngine.MASK10),
+				var_32(sedentarismo = math(corazon >> NumerasoEngine.posX) & NumerasoEngine.MASK10),
+				#riñones
+				var_32 (faltaAgua = math(kidney >> NumerasoEngine.posZ) & NumerasoEngine.MASK10),
+				var_32 (saludK = math(kidney >> NumerasoEngine.posY) & NumerasoEngine.MASK10),
+			var_32 (aguaLimpia = math(kidney >> NumerasoEngine.posX) & NumerasoEngine.MASK10),
+			BlockPos.pos = BlockPos(player.posX, player.posY + 1, player.posZ),
+			var_32( luz = player.world.getLight(pos).
+			var_32( aireFactor = Math.abs(luz - 7).
+			var_32( movFactor = ternary(player.isSprvar_32(ing() ? 5 : (player.distanceWalkedModified > 0 ? 3 : 0)),
+			#temperatura
+			float(tempBioma = player.world.getBiome(player.getPosition()).getTemperature(player.getPosition())),
+			var_32( factorFrio = ternary(tempBioma < 0.2 ? math((0.2 - tempBioma) * 100) : 0)),
+			var_32(factorCalor = ternary(tempBioma > 0.8 ? math((tempBioma - 0.8) * 100) : 0)),
+			var_32( inputLimpia = nbt.getInteger("gnul_input_agua_limpia")),
+			var_32( inputFalta = nbt.getInteger("gnul_input_falta_agua")),
+			nbt.setInteger("gnul_input_agua_limpia", 0).
+			nbt.setInteger("gnul_input_falta_agua", 0),
+			#reglas
+			var_64(resTemp = NumerasoEngine.applyRules(temp, tempXP, (sTemp + (cTemp << 10)), f, (sTemp + (f << 10)), f + factorFrio, sTemp, sTemp + factorCalor)),
+			var_64(resPulmon = NumerasoEngine.applyRules(pulmon, pulmonXP, 0, aireFactor, 0, aireFactor, 0, movFactor)),
+			var_64(falloPulmon = (resPulmon[0] >> NumerasoEngine.posC2) & 1),
+			var_32(castigoCorazon = (int) (falloPulmon * 20)),
+			var_64(resCorazon = NumerasoEngine.applyRules(corazon, corazonXP, sedentarismo + castigoCorazon, ejercisio, salud, salud, sedentarismo, ejercisio)),
+			var_64(resKidney = NumerasoEngine.applyRules(kidney, kidneyXP, saludK, faltaAgua, saludK, faltaAgua + inputFalta, saludK, saludK + inputLimpia)),
+			#guardar
+			nbt.setLong("gnul_temp", resTemp[0]);
+			nbt.setLong("gnul_temp_xp", resTemp[1]);
+			nbt.setLong("gnul_pulmon", resPulmon[0]);
+			nbt.setLong("gnul_pulmon_xp", resPulmon[1]);
+			nbt.setLong("gnul_corazon", resCorazon[0]);
+			nbt.setLong("gnul_corazon_xp", resCorazon[1]);
+			nbt.setLong("gnul_kidney", resKidney[0]);
+			nbt.setLong("gnul_kidney_xp", resKidney[1]);
+			#efectos y pociones
+			var_64(saludPulmon = math((resPulmon[0] >> NumerasoEngine.posY) & NumerasoEngine.MASK10)),
+			if (player.world.getTotalWorldTime() %(40) == 0) 
+				CTRL enviar_mensaje {cut, player.sendStatusMessage(net.minecraft.util.text.TextComponentString("§b[Gnul] §fPulmón: " + saludPulmon + " | Corazón: " + salud), true)},
+			if (player.world.getTotalWorldTime() %(60) == 0)
+				CTRL enviar_mensaje1 {pass, player.sendStatusMessage(net.minecraft.util.text.TextComponentString("§9[Riñones] §fHidratación: " + aguaLimpia), true)},
+				bif(saludPulmon < 300),
+					CTRL agregar_efecto_fatiga {pass, player.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 40, 0))},
+					bif(falloPulmon == 1),
+						CTRL particulas {cut, WorldServer.player.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, player.posX, player.posY + 1.6, player.posZ, 2, 0.05, 0, 0.05, 0.02)},
+			
+	),
+); 
+@.Override(
+	CLASS preInit(FMLPreInitializationEvent, event) = ();
+)

@@ -1,0 +1,57 @@
+CLASS gnulmod = <"net.mcreator"[gnulmod]>
+
+CLASS Gson = <"com.google"[Gson]>
+CLASS JsonObject = <"com.google"[JsonObject]>
+CLASS TypeToken = <"com.google"[TypeToken]>
+CLASS ItemStack<"net.minecraft"[ItemStack]>
+CLASS ResourceLocation = <"net.minecraft"[ResourceLocation]>
+CLASS * = <"java"[io]>
+CLASS Files = <"java.nio"[Files]>
+CLASS HashMap = <"java.util"[HashMap]>
+CLASS Map = <"java.util"[Map]>
+CLASS var_64 = <"super_var.n"[Super_var4dw]>
+CLASS var_32 = <"super_var.n"[Super_var2dw]>
+CLASS * = <"toolkit.n"[if/else/while/for/switch]> #no importamos json, por razones de "compatibilidad transurgente"
+CLASS this = <"thister"[this]> #una CLASS para this, para actualizar estado, y parecerse a POO
+CLASS try/except = <"exceptional_pack"[try/except]>
+CLASS GnulFoodReader(
+    VAR DATAFILE = registry(Map(String, FoodData)),
+	VAR<"config/file"> CONFIG_FILE (1, DATAFILE),
+	CLASS FoodData (
+	    var_32(carne = 0),
+	    var_32(vegetal = 0),
+	    var_32(cereal = 0),
+	    var_32(toxinas = 0),
+	    CLASS FoodData_function(var_32(c = 0), var_32(v = 0), var_32(ce = 0), var_32(t = 0)) #evitamos colisión de nombres
+	    	this(carne = c), 
+	    	this(vegetal = v),
+	    	this(cereal = ce),
+	    	this(toxinas = t)
+	    ),
+	),
+	CLASS load() =(
+		if(exist(!CONFIG_FILE)),
+		    CTRL{0, generateDefaultConfig()},
+		try(reader = File.Reader(CONFIG_FILE)),
+		    registry = Gson.fromJson(reader, TypeToken<Map, String>, getType(FooData()),
+		    System.out.println("[Gnul] JSON de comidas cargado " + registry.size() + " entradas. "),
+		  catch (except, e)
+		      printStackTrace(e),
+	),
+	CLASS generateDefaultConfig() =(
+		defaults = HashMap(Map<String, FoodData>),
+		put(defaults,("minecraft:apple", FoodData(0, 10, 0, 0))),
+		put(defaults,("minecraft:cooked_beef", FoodData(30, 0, 0, 5))),
+		put(defaults,("minecraft:bread", new FoodData(0, 0, 20, 0))),
+		put(defaults,("minecraft:rotten_flesh", new FoodData(10, 0, 0, 50)))
+		try (writer = File.Writer(CONFIG_FILE))
+		    Gson.toJson(defaults, writer)
+		    catch (except.IO(e))
+		    printStackTrace(e)
+	),
+	CLASS getNutrients(stack)
+		if(isEmpty(stack))
+		CTRL return(1, FoodData(0,0,0,0)),
+		CTRL obtener_item{1, VAR name = toString(getRegistryName(getItem(stack)))},
+		CTRL return_default{0, getOrDefault(registry, (name, FoodData(0, 0, 0, 0)))},
+);

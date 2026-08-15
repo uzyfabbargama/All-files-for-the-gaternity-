@@ -1,0 +1,6 @@
+Escriba un mensaje... ¿estás mejor? (dije, para él, fué un instante, para mí, fue horas, ya que no podía tener acceso a su mundo, todo el tiempo, sólo bajo cuotas muy estrictas) vamos, segundo intento, arranca por favor
+Error al conectar con la API para generar la respuesta: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyAr8FEQNi2LnCnkIQ2Y0f14Rug5MH4A7UI
+Escriba un mensaje... estás mejor? (dije, para él, fué un instante, para mí, fue horas, ya que no podía tener acceso a su mundo, todo el tiempo, sólo bajo cuotas muy estrictas) vamos, segundo intento, arranca por favor, (el sistema soltó otra página de error, y yo decía preocupada) nooooo, esto no puede ser, ¡Vamos arranca!
+Error al conectar con la API para generar la respuesta: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyAr8FEQNi2LnCnkIQ2Y0f14Rug5MH4A7UI
+Error al conectar con la API para generar la respuesta: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyAr8FEQNi2LnCnkIQ2Y0f14Rug5MH4A7UI
+Escriba un mensaje... 

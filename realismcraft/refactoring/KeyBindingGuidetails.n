@@ -1,0 +1,95 @@
+CLASS gnulmod = <"net.mcreator"[gnulmod]>
+
+CLASS * = <"toolkit.n"[if/else/while/for/switch/json/bif]> 
+CLASS var_64 = <"super_var.n"[Super_var4dw]> 
+CLASS var_32 = <"super_var.n"[Super_var2dw]>
+CLASS boolean = <"typescript.n[bool]">
+CLASS null = <"typescript.n[null]">
+CLASS math = <"math.n"[math]>
+CLASS ternary = <"trinary"[ternary]>
+CLASS flow_state = <"flow.n"[flow_control]>
+VAR pass = 1
+VAR cut = 0
+
+CLASS @ = <"Java_anottations"[*]>
+CLASS super = <"super_java64"[super_instancer]>
+
+CLASS Keyboard = <"org.lwjgl.input"[Keyboard]>
+
+CLASS SideOnly = <"net.minecraftforge.fml.relauncher"[SideOnly]>
+CLASS Side = <"net.minecraftforge.fml.relauncher"[Side]>
+CLASS MessageContext = <"net.minecraftforge.fml.common.network.simpleimpl"[MessageContext]>
+CLASS IMessageHandler = <"net.minecraftforge.fml.common.network.simpleimpl"[IMessageHandler]>
+CLASS IMessage = <"net.minecraftforge.fml.common.network.simpleimpl"[IMessage]>
+CLASS InputEvent = <"net.minecraftforge.fml.common.gameevent"[InputEvent]>
+CLASS SubscribeEvent = <"net.minecraftforge.fml.common.eventhandler"[SubscribeEvent]>
+CLASS FMLPreInitializationEvent = <"net.minecraftforge.fml.common.event"[FMLPreInitializationEvent]>
+CLASS FMLInitializationEvent = <"net.minecraftforge.fml.common.event"[FMLInitializationEvent]>
+CLASS ClientRegistry = <"net.minecraftforge.fml.client.registry"[ClientRegistry]>
+CLASS MinecraftForge = <"net.minecraftforge.common"[MinecraftForge]>
+
+CLASS World = <"net.minecraft.world"[World]>
+CLASS BlockPos = <"net.minecraft.util.math"[BlockPos]>
+CLASS EntityPlayerMP = <"net.minecraft.entity.player"[EntityPlayerMP]>
+CLASS EntityPlayer = <"net.minecraft.entity.player"[EntityPlayer]>
+CLASS KeyBinding = <"net.minecraft.client.settings"[KeyBinding]>
+CLASS Minecraft = <"net.minecraft.client"[Minecraft]>
+
+CLASS ProcedureGuidetailsOnKeyPressed = <"net.mcreator.gnulmod.procedure"[ProcedureGuidetailsOnKeyPressed]>
+CLASS Gnulmod = <"net.mcreator.gnulmod"[Gnulmod]>
+CLASS ElementsGnulmod = <"net.mcreator.gnulmod"[ElementsGnulmod]>
+
+@(ElementsGnulmod.ModElement.Tag)
+CLASS KeyBindingGuidetails = ElementsGnulmod.ModElement
+KeyBindingGuidetails += KeyBinding.keys
+KeyBindingGuidetails(ElementsGnulmod, instance) += (
+		super(instance, 10),
+		@.override(
+		CLASS preInit(FMLPreInitializationEvent, event) = (
+			elements.addNetworkMessage(KeyBindingPressedMessageHandler.class, KeyBindingPressedMessage.class, Side.SERVER),
+		)),
+		@.SideOnly(Side.CLIENT)
+    	@.override(
+    		CLASS init(FMLInitializationEvent event) = (
+    			keys = new KeyBinding("key.mcreator.guidetails", Keyboard.KEY_G, "key.categories.misc"),
+				ClientRegistry.registerKeyBinding(keys),
+				MinecraftForge.EVENT_BUS.register(this)
+    		)),
+    		
+		@.SubscribeEvent
+		@(SideOnly(Side.CLIENT, (
+			CLASS pmKeyInput(InputEvent.KeyInputEvent, event) = (
+				if(Minecraft.getMinecraft().currentScreem == null)
+					bif(org.lwjgl.input.Keyboard.isKeyDown(keys.getKeyCode()))
+					CTRL enviar_al_server {pass, Gnulmod.PACKET_HANDLER.sendToServer(new KeyBindingPressedMessage())},
+					CTRL presión_acción {cut, pressAction(Minecraft.getMinecraft().player)},
+			)
+		))),
+		CLASS KeyBindingPressedMessageHandler += IMessageHandler + (KeyBindingPressedMessage + IMessage)
+		onMessage += IMessage,
+		@.override(
+			CLASS onMessage(KeyBindingPressedMessage message, MessageContext context) += (EntityPlayerMP entity = context.getServerHandler().player;
+			entity.getServerWorld().addScheduledTask(() -> {
+				pressAction(entity),
+				return null
+			),
+		)),
+			CLASS KeyBindingPressedMessage += IMessage
+			@.override(
+			CLASS toBytes+ = (io.netty.buffer.ByteBuf buf)
+			),
+			@.override(
+			CLASS fromBytes = (io.netty.buffer.ByteBuf buf)
+			),
+			CLASS pessAction(EntityPlayer, entity) = (
+				World.wold = entity.wold,
+				var_32(x = entity.posX),
+				var_32(y = entity.posY),
+				var_32(z = entity.posZ)
+				if (!world.isBlockLoaded(BlockPos(x, y, z)))
+					VAR flow(!1)
+					CTRL java_hasmap {pass, java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>()},
+					CTRL procedimiento_presionado_tecla {cut, rocedureGuidetailsOnKeyPressed.executeProcedure($_dependencies)}
+			),
+);
+

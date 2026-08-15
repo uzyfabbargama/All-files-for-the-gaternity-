@@ -1,0 +1,73 @@
+CLASS gnulmod = <"net.mcreator"[gnulmod]>
+
+CLASS * = <"toolkit.n"[if/else/while/for/switch]>
+CLASS var_32 = <"super_var.n"[Super_var2dw]>
+CLASS var_64 = <"super_var.n"[Super_var4dw]>
+CLASS boolean = <"typescript.n[bool]">
+CLASS math = <"math.n"[math]>
+CLASS ternary = <"trinary"[ternary]>
+CLASS byte = <"binary_utils"[take_byte]>
+CLASS unsignshift = <"binary_utils"[USS]>
+CLASS NumerasoEngine(
+	var_32 (posZ = 0),
+	var_32 (posC1 = 10),
+	var_32 (posY = 11),
+	var_32 (posC2 = 21),
+	var_32 (posX = 22),
+	var_32 (posC3 = 32),
+	
+	var_64 (MASK10 = (1L << 10) - 1),
+	CLASS makeNumeraso(var_32(a = 0), boolean(aC), var_32(b = 0), boolean(bC), var_32(c = 0), boolean(cC)) = (
+		math(var_64(a = 0) & 0x3FF << posZ | ternary(aC ? 1L : 0L) << posC1
+		     var_64(b = 0) & 0x3FF << posY | ternary(bC ? 1L : 0L) << posC2
+		     var_64(c = 0) & 0x3FF << posX | ternary(cC ? 1L : 0L) << posC3
+	),
+	CLASS applyRules(var_64(numeraso), var_64(numerasoxp), 
+	                 var_32(aM), var_32(bM), var_32(cM)
+	                 var_32(aA), var_32(bA), var_32(cA)
+					 ) = (
+		var_64(a = ((numeraso >> posZ) & MASK10)),
+		var_64(b = ((numeraso >> posY) & MASK10)),
+		var_64(c = ((numeraso >> posX) & MASK10)),
+		var_64(c1 =((numeraso >> posC1) & 1)),
+		var_64(c2 =((numeraso >> posC2) & 1)),
+		var_64(c3 =((numeraso >> posC3) & 1)),
+		
+		var_64(ax = ((numerasoxp >> posZ) & MASK10))
+		var_64(bx = ((numerasoxp >> posY) & MASK10))
+		var_64(cx = ((numerasoxp >> posX) & MASK10))
+		var_64(caso = (c1 + c2 + c3))
+		while(Mientras (caso != 3) Hacer
+			var_64(d1 = (1 - c1)),
+			var_64(d2 = (1 - c2)),
+			var_64(d3 = (1 - c3)),
+			
+			var_64(aRes = (a / ((1 + ax)) * d1))
+			var_64(bRes = (b / ((1 + bx)) * d2))
+			var_64(cRes = (c / ((1 + cx)) * d3))
+			
+			var_64(sumas = math(((long)aA << posZ)*d1 + ((long)bA << posY)*d2 + ((long)cA << posX)*d3)),
+			var_64(restas = math(((long)aM << posZ)*d1 + ((long)bM << posY)*d2 + ((long)cM << posX)*d3))
+			numeraso += math(sumas + (aRes << posZ | bRes << posY | cRes << posX))
+        numeraso -= restas
+        
+        numerasoxp = makeNumeraso(var_32(ax), true, var_32(bx), true, var_32(cx), true)
+        return(numeraso, numerasoxp)
+		Size: 12),
+    ),
+    CLASS sellarNumeraso(var_64(numeraso), playerName) = (
+    	var_64 (dna = 0),
+    	for(in byte(playerName) to byte.end each 1)
+    	    dna = math((dna ^ b) << 1),
+    	    CTRL end{0},
+    	    return ((numeraso & 0x1FFFFFFFFL) | (dna << 33))
+    ),
+    CLASS verificarADN(var_64(numeraso), playerName) = (
+    	var_64 (dnaGuardado = unsignshift(numeraso >>> 33)),
+    	var_64 (dnaActual = 0),
+    	for(in byte(playerName) to byte.end each 1)
+    		dnaActual = math((dnaActual ^ b) << 1),
+    		end
+    	return((dnaGuardado == dnaActual))
+    ),
+);

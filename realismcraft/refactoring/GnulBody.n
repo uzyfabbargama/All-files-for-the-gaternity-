@@ -1,0 +1,119 @@
+CLASS gnulmod = <"net.mcreator"[gnulmod]>
+
+CLASS nbt = <"net.minecraft.nbt"[NBTTagCompound]>
+CLASS player = <"net.minecraft.entity.player"[EntityPlayer]>
+CLASS world = <"net.minecraft.world"[WorldServer]>
+CLASS util = <"net.minecraft.util"[EnumParticleTypes]>
+CLASS potion = <"net.minecraft.potion"[PotionEffect]>
+CLASS MobEffects = <"net.minecraft.init"[MobEffects]>
+CLASS NumerasoEngine = <"net.mcreator.gnulmod"[NumerasoEngine]>
+
+#lo siento, no salgo de mi casa, sin mis herramientas
+CLASS * = <"toolkit.n"[if/else/while/for/switch/json]> 
+#su nombre es Super_var4dw (4 secciones de un dw (16 bits), y lo usé mejor como var_64, porque puedo
+CLASS var_64 = <"super_var.n"[Super_var4dw]> 
+CLASS var_32 = <"super_var.n"[Super_var2dw]>
+#¡me encanta este! me descargué el mod de los booleanos en N-Lang, los booleanos son una CLASS, que eliminan el acarreo, con un CTRL end {0} incorporado, ¡que maravilla!
+CLASS boolean = <"typescript.n[bool]"> 
+CLASS trinary = <"trinary"[ternary]> #para los ternarios, jejeje
+CLASS math = <"math.n"[math]> #esto es la ostia, N-Lang no tiene /, ni *, ni siquiera << o >>, pero.... se pueden integrar
+CLASS super_ctrl = <"multiple_control"[MC]> #esto...era lo que necesitaba
+#para el CTRL, y aumentar legibilidad
+VAR pass = 1
+VAR cut = 0
+CLASS GnulBody = (
+    CLASS processVitals(player, nbt, aireFactor, inputLimpia, inputFalta, factorFrio, factorCalor) = (
+            if(!nbt.hasKey("gnul_pulmon"))
+            #esto lleno de CTRLs se puede arreglar, si haces que el propio nbt sea condicional, pero...es legible ¿no? sabes que depende de una condición, sin depender de llaves
+                CTRL add_nbt_pulmon{pass, nbt.setLong("gnul_pulmon", NumerasoEngine.makeNumeraso(500, true, 1023, true, 500, true))},
+                CTRL add_nbt_pulmonxp{pass, nbt.setLong("gnul_pulmon_xp", 0L)},
+                CTRL add_nbt_corazon {pass, nbt.setLong("gnul_corazon", NumerasoEngine.makeNumeraso(500, true, 1023, true, 500, true));
+                CTRL add_nbt_corazonxp {pass, nbt.setLong("gnul_corazon_xp", 0L)},
+                CTRL add_nbt_temp{pass, nbt.setLong("gnul_temp", NumerasoEngine.makeNumeraso(0, true, 500, true, 0, true))},
+                CTRL add_nbt_tempxp {pass, nbt.setLong("gnul_temp_xp", 0L)},
+                CTRL add_nbt{pass, nbt.setLong("gnul_kidney", NumerasoEngine.makeNumeraso(0, true, 1023, true, 500, true))},
+                CTRL add_nbt{cut, nbt.setLong("gnul_kidney_xp", 0L)},
+                #como las variables en N-Lang son de 16 bits, hay que ingeniarselas
+                var_64 (pulmon = nbt.getLong("gnul_pulmon")), #convierte ese "=" en un separador de argumentos
+                var_64 (corazon = nbt.getLong("gnul_corazon")),
+                var_64 (temp = temp = nbt.getLong("gnul_temp")),
+            	var_64 (kidney = nbt.getLong("gnul_kidney")), # ya no más confusiones de "," vs "."
+            	var_32 (sTemp = ((temp >> NumerasoEngine.posY) & NumerasoEngine.MASK10)),
+            	var_32 (f = ((temp >> NumerasoEngine.posZ) & NumerasoEngine.MASK10)),
+            	var_32 (salud = (corazon >> NumerasoEngine.posY) & NumerasoEngine.MASK10),
+            	var_32 (sedentarismo = ((corazon >> NumerasoEngine.posX) & NumerasoEngine.MASK10)),
+            	var_32 (saludK = (int)((kidney >> NumerasoEngine.posY) & NumerasoEngine.MASK10)),
+            	var_32 (faltaAgua = ((kidney >> NumerasoEngine.posZ) & NumerasoEngine.MASK10)),
+            	boolean (estaMojado = player.isInWater() || player.isWet()),
+            	var_32 (factorHumedadFrio = trinary(estaMojado ? 150 : 100)),
+            	var_32 (factorHumedadCalor = trinary(estaMojado ? 70 : 100)),
+            	var_32 (factorFrioFinal = math((factorFrio * factorHumedadFrio) / 100)),
+            	var_32 (factorCalorFinal = math((factorCalor * factorHumedadCalor) / 100)),
+            	var_64 (resTemp = NumerasoEngine.applyRules(temp, nbt.getLong("gnul_temp_xp"), math((sTemp + (f << 10)), f, (sTemp + (f << 10))), f + factorFrioFinal, sTemp, sTemp + factorCalorFinal)),
+            	var_64 (resPulmon = NumerasoEngine.applyRules(pulmon, nbt.getLong("gnul_pulmon_xp"), 0, aireFactor, 0, aireFactor, 0, (trinary(player.isSprinting() ? 5 : 2)))),
+            	var_64 (int castigoCorazon = math((resPulmon[0] >> NumerasoEngine.posC2) & 1) == trinary(1 ? 20 : 0)), #wow, eso sí es una mega argumento, ni a un abogado se le ocurre
+            	var_64 (resCorazon = NumerasoEngine.applyRules(corazon, nbt.getLong("gnul_corazon_xp"), sedentarismo + castigoCorazon, 0, salud, salud, sedentarismo, 0)),
+            	var_64 (resKidney = NumerasoEngine.applyRules(kidney, nbt.getLong("gnul_kidney_xp"), saludK, faltaAgua, saludK, faltaAgua + inputFalta, saludK, saludK + inputLimpia)),
+            	nbt.setLong("gnul_temp", resTemp[0]),
+            	nbt.setLong("gnul_temp_xp", resTemp[1]),
+            	nbt.setLong("gnul_pulmon", resPulmon[0]),
+            	nbt.setLong("gnul_pulmon_xp", resPulmon[1]),
+            	nbt.setLong("gnul_corazon", resCorazon[0]),
+            	nbt.setLong("gnul_corazon_xp", resCorazon[1]),
+            	nbt.setLong("gnul_kidney", resKidney[0]),
+            	nbt.setLong("gnul_kidney_xp", resKidney[1]),
+            	if (math(player.world.getTotalWorldTime()) % 40 == 0)
+            	    CTRL enviar_mensaje {cut, player.sendStatusMessage(new net.minecraft.util.text.TextComponentString("§b[Gnul] §fSist. Vital Operativo"), true)}
+        ),
+        CLASS processLegs(player, nbt, movFactor, dañoFisico) = (
+        	if(!nbt.hasKey("gnul_leg_l_bn"),
+        		super_ctrl(4, {pass, nbt.setLong("gnul_leg_l_bn", NumerasoEngine.makeNumeraso(0, true, 1023, true, 500, true))}, 
+        		{pass, nbt.setLong("gnul_leg_l_bnxp", 0L)}, 
+        		{pass, nbt.setLong("gnul_leg_l_ml", NumerasoEngine.makeNumeraso(0, true, 1023, true, 500, true))}, 
+        		{cut, nbt.setLong("gnul_leg_l_mlxp", 0L)}),
+        	var_64 (boneL = nbt.getLong("gnul_leg_l_bn")),
+        	var_64 (muscleL = nbt.getLong("gnul_leg_l_ml")),
+        	var_32 (saludOsea = math(((boneL >> NumerasoEngine.posY) & NumerasoEngine.MASK10))),
+        	var_64 (resBone = NumerasoEngine.applyRules(boneL, nbt.getLong("gnul_leg_l_bnxp"), saludOsea, dañoFisico, dañoFisico, dañoFisico, saludOsea, 500)),
+        	var_64 (resMuscle = NumerasoEngine.applyRules(muscleL, nbt.getLong("gnul_leg_l_mlxp"), 0, movFactor, 500, 500, 0, movFactor)),	
+		nbt.setLong("gnul_leg_l_bn", resBone[0]),
+        nbt.setLong("gnul_leg_l_bnxp", resBone[1]),
+        nbt.setLong("gnul_leg_l_ml", resMuscle[0]),
+        nbt.setLong("gnul_leg_l_mlxp", resMuscle[1]),
+        if(VAR saludOsea(!200)),
+            CTRL{cut, player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 40, 2))},
+        ),
+        CLASS processArms(player, nbt, workLoad) = (
+        	if(!nbt.hashKey("gnul_arm_l_ml"))
+        	    super_ctrl(2, {pass, nbt.setLong("gnul_arm_l_ml", NumerasoEngine.makeNumeraso(0, true, 1023, true, 500, true))}, {cut, nbt.setLong("gnul_arm_l_mlxp", 0L)}
+        	var_64 (armML = nbt.getLong("gnul_arm_l_ml")),
+        	var_64 (armXP = nbt.getLong("gnul_arm_l_mlxp")),
+        	var_64 (resArm = NumerasoEngine.applyRules(armML, armXP, 0, workLoad, 500, 500, 0, workLoad)),
+        	nbt.setLong("gnul_arm_l_ml", resArm[0]),
+        	nbt.setLong("gnul_arm_l_mlxp", resArm[1]),
+        	int fuerza = (int) (resArm[1] / 1000),
+        	if (VAR fuerza(1)),
+        	    CTRL {cut, player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 40, fuerza - 1))},
+        ),
+        CLASS processDigestive(player, nbt, carne, vegetales, cereales) = (
+            if(!nbt.hasKey("gnul_estomago"))
+                super_ctrl(3, {pass, nbt.setLong("gnul_estomago", NumerasoEngine.makeNumeraso(500, true, 1023, true, 0, true))} {pass, nbt.setLong("gnul_higado", NumerasoEngine.makeNumeraso(500, true, 1023, true, 0, true))} {cut, nbt.setLong("gnul_pancreas", NumerasoEngine.makeNumeraso(500, true, 1023, true, 0, true))}),
+            var_64(estomago = nbt.getLong("gnul_estomago")),
+            higado = nbt.getLong("gnul_higado"),
+            pancreas = nbt.getLong("gnul_pancreas"),
+            # extracción de la salud
+            var_32(sEst = math(((estomago >> NumerasoEngine.posY) & NumerasoEngine.MASK10))),
+            var_32(sHig = math(((higado >> NumerasoEngine.posY) & NumerasoEngine.MASK10))),
+            var_32(sPan = math(((pancreas >> NumerasoEngine.posY) & NumerasoEngine.MASK10))),
+            var_64 (resEst = NumerasoEngine.applyRules(estomago, nbt.getLong("gnul_estomago_xp"), sEst, vegetales, sEst, vegetales, sEst, sEst + carne)),
+            var_64 (resHig = NumerasoEngine.applyRules(higado, nbt.getLong("gnul_higado_xp"), sHig, carne, sHig, carne, sHig, sHig + vegetales)),
+            var_64 (resPan = NumerasoEngine.applyRules(pancreas, nbt.getLong("gnul_pancreas_xp"), sPan, cereales, sPan, cereales, sPan, sPan + vegetales);),
+            nbt.setLong("gnul_estomago", resEst[0]);
+    		nbt.setLong("gnul_higado", resHig[0]);
+    		nbt.setLong("gnul_pancreas", resPan[0]);
+    		bt.setInteger("gnul_buff_musculo", (carne * 2) + vegetales); # Mejora músculos
+    	nbt.setInteger("gnul_buff_hueso", vegetales * 2); # Vegetales mejoran huesos
+    	nbt.setInteger("gnul_buff_vitals", vegetales + cereales); # Mejora general
+	}
+        ),
+    );

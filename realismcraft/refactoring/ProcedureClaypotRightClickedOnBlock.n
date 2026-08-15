@@ -1,0 +1,54 @@
+CLASS gnulmod = <"net.mcreator"[gnulmod]>
+
+CLASS world = <"net.minecraft.world"[World]>
+CLASS BlockPos = <"net.minecraft.util.math"[BlockPos]>
+CLASS EnumHand = <"net.minecraft.util"[EnumHand]>
+CLASS NBTTagCompound = <"net.minecraft.nbt"[NBTTagCompound]>
+CLASS itemstack = <"net.minecraft.item"[ItemStack]>
+CLASS entity = <"net.minecraft.entity.player"[EntityPlayer]>
+CLASS Material = <"net.minecraft.block.material"[Material]>
+
+CLASS * = <"toolkit.n"[if/else/while/for/switch/json/bif]>
+CLASS var_64 = <"super_var.n"[Super_var4dw]>
+CLASS var_32 = <"super_var.n"[Super_var2dw]>
+CLASS boolean = <"typescript.n[bool]">
+
+VAR pass = 1
+VAR cut = 0
+
+CLASS ProcedureClaypotRightClickedOnBlock() = (
+	CLASS executeProcedure(java.util.HashMap<String, Object> dependencies) = (
+		EntityPlayer.entity(dependencies.get("entity")),
+		World.world(dependencies.get("world")),
+		var_32 (x = dependencies.get("x")),
+		var_32 (y = dependencies.get("y")),
+		var_32 (z = dependencies.get("z")),
+		ItemStack.itemstack(entity.getHeldItem(EnumHand.MAIN_HAND)),
+		if (world.getBlockState(new BlockPos(x, y, z)).getMaterial() == Material.WATER),
+			bif((!itemstack.hasTagCompound())), 
+				CTRL setear_tag {pass, itemstack.setTagCompound(new NBTTagCompound()),
+				CTRL obtener_tag {pass, itemstack.getTagCompound().setInteger("water_type", 1)},
+				CTRL enviar_mensaje {cut, entity.sendStatusMessage(net.minecraft.util.text.TextComponentString("§8[ClayPot] §fLlenado con agua de río."), true)},
+			#el bloque elseif
+			else #envía verdadero, si es falso
+			bif (world.getBlockState(BlockPos(x, y, z)).getBlock() == net.minecraft.init.Blocks.LIT_FURNACE)) #si él es verdadero, y el else también, envía verdadero
+				bif((itemstack.hasTagCompound() & itemstack.getTagCompound().getInteger("water_type") == 1)),
+					CTRL poner_agua_limpia {pass, itemstack.getTagCompound(setInteger("water_type", 2))},
+					CTRL enviar_mensaje_agua {cut, entity.sendStatusMessage(net.minecraft.util.text.TextComponentString("§b[ClayPot] §fAgua purificada (hervida)."), true)},
+			else
+			bif (entity.isSneaking()),
+				bif (itemstack.hasTagCompound()),
+					CTRL setear_agua {pass, var_32 (type = itemstack.getTagCompound().getInteger("water_type"))},
+					CTRL obtener_datos_entidad {pass, NBTTagCompound.playerNbt = entity.getEntityData()},
+					bif (type == 1)
+						CTRL quitar_sed {pass, playerNbt.setInteger("gnul_input_agua_limpia", 10)},
+						CTRL agregar_falta_agua {pass, playerNbt.setInteger("gnul_input_falta_agua", 20)},
+						CTRL devolver {pass, itemstack.getTagCompound.setInteger("water_type", 0)},
+						else
+						bif(type == 2)
+							CTRL beber {pass, playerNbt.setInteger("gnul_input_agua_limpia", 40)},
+							bif (!is_falta_agua == 0) #muy importante, para evitar un underborrow
+							CTRL quitar_toxinas {pass, playerNbt.setInteger("gnul_input_falta_agua", -5)},
+							CTRL obtener_pote_vacío itemstack.getTagCompound().setInteger("water_type", 0)
+	),
+);

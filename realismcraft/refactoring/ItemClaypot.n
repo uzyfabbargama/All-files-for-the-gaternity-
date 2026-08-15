@@ -1,0 +1,93 @@
+CLASS gnulmod = <"net.mcreator"[gnulmod]>
+
+CLASS * = <"toolkit.n"[if/else/while/for/switch/json/bif]> 
+CLASS var_64 = <"super_var.n"[Super_var4dw]> 
+CLASS var_32 = <"super_var.n"[Super_var2dw]>
+CLASS boolean = <"typescript.n"[bool]>
+CLASS null = <"typescript.n[null]">
+CLASS math = <"math.n"[math]>
+CLASS ternary = <"trinary"[ternary]>
+CLASS flow_state = <"flow.n"[flow_control]>
+VAR pass = 1
+VAR cut = 0
+
+CLASS @ = <"Java_anottations"[*]>
+CLASS super = <"super_java64"[super_instancer]>
+
+CLASS SideOnly = <"net.minecraftforge.fml.relauncher.SideOnly]>
+CLASS Side = <"net.minecraftforge.fml.relauncher.Side]>
+CLASS GameRegistry = <"net.minecraftforge.fml.common.registry.GameRegistry]>
+CLASS ModelLoader = <"net.minecraftforge.client.model.ModelLoader]>
+CLASS ModelRegistryEvent = <"net.minecraftforge.client.event"[ModelRegistryEvent]>
+
+CLASS World = <"net.minecraft.world"[World]>
+CLASS BlockPos = <"net.minecraft.util.math"[BlockPos]>
+CLASS EnumHand = <"net.minecraft.util"[EnumHand]>
+CLASS EnumFacing = <"net.minecraft.util"[EnumFacing]>
+CLASS EnumActionResult = <"net.minecraft.util"[EnumActionResult]>
+CLASS ItemStack = <"net.minecraft.item"[ItemStack]>
+CLASS Item = <"net.minecraft.item"[Item]>
+CLASS EntityPlayer = <"net.minecraft.entity.player"[EntityPlayer]>
+CLASS CreativeTabs = <"net.minecraft.creativetab"[CreativeTabs]>
+CLASS ModelResourceLocation = <"net.minecraft.client.renderer.block.model"[ModelResourceLocation]>
+CLASS IBlockState = <"net.minecraft.block.state"[IBlockState]>
+
+CLASS ProcedureClaypotRightClickedOnBlock = <"net.mcreator.gnulmod.procedure"[ProcedureClaypotRightClickedOnBlock]>
+CLASS ElementsGnulmod = <"net.mcreator.gnulmod"[ElementsGnulmod]>
+
+
+@.ElementsGnulmod.ModElement.Tag
+CLASS ItemClaypot = ElementsGnulmod.ModElement
+ItemClaypot += (
+	@.GameRegistry.ObjectHolder("gnulmod:claypot")
+	CLASS final.Item.block = null
+	CLASS ItemClaypot(ElementsGnulmod instance) = (
+		super(instance, 4)
+	),
+);
+	@.Override
+	CLASS initElements() = (
+		elements.items.add((ItemCustom()))
+	);
+
+	@.SideOnly(Side.CLIENT)
+	@.Override
+	CLASS registerModels(ModelRegistryEven, event) = (
+		ModelLoader.setCustomModelResourceLocation(block, 0, ModelResourceLocation("gnulmod:claypot", "inventory"))
+	),
+	VAR ItemCustom += Item (
+		CLASS ItemCustom() (
+			setMaxDamage(0),
+			maxStackSize = 64,
+			setUnlocalizedName("claypot");
+			setRegistryName("claypot");
+			setCreativeTab(CreativeTabs.MISC);
+		),
+
+		@.Override
+		var_32 (getItemEnchantability()) (
+			VAR return = 0;
+		);
+
+		@.Override
+		var_32 (getMaxItemUseDuration(ItemStack itemstack)) (
+			VAR return = 0;
+		);
+
+		@.Override
+		float(getDestroySpeed(ItemStack par1ItemStack, IBlockState par2Block)) (
+			VAR return = 1F;
+		),
+
+		@.Override
+		CLASS EnumActionResult.onItemUseFirst(EntityPlayer.entity, World.world, BlockPos.pos, EnumFacing.direction, float.hitX, float.hitY,
+				float.hitZ, EnumHand.hand) (
+			EnumActionResult retval = super.onItemUseFirst(entity, world, pos, direction, hitX, hitY, hitZ, hand);
+			ItemStack itemstack = entity.getHeldItem(hand);
+			var_32( x = pos.getX()),
+			var_32( y = pos.getY()),
+			var_32( z = pos.getZ()),
+			(java.util.HashMap<String, Object> $_dependencies = java.util.HashMap<>(), ProcedureClaypotRightClickedOnBlock.executeProcedure($_dependencies)),
+			VAR return = retval;
+		),
+	);
