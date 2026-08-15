@@ -1,0 +1,700 @@
+Paso 1:
+  V1: Energía=999.00, Amplitud=333.00m, Radio=166.50m
+  V2: Energía=799.20, Amplitud=499.50m, Radio=249.75m
+  Distancia: 9.82
+  V1 posición: (-4.90, 0.01)
+  V2 posición: (4.92, 0.01)
+---
+Paso 2:
+  V1: Energía=582.58, Amplitud=194.19m, Radio=97.10m
+  V2: Energía=532.53, Amplitud=332.83m, Radio=166.42m
+  Distancia: 9.63
+  V1 posición: (-4.79, 0.02)
+  V2 posición: (4.84, 0.01)
+---
+Paso 3:
+  V1: Energía=420.58, Amplitud=140.19m, Radio=70.10m
+  V2: Energía=428.69, Amplitud=267.93m, Radio=133.97m
+  Distancia: 9.45
+  V1 posición: (-4.69, 0.03)
+  V2 posición: (4.76, 0.02)
+---
+Paso 4:
+  V1: Energía=326.35, Amplitud=108.78m, Radio=54.39m
+  V2: Energía=368.22, Amplitud=230.14m, Radio=115.07m
+  Distancia: 9.26
+  V1 posición: (-4.58, 0.04)
+  V2 posición: (4.68, 0.03)
+---
+Paso 5:
+  V1: Energía=263.49, Amplitud=87.83m, Radio=43.92m
+  V2: Energía=327.84, Amplitud=204.90m, Radio=102.45m
+  Distancia: 9.08
+  V1 posición: (-4.47, 0.06)
+  V2 posición: (4.60, 0.03)
+---
+Paso 6:
+  V1: Energía=218.28, Amplitud=72.76m, Radio=36.38m
+  V2: Energía=298.75, Amplitud=186.72m, Radio=93.36m
+  Distancia: 8.89
+  V1 posición: (-4.37, 0.07)
+  V2 posición: (4.52, 0.04)
+---
+Paso 7:
+  V1: Energía=184.14, Amplitud=61.38m, Radio=30.69m
+  V2: Energía=276.73, Amplitud=172.96m, Radio=86.48m
+  Distancia: 8.70
+  V1 posición: (-4.26, 0.08)
+  V2 posición: (4.44, 0.04)
+---
+Paso 8:
+  V1: Energía=157.44, Amplitud=52.48m, Radio=26.24m
+  V2: Energía=259.49, Amplitud=162.18m, Radio=81.09m
+  Distancia: 8.51
+  V1 posición: (-4.15, 0.09)
+  V2 posición: (4.36, 0.05)
+---
+Paso 9:
+  V1: Energía=136.03, Amplitud=45.34m, Radio=22.67m
+  V2: Energía=245.62, Amplitud=153.51m, Radio=76.76m
+  Distancia: 8.32
+  V1 posición: (-4.04, 0.11)
+  V2 posición: (4.28, 0.05)
+---
+Paso 10:
+  V1: Energía=118.51, Amplitud=39.50m, Radio=19.75m
+  V2: Energía=234.25, Amplitud=146.41m, Radio=73.20m
+  Distancia: 8.13
+  V1 posición: (-3.94, 0.12)
+  V2 posición: (4.19, 0.06)
+---
+Paso 11:
+  V1: Energía=103.94, Amplitud=34.65m, Radio=17.32m
+  V2: Energía=224.77, Amplitud=140.48m, Radio=70.24m
+  Distancia: 7.94
+  V1 posición: (-3.83, 0.14)
+  V2 posición: (4.11, 0.06)
+---
+Paso 12:
+  V1: Energía=91.68, Amplitud=30.56m, Radio=15.28m
+  V2: Energía=216.77, Amplitud=135.48m, Radio=67.74m
+  Distancia: 7.75
+  V1 posición: (-3.72, 0.15)
+  V2 posición: (4.03, 0.06)
+---
+Paso 13:
+  V1: Energía=81.25, Amplitud=27.08m, Radio=13.54m
+  V2: Energía=209.93, Amplitud=131.21m, Radio=65.60m
+  Distancia: 7.55
+  V1 posición: (-3.61, 0.16)
+  V2 posición: (3.94, 0.07)
+---
+Paso 14:
+  V1: Energía=72.29, Amplitud=24.10m, Radio=12.05m
+  V2: Energía=204.04, Amplitud=127.53m, Radio=63.76m
+  Distancia: 7.36
+  V1 posición: (-3.50, 0.18)
+  V2 posición: (3.86, 0.07)
+---
+Paso 15:
+  V1: Energía=64.55, Amplitud=21.52m, Radio=10.76m
+  V2: Energía=198.93, Amplitud=124.33m, Radio=62.16m
+  Distancia: 7.17
+  V1 posición: (-3.39, 0.19)
+  V2 posición: (3.78, 0.07)
+---
+Paso 16:
+  V1: Energía=57.80, Amplitud=19.27m, Radio=9.63m
+  V2: Energía=194.45, Amplitud=121.53m, Radio=60.77m
+  Distancia: 6.97
+  V1 posición: (-3.28, 0.21)
+  V2 posición: (3.69, 0.08)
+---
+Paso 17:
+  V1: Energía=51.90, Amplitud=17.30m, Radio=8.65m
+  V2: Energía=190.52, Amplitud=119.07m, Radio=59.54m
+  Distancia: 6.78
+  V1 posición: (-3.17, 0.22)
+  V2 posición: (3.61, 0.08)
+---
+Paso 18:
+  V1: Energía=46.70, Amplitud=15.57m, Radio=7.78m
+  V2: Energía=187.03, Amplitud=116.90m, Radio=58.45m
+  Distancia: 6.58
+  V1 posición: (-3.06, 0.24)
+  V2 posición: (3.52, 0.08)
+---
+Paso 19:
+  V1: Energía=42.11, Amplitud=14.04m, Radio=7.02m
+  V2: Energía=183.94, Amplitud=114.96m, Radio=57.48m
+  Distancia: 6.39
+  V1 posición: (-2.95, 0.25)
+  V2 posición: (3.44, 0.09)
+---
+Paso 20:
+  V1: Energía=38.04, Amplitud=12.68m, Radio=6.34m
+  V2: Energía=181.17, Amplitud=113.23m, Radio=56.62m
+  Distancia: 6.19
+  V1 posición: (-2.84, 0.27)
+  V2 posición: (3.35, 0.09)
+---
+Paso 21:
+  V1: Energía=34.41, Amplitud=11.47m, Radio=5.74m
+  V2: Energía=178.70, Amplitud=111.69m, Radio=55.84m
+  Distancia: 6.00
+  V1 posición: (-2.73, 0.28)
+  V2 posición: (3.27, 0.09)
+---
+Paso 22:
+  V1: Energía=31.18, Amplitud=10.39m, Radio=5.20m
+  V2: Energía=176.47, Amplitud=110.30m, Radio=55.15m
+  Distancia: 5.80
+  V1 posición: (-2.62, 0.30)
+  V2 posición: (3.18, 0.10)
+---
+Paso 23:
+  V1: Energía=28.28, Amplitud=9.43m, Radio=4.71m
+  V2: Energía=174.46, Amplitud=109.04m, Radio=54.52m
+  Distancia: 5.61
+  V1 posición: (-2.50, 0.31)
+  V2 posición: (3.10, 0.10)
+---
+Paso 24:
+  V1: Energía=25.69, Amplitud=8.56m, Radio=4.28m
+  V2: Energía=172.65, Amplitud=107.90m, Radio=53.95m
+  Distancia: 5.41
+  V1 posición: (-2.39, 0.32)
+  V2 posición: (3.01, 0.11)
+---
+Paso 25:
+  V1: Energía=23.36, Amplitud=7.79m, Radio=3.89m
+  V2: Energía=171.00, Amplitud=106.87m, Radio=53.44m
+  Distancia: 5.21
+  V1 posición: (-2.28, 0.34)
+  V2 posición: (2.93, 0.11)
+---
+Paso 26:
+  V1: Energía=21.25, Amplitud=7.08m, Radio=3.54m
+  V2: Energía=169.50, Amplitud=105.94m, Radio=52.97m
+  Distancia: 5.02
+  V1 posición: (-2.17, 0.35)
+  V2 posición: (2.84, 0.11)
+---
+Paso 27:
+  V1: Energía=19.36, Amplitud=6.45m, Radio=3.23m
+  V2: Energía=168.13, Amplitud=105.08m, Radio=52.54m
+  Distancia: 4.82
+  V1 posición: (-2.06, 0.37)
+  V2 posición: (2.75, 0.12)
+---
+Paso 28:
+  V1: Energía=17.65, Amplitud=5.88m, Radio=2.94m
+  V2: Energía=166.88, Amplitud=104.30m, Radio=52.15m
+  Distancia: 4.62
+  V1 posición: (-1.95, 0.38)
+  V2 posición: (2.67, 0.12)
+---
+Paso 29:
+  V1: Energía=16.10, Amplitud=5.37m, Radio=2.68m
+  V2: Energía=165.73, Amplitud=103.58m, Radio=51.79m
+  Distancia: 4.42
+  V1 posición: (-1.83, 0.39)
+  V2 posición: (2.58, 0.13)
+---
+Paso 30:
+  V1: Energía=14.69, Amplitud=4.90m, Radio=2.45m
+  V2: Energía=164.67, Amplitud=102.92m, Radio=51.46m
+  Distancia: 4.23
+  V1 posición: (-1.72, 0.40)
+  V2 posición: (2.50, 0.13)
+---
+Paso 31:
+  V1: Energía=13.42, Amplitud=4.47m, Radio=2.24m
+  V2: Energía=163.70, Amplitud=102.31m, Radio=51.16m
+  Distancia: 4.03
+  V1 posición: (-1.61, 0.42)
+  V2 posición: (2.41, 0.14)
+---
+Paso 32:
+  V1: Energía=12.26, Amplitud=4.09m, Radio=2.04m
+  V2: Energía=162.81, Amplitud=101.76m, Radio=50.88m
+  Distancia: 3.83
+  V1 posición: (-1.50, 0.43)
+  V2 posición: (2.32, 0.14)
+---
+Paso 33:
+  V1: Energía=11.21, Amplitud=3.74m, Radio=1.87m
+  V2: Energía=161.98, Amplitud=101.24m, Radio=50.62m
+  Distancia: 3.63
+  V1 posición: (-1.39, 0.44)
+  V2 posición: (2.24, 0.15)
+---
+Paso 34:
+  V1: Energía=10.25, Amplitud=3.42m, Radio=1.71m
+  V2: Energía=161.21, Amplitud=100.76m, Radio=50.38m
+  Distancia: 3.44
+  V1 posición: (-1.27, 0.45)
+  V2 posición: (2.15, 0.16)
+---
+Paso 35:
+  V1: Energía=9.38, Amplitud=3.13m, Radio=1.56m
+  V2: Energía=160.50, Amplitud=100.31m, Radio=50.16m
+  Distancia: 3.24
+  V1 posición: (-1.16, 0.46)
+  V2 posición: (2.06, 0.16)
+---
+Paso 36:
+  V1: Energía=8.59, Amplitud=2.86m, Radio=1.43m
+  V2: Energía=159.84, Amplitud=99.90m, Radio=49.95m
+  Distancia: 3.04
+  V1 posición: (-1.05, 0.47)
+  V2 posición: (1.98, 0.17)
+---
+Paso 37:
+  V1: Energía=7.87, Amplitud=2.62m, Radio=1.31m
+  V2: Energía=159.22, Amplitud=99.51m, Radio=49.76m
+  Distancia: 2.84
+  V1 posición: (-0.94, 0.48)
+  V2 posición: (1.89, 0.18)
+---
+Paso 38:
+  V1: Energía=7.21, Amplitud=2.40m, Radio=1.20m
+  V2: Energía=158.65, Amplitud=99.15m, Radio=49.58m
+  Distancia: 2.65
+  V1 posición: (-0.83, 0.49)
+  V2 posición: (1.80, 0.19)
+---
+Paso 39:
+  V1: Energía=6.61, Amplitud=2.20m, Radio=1.10m
+  V2: Energía=158.11, Amplitud=98.82m, Radio=49.41m
+  Distancia: 2.45
+  V1 posición: (-0.71, 0.50)
+  V2 posición: (1.72, 0.20)
+---
+Paso 40:
+  V1: Energía=6.06, Amplitud=2.02m, Radio=1.01m
+  V2: Energía=157.60, Amplitud=98.50m, Radio=49.25m
+  Distancia: 2.25
+  V1 posición: (-0.60, 0.51)
+  V2 posición: (1.63, 0.21)
+---
+Paso 41:
+  V1: Energía=5.55, Amplitud=1.85m, Radio=0.93m
+  V2: Energía=157.13, Amplitud=98.20m, Radio=49.10m
+  Distancia: 2.06
+  V1 posición: (-0.49, 0.52)
+  V2 posición: (1.55, 0.22)
+---
+Paso 42:
+  V1: Energía=5.09, Amplitud=1.70m, Radio=0.85m
+  V2: Energía=156.68, Amplitud=97.92m, Radio=48.96m
+  Distancia: 1.86
+  V1 posición: (-0.38, 0.52)
+  V2 posición: (1.46, 0.23)
+---
+Paso 43:
+  V1: Energía=4.67, Amplitud=1.56m, Radio=0.78m
+  V2: Energía=156.26, Amplitud=97.66m, Radio=48.83m
+  Distancia: 1.66
+  V1 posición: (-0.26, 0.53)
+  V2 posición: (1.37, 0.24)
+---
+Paso 44:
+  V1: Energía=4.29, Amplitud=1.43m, Radio=0.71m
+  V2: Energía=155.86, Amplitud=97.41m, Radio=48.71m
+  Distancia: 1.47
+  V1 posición: (-0.15, 0.53)
+  V2 posición: (1.29, 0.26)
+---
+Paso 45:
+  V1: Energía=3.94, Amplitud=1.31m, Radio=0.66m
+  V2: Energía=155.48, Amplitud=97.17m, Radio=48.59m
+  Distancia: 1.27
+  V1 posición: (-0.04, 0.53)
+  V2 posición: (1.20, 0.27)
+---
+Paso 46:
+  V1: Energía=3.61, Amplitud=1.20m, Radio=0.60m
+  V2: Energía=155.12, Amplitud=96.95m, Radio=48.47m
+  Distancia: 1.07
+  V1 posición: (0.07, 0.53)
+  V2 posición: (1.12, 0.29)
+---
+Paso 47:
+  V1: Energía=3.32, Amplitud=1.11m, Radio=0.55m
+  V2: Energía=154.78, Amplitud=96.74m, Radio=48.37m
+  Distancia: 0.88
+  V1 posición: (0.18, 0.53)
+  V2 posición: (1.03, 0.31)
+---
+Paso 48:
+  V1: Energía=3.05, Amplitud=1.02m, Radio=0.51m
+  V2: Energía=154.45, Amplitud=96.53m, Radio=48.27m
+  Distancia: 0.69
+  V1 posición: (0.29, 0.53)
+  V2 posición: (0.95, 0.33)
+---
+Paso 49:
+  V1: Energía=2.80, Amplitud=0.93m, Radio=0.47m
+  V2: Energía=154.14, Amplitud=96.34m, Radio=48.17m
+  Distancia: 0.49
+  V1 posición: (0.40, 0.52)
+  V2 posición: (0.86, 0.35)
+---
+Paso 50:
+  V1: Energía=2.57, Amplitud=0.86m, Radio=0.43m
+  V2: Energía=153.84, Amplitud=96.15m, Radio=48.08m
+  Distancia: 0.30
+  V1 posición: (0.51, 0.51)
+  V2 posición: (0.78, 0.38)
+---
+Paso 51:
+  V1: Energía=2.36, Amplitud=0.79m, Radio=0.39m
+  V2: Energía=153.56, Amplitud=95.97m, Radio=47.99m
+  Distancia: 0.11
+  V1 posición: (0.61, 0.49)
+  V2 posición: (0.70, 0.42)
+---
+Paso 52:
+  V1: Energía=2.17, Amplitud=0.72m, Radio=0.36m
+  V2: Energía=153.28, Amplitud=95.80m, Radio=47.90m
+  Distancia: 0.07
+  V1 posición: (0.70, 0.44)
+  V2 posición: (0.64, 0.49)
+---
+Paso 53:
+  V1: Energía=2.00, Amplitud=0.67m, Radio=0.33m
+  V2: Energía=153.02, Amplitud=95.64m, Radio=47.82m
+  Distancia: 0.12
+  V1 posición: (0.65, 0.52)
+  V2 posición: (0.72, 0.43)
+---
+Paso 54:
+  V1: Energía=1.84, Amplitud=0.61m, Radio=0.31m
+  V2: Energía=152.76, Amplitud=95.48m, Radio=47.74m
+  Distancia: 0.06
+  V1 posición: (0.72, 0.46)
+  V2 posición: (0.68, 0.51)
+---
+Paso 55:
+  V1: Energía=1.69, Amplitud=0.56m, Radio=0.28m
+  V2: Energía=152.52, Amplitud=95.32m, Radio=47.66m
+  Distancia: 0.12
+  V1 posición: (0.68, 0.55)
+  V2 posición: (0.73, 0.44)
+---
+Paso 56:
+  V1: Energía=1.55, Amplitud=0.52m, Radio=0.26m
+  V2: Energía=152.28, Amplitud=95.18m, Radio=47.59m
+  Distancia: 0.06
+  V1 posición: (0.73, 0.47)
+  V2 posición: (0.71, 0.53)
+---
+Paso 57:
+  V1: Energía=1.43, Amplitud=0.48m, Radio=0.24m
+  V2: Energía=152.05, Amplitud=95.03m, Radio=47.52m
+  Distancia: 0.14
+  V1 posición: (0.72, 0.58)
+  V2 posición: (0.75, 0.44)
+---
+Paso 58:
+  V1: Energía=1.31, Amplitud=0.44m, Radio=0.22m
+  V2: Energía=151.83, Amplitud=94.89m, Radio=47.45m
+  Distancia: 0.04
+  V1 posición: (0.75, 0.50)
+  V2 posición: (0.74, 0.54)
+---
+Paso 59:
+  V1: Energía=1.21, Amplitud=0.40m, Radio=0.20m
+  V2: Energía=151.61, Amplitud=94.75m, Radio=47.38m
+  Distancia: 0.16
+  V1 posición: (0.76, 0.61)
+  V2 posición: (0.76, 0.45)
+---
+Paso 60:
+  V1: Energía=1.11, Amplitud=0.37m, Radio=0.19m
+  V2: Energía=151.39, Amplitud=94.62m, Radio=47.31m
+  Distancia: 0.02
+  V1 posición: (0.77, 0.52)
+  V2 posición: (0.77, 0.55)
+---
+Paso 61:
+  V1: Energía=1.02, Amplitud=0.34m, Radio=0.17m
+  V2: Energía=151.19, Amplitud=94.49m, Radio=47.25m
+  Distancia: 0.18
+  V1 posición: (0.79, 0.63)
+  V2 posición: (0.78, 0.46)
+---
+Paso 62:
+  V1: Energía=0.94, Amplitud=0.31m, Radio=0.16m
+  V2: Energía=150.98, Amplitud=94.37m, Radio=47.18m
+  Distancia: 0.03
+  V1 posición: (0.81, 0.56)
+  V2 posición: (0.79, 0.55)
+---
+Paso 63:
+  V1: Energía=0.87, Amplitud=0.29m, Radio=0.14m
+  V2: Energía=150.79, Amplitud=94.24m, Radio=47.12m
+  Distancia: 0.12
+  V1 posición: (0.76, 0.52)
+  V2 posición: (0.86, 0.60)
+---
+Paso 64:
+  V1: Energía=0.80, Amplitud=0.27m, Radio=0.13m
+  V2: Energía=150.59, Amplitud=94.12m, Radio=47.06m
+  Distancia: 0.06
+  V1 posición: (0.85, 0.59)
+  V2 posición: (0.80, 0.55)
+---
+Paso 65:
+  V1: Energía=0.73, Amplitud=0.24m, Radio=0.12m
+  V2: Energía=150.40, Amplitud=94.00m, Radio=47.00m
+  Distancia: 0.09
+  V1 posición: (0.80, 0.55)
+  V2 posición: (0.87, 0.61)
+---
+Paso 66:
+  V1: Energía=0.68, Amplitud=0.23m, Radio=0.11m
+  V2: Energía=150.21, Amplitud=93.88m, Radio=46.94m
+  Distancia: 0.09
+  V1 posición: (0.88, 0.62)
+  V2 posición: (0.82, 0.56)
+---
+Paso 67:
+  V1: Energía=0.62, Amplitud=0.21m, Radio=0.10m
+  V2: Energía=150.03, Amplitud=93.77m, Radio=46.88m
+  Distancia: 0.06
+  V1 posición: (0.84, 0.58)
+  V2 posición: (0.89, 0.62)
+---
+Paso 68:
+  V1: Energía=0.57, Amplitud=0.19m, Radio=0.10m
+  V2: Energía=149.85, Amplitud=93.66m, Radio=46.83m
+  Distancia: 0.12
+  V1 posición: (0.92, 0.64)
+  V2 posición: (0.83, 0.57)
+---
+Paso 69:
+  V1: Energía=0.53, Amplitud=0.18m, Radio=0.09m
+  V2: Energía=149.67, Amplitud=93.54m, Radio=46.77m
+  Distancia: 0.03
+  V1 posición: (0.87, 0.61)
+  V2 posición: (0.90, 0.62)
+---
+Paso 70:
+  V1: Energía=0.49, Amplitud=0.16m, Radio=0.08m
+  V2: Energía=149.49, Amplitud=93.43m, Radio=46.72m
+  Distancia: 0.15
+  V1 posición: (0.97, 0.66)
+  V2 posición: (0.84, 0.59)
+---
+Paso 71:
+  V1: Energía=0.45, Amplitud=0.15m, Radio=0.07m
+  V2: Energía=149.32, Amplitud=93.33m, Radio=46.66m
+  Distancia: 0.01
+  V1 posición: (0.91, 0.64)
+  V2 posición: (0.92, 0.63)
+---
+Paso 72:
+  V1: Energía=0.41, Amplitud=0.14m, Radio=0.07m
+  V2: Energía=149.15, Amplitud=93.22m, Radio=46.61m
+  Distancia: 0.17
+  V1 posición: (1.00, 0.59)
+  V2 posición: (0.86, 0.69)
+---
+Paso 73:
+  V1: Energía=0.38, Amplitud=0.13m, Radio=0.06m
+  V2: Energía=148.98, Amplitud=93.11m, Radio=46.56m
+  Distancia: 0.03
+  V1 posición: (0.95, 0.67)
+  V2 posición: (0.93, 0.64)
+---
+Paso 74:
+  V1: Energía=0.35, Amplitud=0.12m, Radio=0.06m
+  V2: Energía=148.81, Amplitud=93.01m, Radio=46.50m
+  Distancia: 0.12
+  V1 posición: (0.93, 0.60)
+  V2 posición: (0.97, 0.72)
+---
+Paso 75:
+  V1: Energía=0.32, Amplitud=0.11m, Radio=0.05m
+  V2: Energía=148.65, Amplitud=92.90m, Radio=46.45m
+  Distancia: 0.06
+  V1 posición: (0.98, 0.70)
+  V2 posición: (0.96, 0.64)
+---
+Paso 76:
+  V1: Energía=0.30, Amplitud=0.10m, Radio=0.05m
+  V2: Energía=148.48, Amplitud=92.80m, Radio=46.40m
+  Distancia: 0.10
+  V1 posición: (0.97, 0.63)
+  V2 posición: (0.99, 0.73)
+---
+Paso 77:
+  V1: Energía=0.27, Amplitud=0.09m, Radio=0.05m
+  V2: Energía=148.32, Amplitud=92.70m, Radio=46.35m
+  Distancia: 0.08
+  V1 posición: (1.00, 0.73)
+  V2 posición: (0.98, 0.65)
+---
+Paso 78:
+  V1: Energía=0.25, Amplitud=0.08m, Radio=0.04m
+  V2: Energía=148.16, Amplitud=92.60m, Radio=46.30m
+  Distancia: 0.07
+  V1 posición: (1.01, 0.66)
+  V2 posición: (1.00, 0.73)
+---
+Paso 79:
+  V1: Energía=0.23, Amplitud=0.08m, Radio=0.04m
+  V2: Energía=148.00, Amplitud=92.50m, Radio=46.25m
+  Distancia: 0.13
+  V1 posición: (1.03, 0.77)
+  V2 posición: (1.01, 0.64)
+---
+Paso 80:
+  V1: Energía=0.22, Amplitud=0.07m, Radio=0.04m
+  V2: Energía=147.84, Amplitud=92.40m, Radio=46.20m
+  Distancia: 0.03
+  V1 posición: (1.04, 0.70)
+  V2 posición: (1.02, 0.73)
+---
+Paso 81:
+  V1: Energía=0.20, Amplitud=0.07m, Radio=0.03m
+  V2: Energía=147.68, Amplitud=92.30m, Radio=46.15m
+  Distancia: 0.16
+  V1 posición: (1.02, 0.80)
+  V2 posición: (1.07, 0.65)
+---
+Paso 82:
+  V1: Energía=0.18, Amplitud=0.06m, Radio=0.03m
+  V2: Energía=147.52, Amplitud=92.20m, Radio=46.10m
+  Distancia: 0.02
+  V1 posición: (1.06, 0.72)
+  V2 posición: (1.05, 0.74)
+---
+Paso 83:
+  V1: Energía=0.17, Amplitud=0.06m, Radio=0.03m
+  V2: Energía=147.36, Amplitud=92.10m, Radio=46.05m
+  Distancia: 0.17
+  V1 posición: (1.05, 0.83)
+  V2 posición: (1.08, 0.66)
+---
+Paso 84:
+  V1: Energía=0.16, Amplitud=0.05m, Radio=0.03m
+  V2: Energía=147.21, Amplitud=92.01m, Radio=46.00m
+  Distancia: 0.01
+  V1 posición: (1.08, 0.75)
+  V2 posición: (1.08, 0.75)
+---
+Paso 85:
+  V1: Energía=0.14, Amplitud=0.05m, Radio=0.02m
+  V2: Energía=147.05, Amplitud=91.91m, Radio=45.95m
+  Distancia: 0.19
+  V1 posición: (1.09, 0.86)
+  V2 posición: (1.10, 0.66)
+---
+Paso 86:
+  V1: Energía=0.13, Amplitud=0.04m, Radio=0.02m
+  V2: Energía=146.90, Amplitud=91.81m, Radio=45.91m
+  Distancia: 0.04
+  V1 posición: (1.12, 0.79)
+  V2 posición: (1.10, 0.75)
+---
+Paso 87:
+  V1: Energía=0.12, Amplitud=0.04m, Radio=0.02m
+  V2: Energía=146.75, Amplitud=91.72m, Radio=45.86m
+  Distancia: 0.11
+  V1 posición: (1.10, 0.73)
+  V2 posición: (1.15, 0.83)
+---
+Paso 88:
+  V1: Energía=0.11, Amplitud=0.04m, Radio=0.02m
+  V2: Energía=146.59, Amplitud=91.62m, Radio=45.81m
+  Distancia: 0.07
+  V1 posición: (1.15, 0.82)
+  V2 posición: (1.12, 0.76)
+---
+Paso 89:
+  V1: Energía=0.10, Amplitud=0.03m, Radio=0.02m
+  V2: Energía=146.44, Amplitud=91.53m, Radio=45.76m
+  Distancia: 0.08
+  V1 posición: (1.13, 0.76)
+  V2 posición: (1.16, 0.83)
+---
+Paso 90:
+  V1: Energía=0.10, Amplitud=0.03m, Radio=0.02m
+  V2: Energía=146.29, Amplitud=91.43m, Radio=45.72m
+  Distancia: 0.10
+  V1 posición: (1.18, 0.85)
+  V2 posición: (1.14, 0.76)
+---
+Paso 91:
+  V1: Energía=0.09, Amplitud=0.03m, Radio=0.01m
+  V2: Energía=146.14, Amplitud=91.34m, Radio=45.67m
+  Distancia: 0.05
+  V1 posición: (1.17, 0.79)
+  V2 posición: (1.18, 0.84)
+---
+Paso 92:
+  V1: Energía=0.08, Amplitud=0.03m, Radio=0.01m
+  V2: Energía=145.99, Amplitud=91.24m, Radio=45.62m
+  Distancia: 0.13
+  V1 posición: (1.19, 0.89)
+  V2 posición: (1.18, 0.76)
+---
+Paso 93:
+  V1: Energía=0.08, Amplitud=0.03m, Radio=0.01m
+  V2: Energía=145.84, Amplitud=91.15m, Radio=45.57m
+  Distancia: 0.04
+  V1 posición: (1.21, 0.82)
+  V2 posición: (1.19, 0.85)
+---
+Paso 94:
+  V1: Energía=0.07, Amplitud=0.02m, Radio=0.01m
+  V2: Energía=145.69, Amplitud=91.06m, Radio=45.53m
+  Distancia: 0.16
+  V1 posición: (1.19, 0.92)
+  V2 posición: (1.23, 0.77)
+---
+Paso 95:
+  V1: Energía=0.06, Amplitud=0.02m, Radio=0.01m
+  V2: Energía=145.54, Amplitud=90.96m, Radio=45.48m
+  Distancia: 0.02
+  V1 posición: (1.23, 0.84)
+  V2 posición: (1.22, 0.86)
+---
+Paso 96:
+  V1: Energía=0.06, Amplitud=0.02m, Radio=0.01m
+  V2: Energía=145.39, Amplitud=90.87m, Radio=45.44m
+  Distancia: 0.17
+  V1 posición: (1.23, 0.94)
+  V2 posición: (1.25, 0.77)
+---
+Paso 97:
+  V1: Energía=0.05, Amplitud=0.02m, Radio=0.01m
+  V2: Energía=145.24, Amplitud=90.78m, Radio=45.39m
+  Distancia: 0.01
+  V1 posición: (1.25, 0.86)
+  V2 posición: (1.25, 0.87)
+---
+Paso 98:
+  V1: Energía=0.05, Amplitud=0.02m, Radio=0.01m
+  V2: Energía=145.10, Amplitud=90.69m, Radio=45.34m
+  Distancia: 0.19
+  V1 posición: (1.26, 0.97)
+  V2 posición: (1.26, 0.78)
+---
+Paso 99:
+  V1: Energía=0.05, Amplitud=0.02m, Radio=0.01m
+  V2: Energía=144.95, Amplitud=90.59m, Radio=45.30m
+  Distancia: 0.04
+  V1 posición: (1.29, 0.90)
+  V2 posición: (1.26, 0.87)
+---
+Paso 100:
+  V1: Energía=0.04, Amplitud=0.01m, Radio=0.01m
+  V2: Energía=144.80, Amplitud=90.50m, Radio=45.25m
+  Distancia: 0.11
+  V1 posición: (1.26, 0.85)
+  V2 posición: (1.31, 0.94)
+---

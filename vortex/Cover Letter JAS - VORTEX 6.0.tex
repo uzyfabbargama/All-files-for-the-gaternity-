@@ -1,0 +1,66 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fontspec}
+\usepackage{amsmath}
+
+\usepackage[english, provide=*]{babel}
+\babelfont{rm}{Noto Sans}
+
+\usepackage{parskip}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+\begin{document}
+
+\begin{raggedleft}
+\today
+\end{raggedleft}
+
+\vspace{0.5cm}
+
+\textbf{To:} Editor-in-Chief / Handling Editor \\
+\textit{Journal of the Atmospheric Sciences} \\
+American Meteorological Society (AMS)
+
+\vspace{0.5cm}
+
+\textbf{Subject:} Submission of original research manuscript entitled \textit{``VORTEX 6.0: A Low-Cost Kinematic Reduced-Order Discrete Vortex Model with Recursive Sub-Grid Fractal Turbulence Cascade for Real-Time Atmospheric Dynamics''}
+
+\vspace{0.5cm}
+
+Dear Editor,
+
+We are pleased to submit our original research article entitled \textbf{``VORTEX 6.0: A Low-Cost Kinematic Reduced-Order Discrete Vortex Model with Recursive Sub-Grid Fractal Turbulence Cascade for Real-Time Atmospheric Dynamics''} for publication consideration as a Research Article in the \textit{Journal of the Atmospheric Sciences}.
+
+Microscale tornadic and mesocyclonic dynamics present a fundamental computational challenge in atmospheric science: full three-dimensional Navier-Stokes solvers (such as WRF and Large-Eddy Simulations) offer high physical fidelity but require prohibitive computational resources ($\mathcal{O}(10^3 - 10^5)$ CPU hours per run). This latency prevents their use in instantaneous multi-scenario ensemble forecasting and real-time emergency decision support.
+
+In this work, we present \textbf{VORTEX 6.0}, a kinematic Reduced-Order Discrete Vortex Model (ROM-DVM) designed to bridge the operational gap between computational speed and physical realism. Key scientific and technical contributions of our study include:
+\begin{itemize}
+    \item \textbf{Recursive Sub-Grid Cascade:} A novel fractal branching algorithm that emulates the forward transfer of turbulent kinetic energy (TKE) mirroring Kolmogorov $k^{-5/3}$ scale invariance down to micro-scales.
+    \item \textbf{Vortex Interaction Mechanics:} Formulation of continuous core dissipation, shear strain energy decay, co-rotating merger dynamics, and alignment repulsion for interacting vortex elements.
+    \item \textbf{Unprecedented Computational Efficiency:} Benchmark results demonstrating integration speeds of $0.108\text{ s}$ per 100 steps on commodity hardware---over four orders of magnitude faster than conventional grid-based CFD solvers.
+\end{itemize}
+
+Given recent spatial and temporal shifts in U.S. tornadic climatology---characterized by increased tornadic activity in the Mid-South and Midwest regions---there is an urgent need for surrogate modeling tools capable of rapid ensemble screening. We demonstrate that VORTEX 6.0 provides a robust, complementary framework to full-physics NWP models, enabling instant trajectory risk assessment and physical scenario exploration.
+
+We confirm that:
+\begin{enumerate}
+    \item This manuscript is an original work, has not been published previously, and is not currently under consideration for publication by any other journal.
+    \item All listed authors have reviewed and approved the final manuscript for submission.
+    \item The authors declare no competing financial or personal interests.
+\end{enumerate}
+
+Thank you very much for your time, consideration, and management of our submission. We look forward to hearing from you regarding the peer-review process.
+
+\vspace{0.8cm}
+
+Sincerely,
+
+\vspace{0.5cm}
+
+\textbf{Uziel} (Corresponding Author) \\
+Independent Researcher \\
+Laboratory of Atmospheric Phenomena Simulation (LSFA) \\
+Email: \href{mailto:uziel.research@example.com}{uziel.research@example.com}
+
+\end{document}
