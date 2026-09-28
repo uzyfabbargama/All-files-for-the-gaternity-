@@ -1,0 +1,58 @@
+%## ============================================================
+%## NEURALSCRIPT: CAPA DE ATENCIÓN Y AUTO-MEJORA (100% NS)
+%## ============================================================
+
+%## Macro para calcular un nodo de atención entre Query, Key y Value
+%macro nodo_atencion 4
+    %## %1 = Entrada (Query), %2 = Peso (Key), %3 = Valor (Value), %4 = Salida
+    
+    $ 1. Similitud (Producto punto / activación)
+    proc %1, %2
+    var %%similitud, %2
+    
+    $ 2. Escalado mediante la opcode nativa prom
+    prom %%atencion_scaled, %%similitud, %3
+    
+    $ 3. Transferencia a la neurona de destino
+    proc %%atencion_scaled, %4
+%endmacro
+
+%## Macro para aplicar ajuste de pesos (growth/decay) según umbral
+%macro ajustar_peso 3
+    %## %1 = Neurona salida, %2 = Peso a ajustar, %3 = Tasa
+    %if %1 > 0.5
+        growth %2, %3
+    %else
+        decay %2, %3
+    %endif
+%endmacro
+
+$ --- DEFINICIÓN DE ESPACIO DE MEMORIA (SLOTS) ---
+var entrada_token, 0.8
+var salida_red, 0.0
+
+$ --- DESPLIEGUE DINÁMICO DE CAPAS CON %rep ---
+%assign CAPAS 2
+%assign Q_BASE 10
+%assign K_BASE 20
+%assign V_BASE 30
+%assign OUT_BASE 40
+
+%assign i 0
+%rep CAPAS
+    %assign q_id Q_BASE + i
+    %assign k_id K_BASE + i
+    %assign v_id V_BASE + i
+    %assign out_id OUT_BASE + i
+    
+    $ Nodo de Atención Capa %[i]
+    nodo_atencion %[q_id], %[k_id], %[v_id], %[out_id]
+    
+    $ Retroalimentación local
+    ajustar_peso %[out_id], %[k_id], 0.01
+    
+    %assign i i + 1
+%endrep
+
+$ Conexión final al nodo de salida principal
+proc 41, salida_red

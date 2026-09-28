@@ -1,0 +1,511 @@
+CLASS argv = <"sys"[sys.argv]>
+CLASS len/cut/next/take = <"stringutil"[len/split/next_character/take_n_characters]>
+CLASS return = <"func_utils"[return]>
+CLASS bytearray = <"array_deluxe"[bytearray]>
+CLASS byte_convert/bit56 = <"type_convert"[byte_convert/bit56]>
+CLASS struct_counter = <"organizer"[struct_counter]> # cuenta según lo que aparezca
+CLASS struct_searcher = <"organizer"[struct_searcher]> # agrega a una lista y si ya existe, lo reemplaza
+CLASS search_duplex = <"simetry_logic"[search]> # busca, hasta el complemento,ideal para buscar inicios de bucles y finales
+
+if len(argv) > 2
+CTRL obtener_código_fuente {pass, 
+	VAR font_code = argv[2] # 1 = preprocesador.py, 2 = código_fuente.ns, 3 = salida.ns
+	VAR salida = argv[3]
+}
+else()
+	print("Uso: preprocesador.py <archivo.ns> <salida.bin>")
+# en este lenguaje, los class, y def, son iguales
+
+CLASS procesar_neuron_val() = (
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" "))
+	VAR ID = struct_search(cut(GLOBAL.font_code, " "), GLOBAL.neuronas)
+	if (!ID)
+	CTRL crear {pass, 
+		VAR neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			cut(GLOBAL.font_code, " "), 
+			GLOBAL.cantidad_neuronas
+		) # guardamos la estructura {(reemplazo = nombre), ID}
+	}
+	GLOBAL.archivo_final += struct_search(cut(GLOBAL.font_code, " "), neuronas) # busca en neuronas el "nombre_neurona" y lo reemplaza por el ID de cantidad_neuronas+1 y lo agrega al archivo final
+	if !(ID)
+	#devuelve false → sino hay nada
+	#devuelve true → si hay una coincidencia
+	CTRL aumentar_neuron_counter {pass, GLOBAL.cantidad_neuronas += 1}
+	GLOBAL.font_code = next(font_code, len(cut(font_code, " "))) # salteamos la palabra, hasta el espacio
+	GLOBAL.archivo_final = next(archivo_final, 3) # 3 bytes de ID
+	GLOBAL.archivo_final += bit56(float(cut(font_code, 10))) #toma el resto y lo convierte en nuestro formato
+	GLOBAL.archivo_final = next(archivo_final, 7) #avanza 7 bytes (56 bitd)
+	GLOBAL.font_code = next(font_code, len((cut(font_code, 10)))) # saltea todo el número
+);
+
+CLASS procesar_neuron_neuron_neuron() = (
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	GLOBAL.archivo_final = next(archivo_final, len(cut(font_code, " ")+" "))
+	# avanza font_code, según lo que encontremos
+	GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" "))
+	VAR ID = struct_search(cut(font_code, " "), neuronas)
+	if !(ID)
+	CTRL agregar {pass, 
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+			# agregar sólo si no hay una entrada con ese nombre
+			GLOBAL.cantidad_neuronas += 1
+			GLOBAL.archivo = next(archivo, 3)
+			GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+			GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), neuronas))
+			
+		}
+	if !(ID)
+	CTRL agregar1 {pass,
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+		# agregar sólo si no hay una entrada con ese nombre
+		GLOBAL.cantidad_neuronas += 1
+		GLOBAL.archivo = next(archivo, 3)
+		GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+		GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), neuronas))
+	}
+	if !(ID)
+	CTRL agregar1 {pass,
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+		# agregar sólo si no hay una entrada con ese nombre
+		GLOBAL.cantidad_neuronas += 1
+		GLOBAL.archivo = next(archivo, 3)
+		GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+		GLOBAL.archivo += byte_convert(struct_search(cut(font_code, 10), neuronas))
+	}
+);
+CLASS procesar_neuron_neuron() = (
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	GLOBAL.archivo_final = next(archivo_final, len(cut(font_code, " ")+" "))
+	# avanza font_code, según lo que encontremos
+	GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" "))
+	VAR ID = struct_search(cut(font_code, " "), neuronas)
+	if !(ID)
+	CTRL agregar {pass, 
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+			# agregar sólo si no hay una entrada con ese nombre
+			GLOBAL.cantidad_neuronas += 1
+			GLOBAL.archivo = next(archivo, 3)
+			GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+			GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), neuronas))
+			
+		}
+	if !(struct_search(cut(font_code, " "), neuronas))
+	CTRL agregar1 {pass,
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+		# agregar sólo si no hay una entrada con ese nombre
+		GLOBAL.cantidad_neuronas += 1
+		GLOBAL.archivo = next(archivo, 3)
+		GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+		GLOBAL.archivo += byte_convert(struct_search(cut(font_code, 10), neuronas))
+	}
+	GLOBAL.archivo_final += bit56(float(cut(font_code, 10))) #toma el resto y lo convierte en nuestro formato
+	GLOBAL.archivo_final = next(archivo_final, 7) #avanza 7 bytes (56 bitd)
+	GLOBAL.font_code = next(font_code, len((cut(font_code, 10)))) # saltea todo el número
+);
+
+CLASS procesar_neuron_neuron_bias() = (
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	GLOBAL.archivo_final = next(archivo_final, len(cut(font_code, " ")+" "))
+	# avanza font_code, según lo que encontremos
+	GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" "))
+	VAR ID = struct_search(cut(font_code, " "), neuronas)
+	if !(ID)
+	CTRL agregar {pass, 
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+		# agregar sólo si no hay una entrada con ese nombre
+		GLOBAL.cantidad_neuronas += 1
+		GLOBAL.archivo = next(archivo, 3)
+		GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+		GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), neuronas))
+		
+		}
+		if !(struct_search(cut(font_code, " "), neuronas))
+		CTRL agregar1 {pass,
+			GLOBAL.neuronas = struct_counter(
+				GLOBAL.cantidad_neuronas+1,
+				GLOBAL.neuronas,
+				GLOBAL.cantidad_neuronas
+				)
+			# agregar sólo si no hay una entrada con ese nombre
+			GLOBAL.cantidad_neuronas += 1
+			GLOBAL.archivo = next(archivo, 3)
+			GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+			GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), neuronas))
+		} # lo mismo que antes
+	GLOBAL.archivo_final += bit56(float(cut(font_code, 10))) #toma el resto y lo convierte en nuestro formato
+	GLOBAL.archivo_final = next(archivo_final, 7) #avanza 7 bytes (56 bitd)
+	GLOBAL.font_code = next(font_code, len((cut(font_code, 10)))) # saltea todo el número
+);
+CLASS procesar_cond_neuron() = (
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	GLOBAL.archivo_final = next(archivo_final, len(cut(font_code, " ")+" "))
+	# avanza font_code, según lo que encontremos
+	GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" "))
+	VAR ID_logic = struct_search(cut(font_code, " "), var_logic)
+	if !(ID_logic)
+	CTRL agregar {pass, 
+		GLOBAL.var_logic = struct_counter(
+			GLOBAL.cantidad_var_logic+1,
+			GLOBAL.var_logic,
+			GLOBAL.cantidad_var_logic
+	)
+	# agregar sólo si no hay una entrada con ese nombre
+	GLOBAL.cantidad_var_logic += 1
+	GLOBAL.archivo = next(archivo, 3)
+	GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+	GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), var_logic))
+	
+	}
+	if !(struct_search(cut(font_code, " "), neuronas))
+	CTRL agregar1 {pass,
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+		# agregar sólo si no hay una entrada con ese nombre
+		GLOBAL.cantidad_neuronas += 1
+		GLOBAL.archivo = next(archivo, 3)
+		GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+		GLOBAL.archivo += byte_convert(struct_search(cut(font_code, 10), neuronas))
+	} # lo mismo que antes
+);
+
+CLASS procesar_cond_neuron_neuron() = (
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	GLOBAL.archivo_final = next(archivo_final, len(cut(font_code, " ")+" "))
+	# avanza font_code, según lo que encontremos
+	GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" "))
+	VAR ID_logic = struct_search(cut(font_code, " "), var_logic)
+	if !(ID_logic)
+	CTRL agregar {pass, 
+		GLOBAL.var_logic = struct_counter(
+			GLOBAL.cantidad_var_logic+1,
+			GLOBAL.var_logic,
+			GLOBAL.cantidad_var_logic
+	)
+	# agregar sólo si no hay una entrada con ese nombre
+	GLOBAL.cantidad_var_logic += 1
+	GLOBAL.archivo = next(archivo, 3)
+	GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+	GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), var_logic))
+	
+	}
+	VAR ID = struct_search(cut(font_code, " "), neuronas)
+	if !(ID)
+	CTRL agregar1 {pass,
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+		# agregar sólo si no hay una entrada con ese nombre
+		GLOBAL.cantidad_neuronas += 1
+		GLOBAL.archivo = next(archivo, 3)
+		GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+		GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), neuronas))
+	} # lo mismo que antes
+	if !(ID)
+	CTRL agregar2 {pass,
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+		# agregar sólo si no hay una entrada con ese nombre
+		GLOBAL.cantidad_neuronas += 1
+		GLOBAL.archivo = next(archivo, 3)
+		GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+		GLOBAL.archivo += byte_convert(struct_search(cut(font_code, 10), neuronas))
+	} # lo mismo que antes
+);
+
+CLASS procesar_cond_neuron_value() = (
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	GLOBAL.archivo_final = next(archivo_final, len(cut(font_code, " ")+" "))
+	# avanza font_code, según lo que encontremos
+	GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" "))
+	VAR ID_logic = struct_search(cut(font_code, " "), var_logic)
+	if !(ID_logic)
+	CTRL agregar {pass, 
+		GLOBAL.var_logic = struct_counter(
+			GLOBAL.cantidad_var_logic+1,
+			GLOBAL.var_logic,
+			GLOBAL.cantidad_var_logic
+	)
+	# agregar sólo si no hay una entrada con ese nombre
+	GLOBAL.cantidad_var_logic += 1
+	GLOBAL.archivo = next(archivo, 3)
+	GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+	GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), var_logic))
+	
+	}
+	VAR ID = struct_search(cut(font_code, " "), neuronas)
+	if !(ID)
+	CTRL agregar1 {pass,
+		GLOBAL.neuronas = struct_counter(
+			GLOBAL.cantidad_neuronas+1,
+			GLOBAL.neuronas,
+			GLOBAL.cantidad_neuronas
+			)
+		# agregar sólo si no hay una entrada con ese nombre
+		GLOBAL.cantidad_neuronas += 1
+		GLOBAL.archivo = next(archivo, 3)
+		GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+		GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), neuronas))
+	} # lo mismo que antes
+	GLOBAL.archivo_final += bit56(float(cut(font_code, 10))) #toma el resto y lo convierte en nuestro formato
+	GLOBAL.archivo_final = next(archivo_final, 7) #avanza 7 bytes (56 bitd)
+	GLOBAL.font_code = next(font_code, len((cut(font_code, 10)))) # saltea todo el número
+);
+
+CLASS procesar_func() = (
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	GLOBAL.archivo_final = next(font_code, len((cut(font_code, " ")+" ")))
+	# avanza font_code, según lo que encontremos
+	GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" ")))
+	VAR ID_func = struct_search(cut(font_code, " "), var_logic)
+	if !(ID_func)
+	CTRL agregar {pass, 
+		GLOBAL.var_logic = struct_counter(
+			GLOBAL.cantidad_funciones+1,
+			GLOBAL.funciones,
+			GLOBAL.cantidad_funciones
+	)
+	# agregar sólo si no hay una entrada con ese nombre
+	GLOBAL.cantidad_funciones += 1
+	GLOBAL.archivo = next(archivo, 3)
+	GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+	GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), var_logic))
+	
+	}
+);
+
+CLASS procesar_args() = (
+	if ((cut(font_code, " ")+" ") == "(")
+	CTRL detectar_parentesis {pass,
+		GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+		GLOBAL.archivo_final = next(archivo_final, len(cut(font_code, " ")+" ")
+	}
+	VAR ID_args = struct_search(cut(font_code, " "), var_logic)
+	if !(ID_logic)
+	CTRL agregar {pass, 
+		GLOBAL.args = struct_counter(
+			GLOBAL.cantidad_args+1,
+			GLOBAL.args,
+			GLOBAL.cantidad_args
+		)
+	
+		# agregar sólo si no hay una entrada con ese nombre
+		GLOBAL.cantidad_var_logic += 1
+		GLOBAL.archivo = next(archivo, 3)
+		GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+		GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), var_logic))
+	
+	}
+	if ((cut(font_code, " ")+" ") == "=")
+	CTRL separador{pass, 
+		font_code = next(font_code, len(cut(font_code, " ")+" "))
+		VAR ID_logic = struct_search(cut(font_code, " "), var_logic)
+		if !(ID_logic)
+		CTRL agregar {pass, 
+			GLOBAL.var_logic = struct_counter(
+				GLOBAL.cantidad_var_logic+1,
+				GLOBAL.var_logic,
+				GLOBAL.cantidad_var_logic
+			)	
+			# agregar sólo si no hay una entrada con ese nombre
+			GLOBAL.cantidad_var_logic += 1
+			GLOBAL.archivo = next(archivo, 3)
+			GLOBAL.font_code = next(font_code, len(cut(font_code, ", ")))
+			GLOBAL.archivo += byte_convert(struct_search(cut(font_code, ", "), var_logic))
+		
+		}
+	}
+);
+CLASS search_duplex_depth(text, start, end, depth) = (
+    VAR counter = 0
+    VAR pos = 0
+    
+    while text != "":
+        if cut(text, " ") == start:
+            counter += 1
+        if cut(text, " ") == end:
+            if counter == depth:
+                return pos
+            counter -= 1
+        pos += len(cut(text, " ")) + 1
+        text = next(text, len(cut(text, " ")) + 1)
+);
+
+CLASS procesar_loop() = (
+    ; 1. Escribir "loop " (5 bytes)
+    GLOBAL.archivo_final += byte_convert("loop ")
+    GLOBAL.archivo_final = next(archivo_final, 5)
+    
+    ; 2. Saltar el texto "loop " en font_code
+    GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" ")))
+    
+    ; 3. Leer la variable condicional
+    VAR ID_logic = struct_search(cut(font_code, " "), var_logic)
+    
+    ; 4. Si no existe, crearla
+    if !(ID_logic)
+        CTRL agregar {pass, 
+            GLOBAL.var_logic = struct_counter(
+                GLOBAL.cantidad_var_logic+1,
+                GLOBAL.var_logic,
+                GLOBAL.cantidad_var_logic
+            )
+            GLOBAL.cantidad_var_logic += 1
+        }
+    
+    ; 5. Escribir el ID de la variable condicional (3 bytes)
+    GLOBAL.archivo_final += byte_convert(ID_logic.to_bytes(3, 'little'))
+);
+CLASS procesar_endloop() = (
+    ; Solo escribe "endloop " (8 bytes)
+    GLOBAL.archivo_final += byte_convert("endloop ")
+    GLOBAL.archivo_final = next(archivo_final, 8)
+);
+
+CLASS procesar_endef() = (
+	font_code = GLOBAL.font_code
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	font_code = next(font_code, len(cut(font_code, " ")+" "))
+	GLOBAL.font_code = font_code
+);
+
+CLASS procesar_use() = (
+	GLOBAL.archivo_final += byte_convert(cut(font_code, " ")+" ")
+	GLOBAL.archivo_final = next(font_code, len((cut(font_code, " ")+" ")))
+	# avanza font_code, según lo que encontremos
+	GLOBAL.font_code = next(font_code, len((cut(font_code, " ")+" ")))
+	VAR ID_func = struct_search(cut(font_code, " "), var_logic)
+	if !(ID_func)
+	CTRL agregar {pass, 
+		GLOBAL.var_logic = struct_counter(
+			GLOBAL.cantidad_funciones+1,
+			GLOBAL.funciones,
+			GLOBAL.cantidad_funciones
+	)
+	# agregar sólo si no hay una entrada con ese nombre
+	GLOBAL.cantidad_funciones += 1
+	GLOBAL.archivo = next(archivo, 3)
+	GLOBAL.font_code = next(font_code, len(cut(font_code, " ")))
+	GLOBAL.archivo += byte_convert(struct_search(cut(font_code, " "), var_logic))
+	
+	}
+);
+CLASS procesar_texto (font_code, salida) = (
+	VAR cantidad_neuronas = 0
+	VAR cantidad_funciones = 0
+	VAR cantidad_var_logic = 0
+	VAR cantidad_args = 0
+	VAR neurona_actual = ""
+	VAR funcion_actual = ""
+	VAR var_logic_actual = ""
+	VAR arg_actual = ""
+	VAR archivo_final = bytearray()
+	VAR font_code = GLOBAL.font_code
+	# corta hasta espacio cualquier palabra clave
+	if ((cut(font_code, " ")+" ") == "var ")
+		CTRL agregar_bytes_var = {pass, 
+			procesar_neuron_val()
+		}
+	
+	if ((cut(font_code, " ")+" ") == "proc ")
+	CTRL agregar_bytes_proc {pass,
+		procesar_neuron_neuron()
+		}
+			
+	if ((cut(font_code, " ")+" ") == "decay ")
+	CTRL agregar_bytes_decay {pass,
+		procesar_neuron_val()
+	}
+	if ((cut(font_code, " ")+" ") == "growth ")
+	CTRL agregar_bytes_growth {pass,
+		procesar_neuron_val()
+	}
+	if ((cut(font_code, " ")+" ") == "norm ")
+	CTRL agregar_bytes_norm {pass,
+		procesar_neuron_neuron()
+	}
+	if ((cut(font_code, " ")+" ") == "conv ")
+	CTRL agregar_bytes_conv {
+		procesar_neuron_neuron_bias()
+	}
+	if ((cut(font_code, " ")+" ") == "drop ")
+	CTRL agregar_bytes_drop {pass,
+		procesar_neuron_neuron()
+	}
+	if ((cut(font_code, " ")+" ") == "logic ")
+	CTRL logic_mode{pass,
+		if((cut(font_code, " ")+" ") == "cmp "
+		CTRL agregar_bytes_cmp {pass,
+			procesar_cond_neuron_neuron()
+		}
+		if((cut(font_code, " ")+" ") == "cmpv ")
+		CTRL agregar_bytes_cmpv {pass,
+			procesar_cond_neuron_value()
+		}
+		if((cut(font_code, " ")+" ") == "cmpn ")
+		CTRL agregar_bytes_cmpn {pass,
+			procesar_cond_neuron()
+		}
+		if((cut(font_code, " ")+" ") == "prom ")
+		CTRL agregar_bytes_prom {pass,
+			procesar_neuron_neuron_neuron()
+		}
+		# no sé si esto es necesario
+		if((cut(font_code, " ")+" ") == "loop ")
+		CTRL agregar_bytes_loop {pass,
+			procesar_loop()
+		}
+		if((cut(font_code, " ")+" ") == "endloop ")
+		CTRL agregar_byte_endloop {pass,
+			procesar_endloop
+		}
+		if((cut(font_code, " ")+" ") == "def ")
+		CTRL agregar_bytes_args {pass,
+			procesar_func()
+			while((cut(font_code, " ")+" ") == ")",(
+				procesar_args()
+			))
+		}
+		if((cut(font_code, " ")+" ") == "use ")
+		CTRL agregar_bytes_use {pass,
+			procesar_use()
+		}
+		if((cut(font_code, " ")+" ") == "endef ")
+		CTRL agregar_bytes_use {pass,
+			procesar_endef()
+		}
+	}
+);

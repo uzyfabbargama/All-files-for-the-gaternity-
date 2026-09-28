@@ -1,0 +1,91 @@
+var neuron, value
+$ declara una neurona en formato bit56
+
+proc var_cond, neuron, neuron1
+
+$ cruza ambas neuronas, y depende del proceso, de multiplicación, puede activar o no a neuron, pero no modifica los pesos (ni el valor acumulado entre neuronas, sólo verifica si se activaron)
+
+decay neuron, value
+
+$ baja el peso de neuron
+
+growth neuron, value
+
+$ sube el peso de neuron
+
+conv neuron1, neuron2, bias
+
+$ convoluciona ambas neuronas
+
+norm neuron, neuron1
+
+$ normaliza ambos, con una división optimizada, y suma epsilon para evitar dividir por 0
+
+drop neuron1, neuron2
+
+$ drop ajusta con un valor aleatorio determinista y luego multiplica
+
+$========
+$ LOGIC	=
+$========
+
+logic cmp var_cond, n1, n2
+
+$ guarda el resultado en una variable condicional, sólo si n1 y n2 son iguales en peso
+
+logic cmpv var_cond, n1, value
+
+$ compara que n1, sea igual a una constante
+
+logic cmpn var_cond, n1
+
+$ inspecciona si la neurona tiene el flag
+
+logic loop var_cond
+
+$ ejecuta el loop sólo si la variable condicional es true
+
+logic endloop
+
+$ finaliza el loop
+
+logic prom n_destino, n2, n3
+
+$ ejecuta promedio, (n2 + n3) >> 1
+
+logic def nombre_funcion (var_cond_local = var_cond)
+
+$ declara y guarda variables condicionales, permite recibir hasta 256 argumentos, los únicos locales son los bool (las logic_vars)
+
+logic yes var_cond
+	$ ejecuta si es correcto, sino salta
+logic no var_cond
+	$ ejecuta sino es correcto, sino salta
+logic endcond 	$ fin
+
+logic endef $ finaliza la declaración de una función
+
+logic use func_name
+
+$ para usar una función, ni siquiera hay que mencionarle los argumentos, ya que se actualizan solos cuando la definis con variables condicionales
+
+$ aritmethic mode
+
+ari var name, val $ decalara un puntero, con un valor, permite acceder a variables cercanas
+
+ari add name, val $ avanza el puntero
+
+ari sub name, val $ retrocede el puntero
+
+ari lim cond, name, val $ compara un puntero con un límite
+
+$ usos
+
+var n[pointer], val $ permite declarar una variable, pero ojo
+
+$ lo que sucede cuando haces esto
+ari var p, 1 $ el preprocesador lo convierte en 1, en el espacio de los punteros
+var n[p], 0.34 $ el preprocesador lo convierte en 1 a ambos, 1 + 1 = 2, afecta a la celda ID+p relativa
+var n2, 0.33 $ el preprocesador, lo convierte a 2, y sobrescribe el valor
+
+$ todas operaciones que tengan variables/neuronas, usan el puntero

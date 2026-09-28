@@ -1,0 +1,9 @@
+logic def function_main (localcond = cond)
+	logic def function_needed (localcond1 = cond1)
+		logic yes localcond
+			$code			
+		logic no localcond1
+			$code
+		logic endcond
+	logic endef
+logic endef

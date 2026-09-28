@@ -1,0 +1,365 @@
+# keywords
+
+## normales
+var
+proc
+decay
+growth
+logic
+conv
+norm
+drop
+
+## lógicas
+
+cmp
+loop
+loopend
+def
+endef
+prom
+cmpv
+cmpn
+no
+yes
+endcond
+use
+
+# HASH xorid
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> var
+
+Pasos del cálculo:
+------------------------------
+Carácter 'v' (118) | (0 ^ 118) << 1 = 236
+Carácter 'a' (97) | (236 ^ 97) << 1 = 282
+Carácter 'r' (114) | (282 ^ 114) << 1 = 720
+------------------------------
+Resultado final del ID: 720
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> proc
+
+Pasos del cálculo:
+------------------------------
+Carácter 'p' (112) | (0 ^ 112) << 1 = 224
+Carácter 'r' (114) | (224 ^ 114) << 1 = 292
+Carácter 'o' (111) | (292 ^ 111) << 1 = 662
+Carácter 'c' (99) | (662 ^ 99) << 1 = 1514
+------------------------------
+Resultado final del ID: 1514
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> decay
+
+Pasos del cálculo:
+------------------------------
+Carácter 'd' (100) | (0 ^ 100) << 1 = 200
+Carácter 'e' (101) | (200 ^ 101) << 1 = 346
+Carácter 'c' (99) | (346 ^ 99) << 1 = 626
+Carácter 'a' (97) | (626 ^ 97) << 1 = 1062
+Carácter 'y' (121) | (1062 ^ 121) << 1 = 2238
+------------------------------
+Resultado final del ID: 2238
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> growth
+
+Pasos del cálculo:
+------------------------------
+Carácter 'g' (103) | (0 ^ 103) << 1 = 206
+Carácter 'r' (114) | (206 ^ 114) << 1 = 376
+Carácter 'o' (111) | (376 ^ 111) << 1 = 558
+Carácter 'w' (119) | (558 ^ 119) << 1 = 1202
+Carácter 't' (116) | (1202 ^ 116) << 1 = 2444
+Carácter 'h' (104) | (2444 ^ 104) << 1 = 5064
+------------------------------
+Resultado final del ID: 5064
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> logic
+
+Pasos del cálculo:
+------------------------------
+Carácter 'l' (108) | (0 ^ 108) << 1 = 216
+Carácter 'o' (111) | (216 ^ 111) << 1 = 366
+Carácter 'g' (103) | (366 ^ 103) << 1 = 530
+Carácter 'i' (105) | (530 ^ 105) << 1 = 1270
+Carácter 'c' (99) | (1270 ^ 99) << 1 = 2346
+------------------------------
+Resultado final del ID: 2346
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> conv
+
+Pasos del cálculo:
+------------------------------
+Carácter 'c' (99) | (0 ^ 99) << 1 = 198
+Carácter 'o' (111) | (198 ^ 111) << 1 = 338
+Carácter 'n' (110) | (338 ^ 110) << 1 = 632
+Carácter 'v' (118) | (632 ^ 118) << 1 = 1052
+------------------------------
+Resultado final del ID: 1052
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> norm
+
+Pasos del cálculo:
+------------------------------
+Carácter 'n' (110) | (0 ^ 110) << 1 = 220
+Carácter 'o' (111) | (220 ^ 111) << 1 = 358
+Carácter 'r' (114) | (358 ^ 114) << 1 = 552
+Carácter 'm' (109) | (552 ^ 109) << 1 = 1162
+------------------------------
+Resultado final del ID: 1162
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> drop
+
+Pasos del cálculo:
+------------------------------
+Carácter 'd' (100) | (0 ^ 100) << 1 = 200
+Carácter 'r' (114) | (200 ^ 114) << 1 = 372
+Carácter 'o' (111) | (372 ^ 111) << 1 = 566
+Carácter 'p' (112) | (566 ^ 112) << 1 = 1164
+------------------------------
+Resultado final del ID: 1164
+
+## Logic
+
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> cmp
+
+Pasos del cálculo:
+------------------------------
+Carácter 'c' (99) | (0 ^ 99) << 1 = 198
+Carácter 'm' (109) | (198 ^ 109) << 1 = 342
+Carácter 'p' (112) | (342 ^ 112) << 1 = 588
+------------------------------
+Resultado final del ID: 588
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> loop
+
+Pasos del cálculo:
+------------------------------
+Carácter 'l' (108) | (0 ^ 108) << 1 = 216
+Carácter 'o' (111) | (216 ^ 111) << 1 = 366
+Carácter 'o' (111) | (366 ^ 111) << 1 = 514
+Carácter 'p' (112) | (514 ^ 112) << 1 = 1252
+------------------------------
+Resultado final del ID: 1252
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> loopend
+
+Pasos del cálculo:
+------------------------------
+Carácter 'l' (108) | (0 ^ 108) << 1 = 216
+Carácter 'o' (111) | (216 ^ 111) << 1 = 366
+Carácter 'o' (111) | (366 ^ 111) << 1 = 514
+Carácter 'p' (112) | (514 ^ 112) << 1 = 1252
+Carácter 'e' (101) | (1252 ^ 101) << 1 = 2306
+Carácter 'n' (110) | (2306 ^ 110) << 1 = 4824
+Carácter 'd' (100) | (4824 ^ 100) << 1 = 9592
+------------------------------
+Resultado final del ID: 9592
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> def
+
+Pasos del cálculo:
+------------------------------
+Carácter 'd' (100) | (0 ^ 100) << 1 = 200
+Carácter 'e' (101) | (200 ^ 101) << 1 = 346
+Carácter 'f' (102) | (346 ^ 102) << 1 = 632
+------------------------------
+Resultado final del ID: 632
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> endef
+
+Pasos del cálculo:
+------------------------------
+Carácter 'e' (101) | (0 ^ 101) << 1 = 202
+Carácter 'n' (110) | (202 ^ 110) << 1 = 328
+Carácter 'd' (100) | (328 ^ 100) << 1 = 600
+Carácter 'e' (101) | (600 ^ 101) << 1 = 1146
+Carácter 'f' (102) | (1146 ^ 102) << 1 = 2104
+------------------------------
+Resultado final del ID: 2104
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> prom
+
+Pasos del cálculo:
+------------------------------
+Carácter 'p' (112) | (0 ^ 112) << 1 = 224
+Carácter 'r' (114) | (224 ^ 114) << 1 = 292
+Carácter 'o' (111) | (292 ^ 111) << 1 = 662
+Carácter 'm' (109) | (662 ^ 109) << 1 = 1526
+------------------------------
+Resultado final del ID: 1526
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> cmpv
+
+Pasos del cálculo:
+------------------------------
+Carácter 'c' (99) | (0 ^ 99) << 1 = 198
+Carácter 'm' (109) | (198 ^ 109) << 1 = 342
+Carácter 'p' (112) | (342 ^ 112) << 1 = 588
+Carácter 'v' (118) | (588 ^ 118) << 1 = 1140
+------------------------------
+Resultado final del ID: 1140
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> cmpn
+
+Pasos del cálculo:
+------------------------------
+Carácter 'c' (99) | (0 ^ 99) << 1 = 198
+Carácter 'm' (109) | (198 ^ 109) << 1 = 342
+Carácter 'p' (112) | (342 ^ 112) << 1 = 588
+Carácter 'n' (110) | (588 ^ 110) << 1 = 1092
+------------------------------
+Resultado final del ID: 1092
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> no
+
+Pasos del cálculo:
+------------------------------
+Carácter 'n' (110) | (0 ^ 110) << 1 = 220
+Carácter 'o' (111) | (220 ^ 111) << 1 = 358
+------------------------------
+Resultado final del ID: 358
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> yes
+
+Pasos del cálculo:
+------------------------------
+Carácter 'y' (121) | (0 ^ 121) << 1 = 242
+Carácter 'e' (101) | (242 ^ 101) << 1 = 302
+Carácter 's' (115) | (302 ^ 115) << 1 = 698
+------------------------------
+Resultado final del ID: 698
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> endcond
+
+Pasos del cálculo:
+------------------------------
+Carácter 'e' (101) | (0 ^ 101) << 1 = 202
+Carácter 'n' (110) | (202 ^ 110) << 1 = 328
+Carácter 'd' (100) | (328 ^ 100) << 1 = 600
+Carácter 'c' (99) | (600 ^ 99) << 1 = 1142
+Carácter 'o' (111) | (1142 ^ 111) << 1 = 2098
+Carácter 'n' (110) | (2098 ^ 110) << 1 = 4280
+Carácter 'd' (100) | (4280 ^ 100) << 1 = 8632
+------------------------------
+Resultado final del ID: 8632
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> use
+
+Pasos del cálculo:
+------------------------------
+Carácter 'u' (117) | (0 ^ 117) << 1 = 234
+Carácter 's' (115) | (234 ^ 115) << 1 = 306
+Carácter 'e' (101) | (306 ^ 101) << 1 = 686
+------------------------------
+Resultado final del ID: 686
+
+## ari
+
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> ari
+
+Pasos del cálculo:
+------------------------------
+Carácter 'a' (97) | (0 ^ 97) << 1 = 194
+Carácter 'r' (114) | (194 ^ 114) << 1 = 352
+Carácter 'i' (105) | (352 ^ 105) << 1 = 530
+------------------------------
+Resultado final del ID: 530
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> add
+
+Pasos del cálculo:
+------------------------------
+Carácter 'a' (97) | (0 ^ 97) << 1 = 194
+Carácter 'd' (100) | (194 ^ 100) << 1 = 332
+Carácter 'd' (100) | (332 ^ 100) << 1 = 592
+------------------------------
+Resultado final del ID: 592
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> sub
+
+Pasos del cálculo:
+------------------------------
+Carácter 's' (115) | (0 ^ 115) << 1 = 230
+Carácter 'u' (117) | (230 ^ 117) << 1 = 294
+Carácter 'b' (98) | (294 ^ 98) << 1 = 648
+------------------------------
+Resultado final del ID: 648
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> lim
+
+Pasos del cálculo:
+------------------------------
+Carácter 'l' (108) | (0 ^ 108) << 1 = 216
+Carácter 'i' (105) | (216 ^ 105) << 1 = 354                                                                                                                                 
+Carácter 'm' (109) | (354 ^ 109) << 1 = 542                                                                                                                                 
+------------------------------                                                                                                                                              
+Resultado final del ID: 542
+
+## strings
+
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> string
+
+Pasos del cálculo:
+------------------------------
+Carácter 's' (115) | (0 ^ 115) << 1 = 230
+Carácter 't' (116) | (230 ^ 116) << 1 = 292
+Carácter 'r' (114) | (292 ^ 114) << 1 = 684
+Carácter 'i' (105) | (684 ^ 105) << 1 = 1418
+Carácter 'n' (110) | (1418 ^ 110) << 1 = 3016
+Carácter 'g' (103) | (3016 ^ 103) << 1 = 5982
+------------------------------
+Resultado final del ID: 5982
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> addv
+
+Pasos del cálculo:
+------------------------------
+Carácter 'a' (97) | (0 ^ 97) << 1 = 194
+Carácter 'd' (100) | (194 ^ 100) << 1 = 332
+Carácter 'd' (100) | (332 ^ 100) << 1 = 592
+Carácter 'v' (118) | (592 ^ 118) << 1 = 1100
+------------------------------
+Resultado final del ID: 1100
+
+Introduce la palabra (el programa se detendrá al presionar Enter):
+> token
+
+Pasos del cálculo:
+------------------------------
+Carácter 't' (116) | (0 ^ 116) << 1 = 232
+Carácter 'o' (111) | (232 ^ 111) << 1 = 270
+Carácter 'k' (107) | (270 ^ 107) << 1 = 714
+Carácter 'e' (101) | (714 ^ 101) << 1 = 1374
+Carácter 'n' (110) | (1374 ^ 110) << 1 = 2656
+------------------------------
+Resultado final del ID: 2656
+

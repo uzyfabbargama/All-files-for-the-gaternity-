@@ -1,0 +1,90 @@
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_conv.py
+Primer  valor: 3.4
+Segundo valor: 6.7
+Bias         : 3.4
+1.9000000000000012
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_conv.py
+Primer  valor: 0.6
+Segundo valor: 0.42354356465
+Bias         : 0.1
+1.2177101288888108
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_conv.py
+Primer  valor: 0.6
+Segundo valor: 0.8
+Bias         : 0.5
+1.5000000000000004
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 tokenizador.py
+Token: 30378870308597100
+Estructura binaria: 0b0.0b11010111110110101101011111011010110101111101101011011000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 tokenizador.py
+Token: 30378870308597100
+Estructura binaria: 0.0b11010111110110101101011111011010110101111101101011011000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 tokenizador.py
+Token: 30378870308597100
+Estructura binaria: 0.11010111110110101101011111011010110101111101101011011000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_proc.py
+Ingresa el primer  número: 1.34
+Ingresa el segundo número: 0.783
+--- RESULTADO DE LA PROCESACIÓN ---
+Neurona A: 1.34 | Neurona B: 0.783
+Bit de Disparo (r9): 1
+Acumulado resultante en R13 (Float aproximado): 0.6230667723
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_proc.py
+Ingresa el primer  número: 0.5
+Ingresa el segundo número: 0.5
+--- RESULTADO DE LA PROCESACIÓN ---
+Neurona A: 0.5 | Neurona B: 0.5
+Bit de Disparo (r9): 1
+Acumulado resultante en R13 (Float aproximado): 0.0000000000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_proc.py
+Ingresa el primer  número: 0.6
+Ingresa el segundo número: 0.6
+--- RESULTADO DE LA PROCESACIÓN ---
+Neurona A: 0.6 | Neurona B: 0.6
+Bit de Disparo (r9): 1
+Acumulado resultante en R13 (Float aproximado): 0.4000000000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_proc.py
+Ingresa el primer  número: 0.25
+Ingresa el segundo número: 0.25
+--- RESULTADO DE LA PROCESACIÓN ---
+Neurona A: 0.25 | Neurona B: 0.25
+Bit de Disparo (r9): 0
+Acumulado resultante en R13 (Float aproximado): 1.0000000000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_proc.py
+Ingresa el primer  número: 0.5
+Ingresa el segundo número: 0.5
+--- RESULTADO DE LA PROCESACIÓN ---
+Neurona A: 0.5 | Neurona B: 0.5
+Bit de Disparo (r9): 1
+Acumulado resultante en R13 (Float aproximado): 0.0000000000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ micro test_proc.py
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ micro test_proc.py
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_proc.py
+Ingresa el primer  número: 0.25
+Ingresa el segundo número: 0.25    
+--- RESULTADO DE LA PROCESACIÓN ---
+Neurona A: 0.25 | Neurona B: 0.25
+Bit de Disparo (r9): 0
+Acumulado resultante en R13 (Float aproximado): 1.0000000000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_proc.py
+Ingresa el primer  número: 0.45
+Ingresa el segundo número: 0.05
+--- RESULTADO DE LA PROCESACIÓN ---
+Neurona A: 0.45 | Neurona B: 0.05
+Bit de Disparo (r9): 1
+Acumulado resultante en R13 (Float aproximado): 0.5000000000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_proc.py
+Ingresa el primer  número: 0.35
+Ingresa el segundo número: 0.15
+--- RESULTADO DE LA PROCESACIÓN ---
+Neurona A: 0.35 | Neurona B: 0.15
+Bit de Disparo (r9): 0
+Acumulado resultante en R13 (Float aproximado): 0.5000000000
+uziel_gamma@uziel-PCINUX:~/Bella_Unica/fl_neuron$ python3 test_proc.py
+Ingresa el primer  número: 0.33333333
+Ingresa el segundo número: 0.22222222
+--- RESULTADO DE LA PROCESACIÓN ---
+Neurona A: 0.33333333 | Neurona B: 0.22222222
+Bit de Disparo (r9): 1
+Acumulado resultante en R13 (Float aproximado): 0.6825396727

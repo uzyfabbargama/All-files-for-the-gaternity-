@@ -1,0 +1,1 @@
+nasm -f elf64 NeuralScriptv5.asm -o NSMotor.o && gcc -shared NSMotor.o -o libNSMotor.so

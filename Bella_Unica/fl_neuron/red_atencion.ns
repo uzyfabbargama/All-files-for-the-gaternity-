@@ -1,0 +1,38 @@
+
+    
+    
+    
+
+
+$ --- DEFINICIÓN DE ESPACIO DE MEMORIA (SLOTS) ---
+var entrada_token, 0.8
+var salida_red, 0.0
+
+$ --- DESPLIEGUE DINÁMICO DE CAPAS CON %rep ---
+
+    
+    
+    
+    $ Nodo de Atención Capa 0
+    $ 1. Similitud (Producto punto / activación)
+    proc 10, 20
+    var similitud_1, 20
+    $ 2. Escalado mediante la opcode nativa prom
+    prom atencion_scaled_1, similitud_1, 30
+    $ 3. Transferencia a la neurona de destino
+    proc atencion_scaled_1, 40
+    $ Retroalimentación local
+        growth 20, 0.01
+    $ Nodo de Atención Capa 1
+    $ 1. Similitud (Producto punto / activación)
+    proc 11, 21
+    var similitud_3, 21
+    $ 2. Escalado mediante la opcode nativa prom
+    prom atencion_scaled_3, similitud_3, 31
+    $ 3. Transferencia a la neurona de destino
+    proc atencion_scaled_3, 41
+    $ Retroalimentación local
+        growth 21, 0.01
+
+$ Conexión final al nodo de salida principal
+proc 41, salida_red

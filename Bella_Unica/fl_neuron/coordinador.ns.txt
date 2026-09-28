@@ -1,0 +1,129 @@
+$ ===== COORDINADOR NS =====
+
+$ 1. ENTRADAS
+var bella_susurro, 0.0
+var bhl_estado, 0.0
+var llm_respuesta, 0.0
+
+$ 2. BELLA → NS (extraer memoria relevante)
+proc bella_memoria, bella_susurro
+
+$ 3. BHL → NS (extraer estado emocional)
+conv bhl_emocion, bhl_estado, 0.5, 0.0
+proc bhl_emocion, bhl_emocion
+
+$ 4. NS → LLM (generar prompt enriquecido)
+conv prompt, bella_memoria, bhl_emocion, 0.0
+proc prompt, prompt
+
+$ 5. NS → BELLA (aprender de la respuesta)
+conv aprendizaje, llm_respuesta, bella_memoria, 0.0
+proc aprendizaje, aprendizaje
+
+$ 6. NS → BHL (actualizar estado emocional)
+conv emocion_nueva, llm_respuesta, bhl_emocion, 0.0
+proc emocion_nueva, emocion_nueva
+
+$ 7. SALIDA (decisiones)
+var decision, prompt
+
+$ ===== ALGORITMO DE COORDINACIÓN =====
+
+$ 1. DETECTAR SI BELLA TIENE ALGO QUE DECIR
+logic cmpn bella_activa, bella_susurro
+
+$ 2. SI BELLA ESTÁ ACTIVA, USAR SU MEMORIA
+logic yes bella_activa
+    conv contexto, bella_susurro, 0.8, 0.0
+logic no bella_activa
+    $ Si Bella no tiene nada, usar BHL
+    conv contexto, bhl_estado, 0.8, 0.0
+logic endcond
+
+$ 3. DETECTAR SI BHL ESTÁ ESTRESADO
+logic cmpv bhl_estresado, bhl_estado, 50
+
+$ 4. SI BHL ESTÁ ESTRESADO, CALMARLO
+logic yes bhl_estresado
+    decay bhl_estado, 10
+    $ Generar respuesta calmada
+    conv respuesta, contexto, 0.3, 0.0
+logic no bhl_estresado
+    $ Si BHL está bien, generar respuesta normal
+    conv respuesta, contexto, 0.8, 0.0
+logic endcond
+
+$ 5. DETECTAR SI LA RESPUESTA ES BUENA
+logic cmpv respuesta_buena, respuesta, 0.5
+
+$ 6. SI ES BUENA, REFORZAR
+logic yes respuesta_buena
+    growth bella_susurro, 5
+    growth bhl_estado, 5
+logic endcond
+
+$ ===== ALGORITMO DE APRENDIZAJE =====
+
+$ 1. ENTRENAR CON EJEMPLOS
+logic loop entrenando
+    var entrada, 0.0
+    var salida_esperada, 0.0
+    
+    $ Forward pass
+    proc h1, entrada
+    conv h2, h1, 0.5, 0.0
+    proc h3, h2
+    conv salida, h3, 0.8, 0.0
+    
+    $ Calcular error (comparar con salida_esperada)
+    logic cmpv error, salida, salida_esperada
+    
+    $ Si hay error, ajustar
+    logic yes error
+        $ Backprop en hardware
+        decay h2, 0.01
+        growth h3, 0.01
+        
+        $ Si el error es grande, hacer dropout
+        logic cmpv error_grande, error, 0.5
+        logic yes error_grande
+            drop h1, h2
+        logic endcond
+    logic endcond
+    
+    $ Siguiente ejemplo
+    var entrada, proxima_entrada
+logic endloop
+
+$ ===== EVOLUCIONADOR NS =====
+
+$ 1. POBLACIÓN DE ARQUITECTURAS
+var arq1, 0.0
+var arq2, 0.0
+var arq3, 0.0
+
+$ 2. EVALUAR CADA ARQUITECTURA
+proc eval1, arq1
+proc eval2, arq2
+proc eval3, arq3
+
+$ 3. SELECCIONAR LA MEJOR
+logic cmp mejor_arq, eval1, eval2
+logic yes mejor_arq
+    var mejor, arq1
+logic no mejor_arq
+    logic cmp mejor_arq, eval2, eval3
+    logic yes mejor_arq
+        var mejor, arq2
+    logic no mejor_arq
+        var mejor, arq3
+    logic endcond
+logic endcond
+
+$ 4. CRUCE Y MUTACIÓN
+proc hijo, mejor, peor
+decay hijo, 1
+growth hijo, 1
+
+$ 5. REEMPLAZAR PEOR
+var peor, hijo

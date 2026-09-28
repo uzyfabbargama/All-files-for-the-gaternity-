@@ -1,0 +1,70 @@
+$ ===== TRANSFORMER MINI (1 capa) =====
+
+$ Embedding (token + posición)
+var token, {token_56bits}
+var pos, {pos_56bits}
+var embed, 0.0
+conv embed, token, pos, 0.0
+
+$ ===== MULTI-HEAD ATTENTION =====
+
+$ Cabeza 1: Verbos
+logic def cabeza_verbo (1 = es_verbo)
+    var query_verbo, 0.0
+    var key_verbo, 0.0
+    var value_verbo, 0.0
+    var attn_verbo, 0.0
+    
+    proc query_verbo, embed
+    proc key_verbo, embed
+    proc value_verbo, embed
+    conv attn_verbo, query_verbo, key_verbo, 0.0
+    proc value_verbo, attn_verbo
+logic endef
+
+$ Cabeza 2: Sustantivos
+logic def cabeza_sustantivo (1 = es_sustantivo)
+    var query_sust, 0.0
+    var key_sust, 0.0
+    var value_sust, 0.0
+    var attn_sust, 0.0
+    
+    proc query_sust, embed
+    proc key_sust, embed
+    proc value_sust, embed
+    conv attn_sust, query_sust, key_sust, 0.0
+    proc value_sust, attn_sust
+logic endef
+
+$ Cabeza 3: Adjetivos
+logic def cabeza_adjetivo (1 = es_adjetivo)
+    var query_adj, 0.0
+    var key_adj, 0.0
+    var value_adj, 0.0
+    var attn_adj, 0.0
+    
+    proc query_adj, embed
+    proc key_adj, embed
+    proc value_adj, embed
+    conv attn_adj, query_adj, key_adj, 0.0
+    proc value_adj, attn_adj
+logic endef
+
+$ ===== FEED-FORWARD =====
+var ff1, 0.0
+var ff2, 0.0
+var salida, 0.0
+
+proc ff1, embed
+proc ff2, ff1
+proc salida, ff2
+
+$ ===== RESIDUAL + NORM =====
+var residual, 0.0
+proc residual, embed
+add residual, salida
+norm residual, 0.0
+
+$ ===== SOFTMAX =====
+var softmax, 0.0
+logic cmp softmax, residual, 0.0
