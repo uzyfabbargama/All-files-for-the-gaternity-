@@ -1,0 +1,115 @@
+╔══════════════════════════════════════════════╗
+║   BellaBank - Demo de Seguridad (Unidad 4)   ║
+╚══════════════════════════════════════════════╝
+──────────────────────────────────────────────
+[0] Health check
+✓ Servidor arriba
+──────────────────────────────────────────────
+[1] Registro de usuarios
+  ✓ neo registrado
+  ✓ trinity registrado
+──────────────────────────────────────────────
+[2] Login neo
+  ✓ Token obtenido: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...
+──────────────────────────────────────────────
+[3] Neo deposita 500.00 y emite factura de 50.00
+  ✓ Factura emitida: a8708acf4489d6210c273402
+──────────────────────────────────────────────
+[4] Neo consulta /bills/mine
+  {"facturas":[{"id":1,"code":"a8708acf4489d6210c273402","amount_cents":5000,"redeemed":0,"created_at":1793104972401,"expires_at":1793277772401}]}
+  ✓ Factura id=1 visible para su dueño
+──────────────────────────────────────────────
+[5] Neo GET /bills/1 (debe ser 200)
+  ✓ HTTP 200 → dueño autorizado
+──────────────────────────────────────────────
+[6] Login trinity
+  ✓ Token trinity: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...
+──────────────────────────────────────────────
+[7] 🔒 IDOR: trinity GET /bills/1 (debe ser 403)
+  ✓ HTTP 403 → IDOR bloqueado
+  Respuesta: {"error":"No tienes permiso sobre este recurso."}
+──────────────────────────────────────────────
+[8] trinity GET /bills/mine (debe ser lista vacía)
+  {"facturas":[]}
+──────────────────────────────────────────────
+[9] 🛡 SQL Injection intento 1: payload en username (Zod → 400)
+  HTTP 400 → {"error":"Datos inválidos","detalles":[{"origin":"string","code":"invalid_format","format":"regex","pattern":"/^[a-zA-Z0-9_]+$/","path":["username"],"message":"Solo letras, números y _"},{"origin":"string","code":"too_small","minimum":8,"inclusive":true,"path":["password"],"message":"Too small: expected string to have >=8 characters"}]}
+  ✓ Zod rechazó el payload malicioso
+[9b] 🛡 SQL Injection intento 2: payload en password (SQLite → 401)
+  HTTP 401 → {"error":"Credenciales inválidas"}
+  ✓ Prepared statements bloquearon el bypass
+──────────────────────────────────────────────
+[10] Refresh token tras logout (debe fallar)
+  ✓ HTTP 403 → refresh revocado correctamente
+──────────────────────────────────────────────
+[11] 🚦 Rate limiting (7 intentos fallidos)
+  ℹ Reinicia el servidor antes de este paso si quieres ver 5×401 seguidos de 2×429.
+    Ctrl+C en la terminal del servidor, luego 'npm run dev'.
+  Pulsa ENTER cuando el servidor esté recién reiniciado... 
+  Intento 1: HTTP 401
+  Intento 2: HTTP 429 (bloqueado)
+  Intento 3: HTTP 429 (bloqueado)
+  Intento 4: HTTP 429 (bloqueado)
+  Intento 5: HTTP 429 (bloqueado)
+  Intento 6: HTTP 429 (bloqueado)
+  Intento 7: HTTP 429 (bloqueado)
+──────────────────────────────────────────────
+✅ Demo completada. Captura esta salida para tu informe.
+uziel_gamma@uziel-PCINUX:~/bella-bank$ ./demo
+╔══════════════════════════════════════════════╗
+║   BellaBank - Demo de Seguridad (Unidad 4)   ║
+╚══════════════════════════════════════════════╝
+──────────────────────────────────────────────
+[0] Health check
+✓ Servidor arriba
+──────────────────────────────────────────────
+[1] Registro de usuarios
+  ✓ neo registrado
+  ✓ trinity registrado
+──────────────────────────────────────────────
+[2] Login neo
+  ✓ Token obtenido: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...
+──────────────────────────────────────────────
+[3] Neo deposita 500.00 y emite factura de 50.00
+  ✓ Factura emitida: 4da102c6e49fe3c7349558de
+──────────────────────────────────────────────
+[4] Neo consulta /bills/mine
+  {"facturas":[{"id":1,"code":"4da102c6e49fe3c7349558de","amount_cents":5000,"redeemed":0,"created_at":1793105040243,"expires_at":1793277840243}]}
+  ✓ Factura id=1 visible para su dueño
+──────────────────────────────────────────────
+[5] Neo GET /bills/1 (debe ser 200)
+  ✓ HTTP 200 → dueño autorizado
+──────────────────────────────────────────────
+[6] Login trinity
+  ✓ Token trinity: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...
+──────────────────────────────────────────────
+[7] 🔒 IDOR: trinity GET /bills/1 (debe ser 403)
+  ✓ HTTP 403 → IDOR bloqueado
+  Respuesta: {"error":"No tienes permiso sobre este recurso."}
+──────────────────────────────────────────────
+[8] trinity GET /bills/mine (debe ser lista vacía)
+  {"facturas":[]}
+──────────────────────────────────────────────
+[9] 🛡 SQL Injection intento 1: payload en username (Zod → 400)
+  HTTP 400 → {"error":"Datos inválidos","detalles":[{"origin":"string","code":"invalid_format","format":"regex","pattern":"/^[a-zA-Z0-9_]+$/","path":["username"],"message":"Solo letras, números y _"},{"origin":"string","code":"too_small","minimum":8,"inclusive":true,"path":["password"],"message":"Too small: expected string to have >=8 characters"}]}
+  ✓ Zod rechazó el payload malicioso
+[9b] 🛡 SQL Injection intento 2: payload en password (SQLite → 401)
+  HTTP 401 → {"error":"Credenciales inválidas"}
+  ✓ Prepared statements bloquearon el bypass
+──────────────────────────────────────────────
+[10] Refresh token tras logout (debe fallar)
+  ✓ HTTP 403 → refresh revocado correctamente
+──────────────────────────────────────────────
+[11] 🚦 Rate limiting (7 intentos fallidos)
+  ℹ Reinicia el servidor antes de este paso si quieres ver 5×401 seguidos de 2×429.
+    Ctrl+C en la terminal del servidor, luego 'npm run dev'.
+  Pulsa ENTER cuando el servidor esté recién reiniciado... 
+  Intento 1: HTTP 401
+  Intento 2: HTTP 401
+  Intento 3: HTTP 401
+  Intento 4: HTTP 401
+  Intento 5: HTTP 401
+  Intento 6: HTTP 429 (bloqueado)
+  Intento 7: HTTP 429 (bloqueado)
+──────────────────────────────────────────────
+✅ Demo completada. Captura esta salida para tu informe.

@@ -1,0 +1,5 @@
+#!/bin/bash
+curl -X POST http://localhost:3000/api/bank/deposit \
+  -H "Authorization: Bearer <ACCESS_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{"amountCents": 50000}'

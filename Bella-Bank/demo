@@ -1,0 +1,190 @@
+#!/usr/bin/env bash
+# demo.sh - Demostración completa BellaBank (Unidad 4)
+set -uo pipefail
+
+BASE="${BASE:-http://localhost:3000}"
+PASS_NEO="Matrix123!"
+PASS_TRI="Zion123!"
+
+GREEN="\033[0;32m"; RED="\033[0;31m"; YELLOW="\033[1;33m"; BLUE="\033[0;34m"; NC="\033[0m"
+
+jget() { python3 -c "import sys,json;print(json.load(sys.stdin).get('$1',''))"; }
+hr()   { printf '%s\n' "──────────────────────────────────────────────"; }
+
+echo -e "${BLUE}╔══════════════════════════════════════════════╗${NC}"
+echo -e "${BLUE}║   BellaBank - Demo de Seguridad (Unidad 4)   ║${NC}"
+echo -e "${BLUE}╚══════════════════════════════════════════════╝${NC}"
+
+# ─── 0. Health check ─────────────────────────────────
+hr
+echo -e "${YELLOW}[0] Health check${NC}"
+HEALTH=$(curl -s -o /dev/null -w "%{http_code}" "$BASE/health")
+if [ "$HEALTH" != "200" ]; then
+  echo -e "${RED}✗ Servidor no responde en $BASE (HTTP $HEALTH)${NC}"
+  echo "  Arranca con: npm run dev"
+  exit 1
+fi
+echo -e "${GREEN}✓ Servidor arriba${NC}"
+
+# ─── 1. Registro ─────────────────────────────────────
+hr
+echo -e "${YELLOW}[1] Registro de usuarios${NC}"
+for u in "neo:$PASS_NEO" "trinity:$PASS_TRI"; do
+  USER="${u%%:*}"; PASS="${u##*:}"
+  CODE=$(curl -s -o /tmp/reg.json -w "%{http_code}" \
+    -X POST "$BASE/api/auth/register" \
+    -H "Content-Type: application/json" \
+    -d "{\"username\":\"$USER\",\"password\":\"$PASS\"}")
+  if [ "$CODE" = "201" ]; then
+    echo -e "  ${GREEN}✓ $USER registrado${NC}"
+  elif [ "$CODE" = "409" ]; then
+    echo -e "  ${YELLOW}• $USER ya existía${NC}"
+  else
+    echo -e "  ${RED}✗ Error registrando $USER (HTTP $CODE): $(cat /tmp/reg.json)${NC}"
+  fi
+done
+
+# ─── 2. Login neo ────────────────────────────────────
+hr
+echo -e "${YELLOW}[2] Login neo${NC}"
+LOGIN=$(curl -s -X POST "$BASE/api/auth/login" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"neo\",\"password\":\"$PASS_NEO\"}")
+NEO_TOKEN=$(echo "$LOGIN" | jget accessToken)
+REFRESH_NEO=$(echo "$LOGIN" | jget refreshToken)
+if [ -z "$NEO_TOKEN" ]; then
+  echo -e "${RED}✗ Login neo falló: $LOGIN${NC}"; exit 1
+fi
+echo -e "  ${GREEN}✓ Token obtenido: ${NEO_TOKEN:0:40}...${NC}"
+
+# ─── 3. Neo deposita y emite factura ─────────────────
+hr
+echo -e "${YELLOW}[3] Neo deposita 500.00 y emite factura de 50.00${NC}"
+curl -s -X POST "$BASE/api/bank/deposit" \
+  -H "Authorization: Bearer $NEO_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"amountCents":50000}' >/dev/null
+BILL_JSON=$(curl -s -X POST "$BASE/api/bank/bills" \
+  -H "Authorization: Bearer $NEO_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"amountCents":5000}')
+BILL_CODE=$(echo "$BILL_JSON" | jget codigo)
+if [ -z "$BILL_CODE" ]; then
+  echo -e "${RED}✗ No se creó la factura: $BILL_JSON${NC}"; exit 1
+fi
+echo -e "  ${GREEN}✓ Factura emitida: $BILL_CODE${NC}"
+
+# ─── 4. Neo consulta sus facturas ────────────────────
+hr
+echo -e "${YELLOW}[4] Neo consulta /bills/mine${NC}"
+MINE=$(curl -s "$BASE/api/bank/bills/mine" -H "Authorization: Bearer $NEO_TOKEN")
+BILL_ID=$(echo "$MINE" | python3 -c "import sys,json;d=json.load(sys.stdin)['facturas'];print(d[0]['id'] if d else '')")
+echo "  $MINE"
+if [ -n "$BILL_ID" ]; then
+  echo -e "  ${GREEN}✓ Factura id=$BILL_ID visible para su dueño${NC}"
+else
+  echo -e "${RED}✗ Neo no ve su factura${NC}"
+fi
+
+# ─── 5. Dueño accede a su factura (200) ──────────────
+hr
+echo -e "${YELLOW}[5] Neo GET /bills/$BILL_ID (debe ser 200)${NC}"
+CODE=$(curl -s -o /tmp/bill.json -w "%{http_code}" \
+  "$BASE/api/bank/bills/$BILL_ID" -H "Authorization: Bearer $NEO_TOKEN")
+if [ "$CODE" = "200" ]; then
+  echo -e "  ${GREEN}✓ HTTP $CODE → dueño autorizado${NC}"
+else
+  echo -e "  ${RED}✗ HTTP $CODE (esperaba 200): $(cat /tmp/bill.json)${NC}"
+fi
+
+# ─── 6. Login trinity ────────────────────────────────
+hr
+echo -e "${YELLOW}[6] Login trinity${NC}"
+LOGIN_T=$(curl -s -X POST "$BASE/api/auth/login" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"trinity\",\"password\":\"$PASS_TRI\"}")
+TRI_TOKEN=$(echo "$LOGIN_T" | jget accessToken)
+if [ -z "$TRI_TOKEN" ]; then
+  echo -e "${RED}✗ Login trinity falló: $LOGIN_T${NC}"; exit 1
+fi
+echo -e "  ${GREEN}✓ Token trinity: ${TRI_TOKEN:0:40}...${NC}"
+
+# ─── 7. IDOR: trinity intenta factura de neo (403) ──
+hr
+echo -e "${YELLOW}[7] 🔒 IDOR: trinity GET /bills/$BILL_ID (debe ser 403)${NC}"
+CODE=$(curl -s -o /tmp/idor.json -w "%{http_code}" \
+  "$BASE/api/bank/bills/$BILL_ID" -H "Authorization: Bearer $TRI_TOKEN")
+if [ "$CODE" = "403" ]; then
+  echo -e "  ${GREEN}✓ HTTP $CODE → IDOR bloqueado${NC}"
+  echo "  Respuesta: $(cat /tmp/idor.json)"
+else
+  echo -e "  ${RED}✗ HTTP $CODE (esperaba 403) → ¡IDOR no protegido!${NC}"
+fi
+
+# ─── 8. trinity ve SU lista vacía ────────────────────
+hr
+echo -e "${YELLOW}[8] trinity GET /bills/mine (debe ser lista vacía)${NC}"
+echo "  $(curl -s "$BASE/api/bank/bills/mine" -H "Authorization: Bearer $TRI_TOKEN")"
+
+# ─── 9. SQL Injection (dos capas) ────────────────────
+hr
+echo -e "${YELLOW}[9] 🛡️ SQL Injection intento 1: payload en username (Zod → 400)${NC}"
+CODE=$(curl -s -o /tmp/sqli1.json -w "%{http_code}" \
+  -X POST "$BASE/api/auth/login" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"neo\" OR \"1\"=\"1","password":"x"}')
+echo "  HTTP $CODE → $(cat /tmp/sqli1.json)"
+if [ "$CODE" = "400" ]; then
+  echo -e "  ${GREEN}✓ Zod rechazó el payload malicioso${NC}"
+else
+  echo -e "  ${RED}✗ Esperaba 400, obtuve $CODE${NC}"
+fi
+
+echo -e "${YELLOW}[9b] 🛡️ SQL Injection intento 2: payload en password (SQLite → 401)${NC}"
+CODE=$(curl -s -o /tmp/sqli2.json -w "%{http_code}" \
+  -X POST "$BASE/api/auth/login" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"neo\",\"password\":\"' OR 1=1 --\"}")
+echo "  HTTP $CODE → $(cat /tmp/sqli2.json)"
+if [ "$CODE" = "401" ]; then
+  echo -e "  ${GREEN}✓ Prepared statements bloquearon el bypass${NC}"
+else
+  echo -e "  ${RED}✗ Esperaba 401, obtuve $CODE${NC}"
+fi
+
+# ─── 10. Refresh revocado tras logout ────────────────
+hr
+echo -e "${YELLOW}[10] Refresh token tras logout (debe fallar)${NC}"
+curl -s -o /dev/null -X POST "$BASE/api/auth/logout" \
+  -H "Content-Type: application/json" \
+  -d "{\"refreshToken\":\"$REFRESH_NEO\"}"
+CODE=$(curl -s -o /tmp/ref.json -w "%{http_code}" \
+  -X POST "$BASE/api/auth/refresh" \
+  -H "Content-Type: application/json" \
+  -d "{\"refreshToken\":\"$REFRESH_NEO\"}")
+if [ "$CODE" = "403" ] || [ "$CODE" = "401" ]; then
+  echo -e "  ${GREEN}✓ HTTP $CODE → refresh revocado correctamente${NC}"
+else
+  echo -e "  ${RED}✗ HTTP $CODE (esperaba 401/403): $(cat /tmp/ref.json)${NC}"
+fi
+
+# ─── 11. Rate limiting (AL FINAL, porque agota el cupo) ──
+hr
+echo -e "${YELLOW}[11] 🚦 Rate limiting (7 intentos fallidos)${NC}"
+echo -e "  ${BLUE}ℹ Reinicia el servidor antes de este paso si quieres ver 5×401 seguidos de 2×429.${NC}"
+echo -e "  ${BLUE}  Ctrl+C en la terminal del servidor, luego 'npm run dev'.${NC}"
+read -rp "  Pulsa ENTER cuando el servidor esté recién reiniciado... " _
+for i in {1..7}; do
+  CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+    -X POST "$BASE/api/auth/login" \
+    -H "Content-Type: application/json" \
+    -d '{"username":"neo","password":"mala1234"}')
+  if [ "$CODE" = "429" ]; then
+    echo -e "  Intento $i: ${RED}HTTP $CODE (bloqueado)${NC}"
+  else
+    echo -e "  Intento $i: HTTP $CODE"
+  fi
+done
+
+hr
+echo -e "${GREEN}✅ Demo completada. Captura esta salida para tu informe.${NC}"

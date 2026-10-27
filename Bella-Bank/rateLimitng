@@ -1,0 +1,7 @@
+#!/bin/bash
+for i in {1..7}; do
+  curl -s -o /dev/null -w "%{http_code}\n" -X POST http://localhost:3000/api/auth/login \
+    -H "Content-Type: application/json" \
+    -d '{"username":"neo","password":"mala"}'
+done
+# Deberías ver 401,401,401,401,401,429,429
